@@ -2,12 +2,29 @@
 <html>
   <%include ../partial/head.ejs%>
   <body>
-    <label for="">Add</label>
-    <form class="" action="/teachers/add" method="post">
-      <input type="text" name="first_name" placeholder="First Name">
-      <input type="text" name="last_name" placeholder="Last Name">
-      <input type="text" name="email" placeholder="Email">
-      <input type="submit" value="Submit">
-    </form>
+    <div class="ui container" style="margin-top:3em;">
+      <h1><%=title%></h1>
+      <%include ../partial/menu.ejs%>
+      <form class="" action="/teachers/add" method="post">
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="first_name" placeholder="First Name">
+          </div>
+        </p>
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="last_name" placeholder="Last Name">
+          </div>
+        </p>
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="email" placeholder="Email">
+          </div>
+        </p>
+        <p>
+          <input class="ui primary button" type="submit" value="Submit">
+        </p>
+      </form>
+    </div>
   </body>
 </html>

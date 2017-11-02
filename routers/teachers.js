@@ -3,7 +3,7 @@ const router = express.Router();
 const Model = require('../models');
 
 router.get('/', (req, res) => {
-  Model.Teacher.findAll().then(teachers => {
+  Model.Teacher.findAll({order: [['id']]}).then(teachers => {
     res.render('teachers', {title:'Teachers', teachers:teachers})
   })
 })

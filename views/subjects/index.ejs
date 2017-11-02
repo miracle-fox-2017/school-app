@@ -2,27 +2,33 @@
 <html>
   <%include ../partial/head.ejs%>
   <body>
-    <table>
-      <tbody>
-        <tr>
-          <th>ID</th>
-          <th>Subject Name</th>
-          <th>Option</th>
-        </tr>
-      </tbody>
-      <tbody>
-        <%subjects.forEach(subject => {%>
-          <tr>
-            <td><%=subject.id%></td>
-            <td><%=subject.subject_name%></td>
-            <td>
-              <a href="/subjects/edit/<%=subject.id%>">edit</a>
-              <a href="/subjects/delete/<%=subject.id%>">delete</a>
-            </td>
-          </tr>
-        <%})%>
-      </tbody>
-    </table>
-    <a href="/subjects/add">add new</a>
+    <div class="ui container" style="margin-top:3em;">
+      <h1><%=title%> List</h1>
+      <%include ../partial/menu.ejs%>
+      <div class="column">
+        <table class="ui celled selectable right aligned table">
+          <thead class="left aligned">
+            <th class="center aligned">NO</th>
+            <th class="center aligned">ID</th>
+            <th>Subject Name</th>
+            <th>Option</th>
+          </tr></thead>
+          <tbody class="left aligned">
+            <%subjects.forEach((subject,i) => {%>
+              <tr>
+                <td class="center aligned"><%=i+1%></td>
+                <td class="center aligned"><%=subject.id%></td>
+                <td><%=subject.subject_name%></td>
+                <td>
+                  <a href="/subjects/edit/<%=subject.id%>">edit</a>
+                  <a href="/subjects/delete/<%=subject.id%>">delete</a>
+                </td>
+              </tr>
+            <%})%>
+          </tbody>
+        </table>
+      </div>
+      <a class="ui primary button" style="margin-top:20px;" href="/subjects/add">add new</a>
+    </div>
   </body>
 </html>

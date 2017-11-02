@@ -2,13 +2,30 @@
 <html>
   <%include ../partial/head.ejs%>
   <body>
-    <label for="">Add</label>
-    <p style="color:red;"><%=err%></p>
-    <form class="" action="/students/edit/<%=student.id%>" method="post">
-      <input type="text" name="first_name" placeholder="First Name" value="<%=student.first_name%>">
-      <input type="text" name="last_name" placeholder="Last Name" value="<%=student.last_name%>">
-      <input type="text" name="email" placeholder="Email" value="<%=student.email%>">
-      <input type="submit" value="Submit">
-    </form>
+    <div class="ui container" style="margin-top:3em;">
+      <h1><%=title%></h1>
+      <%include ../partial/menu.ejs%>
+      <p style="color:red;"><%=err%></p>
+      <form class="" action="/students/edit/<%=student.id%>" method="post">
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="first_name" placeholder="First Name" value="<%=student.first_name%>">
+          </div>
+        </p>
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="last_name" placeholder="Last Name" value="<%=student.last_name%>">
+          </div>
+        </p>
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="email" placeholder="Email" value="<%=student.email%>">
+          </div>
+        </p>
+        <p>
+          <input class="ui primary button" type="submit" value="Submit">
+        </p>
+      </form>
+    </div>
   </body>
 </html>
