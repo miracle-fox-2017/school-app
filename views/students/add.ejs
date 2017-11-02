@@ -5,7 +5,6 @@
     <div class="ui container" style="margin-top:3em;">
       <h1><%=title%></h1>
       <%include ../partial/menu.ejs%>
-      <p style="color:red;"><%=err%></p>
       <form class="" action="/students/add" method="post">
         <p>
           <div class="ui large icon input">
@@ -26,6 +25,13 @@
           <input class="ui primary button" type="submit" value="Submit">
         </p>
       </form>
+      <%if(err){%>
+        <div class="ui error message">
+          <ul class="list">
+            <li><%=err%></li>
+          </ul>
+        </div>
+      <%}%>
     </div>
   </body>
 </html>

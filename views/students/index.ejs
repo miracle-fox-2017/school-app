@@ -8,13 +8,13 @@
       <div class="column">
         <table class="ui celled selectable right aligned table">
           <thead class="left aligned">
-            <th class="center aligned">NO</th>
-            <th class="center aligned">ID</th>
+            <th class="center aligned one wide">NO</th>
+            <th class="center aligned one wide">ID</th>
             <th>Fisrt Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Full Name</th>
-            <th>Option</th>
+            <th class="center aligned three wide">Option</th>
           </tr></thead>
           <tbody class="left aligned">
             <%students.forEach((student,i) => {%>
@@ -25,16 +25,29 @@
                 <td><%=student.last_name%></td>
                 <td><%=student.email%></td>
                 <td><%=student.getFullname()%></td>
-                <td>
-                  <a href="/students/edit/<%=student.id%>">edit</a>
-                  <a href="/students/delete/<%=student.id%>">delete</a>
+                <td class="center aligned">
+                  <div class="ui buttons">
+                    <a class="ui blue button" href="/students/edit/<%=student.id%>">Edit</a>
+                    <div class="or"></div>
+                    <a class="ui red button" href="/students/delete/<%=student.id%>">Delete</a>
+                  </div>
                 </td>
               </tr>
             <%})%>
           </tbody>
+          <tfoot class="full-width">
+            <tr>
+              <th colspan="6">
+                <a href="/students/add">
+                  <div class="ui left floated small primary labeled icon button">
+                    <i class="user icon"></i> Add Student
+                  </div>
+                </a>
+              </th>
+            </tr>
+          </tfoot>
         </table>
       </div>
-      <a class="ui primary button" style="margin-top:20px;" href="/students/add">add new</a>
     </div>
   </body>
 </html>

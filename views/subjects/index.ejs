@@ -8,10 +8,10 @@
       <div class="column">
         <table class="ui celled selectable right aligned table">
           <thead class="left aligned">
-            <th class="center aligned">NO</th>
-            <th class="center aligned">ID</th>
+            <th class="center aligned one wide">NO</th>
+            <th class="center aligned one wide">ID</th>
             <th>Subject Name</th>
-            <th>Option</th>
+            <th class="center aligned three wide">Option</th>
           </tr></thead>
           <tbody class="left aligned">
             <%subjects.forEach((subject,i) => {%>
@@ -19,16 +19,29 @@
                 <td class="center aligned"><%=i+1%></td>
                 <td class="center aligned"><%=subject.id%></td>
                 <td><%=subject.subject_name%></td>
-                <td>
-                  <a href="/subjects/edit/<%=subject.id%>">edit</a>
-                  <a href="/subjects/delete/<%=subject.id%>">delete</a>
+                <td class="center aligned">
+                  <div class="ui buttons">
+                    <a class="ui blue button" href="/subjects/edit/<%=subject.id%>">Edit</a>
+                    <div class="or"></div>
+                    <a class="ui red button" href="/subjects/delete/<%=subject.id%>">Delete</a>
+                  </div>
                 </td>
               </tr>
             <%})%>
           </tbody>
+          <tfoot class="full-width">
+            <tr>
+              <th colspan="6">
+                <a href="/subjects/add">
+                  <div class="ui left floated small primary labeled icon button">
+                    <i class="user icon"></i> Add Subject
+                  </div>
+                </a>
+              </th>
+            </tr>
+          </tfoot>
         </table>
       </div>
-      <a class="ui primary button" style="margin-top:20px;" href="/subjects/add">add new</a>
     </div>
   </body>
 </html>
