@@ -15,10 +15,12 @@ app.use(bodyParser.json())
 let index = require('./routers/index')
 let teachers = require('./routers/teachers')
 let subjects = require('./routers/subjects')
+let students = require('./routers/students')
 
 app.use('/', index)
 app.use('/teachers', teachers)
 app.use('/subjects', subjects)
+app.use('/students', students)
 
 
 app.listen(3000, err =>{
