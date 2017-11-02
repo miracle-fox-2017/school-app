@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partial/head.ejs%>
+  <body>
+    <label for="">Add</label>
+    <form class="" action="/teachers/edit/<%=teacher.id%>" method="post">
+      <input type="text" name="first_name" placeholder="First Name" value="<%=teacher.first_name%>">
+      <input type="text" name="last_name" placeholder="Last Name" value="<%=teacher.last_name%>">
+      <input type="text" name="email" placeholder="Email" value="<%=teacher.email%>">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

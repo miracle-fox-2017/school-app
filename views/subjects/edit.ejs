@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partial/head.ejs%>
+  <body>
+    <label for="">Add</label>
+    <form class="" action="/subjects/edit/<%=subject.id%>" method="post">
+      <input type="text" name="subject_name" placeholder="Subject Name" value="<%=subject.subject_name%>">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
