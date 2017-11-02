@@ -18,17 +18,19 @@
 				<th>Id</th>
 				<th>First Name</th>
 				<th>Last Name</th>
+				<th>Full Name</th>
 				<th>Email</th>
 				<th>Action</th>
 			</tr>
 		</thead>
-
+		
 		<tbody>
 			<% students.forEach( function(student, index) { %>
 				<tr>
 					<td><%= student.id %></td>
 					<td><%= student.first_name %></td>
 					<td><%= student.last_name %></td>
+					<td><%= student.full_name() %></td>
 					<td><%= student.email %></td>
 					<td>
 						<a href="/students/edit/<%= student.id %>">Edit</a>
