@@ -48,7 +48,8 @@ router.get('/edit/:id', (req, res)=>{
      {
        first_name: edit.first_name,
        last_name: edit.last_name,
-       email: edit.email
+       email: edit.email,
+       id: req.params.id
      },
      {
        where:{ id: req.params.id}

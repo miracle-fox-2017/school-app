@@ -8,18 +8,31 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
                   isEmail: {
                     args: true,
-                    msg: 'email format is incorrect'
+                    msg: 'Email format is incorrect'
+                  },
+                  isUnique: function(value, next) {
+                    var idSendiri = this;
+                    //kenanya null mba
+                    Student.find(
+                        {
+                          where: { email: value }
+                        })
+                        .then(function (student) {
+                            console.log(typeof idSendiri.id);
+                            console.log(typeof student.id);
+                            // reject if a different user wants to use the same email
+                            if (student && idSendiri.id != student.id) {
+                                return next('Email already in use, try another!');
+                            }
+                            return next();
+                        })
+                        .catch(function (err) {
+                            return next(err);
+                        });
                   }
                 }
     }
-  }
-  // {
-  //   indexes: [{
-  //     unique: true,
-  //     fields: ['email']
-  //   }]
-  // }
-  );
+  });
   Student.prototype.getFullname = function () {
     return this.first_name + ' ' + this.last_name
   }
