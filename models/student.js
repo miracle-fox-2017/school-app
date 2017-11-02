@@ -12,14 +12,13 @@ module.exports = (sequelize, DataTypes) => {
                   },
                   isUnique: function(value, next) {
                     var idSendiri = this;
-                    //kenanya null mba
                     Student.find(
                         {
                           where: { email: value }
                         })
                         .then(function (student) {
-                            console.log(typeof idSendiri.id);
-                            console.log(typeof student.id);
+                            // console.log(typeof idSendiri.id);
+                            // console.log(typeof student.id);
                             // reject if a different user wants to use the same email
                             if (student && idSendiri.id != student.id) {
                                 return next('Email already in use, try another!');
