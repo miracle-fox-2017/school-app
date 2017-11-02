@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Subjects</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Subjects List</h1>
+    </div>
+    <div class="content">
+        <%if(subjectRows.length === 0){%>
+            <div class="empty">
+                <span>Kosong</span>
+            </div>
+        <%}else{%>
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Subject Name</td>
+                </tr>
+                <%subjectRows.map((value)=>{%>
+                <tr>
+                    <td><%=value.id%></td>
+                    <td><%=value.subject_name%></td>
+                </tr>
+                <%})%>
+            </table>
+        <%}%>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Add Student</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Add Student</h1>
+    </div>
+    <a href="/students">Back</a>
+    <div class="content">
+        <form action="/students/add" method="post">
+            <table border="1">
+                <tr>
+                    <td>Nama Depan</td>
+                    <td><input type="text" name="first_name" placeholder="Type your first name"></td>
+                </tr>
+                <tr>
+                    <td>Nama Belakang</td>
+                    <td><input type="text" name="last_name" placeholder="Type your last name"></td>
+                </tr>
+                <tr>
+                    <td>Alamat Email</td>
+                    <td><input type="text" name="email" placeholder="Type your email address"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Add"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
