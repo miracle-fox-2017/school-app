@@ -37,6 +37,7 @@ router.get('/edit/:id', function (req, res) {
 
 router.post('/edit/:id', function (req, res) {
     Model.Student.update({
+        id : req.params.id,        
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email

@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   var Student = sequelize.define('Student', {
     first_name: DataTypes.STRING,
@@ -9,23 +10,24 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: {
           args: true,
           msg: 'Email format is incorrect'
+        },
+        isUnique: function (value, callback) {
+          var self = this
+          Student.find({
+            where: {
+              email: value
+            }
+          }).then(function (student) {
+            console.log(self)
+            if (student && self.id != student.id) {
+              return callback("Email is already in use")
+            }
+            return callback()
+          })
+            .catch(function (err) {
+              return callback(err)
+            })
         }
-        // isUnique: function (value, callback) {
-        //   var self = this
-        //   Student.find({
-        //     where: {
-        //       email: value
-        //     }
-        //   }).then(function (student) {
-        //     if (student && self.id !== student.id) {
-        //       return callback("Email is already in use")
-        //     }
-        //     return callback()
-        //   })
-        //     .catch(function (err) {
-        //       return callback(err)
-        //     })
-        // }
       }
     }
   },
