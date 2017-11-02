@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teachers</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+
+      </tr>
+
+      <%data.forEach((dataparams)=>{%>
+        <tr>
+        <td><%=dataparams.first_name%></td>
+        <td><%=dataparams.last_name%></td>
+        <td><%=dataparams.email%></td>
+        </tr>
+      <%})%>
+
+    </table>
+
+
+  </body>
+</html>
