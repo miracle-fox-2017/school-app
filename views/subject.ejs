@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Subject</title>
+</head>
+<body>
+	<h1 style="text-align: center;">Subjects</h1>
+
+	<table width="100%" border="1">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Subject Name</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% subjects.forEach( function(subject, index) { %>
+				<tr>
+					<td><%= subject.id %></td>
+					<td><%= subject.subject_name %></td>
+				</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</body>
+</html>
