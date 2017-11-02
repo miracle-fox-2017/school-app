@@ -5,7 +5,12 @@
 	<title>Students</title>
 </head>
 <body>
-	<h1 style="text-align: center;">Student Data</h1>
+	<div style="text-align: center;"  class="header">
+		<h1 style="text-align: center;">Student Data</h1>
+		<a href="/students/add">Add Student</a>
+		<br>
+		<br>
+	</div>
 
 	<table width="100%" border="1">
 		<thead>
@@ -14,6 +19,7 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 
@@ -24,9 +30,19 @@
 					<td><%= student.first_name %></td>
 					<td><%= student.last_name %></td>
 					<td><%= student.email %></td>
+					<td>
+						<a href="/students/edit/<%= student.id %>">Edit</a>
+						<a onclick="return confirm_click();" href="/students/delete/<%= student.id %>">Delete</a>
+					</td>
 				</tr>
 			<% }); %>
 		</tbody>
 	</table>
+
+	<script>
+		function confirm_click() {
+			return confirm("Delete this student?");
+		}
+	</script>
 </body>
 </html>
