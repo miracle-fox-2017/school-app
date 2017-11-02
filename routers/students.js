@@ -9,18 +9,18 @@ router.get('/', function (req, res) {
   Model.Students.findAll({order: [['id','ASC']]})
   .then(
     data=>{
-      let result = [];
-      for(let i = 0; i<data.length; i++){
-        let obj = {
-          id: data[i].id,
-          first_name : data[i].first_name,
-          last_name : data[i].last_name,
-          email : data[i].email,
-          full_name : data[i].getFullName()
-        }
-        result.push(obj);
-      }
-      res.render('students', {students: result})
+      // let result = [];
+      // for(let i = 0; i<data.length; i++){
+      //   let obj = {
+      //     id: data[i].id,
+      //     first_name : data[i].first_name,
+      //     last_name : data[i].last_name,
+      //     email : data[i].email,
+      //     full_name : data[i].getFullName()
+      //   }
+      //   result.push(obj);
+      // }
+      res.render('students', {students: data})
     }
 ).catch(err=>{
     console.log(err);

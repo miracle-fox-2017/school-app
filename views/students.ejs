@@ -20,7 +20,7 @@
           <td><%= s.id %></td>
           <td><%= s.first_name %></td>
           <td><%= s.last_name %></td>
-          <td><%= s.full_name %></td>
+          <td><%= s.getFullName() %></td>
           <td><%= s.email %></td>
           <td><a href="/students/edit/<%= s.id %>">Edit</a> | <a href="/students/delete/<%= s.id %>" onclick="return confirm('Delete this student?')">Delete</a></td>
         </tr>
