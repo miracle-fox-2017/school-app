@@ -21,8 +21,9 @@ route.post('/add',(req,res)=>{
   .then(task => {
     res.redirect('/student')
   }).catch(err=>{
-    // res.send(err.errors[0])
-
+    err = err.errors[0].type +' : ' + err.errors[0].message
+    // res.send(err)
+    // err =
     res.render('studentAdd',{err})
   })
 
