@@ -9,6 +9,18 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: {
           args: true,
           msg: 'email format is incorrect'
+        },
+        isUnique: function(value, cb) {
+          Student.find({
+            where: {email: value}
+            }).then((result) =>{
+              if(result && this.id != result.id) {
+                cb('Email already in use!')
+              }
+              else {
+                cb()
+              }
+          })
         }
       }
     }

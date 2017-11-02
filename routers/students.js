@@ -42,7 +42,8 @@ router.post('/edit/:id', function(req,res){
   model.Student.update({
     first_name : req.body.first_name,
     last_name  : req.body.last_name,
-    email      : req.body.email
+    email      : req.body.email,
+    id         : req.params.id
   },{
     where :{
       id  : req.params.id
