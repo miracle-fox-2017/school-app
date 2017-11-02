@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Subject</title>
+    <style media="screen">
+      h2{
+        text-align: center;
+      }
+      table {
+      border-collapse: collapse;
+      width: 100%;
+      padding: 20px
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      }
+    form{
+      text-align: center;
+      padding: 20px
+    }
+    </style>
+  </head>
+  <body>
+    <h2>Subjects</h2>
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>SUBJECT NAME</td>
+        </tr>
+      </thead>
+      <%subject.forEach(dt=>{%>
+        <tr>
+          <td><%=dt.id%></td>
+          <td><%=dt.subject_name%></td>
+        </tr>
+      <%})%>
+    </table>
+  </body>
+</html>

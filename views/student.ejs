@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Student Data</title>
+    <style media="screen">
+      h2{
+        text-align: center;
+      }
+      div{
+        text-align: center;
+      }
+      table {
+      border-collapse: collapse;
+      width: 100%;
+      padding: 20px
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      }
+    form{
+      text-align: center;
+      padding: 20px
+    }
+    </style>
+  </head>
+  <body>
+    <h2>Students Data</h2>
+    <div class="center">
+      <a href="/student/add" >Add Student</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>FIRST NAME</td>
+          <td>LAST NAME</td>
+          <td>EMAIL</td>
+          <td>ACTION</td>
+        </tr>
+      </thead>
+      <%student.forEach(dt=>{%>
+        <tr>
+          <td><%=dt.id%></td>
+          <td><%=dt.first_name%></td>
+          <td><%=dt.last_name%></td>
+          <td><%=dt.email%></td>
+          <td><a href="/student/edit/<%=dt.id%>">Edit</a>  ||  <a href="/student/delete/<%=dt.id%>" onclick="myFunction()">Delete</a></td>
+        </tr>
+      <%})%>
+    </table>
+    <script>
+function myFunction() {
+    confirm("DELETE THIS STUDENT ?");
+}
+</script>
+  </body>
+</html>
