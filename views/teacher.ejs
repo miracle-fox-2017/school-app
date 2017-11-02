@@ -1,0 +1,41 @@
+<% include partials/head %>
+
+    <body>
+        <header>
+            <% include partials/menu%>
+
+                <h3>Teachers Data</h3>
+        </header>
+
+
+        <div class="main-table">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                </tr>
+                <% dataTeachers.forEach((teacher)=>{%>
+                    <tr>
+                        <td>
+                            <%= teacher.id%>
+                        </td>
+                        <td>
+                            <%= teacher.first_name%>
+                        </td>
+                        <td>
+                            <%= teacher.last_name%>
+                        </td>
+                        <td>
+                            <%= teacher.email %>
+                        </td>
+                        <%})%>
+                    </tr>
+            </table>
+        </div>
+    </body>
+
+
+
+    </html>

@@ -1,0 +1,36 @@
+<%include partials/head%>
+
+    <body>
+
+        <head>
+            <% include partials/menu%>
+                <h3>Subjects Data</h3>
+        </head>
+
+        <div class="main-table">
+            <table>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Subject Name
+                    </th>
+                </tr>
+                <% dataSubjects.forEach((subject)=>{%>
+                    <tr>
+                        <td>
+                            <%= subject.id%>
+                        </td>
+                        <td>
+                            <%= subject.subject_name%>
+                        </td>
+                    </tr>
+                    <%})%>
+
+            </table>
+        </div>
+
+    </body>
+
+    </html>
