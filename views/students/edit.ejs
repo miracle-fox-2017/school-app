@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Students</title>
+  </head>
+  <body>
+    <h1>Edit</h1>
+
+
+    <form action="/students/edit/<%=dataStudent.id%>" method="post">
+    First name:<br>
+    <input type="text" name="first_name" value="<%=dataStudent.first_name%>"><br>
+    Last name:<br>
+    <input type="text" name="last_name" value="<%=dataStudent.last_name%>"><br>
+    Email:<br>
+    <input type="text" name="email" value="<%=dataStudent.email%>"><br>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  </body>
+</html>

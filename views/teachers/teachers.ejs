@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teachers</title>
+  </head>
+  <body>
+  <style>
+  table, th, td {
+   border: 1px solid black;
+  }
+  </style>
+    <h1>Teachers</h1>
+    <table class="pure-table">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Option</th>
+          </tr>
+      </thead>
+
+      <tbody>
+        <%dataTeachers.forEach(item =>{%>
+          <tr>
+              <td><%=item.id%></td>
+              <td><%=item.first_name%></td>
+              <td><%=item.last_name%></td>
+              <td><%=item.email%></td>
+              <td>
+                <a href="/teachers/edit/<%=item.id%>">Edit</a>
+                <a href="/teachers/delete/<%=item.id%>">Delete</a>
+              </td>
+          </tr>
+
+        <%})%>
+      </tbody>
+
+  </table>
+
+  </body>
+</html>

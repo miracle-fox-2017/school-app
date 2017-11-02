@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add</title>
+  </head>
+  <body>
+    <h1>Add New Student</h1>
+  <%if(error != null){%>
+    <h4 style="color:red"><%=error.msg%></h4>
+  <%}%>
+  <form action="/students/add" method="post">
+  First name:<br>
+  <input type="text" name="first_name" value=""><br>
+  Last name:<br>
+  <input type="text" name="last_name" value=""><br>
+  Email:<br>
+  <input type="text" name="email" value=""><br>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+  </body>
+</html>

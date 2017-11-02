@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Students</title>
+  </head>
+  <body>
+    <style media="screen">
+    table, th, td {
+     border: 1px solid black;
+    }
+    </style>
+    <h1>Students</h1>
+   <a href="/students/add"><button>add</button></a>
+
+
+    <table class="pure-table">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Full Name</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Option</th>
+          </tr>
+      </thead>
+
+      <tbody>
+        <%dataStudents.forEach(item =>{%>
+          <tr>
+              <td><%=item.id%></td>
+              <td><%=item.getFullName()%></td>
+              <td><%=item.first_name%></td>
+              <td><%=item.last_name%></td>
+              <td><%=item.email%></td>
+              <td>
+              <a href="/students/edit/<%=item.id%>"><button>Edit</button></a>
+                <button onclick="myFunction()"> <a href="/students/delete/<%=item.id%>"> delete</button></a>
+              </td>
+          </tr>
+
+        <%})%>
+      </tbody>
+
+  </table>
+  <script type="text/javascript">
+  function myFunction(){
+  if (window.confirm("Do you really want to delete?")) {
+      }
+    }
+  </script>
+  </body>
+</html>
