@@ -1,0 +1,43 @@
+<% include ./partials/head %>
+  <title>Students</title>
+</head>
+<body>
+  <% include ./partials/menu %>
+  <section class="hero is-info is-medium">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h3 class="subtitle">
+          <a href="/students" class="button is-light">
+             show all student
+          </a>
+      </h3>
+    </div>
+    <br/>
+    <form action="/students/add" method="post">
+      <%if(error!==''){%>
+        <div class="notification is-danger">
+          <strong><%=error%></strong>
+        </div>
+      <%}%>
+      <br/>
+      <div class="field">
+        <p class="control">
+          <input name="first_name" class="input" type="text" placeholder="First Name">
+          </p>
+          <br/>
+          <p class="control">
+          <input name="last_name" class="input" type="text" placeholder="Last Name">
+          </p>
+          <br/>
+          <p class="control">
+          <input name="email" class="input" type="text" placeholder="Email">
+          <br/>
+        </p>
+      </div>
+      <input type="submit" class="button is-primary" value="Simpan">
+
+    </form>
+  </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<% include ./partials/head %>
+  <title>Teachers</title>
+</head>
+<body>
+  <% include ./partials/menu %>
+  <section class="hero is-info is-medium">
+<div class="hero-body">
+  <div class="container has-text-centered">
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <tr>
+        <th class="is-link">Id</th>
+        <th class="is-link">Full Name</th>
+        <th class="is-link">Email</th>
+      </tr>
+      <%dataTeachers.forEach(Teacher=>{%>
+        <tr>
+          <td><%=Teacher.id%></td>
+          <td><%=Teacher.first_name+' '+Teacher.last_name%></td>
+          <td><%=Teacher.email%></td>
+        </tr>
+      <%})%>
+    </table>
+  </div>
+</div>
+</section>
+</body>
+</html>

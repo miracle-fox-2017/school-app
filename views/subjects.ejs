@@ -1,0 +1,25 @@
+<% include ./partials/head %>
+  <title>Subjects</title>
+</head>
+<body>
+  <% include ./partials/menu %>
+  <section class="hero is-info is-medium">
+<div class="hero-body">
+  <div class="container has-text-centered">
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <tr>
+        <th class="is-link">Id</th>
+        <th class="is-link">Subject Name</th>
+      </tr>
+      <%dataSubjects.forEach(Subject=>{%>
+        <tr>
+          <td><%=Subject.id%></td>
+          <td><%=Subject.subject_name%></td>
+        </tr>
+      <%})%>
+    </table>
+  </div>
+</div>
+</section>
+</body>
+</html>
