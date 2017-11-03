@@ -3,8 +3,9 @@ const router = express.Router();
 const db = require('../models')
 
 
+
 //menampilkan semua data Student
-router.get('/', (req,res)=>{
+router.get('/', (req,res) => {
   db.Student.findAll().then((data) => {
     res.render('students',{data});
 }).catch((err)=>{
@@ -13,26 +14,57 @@ router.get('/', (req,res)=>{
 })
 
 //mengirim data yang sudah di input
-router.get('/add',(req,res)=>{
-
+router.get('/add',(req,res) => {
   res.render('addstudents')
 })
 
 //Menerima input students
-router.post('/add',(req,res)=>{
-  db.Student.bulkInsert('Students',[{
+router.post('/add',(req,res) => {
+  db.Student.create({
     first_name:req.body.first_name,
     last_name:req.body.last_name,
     email:req.body.email
-  }])
-  res.redirect('/students')
-})
+  }).then(function(){
+    res.redirect('/students');
+  });
+});
+
 
 //menampilkan data student berdasarkan id
-router.get('/edit/:id',(req,res)=>{
-  
+router.get('/edit/:id',(req,res) => {
+  db.Student.findById(req.params.id).then((data) => {
+    res.render('editstudents',{data});
+  }).catch((err)=>{
+  console.log(err);
+  })
 })
 
+//mengirim input data student berdasarkan id
+router.post('/edit/:id',(req,res) => {
+  db.Student.update({
+    first_name:req.body.first_name,
+    last_name:req.body.last_name,
+    email:req.body.email},{ where:{id:req.params.id}
+  }).then(function(){
+    res.redirect('/students');
+  }).catch((err)=>{
+  console.log(err);
+  })
+})
+//((data) => {
+  // res.render('students',{data});
+// })
+
+//delete data student
+router.get('/delete/:id',(req,res)=>{
+  db.Student.destroy({
+    where: {
+      id: req.params.user_id
+    }
+  }).then(function() {
+    res.redirect('/students');
+  });
+});
 
 
 module.exports = router

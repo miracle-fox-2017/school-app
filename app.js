@@ -12,7 +12,7 @@ app.set('views','./views')
 app.set('view engine','ejs')
 
 // //require FILE router
-const teacher = require('./routers/teacher.js')
+const teacher = require('./routers/teacher')
 const subject = require('./routers/subject')
 const student = require('./routers/student')
 
