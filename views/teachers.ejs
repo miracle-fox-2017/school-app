@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Teacher</title>
+</head>
+<body>
+<table border="1">
+	<thead>
+		<tr>
+		<th>first_name</th>
+		<th>last_name</th>
+		<th>email</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% for (let i = 0 ; i< allTeacher.length ; i++) {%>
+		<tr>
+		<td> <%= allTeacher[i].first_name %> </td>
+		<td> <%= allTeacher[i].last_name %> </td>
+		<td> <%= allTeacher[i].email %> </td>
+		</tr>
+	<%}%>
+	</tbody>
+</table>		
+</body>
+</html>

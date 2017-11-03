@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Student</title>
+</head>
+<body>
+<h1> ADD STUDENT DATA</h1>
+<h4> <a href ="/students"> show all data </a>	</h4>
+<% if(message != null ){%>
+	<h3> <%= message %></h3>
+<%}%>
+	<table border="1">
+		<thead>
+			<tr>
+				<th> first_name </th>
+				<th> last_name </th>
+				<th> email </th>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<form action="/students/add" method="post">
+				<td> <input type="text" name="first_name" placeholder="Insert first_name"> </td>
+				<td> <input type="text" name="last_name"  placeholder="Insert last_name"> </td>
+				<td> <input type="text" name="email" placeholder="Insert email"> </td>
+				<td> <input type="submit" value="ADD"></td>
+				</form>
+			</tr>	
+		</tbody>	
+	</table>		
+</body>	
+</html>

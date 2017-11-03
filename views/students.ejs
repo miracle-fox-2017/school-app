@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Students</title>
+</head>
+<body>
+<h1> ALL STUDENT DATA</h1>
+<h4> <a href ="/students/add"> add student</a>	</h4>	
+	<table border="1" width="70%">
+		<thead>
+			<tr>
+				<th> id </th>
+				<th> first_name </th>
+				<th> last_name </th>
+				<th> email </th>
+				<th colspan="2"> options </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for (let i = 0 ; i<allStudents.length ; i++){	%>	
+			<tr>
+				<td> <%= allStudents[i].id %> </td>
+				<td> <%= allStudents[i].first_name  %> </td>
+				<td> <%= allStudents[i].last_name  %> </td>
+				<td> <%= allStudents[i].email  %> </td>
+				<td> <a href="/students/edit/<%= allStudents[i].id %>"> edit </td>
+				<td> <a onclick= "return deleteConfirm()" href="/students/delete/<%= allStudents[i].id %>"> hapus </td>	
+			</tr>	
+			<%}%>
+		</tbody>	
+	</table>	
+	<script type="text/javascript">
+		function deleteConfirm(){
+			let ask = confirm("Delete this Student? ");
+			if (ask == true) return true;
+			else return false;
+		}
+	</script>
+</body>
+</html>

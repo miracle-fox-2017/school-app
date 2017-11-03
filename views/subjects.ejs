@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Teacher</title>
+</head>
+<body>
+<table border="1">
+	<thead>
+		<tr>
+		<th>id</th>
+		<th>subject_name</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% for (let i = 0 ; i< allSubject.length ; i++) {%>
+		<tr>
+		<td> <%= allSubject[i].id %> </td>
+		<td> <%= allSubject[i].subject_name %> </td>
+		</tr>
+	<%}%>
+	</tbody>
+</table>		
+</body>
+</html>
