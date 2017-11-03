@@ -6,13 +6,15 @@ const route = express.Router();
 
 route.get('/',(req,res)=>{
   Model.Student.findAll().then(data=>{
+    // res.send(data)
     res.render('student',{student : data})
   })
 })
 
 route.get('/add',(req,res)=>{
   let err  ='';
-  res.render('studentAdd',{err})
+  let uniq ='';
+  res.render('studentAdd',{err : err,uniq : uniq})
 })
 
 
@@ -21,10 +23,10 @@ route.post('/add',(req,res)=>{
   .then(task => {
     res.redirect('/student')
   }).catch(err=>{
-    err = err.errors[0].type +' : ' + err.errors[0].message
-    // res.send(err)
+    // err = err.errors[0].type +' : ' + err.errors[0].message
+    res.send(err)
     // err =
-    res.render('studentAdd',{err})
+    // res.render('studentAdd',{err})
   })
 
 })
