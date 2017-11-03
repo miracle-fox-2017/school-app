@@ -7,16 +7,17 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       validate: {
         isEmail: true,
-        isUnique: function(value, next){
+        isUnique: function(value,next){
             Student.findAll({
-              where : {email:value}
+              where : {email : value}
             })
             .then(foundEmail =>{
               if(foundEmail.length > 0){
-                return next('Email address already in use!');
+                return next('Email address already in use!')
+              }else{
+              next();
               }
             })
-            next()
           }
        }
      }
