@@ -15,17 +15,12 @@ router.get('/add', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-	Model.Student.create(req.body, {
-			validate: {
-				 isEmail: {
-                    msg: "Email address must be valid"
-                }
-			}
-		})
+	Model.Student.create(req.body)
 		.then(success => {
 			res.redirect('/students');
 		})
 		.catch(err => {
+			console.log(err);
 			var msg = encodeURIComponent(err.message);
   			res.redirect('/students/add/?err=' + msg);
 		});
@@ -43,11 +38,6 @@ router.post('/edit/', (req, res) => {
 	Model.Student.update(req.body,{
 		where: {
 			id: req.body.id
-		},
-		validate: {
-			isEmail: {
-				msg: "Email address must be valid"
-			}
 		}
 	}).then(success =>{
 		res.redirect('/students');

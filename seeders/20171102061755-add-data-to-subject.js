@@ -36,7 +36,7 @@ module.exports = {
       return queryInterface.bulkDelete('Person', null, {});
     */
     queryInterface.bulkDelete('Subjects', [{
-      subject_name :'John'
+      subject_name :'Kimia'
     },
     {
       subject_name :'Ekonomi'
