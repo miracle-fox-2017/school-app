@@ -13,8 +13,12 @@ app.set('views', './views')//renderer
 app.set('view engine', 'ejs');
 
 const teacher = require('./router/teacher')
+const subject = require('./router/subject')
+const student = require('./router/student');
 
 app.use('/teachers', teacher)
+app.use('/subjects', subject)
+app.use('/students', student)
 
 app.listen(3000, function () {
   db.sequelize.sync();
