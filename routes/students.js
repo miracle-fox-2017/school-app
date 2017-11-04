@@ -27,15 +27,12 @@ router.post('/add', (req, res) =>{
     }).then(() =>{
       res.redirect('/students')
     }).catch(err =>{
+      console.log(err);
       if(err){
-      let msg = model.Student.emailError()
-      res.render('students/add',{error:msg})
+      res.render('students/add',{error:err.message})
       }
     })
 })
-
-
-
 
 router.get('/edit/:id', (req, res) =>{
   model.Student.findOne({where:{id:req.params.id}}).then(dataStudent =>{
@@ -56,8 +53,9 @@ router.post('/edit/:id', (req,res) =>{
       email:email
     }, {where: {id:req.params.id}}).then(() =>{
       res.redirect('/students')
-    }).catch(err =>{
-
+    })
+    .catch(err =>{
+      res.render('/edit', {error:err.message})
     })
 })
 

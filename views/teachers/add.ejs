@@ -5,19 +5,21 @@
     <title>Add</title>
   </head>
   <body>
-    <h1>Add New Student</h1>
-  <%if(error != null){%>
-    <h4 style="color:red"><%=error%></h4>
-  <%}%>
-  <form action="/students/add" method="post">
+
+  <form action="/teachers/add" method="post">
   First name:<br>
   <input type="text" name="first_name" value=""><br>
   Last name:<br>
   <input type="text" name="last_name" value=""><br>
   Email:<br>
   <input type="text" name="email" value=""><br>
-  <br>
+
+  <select name="SubjectId">
+    <%dataSubjects.forEach(item =>{%>
+      <option value="<%=item.id%>"><%=item.subject_name%></option>
+    <%})%>
+    </select>
+
   <input type="submit" value="Submit">
 </form>
   </body>
-</html>

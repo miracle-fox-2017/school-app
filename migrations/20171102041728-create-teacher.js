@@ -23,6 +23,10 @@ module.exports = {
         allowNull: true,
         type: Sequelize.DATE,
         default: new Date ()
+      },
+      SubjectId:{
+        allowNull:true,
+        type: Sequelize.INTEGER
       }
     });
   },
