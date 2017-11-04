@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EDIT STUDENTS</title>
+  </head>
+  <body>
+    <% if(message !== null) { %>
+      <h3> <%= message %> </h3>
+    <% } %>
+    <h1>EDIT STUDENTS</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>first_name</th>
+          <th>last_name</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <form action="/students/edit/<%= rows.id %>" method="post">
+            <td><input type="text" name="first_name" value="<%= rows.first_name %>"></td>
+            <td><input type="text" name="last_name" value="<%= rows.last_name %>"></td>
+            <td><input type="text" name="email" value="<%= rows.email %>"></td>
+            <td><input type="submit" value="edit"></td>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>
