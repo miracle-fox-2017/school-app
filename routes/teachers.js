@@ -17,7 +17,6 @@ router.get('/', (req, res) =>{
       })
     })
     Promise.all(newData).then(data =>{
-      console.log(data[7].subject_name.subject_name)
       res.render('teachers/teachers', {dataTeachers:data})
     })
   })
