@@ -14,9 +14,14 @@
   <% include assets/partials/nav-bar %>
 
   <div class="container">
-    <div style="text-align:center; margin-bottom:8%;">
+    <div style="text-align:center; margin-bottom:5%;">
       <p class="title is-2">STUDENTS DATA</p>
-      <p class="subtitle is-4">show all table students</p>
+      <p class="subtitle is-4">show all table students | <a style="margin-top:0.4%;" class="button is-success is-small" href="/students/add">
+        <span class="icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <span>add student</span>
+      </a></p>
     </div>
 
     <table class="table is-bordered is-striped is-narrow is-fullwidth">
@@ -25,7 +30,8 @@
           <th>ID</th>
           <th>FULLNAME</th>
           <th>EMAIL</th>
-          <th>OPTIONS</th>
+          <th style="text-align:center">ADD SUBJECTS</th>
+          <th style="text-align:center">OPTIONS</th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +40,16 @@
           <td><%=data_Students[i].id%></td>
           <td><%=data_Students[i].getFullname()%></td>
           <td><%=data_Students[i].email%></td>
-          <td>
+          <td style="text-align:center;">
+            <p class="field">
+              <a class="button is-small" href="#">
+                <span class="icon">
+                  <i class="fa fa-book"></i>
+                </span>
+                <span>add subjects</span>
+              </a>
+          </td>
+          <td style="text-align:center;">
             <p class="field">
               <a class="button is-small" href="/students/edit/<%=data_Students[i].id%>">
                 <span class="icon">
@@ -55,16 +70,7 @@
       </tbody>
     </table>
 
-    <div style="text-align:center; margin-top:8%;">
-      <p class="field">
-        <a class="button is-success is-fullwidth" href="/students/add">
-          <span class="icon">
-            <i class="fa fa-user"></i>
-          </span>
-          <span>add student</span>
-        </a>
-      </p>
-    </div>
+
 
 
   </div>
