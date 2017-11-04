@@ -5,6 +5,7 @@
     <title>Subjects</title>
   </head>
   <body>
+    <%console.log(results[0].Teachers[0].first_name);%>
     <table>
       <thead>
         <th>No</th>
@@ -17,6 +18,18 @@
           <tr>
           <td><%=i%></td>
           <td><%=result.subject_name%></td>
+          <td>
+          <%if (result.Teacher !== null) {
+            result.Teachers.forEach(teacher => { %>
+              <ul>
+                <li>
+                  <%=teacher.first_name%>
+                  <%=teacher.last_name%>
+                </li>
+              </ul>
+            <%})%>
+          <%}%>
+          </td>
           </tr>
         <%i++; })%>
       </tbody>

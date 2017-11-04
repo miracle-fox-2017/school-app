@@ -4,7 +4,9 @@ const router = express.Router();
 
 
 router.get('/', (req,res) => {
-  db.Subject.findAll().then((results) => {
+  db.Subject.findAll({
+    include: [db.Teacher]
+  }).then((results) => {
     res.render('subjects', {results});
   }).catch((err) => {
   })
