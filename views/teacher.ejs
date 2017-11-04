@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teachers</title>
+</head>
+<body>
+    <a href="/teachers/add">Add</a>
+    <table border="1">
+        <tr>
+            <td>No</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Action</td>
+        </tr>
+    <% 
+    
+     let no = 1;
+
+     dataTeachers.forEach(rows => { 
+        
+    %>
+
+        <tr>
+            <td>
+                <%= no %>
+            </td>
+            <td>
+                <%= rows.first_name %>
+            </td>
+            <td>
+                <%= rows.last_name %>
+            </td>
+            <td>
+                <%= rows.email %>
+            </td>
+            <td>
+                <a href="/teachers/edit/<%= rows.id %>">Edit</a> | <a href="/teachers/delete/<%= rows.id %>">Delete</a>
+            </td>
+        </tr>
+
+    <% 
+
+    no++;
+
+    });
+    
+    %>
+    </table>
+</body>
+</html>

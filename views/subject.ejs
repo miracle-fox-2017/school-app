@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Subject</title>
+</head>
+<body>
+    <a href="/subjects/add">Add</a>
+    <table border="1">
+        <tr>
+            <td>No</td>
+            <td>Subject</td>
+            <td>Action</td>
+        </tr>
+    <% 
+    
+    let no = 1;
+
+    dataSubjects.forEach(rows => { 
+        
+    %>
+
+        <tr>
+            <td><%= no %></td>
+            <td><%= rows.subject_name %></td>
+            <td>
+                <a href="/subjects/edit/<%= rows.id %>">Edit</a> | <a href="/subjects/delete/<%= rows.id %>">Delete</a>
+            </td>
+        </tr>
+
+    <% 
+
+    no++;
+
+    });
+    
+    %>
+    </table>
+</body>
+</html>
