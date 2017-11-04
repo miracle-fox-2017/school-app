@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enrolled Students</title>
+  </head>
+  <body>
+    <h1><%= subject.subject_name %></h1>
+    <a href="/students">Students</a> | <a href="/teachers/">Teachers</a> | <a href="/subjects/">Subjects</a><br><br>
+    <table border="1">
+      <tr>
+        <th>Id</th>
+        <th>Full Name</th>
+        <th>Score</th>
+      </tr>
+      <% data.forEach(s=>{ %>
+        <tr>
+          <td><%= s.id %></td>
+          <td><%= s.Student.getFullName() %></td>
+          <td>
+            <% if(s.score!=null){ %>
+              <%= s.score %>
+            <% } else{ %>
+              <a href="/subjects/<%= s.SubjectId  %>/<%= s.StudentId %>/give-score">Give Score</a>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

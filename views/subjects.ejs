@@ -13,6 +13,7 @@
         <th>Subject Name</th>
         <th>Teachers</th>
         <th>Action</th>
+        <th>Options</th>
       </tr>
       <% subjects.forEach(s=>{ %>
         <tr>
@@ -25,6 +26,7 @@
             <% }) %>
             </ol>
           </td>
+          <td><a href="/subjects/<%= s.id %>/enrolledstudents">Enrolled Students</a></td>
           <td><a href="/subjects/edit/<%= s.id %>">Edit</a> | <a href="/subjects/delete/<%= s.id %>">Delete</a></td>
         </tr>
       <% }) %>

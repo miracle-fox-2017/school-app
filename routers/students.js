@@ -113,8 +113,8 @@ router.post('/:id/addsubject', function (req, res){
     // console.log(req.body);
     res.redirect('/students')
   })
-  //addStudentSubject
-  
 })
+
+
 
 module.exports = router;

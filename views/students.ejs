@@ -15,6 +15,7 @@
         <th>Full Name</th>
         <th>Email</th>
         <th>Action</th>
+        <th>Options</th>
       </tr>
       <% students.forEach(s=>{ %>
         <tr>
@@ -23,7 +24,8 @@
           <td><%= s.last_name %></td>
           <td><%= s.getFullName() %></td>
           <td><%= s.email %></td>
-          <td><a href="/students/<%= s.id %>/addsubject">Assign Subjects</a> | <a href="/students/edit/<%= s.id %>">Edit</a> | <a href="/students/delete/<%= s.id %>" onclick="return confirm('Delete this student?')">Delete</a></td>
+          <td><a href="/students/<%= s.id %>/addsubject">Add Subjects</a></td>
+          <td><a href="/students/edit/<%= s.id %>">Edit</a> | <a href="/students/delete/<%= s.id %>" onclick="return confirm('Delete this student?')">Delete</a></td>
         </tr>
       <% }) %>
     </table>
