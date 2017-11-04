@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HALAMAN SUBJECT</title>
+
+    <style type = "text/css">
+
+      table {
+        background-color: brown;
+        font-family: Calibri;
+        width : 100%;
+      }
+
+      tr {
+        color : white;
+      }
+
+      td {
+        color: white;
+        text-align:  center;
+      }
+
+      fieldset {
+        width : 30%;
+      }
+
+    </style>
+
+  </head>
+  <body style="background-color : aquamarine">
+    <fieldset>
+      <legend><b> DATA SUBJECT </b></legend>
+    <table border = "1">
+      <thead>
+        <th><b>Id</b></th>
+        <th><b>Subject Name</b></th>
+      </thead>
+
+      <tbody>
+        <% for(let i = 0 ; i < rowSubjects.length ; i++) { %>
+          <tr>
+            <td><%= rowSubjects[i].id %></td>
+            <td><%= rowSubjects[i].subject_name %></td>
+          </tr>
+        <%}%>
+      </tbody>
+
+    </table>
+  </fieldset>
+  </body>
+</html>
