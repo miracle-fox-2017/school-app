@@ -18,13 +18,20 @@
         <th class="is-link">Id</th>
         <th class="is-link">Full Name</th>
         <th class="is-link">Email</th>
-        <th class="is-link" colspan="2">Actions</th>
+        <th class="is-link" colspan="3">Actions</th>
       </tr>
       <%dataStudents.forEach(Student=>{%>
         <tr>
           <th><%=Student.id%></th>
           <td><%=Student.getFullname()%></td>
           <td><%=Student.email%></td>
+          <td>
+            <a href="/students/<%=Student.id%>/addsubject">
+                <span class="has-text-link">
+                  <i>Add Subject</i>
+                </span>
+            <a>
+          </td>
           <td>
             <a href="/students/edit/<%=Student.id%>">
               <span class="icon has-text-success">

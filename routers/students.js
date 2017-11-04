@@ -74,4 +74,30 @@ router.get('/edit/:id', (req, res)=>{
           res.send(err)
         })
  })
+
+ router.get('/:id/addsubject', (req, res)=>{
+   model.Student.findById(req.params.id)
+    .then(dataStudent=>{
+      model.Subject.findAll()
+        .then(dataSubjects=>{
+          res.render('assignSubject', {dataSubjects:dataSubjects,dataStudent:dataStudent})
+        })
+    })
+    .catch(err=>{
+      res.send(err)
+    })
+ })
+ router.post('/:id/addsubject', (req, res)=>{
+   model.Student_Subject.create(
+     {
+       SubjectId: req.body.SubjectId,
+       StudentId: req.params.id
+     })
+      .then(()=>{
+        res.redirect('/students')
+      })
+      .catch(err=>{
+        res.send(err)
+      })
+ })
 module.exports = router
