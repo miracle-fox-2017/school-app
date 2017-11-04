@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enrolled Student</title>
+  </head>
+  <body>
+  <style>
+  table, th, td {
+   border: 1px solid black;
+  }
+  </style>
+    <h3><%= dataSubject.subject_name%></h3>
+
+    <table>
+      <th>No</th>
+      <th>Students Name</th>
+      <th>Score</th>
+      <th>Desc</th>
+        <%dataSubject.Students.forEach(item => {%>
+      <tr>
+          <td></td>
+          <td><%=item.first_name%></td>
+          <td></td>
+          <td></td>
+      </tr>
+        <%})%>
+    </table>
+  </body>
+</html>

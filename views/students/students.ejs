@@ -35,6 +35,7 @@
               <td><%=item.last_name%></td>
               <td><%=item.email%></td>
               <td>
+              <a href="/students/<%=item.id%>/addsubject"><button>Add Subject</button></a>
               <a href="/students/edit/<%=item.id%>"><button>Edit</button></a>
                 <button onclick="myFunction()"> <a href="/students/delete/<%=item.id%>"> delete</button></a>
               </td>

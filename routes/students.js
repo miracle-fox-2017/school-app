@@ -55,7 +55,6 @@ router.post('/edit/:id', (req,res) =>{
       res.redirect('/students')
     })
     .catch(err =>{
-      res.render('/edit', {error:err.message})
     })
 })
 
@@ -69,6 +68,24 @@ router.get('/delete/:id', (req, res) =>{
 
 
 
+router.get('/:id/addsubject', (req, res) => {
+  model.Student.findOne({where:{id:req.params.id}}).then(dataStudent => {
+    model.Subject.findAll().then(dataSubjects => {
+      res.render('students/addsubject', {dataStudent:dataStudent, dataSubjects:dataSubjects})
+    })
+  })
+})
+
+router.post('/:id/addsubject', (req, res) => {
+  model.StudentSubject.create(
+    {
+      StudentId:req.params.id,
+      SubjectId:req.body.SubjectId
+    }
+  ).then(() => {
+    res.redirect('/students')
+  })
+})
 
 
 

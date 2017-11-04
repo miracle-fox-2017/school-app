@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true,
         isUnique: function(value, callback){
+          console.log(value, '----------------------');
           Student.findAll({where:{email:value}}).then(rows =>{
             if(rows.length > 0){
               return callback('Email Double')
@@ -18,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      },
-    }
   });
+
+  Student.associate = function(models) {
+    Student.belongsToMany(models.Subject, { through: models.StudentSubject })
+    Student.hasMany(models.StudentSubject)
+  }
+
   // Student.emailError = function(){
   //   let error = {msg:'Email Not Valid'}
   //   return error

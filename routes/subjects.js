@@ -34,7 +34,8 @@ router.post('/add', (req, res) => {
     {
       subject_name:req.body.subject_name
     }
-  ).then(() => {
+  )
+  .then(() => {
     res.redirect('/subjects')
   })
 })
@@ -50,7 +51,8 @@ router.post('/edit/:id', (req, res) => {
     {
       subject_name:req.body.subject_name
     },{where:{id:req.params.id}}
-  ).then(() => {
+  )
+  .then(() => {
     res.redirect('/subjects')
   })
 })
@@ -63,6 +65,45 @@ router.get('/delete/:id', (req, res) => {
   })
 })
 
+
+
+router.get('/:id/enrolledStudent', (req, res) => {
+  model.Subject.findOne({
+    where:{id:req.params.id},
+    include:[
+      {model:model.Student}
+    ]
+  })
+  .then(dataSubject => {
+   res.render('subjects/enrolledstudents', {dataSubject:dataSubject})
+  })
+})
+
+
+// router.get('/:id/enrolledStudent', (req, res) => {
+//   model.Subject.findOne({where:{id:req.params.id}}).then(dataSubject => {
+//       model.Student.findAll().then(dataStudents => {
+//         model.StudentSubject.findAll().then(dataStudentSubjects => {
+//           let newArr = []
+//         for(let i = 0; i < dataStudents.length; i++){
+//
+//           dataStudentSubjects.forEach(item => {
+//             if(dataStudents[i].id == item.StudentId && dataSubject.id == item.SubjectId){
+//               //dataSubject.students = dataStudents[i].first_name
+//               newArr.push(dataStudents[i].first_name)
+//             }
+//           })
+//         }
+//         dataSubject.arrNama = newArr
+//         console.log(dataSubject);
+//         //res.send(dataSubject.students)
+//         res.render('subjects/enrolledstudents', {dataSubject:dataSubject})
+//       })
+//     })
+//
+//   })
+//
+// })
 
 
 
