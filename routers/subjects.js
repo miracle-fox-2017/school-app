@@ -7,7 +7,7 @@ router.get('/add',function(req,res){
   res.render('subjects-add')
 })
 router.post('/add',function(req,res){
-  model.Subjects.create({
+  model.Subject.create({
     subject_name : req.body.subject_name
   }).then(function(){
     res.redirect('../../subjects')
@@ -18,8 +18,20 @@ router.post('/add',function(req,res){
 
 //READ
 router.get('/', function(req,res){
-  model.Subjects.findAll().then(data_Subjects=>{
-    res.render('subjects',{data_Subjects:data_Subjects})
+  model.Subject.findAll().then(data_Subjects=>{
+    //test manipulasi data
+    let subjectsWithTeachers = data_Subjects.map( subjects => {
+      return new Promise(function(resolve,reject){
+        subjects.getTeachers().then(withTeacher => {
+          subjects.first_name = withTeacher
+          resolve(subjects)
+        })
+      })
+    })
+    Promise.all(subjectsWithTeachers).then(subjectsAndTeachers => {
+      // console.log(subjectsAndTeachers);
+      res.render('subjects', {data_Subjects:subjectsAndTeachers})
+    })
   }).catch(err=>{
     console.log(err);
   })
@@ -27,14 +39,14 @@ router.get('/', function(req,res){
 
 //UPDATE
 router.get('/edit/:id',function(req,res){
-  model.Subjects.findById(req.params.id).then(function(data_Subjects){
+  model.Subject.findById(req.params.id).then(function(data_Subjects){
     res.render('subjects-edit',{data_Subjects:data_Subjects})
   }).catch(function(err){
     console.log(err);
   })
 })
 router.post('/edit/:id',function(req,res){
-  model.Subjects.update({
+  model.Subject.update({
     subject_name : req.body.subject_name
   },{
     where : {
@@ -49,7 +61,7 @@ router.post('/edit/:id',function(req,res){
 
 //DELETE
 router.get('/delete/:id',function(req,res){
-  model.Subjects.destroy({
+  model.Subject.destroy({
     where : {
       id  : req.params.id
     }

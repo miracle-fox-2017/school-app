@@ -39,12 +39,23 @@
           <input class="input" type="text" placeholder="Text input" name="email" value="<%=data_teachers.email%>">
         </div>
       </div>
+      <div class="field">
+        <label class="label">Subject</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select name="SubjectId">
+              <% for(let i=0; i<data_Subjects.length; i++) {%>
+                <option value="<%=data_Subjects[i].id%>"><%=data_Subjects[i].subject_name%></option>
+              <%}%>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <div style="text-align: center; margin-top:33px;" class="control">
-          <!-- <button type="submit" value="Submit" class="button is-primary">Submit</button> -->
-          <input class="button is-success is-outlined is-medium" type="submit" value="Submit input">
-          <input class="button is-success is-outlined is-medium" type="reset" value="Reset input">
-        </div>
+        <input class="button is-success is-outlined is-medium" type="submit" value="Submit input">
+        <input class="button is-success is-outlined is-medium" type="reset" value="Reset input">
+      </div>
     </form>
   </div>
 
