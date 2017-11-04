@@ -9,12 +9,14 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  
+  // Class Method
+  Teacher.associate = function (models) {
+      // ...associate the models
+      // Teacher.hasMany(models.Subjects)
+      Teacher.belongsTo(models.Subjects)
+  };
+  
   return Teacher;
 };
