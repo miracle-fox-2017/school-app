@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teachers</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <th>No</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </thead>
+      
+      <tbody>
+        <%let i = 1;
+        results.forEach((result) => {%>
+          <tr>
+          <td><%=i%></td>
+          <td><%=result.first_name%></td>
+          <td><%=result.last_name%></td>
+          <td><%=result.email%></td>
+          </tr>
+        <%i++; })%>
+      </tbody>
+    </table>
+  </body>
+</html>

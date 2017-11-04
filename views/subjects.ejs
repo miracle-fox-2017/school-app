@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Subjects</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <th>No</th>
+        <th>Subject Name</th>
+      </thead>
+      
+      <tbody>
+        <%let i = 1;
+        results.forEach((result) => {%>
+          <tr>
+          <td><%=i%></td>
+          <td><%=result.subject_name%></td>
+          </tr>
+        <%i++; })%>
+      </tbody>
+    </table>
+  </body>
+</html>
