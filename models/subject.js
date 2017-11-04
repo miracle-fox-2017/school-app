@@ -6,9 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   
   // Class Method
   Subject.associate = function (models) {
-      // ...associate the models
-      // Subject.belongsTo(models.Teachers)
-      Subject.hasMany(models.Teachers)
+    // ...associate the models
+    // Subject.belongsTo(models.Teachers)
+    Subject.hasMany(models.Teachers)
+    Subject.belongsToMany(models.Students, {through: 'StudentSubject'})
   };
   return Subject;
 };

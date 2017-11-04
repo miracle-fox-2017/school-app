@@ -91,5 +91,30 @@ router.get('/delete/:id', function (req, res){
   })
 })
 
+router.get('/:id/addsubject', function (req, res){
+  // res.send(req.params.id)
+  Model.Students.findOne({where: {id: req.params.id} })
+  .then(students=>{
+    Model.Subjects.findAll()
+    .then(subjects=>{
+      res.render('students_assign', {students: students, subjects: subjects})
+      
+    })
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
+router.post('/:id/addsubject', function (req, res){
+  req.body.StudentId = req.params.id;
+  // Model.StudentSubjects.findAll()
+  Model.StudentSubjects.create(req.body)
+  .then(()=>{
+    // console.log(req.body);
+    res.redirect('/students')
+  })
+  //addStudentSubject
+  
+})
 
 module.exports = router;

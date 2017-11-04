@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Students</title>
+  </head>
+  <body>
+    <h1>Edit Students Data</h1>
+    <a href="/students">show all data</a>
+    <form class="" action="" method="post">
+      </br>First Name: <input type="text" name="first_name" value="<%= students.first_name %>" placeholder="first name" disabled>
+      </br>Last name: <input type="text" name="last_name" value="<%= students.last_name %>" placeholder="last_name" disabled>
+      </br>Email: <input type="text" name="email" value="<%= students.email %>" placeholder="email" disabled>
+      </br><select class="" name="SubjectId">
+              <% subjects.forEach(s=>{ %>
+               <option value="<%= s.id %>"><%= s.subject_name %></option>
+              <% }) %>
+           </select>
+      </br><input type="submit" name="" value="UPDATE STUDENT">
+    </form>
+  </body>
+</html>

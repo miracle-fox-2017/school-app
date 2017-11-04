@@ -9,15 +9,16 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     }
-  },  {
-    classMethods: {
-      
-    }
   });
   
+  // Class Method
+  Student.associate = function (models) {
+    // ...associate the models
+    Student.belongsToMany(models.Subjects, {through: 'StudentSubject'})
+  };
+  
   Student.prototype.getFullName = function () {
-    return this.first_name + ' ' + this.last_name
-    // console.log('halooooo');
+    return this.first_name + ' ' + this.last_name;
   }
   
   return Student;
