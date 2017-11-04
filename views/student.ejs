@@ -2,6 +2,9 @@
 <html>
   <head>
   <style>
+    h2,p {
+      text-align: center;
+    }
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
@@ -23,11 +26,12 @@
   </head>
   <body>
 
-    <% if(status == 'tampil') { %>
 
+    <% if(status == 'tampil') { %>
+        <h2> STUDENT DATA </h2>
+        <p> <a href="/students/add">Add Student</a></p>
         <table>
           <tr>
-            <th>ID<th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -35,7 +39,6 @@
           </tr>
           <% studentsRows.forEach((student)=> { %>
               <tr>
-                <td> <%=student.id%> </td>
                 <td> <%=student.first_name%> </td>
                 <td> <%=student.last_name%> </td>
                 <td> <%=student.email%> </td>
@@ -46,22 +49,25 @@
               <% }) %>
          </table>
        <% }else if(status == 'add') { %>
-
-    <form action="/students/add" method="post">
-        First Name:<br>
-        <input type="text" name="first_name" required/>
-        <br>
-        Last Name:<br>
-        <input type="text" name="last_name" required=true/>
-        <br>
-        Email:<br>
-        <input type="text" name="email" required=true/>
-        <br><br>
-        <input type="submit" value="ADD">
-    </form>
+         <h2> ADD STUDENT </h2>
+         <p> <a href="/students">Show All data</a></p>
+         <form action="/students/add" method="post">
+         First Name:<br>
+         <input type="text" name="first_name" required/>
+         <br>
+         Last Name:<br>
+         <input type="text" name="last_name" required=true/>
+         <br>
+         Email:<br>
+         <input type="text" name="email" required=true/>
+         <br><br>
+         <input type="submit" value="ADD">
+        </form>
 
     <% }else if(status == 'edit') {  %>
-    <form action="/students/edit/<%=studentsRows.id%>" method="post">
+        <h2> EDIT STUDENT DATA </h2>
+        <p> <a href="/students">show all data</a></p>
+        <form action="/students/edit/<%=studentsRows.id%>" method="post">
         First Name:<br>
         <input type="text" name="first_name" value = "<%=studentsRows.first_name%>"  required/>
         <br>
@@ -72,7 +78,7 @@
         <input type="text" name="email" value = "<%=studentsRows.email %>" required=true/>
         <br><br>
         <input type="submit" value="EDIT"/>
-    </form>
+        </form>
     <% } %>
     <p id="demo"></p>
   </body>
