@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
 	Model.Student.findAll()
 		.then(allStudents => {
 			res.render('student', {students: allStudents});
+			console.log(allStudents[0].full_name())
 		})
 		.catch(err => res.send(err));
 })
