@@ -1,12 +1,35 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Teacher = sequelize.define('Teacher', {
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
+    first_name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail: true
+        isEmail: true,
+        isUnique: function(value, callback) {
+          if (this.dataValues.id === '') {
+            Teacher.findAll({ where: {email: value} }).then(emailFound => {
+              if (emailFound.length >= 1) {
+                return callback('Email not unique! Change!');
+              } else {
+                callback();
+              }
+            })
+          } else {
+            callback();
+          }
+        }
       }
     },
     SubjectId: {

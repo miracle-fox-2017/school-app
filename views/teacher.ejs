@@ -5,7 +5,12 @@
 	<title>Daftar Teacher</title>
 </head>
 <body>
-	<h1 style="text-align: center;">Teacher Data</h1>
+	<div style="text-align: center;"  class="header">
+		<h1 style="text-align: center;">Teacher Data</h1>
+		<a href="/teachers/add">Add Teacher</a>
+		<br>
+		<br>
+	</div>
 
 	<table width="100%" border="1">
 		<thead>
@@ -15,6 +20,7 @@
 				<th>Last Name</th>
 				<th>Email</th>
 				<th>Subject</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 
@@ -30,6 +36,10 @@
 					<%} else { %>
 						<td><%= teacher.subject_data.subject_name %></td>
 					<% } %>
+					<td>
+						<a href="/teachers/edit/<%= teacher.id %>">Edit</a>
+						<a href="/teachers/delete/<%= teacher.id %>">Delete</a>
+					</td>
 				</tr>
 			<% }); %>
 		</tbody>
