@@ -6,6 +6,9 @@ const model = require('../models')
 router.get('/students', (req,res)=> {
   let status = 'tampil'
   model.Students.findAll({order:[['id','ASC']]}).then((studentsRows)=> {
+    studentsRows.forEach((student)=> {
+      student.fullName = student.getFullName()
+    })
     res.render('student', {studentsRows,status})
   }).catch((err)=> {
     console.log(err)
@@ -24,7 +27,12 @@ router.post('/students/add', (req,res)=> {
   model.Students.create(obj).then((studentsRows)=> {
     res.redirect('/students')
   }).catch((err)=> {
-    console.log(err)
+    console.log(err.errors[0].message)
+    if( err.errors[0].message == "Validation isEmail on email failed" ) {
+      res.send('email is not valid')
+    }else if( err.errors[0].message == "email must be unique" ) {
+      res.send('email already taken')
+    }
   })
 })
 //form untuk edit student
@@ -35,7 +43,7 @@ router.get('/students/edit/:id',(req,res)=> {
     //console.log(studentsRows.first_name)
     res.render('student',{studentsRows,status})
   }).catch((err)=>{
-    console.log(err)
+    console.log(err.errors[0].message)
   })
 })
 //mengedit student
@@ -48,7 +56,12 @@ router.post('/students/edit/:id',(req,res)=>{
   model.Students.update(obj, option).then((studentsRows)=>{
     res.redirect('/students')
   }).catch((err)=>{
-    console.log(err)
+    console.log(err.errors[0].message)
+    if( err.errors[0].message == "Validation isEmail on email failed" ) {
+      res.send('email is not valid')
+    }else if( err.errors[0].message == "email must be unique" ) {
+      res.send('email already taken')
+    }
   })
 })
 module.exports = router
