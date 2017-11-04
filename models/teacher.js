@@ -9,17 +9,21 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     },
-    SubjectsId: {
+    SubjectId: {
       type: DataTypes.INTEGER
     }
   }, {
     classMethods: {
       associate: function(models) {
-        Teacher.belongTo(Subject);
+      
         // associations can be defined here
       }
     }
   });
+
+  Teacher.associate = function(models) {
+    Teacher.belongsTo(models.Subject);
+  };
 
   return Teacher;
 };
