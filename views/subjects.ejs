@@ -11,13 +11,16 @@
       <tr>
         <th>Id</th>
         <th>Subject Name</th>
+        <th>Action</th>
       </tr>
       <% subjects.forEach(s=>{ %>
         <tr>
           <td><%= s.id %></td>
           <td><%= s.subject_name %></td>
+          <td><a href="/subjects/edit/<%= s.id %>">Edit</a> | <a href="/subjects/delete/<%= s.id %>">Delete</a></td>
         </tr>
       <% }) %>
     </table>
+    </br><a href="/subjects/add">add subjects</a>
   </body>
 </html>

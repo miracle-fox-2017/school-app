@@ -6,7 +6,7 @@ const Model = require('../models');
 
 router.get('/', function (req, res) {
   // res.send('di students')
-  Model.Students.findAll({order: [['id','ASC']]})
+  Model.Students.findAll({order: [['first_name','ASC']]})
   .then(
     data=>{
       // let result = [];
@@ -22,10 +22,10 @@ router.get('/', function (req, res) {
       // }
       res.render('students', {students: data})
     }
-).catch(err=>{
-    console.log(err);
+  ).catch(err=>{
+      console.log(err);
+    })
   })
-})
 
 router.get('/add', function (req, res) {
   // res.send('di students add')
