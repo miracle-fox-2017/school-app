@@ -6,17 +6,44 @@
   <section class="hero is-info is-medium">
 <div class="hero-body">
   <div class="container has-text-centered">
+      <h3 class="subtitle">
+          <a href="/teachers/add" class="button is-light">
+             add teacher
+          </a>
+      </h3>
+    <br/>
     <table class="table is-bordered is-striped is-narrow is-fullwidth">
       <tr>
         <th class="is-link">Id</th>
         <th class="is-link">Full Name</th>
         <th class="is-link">Email</th>
+        <th class="is-link">Subject</th>
+        <th colspan="2"class="is-link">Email</th>
       </tr>
       <%dataTeachers.forEach(Teacher=>{%>
         <tr>
-          <td><%=Teacher.id%></td>
+          <th><%=Teacher.id%></th>
           <td><%=Teacher.first_name+' '+Teacher.last_name%></td>
           <td><%=Teacher.email%></td>
+          <%if(Teacher.SubjectId){%>
+            <td><%=Teacher.subject_name.subject_name%></td>
+          <%} else {%>
+            <td>unassigned</td>
+          <%}%>
+          <td>
+            <a href="/teachers/edit/<%=Teacher.id%>">
+              <span class="icon has-text-success">
+                <i class="fa fa-pencil-square-o"></i>
+              </span>
+            <a>
+          </td>
+          <td>
+            <a onclick="return confirm('Delete this Teacher?');" href="/teachers/delete/<%=Teacher.id%>">
+              <span class="icon has-text-danger">
+                <i class="fa fa-trash"></i>
+              </span>
+            <a>
+          </td>
         </tr>
       <%})%>
     </table>

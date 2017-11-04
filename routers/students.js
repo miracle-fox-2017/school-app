@@ -7,7 +7,7 @@ router.get('/', function (req, res) {
     .then(dataStudents=>{
       res.render('students', {dataStudents:dataStudents})
     })
-      .catch(err=>{
+    .catch(err=>{
         res.send(err)
       })
 })
@@ -27,7 +27,7 @@ router.post('/add', (req, res)=>{
       .then(()=>{
         res.redirect('/students')
       })
-        .catch(err=>{
+      .catch(err=>{
           let error = err.message.split(',');
           res.render('addStudent', {error:error[0]})
         })
@@ -38,7 +38,7 @@ router.get('/edit/:id', (req, res)=>{
     .then(dataStudent=>{
       res.render('editStudent', {dataStudent:dataStudent})
     })
-      .catch(err=>{
+    .catch(err=>{
         res.send(err)
       })
 })
@@ -57,7 +57,7 @@ router.get('/edit/:id', (req, res)=>{
       .then(()=>{
         res.redirect('/students')
       })
-        .catch(err=>{
+      .catch(err=>{
           res.send(err)
         })
  })
@@ -70,7 +70,7 @@ router.get('/edit/:id', (req, res)=>{
       .then(()=>{
         res.redirect('/students')
       })
-        .catch(err=>{
+      .catch(err=>{
           res.send(err)
         })
  })
