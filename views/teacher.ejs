@@ -25,8 +25,8 @@
 					<td><%= teacher.first_name %></td>
 					<td><%= teacher.last_name %></td>
 					<td><%= teacher.email %></td>
-					<% if (teacher.SubjectId == null){ %>
-						<td><%= teacher.subject_data.status %></td>
+					<% if (teacher.subject_data.subject_name == null){ %>
+						<td><%= teacher.subject_data %></td>
 					<%} else { %>
 						<td><%= teacher.subject_data.subject_name %></td>
 					<% } %>
