@@ -24,14 +24,8 @@
 					<td><%= subject.subject_name %></td>
 					<td>
 						<ol>
-						<%= JSON.stringify(subject.Teachers) %>
-						<% subjects.forEach((subject, index) => {  %>
-
-							<% subject.Teachers.forEach( function(teacher, index) { %>
-
-								<% console.log(teacher.first_name) %>
-								<li><%= teacher.full_name(); %></li>
-							<% }); %>
+						<% subject.Teachers.forEach((teacher, index) => {  %>
+							<li> <%= teacher.full_name() %> </li>
 						<% }); %>
 						</ol>
 					</td>
