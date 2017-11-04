@@ -26,7 +26,7 @@
             <% if(t.SubjectId==null){ %>
               <%= 'unassigned' %>
             <% }else{ %>
-              <%= t.SubjectId %>
+              <%= t.subject.subject_name %>
             <% } %>
           </td>
           <td><a href="/teachers/edit/<%= t.id %>">Edit</a> | <a href="/teachers/delete/<%= t.id %>">Delete</a></td>

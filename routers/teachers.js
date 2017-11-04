@@ -5,11 +5,23 @@ const Model = require('../models');
 
 
 router.get('/', function (req, res) {
-  Model.Teachers.findAll()
-  .then(data=>{
-    // console.log(data[0]);
-    res.render('teachers', {teachers: data})
-    // res.send(data)
+  Model.Teachers.findAll({order: [['first_name','ASC']]})
+  .then(teachers=>{
+    let teacherJoin = teachers.map(teacher=>{
+      return new Promise ((resolve, reject)=>{
+        teacher.getSubject()
+        .then(result=>{
+          teacher.subject = result
+          resolve(teacher)
+        })
+      })
+    })
+    // console.log(teacherJoin);
+    Promise.all(teacherJoin)
+    .then(teachersJoin=>{
+      // console.log(teachersJoin[4].subject_name);
+      res.render('teachers', {teachers: teachersJoin})
+    })
   }).catch(err=>{
     console.log(err);
   })
@@ -46,9 +58,10 @@ router.post('/add', function (req, res) {
 router.get('/edit/:id', function (req, res){
   Model.Teachers.findOne({where: {id: req.params.id} })
   .then(data=>{
-    res.render('teachers_edit', {teacher: data})
-    // console.log(data);
-    // res.send(req.params.id)
+    Model.Subjects.findAll()
+    .then(subjects=>{
+      res.render('teachers_edit', {teacher: data, subjects: subjects})
+    })
   }).catch(err=>{
     console.log(err);
   })
@@ -59,7 +72,8 @@ router.post('/edit/:id', function (req, res){
   let updated = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    email: req.body.email
+    email: req.body.email,
+    SubjectId: req.body.SubjectId
   }
   Model.Teachers.update(updated, {where: {id: req.params.id }})
   .then(()=>{
