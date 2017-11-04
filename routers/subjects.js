@@ -5,10 +5,24 @@ const Model = require('../models');
 
 router.get('/', function (req, res) {
   Model.Subjects.findAll()
-  .then(data=>{
-    // console.log(data[0].dataValues);
-    res.render('subjects', {subjects: data})
-    // res.send(data)
+  .then(subjects=>{
+    let reverseJoin = subjects.map(subject=>{
+      return new Promise((resolve,reject)=>{
+        Model.Teachers.findAll({where: {SubjectId: subject.id} })
+        .then(result=>{
+          // console.log(result);
+          subject.teachers = result
+          // console.log(subjects);
+          resolve(subject)
+        })
+      })
+    })
+    // console.log(reverseJoin);
+    Promise.all(reverseJoin)
+    .then(data=>{
+      // console.log(data[0].teachers[0].first_name);
+      res.render('subjects', {subjects: data})
+    })
   }).catch(err=>{
     console.log(err);
   })
