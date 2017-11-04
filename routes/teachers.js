@@ -9,17 +9,14 @@ const model = require('../models')
 router.get('/', (req, res) =>{
   model.Teacher.findAll().then(dataTeachers => {
     let newData = dataTeachers.map(teachers => {
-      console.log(teachers);
       return new Promise((resolve, reject) => {
-        teachers.getSubject().then(dataFull => {
-          console.log(dataFull, '--------------------------');
-          teachers.subject_name = dataFull
+        teachers.getSubject().then(dataSubjects => {
+          teachers.subject = dataSubjects
           resolve(teachers)
         })
       })
     })
     Promise.all(newData).then(data =>{
-      //console.log(data[7].subject_name.subject_name)
       res.render('teachers/teachers', {dataTeachers:data})
     })
   })

@@ -8,14 +8,17 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true,
         isUnique: function(value, callback){
-          console.log(value, '----------------------');
-          Student.findAll({where:{email:value}}).then(rows =>{
-            if(rows.length > 0){
-              return callback('Email Double')
-            }else{
-              callback()
-            }
-          })
+          console.log(this.dataValues.id, '----------------------');
+          if(this.dataValues.id == '' || this.dataValues.id == null){
+
+            Student.findAll({where:{email:value}}).then(rows =>{
+              if(rows.length > 0){
+                return callback('Email Double')
+              }else{
+                callback()
+              }
+            })
+          }
         }
       }
     }

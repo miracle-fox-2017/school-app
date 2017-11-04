@@ -14,11 +14,14 @@ router.get('/', (req, res) =>{
             }
           })
           subject.Teachers = arrNama
+
           resolve(subject)
         })
       })
     })
     Promise.all(newData).then(subjects_teachers => {
+      //console.log(subjects_teachers[3].Teachers);
+      //res.send(subjects_teachers)
       res.render('subjects/subjects',{dataSubjects:subjects_teachers})
     })
   })
@@ -68,42 +71,44 @@ router.get('/delete/:id', (req, res) => {
 
 
 router.get('/:id/enrolledStudent', (req, res) => {
-  model.Subject.findOne({
-    where:{id:req.params.id},
+  model.StudentSubject.findAll({
+    attributes:['id', 'SubjectId', 'StudentId', 'score'],
+    where:{SubjectId:req.params.id},
     include:[
       {model:model.Student}
     ]
   })
   .then(dataSubject => {
+    res.send(dataSubject)
    res.render('subjects/enrolledstudents', {dataSubject:dataSubject})
   })
 })
 
 
-// router.get('/:id/enrolledStudent', (req, res) => {
-//   model.Subject.findOne({where:{id:req.params.id}}).then(dataSubject => {
-//       model.Student.findAll().then(dataStudents => {
-//         model.StudentSubject.findAll().then(dataStudentSubjects => {
-//           let newArr = []
-//         for(let i = 0; i < dataStudents.length; i++){
-//
-//           dataStudentSubjects.forEach(item => {
-//             if(dataStudents[i].id == item.StudentId && dataSubject.id == item.SubjectId){
-//               //dataSubject.students = dataStudents[i].first_name
-//               newArr.push(dataStudents[i].first_name)
-//             }
-//           })
-//         }
-//         dataSubject.arrNama = newArr
-//         console.log(dataSubject);
-//         //res.send(dataSubject.students)
-//         res.render('subjects/enrolledstudents', {dataSubject:dataSubject})
-//       })
-//     })
-//
-//   })
-//
-// })
+router.get('/:id/givescores', (req, res) => {
+  console.log(req.params);
+  model.StudentSubject.findOne({
+    where:{id:req.params.id},
+    include:[
+      {model:model.Student},
+      {model:model.Subject}
+    ]
+  })
+  .then(data => {
+    //res.send(data)
+    res.render('subjects/scoring', {data:data})
+  })
+})
+
+router.post('/:id/givescores', (req, res) => {
+  model.StudentSubject.update(
+    {score: req.body.score},
+    {where:{id:req.params.id}}
+  )
+  .then(() => {
+    res.redirect('/subjects')
+  })
+})
 
 
 

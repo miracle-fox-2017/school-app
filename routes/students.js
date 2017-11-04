@@ -21,6 +21,7 @@ router.post('/add', (req, res) =>{
 
   model.Student.create(
     {
+      id: '',
       first_name:first_name,
       last_name:last_name,
       email:email
@@ -48,6 +49,7 @@ router.post('/edit/:id', (req,res) =>{
 
   model.Student.update(
     {
+      id:req.params.id,
       first_name:first_name,
       last_name:last_name,
       email:email

@@ -17,12 +17,22 @@
       <th>Students Name</th>
       <th>Score</th>
       <th>Desc</th>
-        <%dataSubject.Students.forEach(item => {%>
+        <%dataSubject.forEach(item => {%>
       <tr>
           <td></td>
-          <td><%=item.first_name%></td>
-          <td></td>
-          <td></td>
+          <td>
+            <%if(item.Student !== null){%>
+            <%=item.Student.getFullName()%>
+            <%}%>
+
+          </td>
+          <td>
+            <%if(item.score !== null){%>
+            <%=item.score%>
+          <%}else{%>
+            <a style="none" href="/subjects/<%=item.id%>/givescores">give score</a>
+          <%}%>
+          </td>
       </tr>
         <%})%>
     </table>
