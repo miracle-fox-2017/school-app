@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
+        Subject.hasMany(Teacher);
         // associations can be defined here
       }
     }

@@ -8,13 +8,18 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true
       }
+    },
+    SubjectsId: {
+      type: DataTypes.INTEGER
     }
   }, {
     classMethods: {
       associate: function(models) {
+        Teacher.belongTo(Subject);
         // associations can be defined here
       }
     }
   });
+
   return Teacher;
 };
