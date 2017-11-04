@@ -19,6 +19,7 @@
 		<tbody>
 			<tr>
 				<form action="/students/edit/<%= edit.id %> " method="post">
+					 <input type="hidden" name="id" value= <%= edit.id %> >
 				<td> <input type="text" name="first_name" value="<%= edit.first_name %>"> </td>
 				<td> <input type="text" name="last_name"  value="<%= edit.last_name %>"> </td>
 				<td> <input type="text" name="email" value="<%= edit.email %>"> </td>

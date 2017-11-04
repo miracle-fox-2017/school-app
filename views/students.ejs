@@ -12,21 +12,23 @@
 				<th> id </th>
 				<th> first_name </th>
 				<th> last_name </th>
+				<th> fullname </th>
 				<th> email </th>
 				<th colspan="2"> options </th>
 			</tr>
 		</thead>
 		<tbody>
-			<% for (let i = 0 ; i<allStudents.length ; i++){	%>	
+			<% allStudents.forEach(student => {%>	
 			<tr>
-				<td> <%= allStudents[i].id %> </td>
-				<td> <%= allStudents[i].first_name  %> </td>
-				<td> <%= allStudents[i].last_name  %> </td>
-				<td> <%= allStudents[i].email  %> </td>
-				<td> <a href="/students/edit/<%= allStudents[i].id %>"> edit </td>
-				<td> <a onclick= "return deleteConfirm()" href="/students/delete/<%= allStudents[i].id %>"> hapus </td>	
+				<td> <%= student.id %> </td>
+				<td> <%= student.first_name  %> </td>
+				<td> <%= student.last_name  %> </td>
+				<td> <%= student.getFullName() %> </td>
+				<td> <%= student.email  %> </td>
+				<td> <a href="/students/edit/<%= student.id %>"> edit </td>
+				<td> <a onclick= "return deleteConfirm()" href="/students/delete/<%= student.id %>"> hapus </td>	
 			</tr>	
-			<%}%>
+			<%})%>
 		</tbody>	
 	</table>	
 	<script type="text/javascript">
