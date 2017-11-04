@@ -4,11 +4,15 @@ const Model = require('../models');
 
 
 router.get('/', function (req, res) {
-	Model.Subject.findAll()
-	.then((allSubjects) => {
-		res.render('subject', {subjects: allSubjects});
-	})
-	.catch(err => res.send(err));
+	Model.Subject.findAll({include: [Model.Teacher]})
+		.then((allSubjects) => {
+
+
+		
+			// res.send(allSubjects)
+			res.render('subject', {subjects: allSubjects});
+		})
+		.catch(err => res.send(err.message));
 })
 
 module.exports = router;

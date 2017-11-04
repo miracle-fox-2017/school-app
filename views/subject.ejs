@@ -12,6 +12,8 @@
 			<tr>
 				<th>Id</th>
 				<th>Subject Name</th>
+				<th>Teacher</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 
@@ -20,6 +22,22 @@
 				<tr>
 					<td><%= subject.id %></td>
 					<td><%= subject.subject_name %></td>
+					<td>
+						<ol>
+						<%= JSON.stringify(subject.Teachers) %>
+						<% subjects.forEach((subject, index) => {  %>
+
+							<% subject.Teachers.forEach( function(teacher, index) { %>
+
+								<% console.log(teacher.first_name) %>
+								<li><%= teacher.full_name(); %></li>
+							<% }); %>
+						<% }); %>
+						</ol>
+					</td>
+					<td>
+						<a href="#">Enroll Students</a>
+					</td>
 				</tr>
 			<% }); %>
 		</tbody>

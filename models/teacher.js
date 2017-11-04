@@ -48,5 +48,9 @@ module.exports = (sequelize, DataTypes) => {
     Teacher.belongsTo(models.Subject);
   };
 
+  Teacher.prototype.full_name = function(){
+    return this.first_name +' '+this.last_name; 
+  };
+
   return Teacher;
 };
