@@ -20,14 +20,13 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Maaf Format Email Anda Salah"
         }
       }
-    }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    },
+    subjectId: DataTypes.INTEGER
   });
+
+  teacher.associate = function (models) {
+    teacher.belongsTo(models.subject);
+  }
 
   teacher.prototype.getFullname = function () {
     return `${this.first_name} ${this.last_name}`;

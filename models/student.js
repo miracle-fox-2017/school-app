@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  student.associate = function (models) {
+    student.hasMany(models.studentswithsubject)
+  }
+
   student.prototype.getFullname = function() {
     return `${this.first_name} ${this.last_name}`;
   }

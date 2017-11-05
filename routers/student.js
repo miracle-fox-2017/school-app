@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
     });
 });
 
+
+//tambah studens
 router.get('/add', (req, res) => {
     res.render('addstudent',{ error:null });
 });
@@ -23,6 +25,7 @@ router.post('/add', (req, res) => {
     
 });
 
+//edit student
 router.get('/edit/:id', (req, res) => {
     db.student.findById(req.params.id).then((dataStudents) => {
         res.render('editstudent', { dataStudents,error: null });
@@ -41,6 +44,32 @@ router.post('/edit/:id', (req, res) => {
     });
 });
 
+//tambah subject
+router.get('/:id/addsubject', (req, res) => {
+    db.student.findById(req.params.id).then((dataStudents) => {
+        db.subject.findAll().then((dataSubject) => {
+            res.render('addstudentwithsubject', { dataStudents, dataSubject });
+        }).catch((err) => {
+            res.send(err);
+        });
+    }).catch((err) => {
+        res.send(err);
+    });
+});
+
+router.post('/:id/addsubject', (req, res) => {
+    let Obj = {
+        studentId : req.body.studentId,
+        subjectId : req.body.subjectId 
+    };
+    db.studentswithsubject.create(Obj).then((user) => {
+        res.redirect('/students');
+    }).catch((err) => {
+        res.send(err);
+    });
+});
+
+///hapus student
 router.get('/delete/:id', ( req, res ) => {
     db.student.destroy( { where : { id : req.params.id } } ).then( ( dataStudents ) => {
         res.redirect('/students');

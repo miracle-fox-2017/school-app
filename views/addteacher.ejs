@@ -18,6 +18,11 @@
                 <input type="text" name="first_name" placeholder="First Name">
                 <input type="text" name="last_name" placeholder="Last Name">
                 <input type="text" name="email" placeholder="Email">
+                <select name="subjectId">
+                <% rows.forEach((row) => { %>
+                    <option value="<%= row.id %>"><%= row.subject_name %></option>
+                <% }) %>
+                </select>
                 <input type="submit" value="Add">
             </form>
 </body>

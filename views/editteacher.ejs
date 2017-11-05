@@ -18,6 +18,31 @@
                 <input type="text" name="first_name" placeholder="First Name" value="<%= dataTeachers.first_name %>">
                 <input type="text" name="last_name" placeholder="Last Name" value="<%= dataTeachers.last_name %>">
                 <input type="text" name="email" placeholder="Email" value="<%= dataTeachers.email %>">
+                <select name="subjectId">
+                <% 
+                   
+                 dataSubjects.forEach((row) => {
+                    
+                    if(row.id == dataTeachers.subjectId){
+                
+                %>
+
+                    <option value="<%= row.id %>" selected><%= row.subject_name %></option>
+                
+                <%
+
+                    }else{
+                        
+                %>
+                    <option value="<%= row.id %>"><%= row.subject_name %></option>
+                
+                <%
+                    }
+
+                    }) 
+                    
+                %>
+                </select>
                 <input type="submit" value="Edit">
             </form>
 </body>

@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/', (req, res) => {
-    db.teacher.findAll().then((dataTeachers) => {
+    db.teacher.findAll({order:[['id','ASC']] ,include: [db.subject] }).then((dataTeachers) => {
         res.render('teacher', { dataTeachers });
     }).catch((err) => {
         res.send(err);
@@ -11,11 +11,13 @@ router.get('/', (req, res) => {
 });
 
 router.get('/add', (req, res) => {
-    res.render('addteacher', { error: null });
+    db.subject.findAll().then((rows) => {
+        res.render('addteacher', { rows, error: null });
+    })
 });
 
 router.post('/add', (req, res) => {
-    db.teacher.create(req.body).then((user) => {
+    db.teacher.create(req.body).then((dataTeachers) => {
         res.redirect('/teachers');
     }).catch((err) => {
         res.render('addteacher', { error: err.errors[0].message });
@@ -25,7 +27,9 @@ router.post('/add', (req, res) => {
 
 router.get('/edit/:id', (req, res) => {
     db.teacher.findById(req.params.id).then((dataTeachers) => {
-        res.render('editteacher', { dataTeachers, error: null });
+        db.subject.findAll().then((dataSubjects) => {
+            res.render('editteacher', { dataTeachers, dataSubjects ,error: null });
+        });
     }).catch((err) => {
         res.send(err);
     });

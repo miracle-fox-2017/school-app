@@ -12,6 +12,7 @@
         <tr>
             <td>No</td>
             <td>Subject</td>
+            <td>Teachers</td>
             <td>Action</td>
         </tr>
     <% 
@@ -26,7 +27,23 @@
             <td><%= no %></td>
             <td><%= rows.subject_name %></td>
             <td>
-                <a href="/subjects/edit/<%= rows.id %>">Edit</a> | <a href="/subjects/delete/<%= rows.id %>">Delete</a>
+                <%
+                    let nomor = 1; 
+                    rows.teachers.forEach((row) => { 
+                %>
+
+                    <%= nomor %> <%= row.first_name %><br />
+
+                <%
+                
+                 nomor++
+            
+                }) 
+                
+                %>
+            </td>
+            <td>
+                <a href="/subjects/<%= rows.id %>/enrolledstudents">Enrolled Students</a>
             </td>
         </tr>
 

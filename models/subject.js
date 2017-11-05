@@ -8,12 +8,16 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  
+  subject.associate = function (models) {
+    subject.hasMany(models.teacher)
+    subject.hasMany(models.studentswithsubject)
+  }
+
+  // subject.associate = function (models) {
+  //   subject.hasMany(models.studentswithsubject)
+  // }
+
   return subject;
 };

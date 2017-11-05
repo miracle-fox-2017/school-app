@@ -14,6 +14,7 @@
             <td>First Name</td>
             <td>Last Name</td>
             <td>Email</td>
+            <td>Subject</td>
             <td>Action</td>
         </tr>
     <% 
@@ -36,6 +37,17 @@
             </td>
             <td>
                 <%= rows.email %>
+            </td>
+            <td>
+                <% if(rows.subject == null){ %>
+
+                    <p>Unassigned</p>
+
+                <% }else{ %>
+
+                    <p><%= rows.subject.subject_name %></p>
+
+                <% } %>
             </td>
             <td>
                 <a href="/teachers/edit/<%= rows.id %>">Edit</a> | <a href="/teachers/delete/<%= rows.id %>">Delete</a>

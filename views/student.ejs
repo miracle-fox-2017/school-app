@@ -16,6 +16,7 @@
             <td>Name</td>
             <td>Email</td>
             <td>Action</td>
+            <td>Options</td>
         </tr>
         <% 
     
@@ -27,13 +28,16 @@
 
             <tr>
                 <td>
-                    <%= rows.id %>
+                    <%= no %>
                 </td>
                 <td>
                     <%= rows.getFullname() %>
                 </td>
                 <td>
                     <%= rows.email %>
+                </td>
+                <td>
+                    <a href="/students/<%= rows.id %>/addsubject">Add Subject</a>
                 </td>
                 <td>
                     <a href="/students/edit/<%= rows.id %>">Edit</a> | <a href="/students/delete/<%= rows.id %>">Delete</a>
