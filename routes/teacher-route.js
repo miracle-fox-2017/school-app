@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
             } else {
               teacher.subject_data = subjectWith;
             }
-            
+
             resolve(teacher);
   				})
   				.catch(err => res.send(err));
@@ -72,7 +72,14 @@ router.get('/edit/:id', (req, res) => {
 })
 
 router.post('/edit/', (req, res) => {
-  Model.Teacher.update(req.body,{
+  console.log(req.body.SubjectId);
+  Model.Teacher.update({
+      id: req.body.id,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      SubjectId: (req.body.SubjectId === '') ? null : req.body.SubjectId
+    },{
     where: {
       id: req.body.id
     }

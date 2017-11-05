@@ -6,11 +6,11 @@
 </head>
 <body>
 	<div class="header" style="text-align: center;">
-		<h1>Add Teacher Data</h1>	
+		<h1>Add Teacher Data</h1>
 		<a href="/teachers">Show all data</a>
 		<br><br>
 	</div>
-		
+
 	<div style="text-align: center;">
 		<% if (typeof message !== 'undefined' && message !== null){ %>
 			<p style="text-align: center; color:red;"><%= message %></p>
@@ -21,12 +21,13 @@
 			<input type="text" id="first_name" name="first_name" placeholder="first_name" value="<%= (typeof teacherFound !== 'undefined' && teacherFound !== null) ? teacherFound.first_name : '' %>">
 			<input type="text" id="last_name" name="last_name" placeholder="last_name" value="<%= (typeof teacherFound !== 'undefined' && teacherFound !== null) ? teacherFound.last_name : '' %>">
 			<input type="text" id="email" name="email" placeholder="email" value="<%= (typeof teacherFound !== 'undefined' && teacherFound !== null) ? teacherFound.email : '' %>">
-				
+
 			<select name="SubjectId" id="SubjectId">
+					<option value="">Pilih Subject</option>
 				<% subjects.forEach((subject, index) => { %>
 					<option value="<%= subject.id  %>"><%= subject.subject_name  %></option>
 				<% }); %>
-			</select>	
+			</select>
 			<input type="submit" value="Submit">
 		</form>
 	</div>
