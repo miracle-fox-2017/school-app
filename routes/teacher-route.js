@@ -30,8 +30,6 @@ router.get('/', function (req, res) {
    .then((newSubject) => {
      res.render('teacher', {teachers: teachers, teachersSubjects: newSubject});
    })
-
-
 	})
 })
 

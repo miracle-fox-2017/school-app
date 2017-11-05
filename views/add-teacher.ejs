@@ -25,7 +25,7 @@
 			<select name="SubjectId" id="SubjectId">
 					<option value="">Pilih Subject</option>
 				<% subjects.forEach((subject, index) => { %>
-					<option value="<%= subject.id  %>"><%= subject.subject_name  %></option>
+					<option <%= (teacherFound.SubjectId == subject.id) ? 'selected' : '' %> value="<%= subject.id  %>"><%= subject.subject_name  %></option>
 				<% }); %>
 			</select>
 			<input type="submit" value="Submit">

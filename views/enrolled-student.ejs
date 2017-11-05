@@ -15,7 +15,7 @@
 	<table width="100%" border="1">
 		<thead>
 			<tr>
-
+				<th>No</th>
 				<th>Student Name</th>
 				<th>Score</th>
 			</tr>
@@ -24,6 +24,7 @@
 		<tbody>
 			<% students.forEach( function(student, index) { %>
 				<tr>
+				<td><%= index+1 %></td>
 					<td><%= student.Student.full_name(); %></td>
 					<td>
 						<% if(student.Score !== null) { %>
