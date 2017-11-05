@@ -13,14 +13,14 @@ router.get('/student',function(req,res) {
 
 router.post('/student',function(req,res) {
   console.log("alang");
-  db.Student.create({first_name:req.body.first_name,last_name:req.body.last_name,email:req.body.email})
-    .then(rows =>{
-      res.redirect('/student')
+    db.Student.create({first_name:req.body.first_name,last_name:req.body.last_name,email:req.body.email})
+      .then(rows =>{
+        res.redirect('/student')
     })
-    .catch(rows=>{
-      db.Student.findAll().then(rows =>{
-        res.render('student',{rows:rows,err:true})
-      })
+      .catch(rows=>{
+        db.Student.findAll().then(rows =>{
+          res.render('student',{rows:rows,err:true})
+        })
     })
 })
 

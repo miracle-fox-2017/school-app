@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       associate: function(models) {
         // associations can be defined here
       }
-    }
+    },
   });
+  Student.prototype.getFullName = function (fullname) {
+      return this.first_name+' '+this.last_name;
+  }
   return Student;
 };
