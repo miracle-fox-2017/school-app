@@ -9,11 +9,23 @@
       <tr>
         <th>id</th>
         <th>Subject Name</th>
+        <th>Teacher Name</th>
+        <th>Actions</th>
       </tr>
       <%for(var i = 0; i < subject.length; i++) {%>
         <tr>
           <td><%=subject[i].id%></td>
           <td><%=subject[i].subject_name%></td>
+          <td>
+            <ol>
+              <%for(var j = 0; j < subject[i].Teachers.length; j++) {%>
+                <li><%=subject[i].Teachers[j].first_name+' '+subject[i].Teachers[j].last_name%></li>
+              <%}%>
+            </ol>
+          </td>
+          <td><a href="/subjects/<%=subject[i].id%>/enrolledstudents">enrolled students</a></td>
+          <td><a href="/subjects/edit/<%=subject[i].id%>">edit</a></td>
+          <td><a href="/subjects/delete/<%=subject[i].id%>">delete</a></td>
         </tr>
       <%}%>
     </table>

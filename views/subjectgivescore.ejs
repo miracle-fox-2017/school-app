@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action="/subjects/<%=subject.id%>/givescore/<%=student.id%>" method="post">
+      <p>Student name: <%=student.first_name + ' ' + student.last_name%></p>
+      <p>Subject name: <%=subject.subject_name%></p>
+      <p>score:</p>
+      <input type="input" name="score" value="">
+      <input type="submit" name="" value="submit">
+    </form>
+  </body>
+</html>

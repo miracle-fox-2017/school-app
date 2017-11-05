@@ -7,19 +7,28 @@
   <body>
     <table>
       <tr>
-        <th>id</th>
+        <th>No</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
+        <th>Subject name</th>
       </tr>
       <%for(var i = 0; i < teacher.length; i++) {%>
         <tr>
-          <td><%=teacher[i].id%></td>
+          <td><%=i+1%></td>
           <td><%=teacher[i].first_name%></td>
           <td><%=teacher[i].last_name%></td>
           <td><%=teacher[i].email%></td>
+          <%if(teacher[i].subject_name == ''){%>
+            <td>unassigned</td>
+          <%} else {%>
+            <td><%=teacher[i].subject_name%></td>
+          <%}%>
+          <td><a href="/teachers/edit/<%=teacher[i].id%>">edit</a></td>
+          <td><a href="/teachers/delete/<%=teacher[i].id%>">delete</a></td>
         </tr>
       <%}%>
+      <p><%=teacher[0].SubjectId%></p>
     </table>
   </body>
 </html>

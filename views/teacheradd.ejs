@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3>Teacher Add</h3>
+    <form class="" action="/teachers/add" method="post">
+      <input type="input" name="first_name" placeholder="first name">
+      <input type="input" name="last_name" placeholder="last name">
+      <input type="input" name="email" placeholder="email">
+      <select class="" name="SubjectId">
+        <option value="0">---Pilih---</option>
+        <%for(var i = 0; i < subject.length; i++){%>
+          <option value="<%=subject[i].id%>"><%=subject[i].subject_name%></option>
+        <%}%>
+      </select>
+      <input type="submit" value="submit">
+    </form>
+  </body>
+</html>

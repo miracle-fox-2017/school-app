@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <h3><%=subject.subject_name%></h3>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+      <%for(var i = 0; i < data.length; i++) {%>
+      <tr>
+        <td><%=i+1%></td>
+        <td><%=data[i].full_name%></td>
+        <%if(data[i].score != null) {%>
+          <td><%=data[i].score%></td>
+        <%} else {%>
+          <td><a href="/subjects/<%=data[i].SubjectId%>/givescore/<%=data[i].StudentId%>">Give Score</a></td>
+        <%}%>
+      </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
