@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Add Subject</title>
+</head>
+<body>
+	<div class="header" style="text-align: center;">
+		<h1>Add Subject Data</h1>
+		<a href="/students">Show all data</a>
+		<br><br>
+	</div>
+
+	<div style="text-align: center;">
+		<% if (typeof message !== 'undefined' && message !== null){ %>
+		<p style="text-align: center; color:red;"><%= message %></p>
+		<% } %>
+
+		<form action="/students/<%=studentFound.id%>/addsubject" method="POST">
+			<input type="hidden" id="id" name="id" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.id : '' %>">
+			<input type="text" id="first_name" name="first_name" placeholder="first_name" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.first_name : '' %>">
+			<input type="text" id="last_name" name="last_name" placeholder="last_name" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.last_name : '' %>">
+			<input type="text" id="email" name="email" placeholder="email" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.email : '' %>">
+
+
+			<select name="SubjectId" id="SubjectId">
+				<option value="">Pilih Subject</option>
+				<% subjects.forEach((subject, index) => { %>
+					<option value="<%= subject.id  %>"><%= subject.subject_name  %></option>
+					<% }); %>
+				</select>
+				<input type="submit" value="Kirim">
+			</form>
+	</div>
+</body>
+</html>

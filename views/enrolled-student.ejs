@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Enrolled Student</title>
+</head>
+<body>
+	<div style="text-align: center;">
+		<h1><%= foundSubject.subject_name%></h1>
+		<a href="/subjects">Return to Subjects</a>
+	</div>
+	<br /><br />
+
+
+	<table width="100%" border="1">
+		<thead>
+			<tr>
+
+				<th>Student Name</th>
+				<th>Score</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% students.forEach( function(student, index) { %>
+				<tr>
+					<td><%= student.Student.full_name(); %></td>
+					<td>
+						<% if(student.Score !== null) { %>
+								<%= student.Score; %>
+						<% } else { %>
+							<a href="#">Give Score</a>
+						<% } %>
+					</td>
+				</tr>
+			<%}); %>
+		</tbody>
+	</table>
+</body>
+</html>

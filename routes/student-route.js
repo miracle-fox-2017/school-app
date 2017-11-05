@@ -58,4 +58,31 @@ router.get('/delete/:id', (req, res) => {
 	}).catch(err => res.send(err));
 })
 
+router.get('/:id/addsubject', (req, res) => {
+	// res.send(req.params.id);
+	let arrModel = [
+		Model.Student.findById(req.params.id),
+		Model.Subject.findAll()
+	];
+
+	Promise.all(arrModel)
+		.then(allModelData => {
+			let studentFound = allModelData[0];
+			let allSubject = allModelData[1];
+
+			res.render('add-subject', {studentFound: studentFound, subjects: allSubject});
+		}).catch(err => res.send(err));
+})
+
+router.post('/:id/addsubject', (req, res) => {
+
+	Model.StudentSubject.create({
+		StudentId : req.body.id,
+		SubjectId: (req.body.SubjectId !== '') ? req.body.SubjectId : null,
+		Score: null
+	}).then(allModelData => {
+			res.redirect('/students');
+		}).catch(err => res.send(err));
+})
+
 module.exports = router;
