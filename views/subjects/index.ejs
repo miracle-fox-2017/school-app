@@ -14,6 +14,7 @@
       <thead>
         <tr>
           <th>No</th>
+          <th>ID Subj</th>
           <th>Subject Name</th>
           <th>Teachers</th>
           <th>Actions</th>
@@ -23,6 +24,7 @@
         <% dataSubjects.forEach((data, index) => { %>
           <tr>
             <td><%= index + 1 %></td>
+            <td><%= data.id%></td>
             <td><%= data.subject_name %></td>
             <td>
               <% if(data.subjectTeacher.length) { %>

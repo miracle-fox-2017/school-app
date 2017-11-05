@@ -92,7 +92,7 @@ router.get('/:id/enrolledstudents', function (req, res) {
     Promise.all(newSubject)
     .then(dataSubject => {
       // console.log(dataSubject[0].subjectStudent);
-      // res.send(dataSubject[0].subjectStudent[0])
+      // res.send(dataSubject[0])
       res.render('subjects/enrolledstudents', {dataSubject: dataSubject[0]})
     })
     .catch(error => {
@@ -101,16 +101,34 @@ router.get('/:id/enrolledstudents', function (req, res) {
   })
 })
 
-router.get('/:id/givescore', function (req, res) {
-  console.log(req.params);
-  Model.StudentSubject.findOne({
-    where: {
-      StudentId: req.params.id
-    }
+router.get('/:SubjectId/:StudentId/givescore', function (req, res) {
+  // console.log(req.params);
+  Model.Subject.findOne({where: {id: req.params.SubjectId}})
+  .then(subject => {
+    subject.getStudents({where: {id: req.params.StudentId}})
+    .then(subjectWithStudent => {
+      // console.log(subjectWithStudent);
+      res.send(subjectWithStudent)
+      // res.render('subjects/givescore', {dataSubject: subject, dataStudent: subjectWithStudent[0]})
+    })
+    .catch(error => {
+      res.send(error)
+    })
   })
-  .then(dataStudent => {
-    // res.send(dataStudent)
-    res.render('subjects/givescore', {dataStudent: dataStudent})
+  .catch(error => {
+    res.send(error)
+  })
+})
+
+router.post('/:SubjectId/:StudentId/givescore', function (req, res) {
+  console.log(req.params);
+  console.log(req.body);
+  Model.StudentSubject.update(req.body)
+  .then(() => {
+    res.redirect('/subjects')
+  })
+  .catch(error => {
+    res.send(error)
   })
 })
 

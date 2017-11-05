@@ -11,15 +11,15 @@
     <a href="/students">Students</a>
 
     <br><br>
-    <form class="" action="/subjects/<%=  %>/givescore" method="post">
+    <form class="" action="/subjects/<%= dataSubject.id %>/<%= dataStudent.id %>/givescore" method="post">
       <label for="">Student Name: </label>
-      <input type="text" name="first_name" value="<%=  %>"><br>
+      <input type="text" name="StudentId" value="<%= dataStudent.id %>" hidden><%= dataStudent.getFullName() %><br>
       <br>
       <label for="">Subject Name: </label>
-      <input type="text" name="last_name" value="<%=  %>"><br>
+      <input type="text" name="SubjectId" value="<%= dataSubject.id %>" hidden><%= dataSubject.subject_name %><br>
       <br>
       <label for="">Score: </label>
-      <input type="text" name="email" value="<%=  %>"><br>
+      <input type="text" name="score" placeholder="ex: 0 - 100"><br>
       <br>
       <input type="submit" name="" value="Submit">
     </form>
