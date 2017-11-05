@@ -9,13 +9,21 @@
 	<thead>
 		<td>Id</td>
 		<td>Subject Name</td>
+		<td>Teacher Name</td>
+		<td>Actions</td>
 	</thead>
 	<tbody>
 		<%subjects.forEach(subject=>{%>
 			<tr>
 				<td><%=subject.id%></td>
 				<td><%=subject.subject_name%></td>
-				<td><%=subject.teacher%></td>
+				<td>
+					<%subject.teacher.forEach((guru,index)=> {%>
+					<%=index+1%>.<%=guru%>
+					<br>	
+					<%})%>
+				</td>
+				<td><a href="/subjects/<%=subject.id%>/enrolledstudents">Enrolled Students</a></td>
 			</tr>
 		<%})%>
 	</tbody>

@@ -1,0 +1,29 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h3>Nama Pelajaran</h3>
+<h4><a href="/subjects">return to subject list</a></h4>
+<table>
+	<thead>
+		<td>Name</td>
+		<td>Score</td>
+	</thead>
+	<tbody>
+		<%subjects.forEach(subject=> {%>
+		<tr>
+			<td><%=subject.student%></td>
+			<%if(subject.Score){%>
+			<td><%=subject.Score%></td>
+			<%}else{%>
+			<td><a href="#">Give Score</a></td>
+			<%}%>
+		</tr>
+		<%})%>
+	</tbody>
+</table>
+</body>
+</html>
