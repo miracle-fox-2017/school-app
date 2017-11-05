@@ -25,18 +25,29 @@ router.post('/add', (req, res) => {
   })
 })
 
+router.get('/edit/:id', (req, res) => {
+  db.Teacher.findById(req.params.id)
+  .then(teacherData => {
+    db.Subject.findAll()
+    .then(subjectsData => {
+      res.render('editTeacher', {teacherData, subjectsData})
+    })
+  }).catch(err => {
+    console.log(err);
+  })
+})
 
-
-// router.get('/get', (req, res) => {
-//   db.Teacher.findById(1).then(result => {
-//     result.getSubject().then(hasil => {
-//       console.log(hasil);
-//     })
-//   }).catch(err => {
-//     console.log(err);
-//   })
-// })
-
+router.post('/edit/:id', (req, res) => {
+  db.Teacher.findById(req.params.id)
+  .then(teacher => {
+    teacher.update(req.body)
+    .then(result => {
+      res.redirect('/teachers')
+    })
+  }).catch(err => {
+    console.log(err);
+  })
+})
 
 
 module.exports = router;

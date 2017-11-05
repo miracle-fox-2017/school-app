@@ -24,7 +24,6 @@ router.post('/add', (req,res) => {
 
 router.get('/edit/:id', (req, res) => {
   db.Student.findById(req.params.id).then(result => {
-    console.log(result.getFullName());
     res.render('editStudent', {result});
   })
 })
@@ -45,6 +44,15 @@ router.get('/delete/:id', (req, res) => {
   }}).then(result => {
     console.log(`deleted rows = ${result}`);
     res.redirect('/students');
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
+router.get('/test', (req, res) => {
+  db.Student_Subject.findAll().then(results => {
+    console.log(results);
+    res.send(results)
   }).catch(err => {
     console.log(err);
   })
