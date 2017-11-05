@@ -5,11 +5,23 @@
     <title></title>
   </head>
   <body>
-    <form class="" action="/teacher/edit/<%=rows.id%>" method="post">
-        <input type="text" name="first_name" value="<%=rows.first_name%>">
-        <input type="text" name="last_name" value="<%=rows.last_name%>">
-        <input type="text" name="email" value="<%=rows.email%>">
-        <button type="submit">SAVE</button>
-    </form>
+    <table>
+      <tr>
+        <form class="" action="/teacher/edit/<%=rows.id%>" method="post">
+            <td><input type="text" name="first_name" value="<%=rows.first_name%>"></td>
+            <td><input type="text" name="last_name" value="<%=rows.last_name%>"></td>
+            <td><input type="text" name="email" value="<%=rows.email%>"></td>
+            <td><select class="" name="subject">
+              <% for(let i = 0;i < subs.length;i++) { %>
+                  <%if(rows.id == subs[i].id) { %>
+                    <option value="<%=subs[i].subject_name%>" selected><%=subs[i].subject_name%></option>
+                  <% } else { %>
+                    <option value="<%=subs[i].subject_name%>"><%=subs[i].subject_name%></option>
+                  <% } } %>
+            </select></td>
+            <td><button type="submit">SAVE</button></td>
+        </form>
+      </tr>
+    </table>
   </body>
 </html>

@@ -4,7 +4,9 @@ const db = require('../models');
 
 router.get('/subject',function(req,res) {
   db.Subject.findAll({order:[['id','ASC']]}).then(rows => {
-    res.render('subject',{rows:rows})
+    db.teacher.findAll().then(teach => {
+      res.render('subject',{rows:rows,teach:teach})
+    })
   })
 })
 
@@ -22,7 +24,9 @@ router.get('/subject/delete/:id',function(req,res) {
 
 router.get('/subject/edit/:id',function(req,res) {
   db.Subject.findOne({where:{id:req.params.id}}).then(rows =>{
-    res.render('editsubject',{rows,rows})
+      db.teacher.findAll().then(teach => {
+    res.render('editsubject',{rows,rows,teach:teach})
+  })
   })
 })
 
