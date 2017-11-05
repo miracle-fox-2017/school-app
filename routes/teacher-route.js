@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
   //     res.send(allTeach);
   //   });
 
-  Model.Teacher.findAll()
+  Model.Teacher.findAll({ order: [ ['first_name', 'ASC'], ] })
     .then(teachers => {
       let newTeacher = teachers.map(teacher => {
           return new Promise((resolve, reject) => {

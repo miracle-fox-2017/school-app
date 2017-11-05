@@ -17,7 +17,10 @@ router.get('/:id/enrolledstudents', function (req, res) {
 
 		Model.StudentSubject.findAll(
 		{
-			include: [Model.Student],
+			include: [{
+				model: Model.Student,
+				order: [ [Model.Student.first_name, 'ASC'] ],
+			}],
 			where: {
 				SubjectId: req.params.id
 			}
