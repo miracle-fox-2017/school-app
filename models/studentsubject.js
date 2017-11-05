@@ -2,7 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   var StudentSubject = sequelize.define('StudentSubject', {
     StudentId: DataTypes.INTEGER,
-    SubjectId: DataTypes.INTEGER
+    SubjectId: DataTypes.INTEGER,
+    score: {
+    	type : DataTypes.INTEGER
+    }
   });
   StudentSubject.associate = function(models){
     StudentSubject.belongsTo(models.Subject);

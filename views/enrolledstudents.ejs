@@ -4,7 +4,7 @@
 	<title>Subject</title>
 </head>
 <body>
-	<h1> <%= subject.dataValues.subject_name %> </h1>
+	<h1> <%= subject[0].Subject.subject_name %> </h1>
 	<h4> <a href ="/subjects"> return to subject list</a>	</h4>	
 	<table border="1" width="70%">
 		<thead>
@@ -14,12 +14,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% subject.dataValues.Students.forEach(student => {%>	
+			<% subject.forEach(student => {%>	
 			<tr>
-				<td> <%= student.first_name %> <%= student.last_name %></td>
-				<td> Score </td>	
-			</tr>	
+				<td> <%= student.Student.first_name %> <%= student.Student.last_name %></td>
+				<% if (student.score == null) {%>
+				<td><a href="/subjects/<%= student.id %>/givescore"> Give Score </a></td>
+				<%}else{%>
+				<td> <%= student.score %> </td>
+				<%}%>
 			<%})%>
+			</tr>	
 		</tbody>	
 	</table>	
 </body>

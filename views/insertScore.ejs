@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insert Score</title>
+</head>
+<body>
+<h2>Insert Score</h2>
+<form accept="/subjects/<%= student.id %>/givescore" method="post">
+	<thead>
+		<tr>
+			<th>Score</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input type="text" name="score"></td>
+			<input type="submit" value="add score">
+		</tr>
+	</tbody>
+</form>
+</body>
+</html>
