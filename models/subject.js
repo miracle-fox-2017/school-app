@@ -1,4 +1,7 @@
 'use strict';
+const models = require('../models')
+
+
 module.exports = (sequelize, DataTypes) => {
   var Subject = sequelize.define('Subject', {
     subject_name: DataTypes.STRING
@@ -9,5 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  Subject.associate = function(models){
+    Subject.hasMany(models.Teacher)
+  }
+
+
   return Subject;
 };

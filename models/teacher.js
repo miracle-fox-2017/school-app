@@ -1,4 +1,6 @@
 'use strict';
+const models = require('../models')
+
 module.exports = (sequelize, DataTypes) => {
   var Teacher = sequelize.define('Teacher', {
     first_name: DataTypes.STRING,
@@ -11,5 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  Teacher.associate = function(models){
+    Teacher.belongsTo(models.Subject)
+  }
+
+
   return Teacher;
 };

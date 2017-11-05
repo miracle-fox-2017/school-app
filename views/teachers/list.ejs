@@ -2,7 +2,8 @@
 <%-include('../partials/menu')%>
 
 <div class="container">
-  <h2>Data Guru</h2>        
+  <h2>All Teachers Data</h2>
+  <h5><a href="/teachers/add" class="btn btn-primary" role="button">Add Teacher</a></h5>         
   <table class="table table-striped">
     <thead>
       <tr>
@@ -10,6 +11,8 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
+        <th>Subject</th>
+        <th>Options</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +22,11 @@
        	<td><%=teacher.first_name%></td>
         <td><%=teacher.last_name%></td>
         <td><%=teacher.email%></td>
+        <td><%=teacher.Subject == null ? 'unnasigned' : teacher.Subject.dataValues.subject_name%></td>
+        <td>
+          <a href="/teachers/edit/<%=teacher.id%>" class="btn btn-primary" role="button">Edit</a> | 
+          <a href="/teachers/delete/<%=teacher.id%>" class="btn btn-primary" role="button">Delete</a>
+        </td>
       </tr>
     <%})%>
     </tbody>
