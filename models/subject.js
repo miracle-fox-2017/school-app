@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Subject.associte = model=>{
     Subject.hasMany(model.Teacher, {foreignKey : 'SubjectId'})
+    Subject.hasMany(model.School)
+    Subject.belongsToMany(model.Student, {through : 'School'})
   }
   return Subject;
 };

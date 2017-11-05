@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
 
+  Student.associate = model => {
+    Student.hasMany(model.School)
+    Student.belongsToMany(model.Subject, {through : 'School'})
+  }
+
   Student.prototype.getFullName = function() {
       return [this.first_name, this.last_name].join(' ');
   }
