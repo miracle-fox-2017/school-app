@@ -9,19 +9,21 @@
     <a href="/students">Students</a> | <a href="/teachers/">Teachers</a> | <a href="/subjects/">Subjects</a><br><br>
     <table border="1">
       <tr>
+        <th>No</th>
         <th>Id</th>
         <th>Full Name</th>
         <th>Score</th>
       </tr>
-      <% data.forEach(s=>{ %>
+      <% data.forEach((s,i)=>{ %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= s.id %></td>
           <td><%= s.Student.getFullName() %></td>
           <td>
             <% if(s.score!=null){ %>
               <%= s.score %>
             <% } else{ %>
-              <a href="/subjects/<%= s.SubjectId  %>/<%= s.StudentId %>/give-score">Give Score</a>
+              <a href="/subjects/<%= s.id %>/givescore">Give Score</a>
             <% } %>
           </td>
         </tr>

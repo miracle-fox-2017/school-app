@@ -9,6 +9,7 @@
     <a href="/students">Students</a> | <a href="/teachers/">Teachers</a> | <a href="/subjects/">Subjects</a><br><br>
     <table border="1">
       <tr>
+        <th>No</th>
         <th>Id</th>
         <th>First Name</th>
         <th>Last name</th>
@@ -16,8 +17,9 @@
         <th>Subject</th>
         <th>Action</th>
       </tr>
-      <% teachers.forEach(t=>{ %>
+      <% teachers.forEach((t,i)=>{ %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= t.id %></td>
           <td><%= t.first_name %></td>
           <td><%= t.last_name %></td>
