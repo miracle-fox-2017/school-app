@@ -14,5 +14,20 @@ router.get('/', (req, res) => {
 
 })
 
+router.get('/:id/enrolledstudents', (req, res)=> {
+	Model.Subject.findById(req.params.id, {
+		include : [{ 
+			model : Model.Student,
+			order : [['first_name']]
+		}],
+	}).then(subjects =>{
+
+		console.log(subjects.Students)
+
+			res.render('subjects/enrolled_students', {students : subjects.Students})
+		})
+
+})
+
 
 module.exports = router

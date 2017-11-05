@@ -68,6 +68,22 @@ router.post('/edit/:id', (req, res)=> {
 	})
 })
 
+router.get('/:id/add_subject', (req, res)=> {
+	Promise.all([
+		Model.Student.findById(req.params.id),
+		Model.Subject.findAll(),
+	]).then(hasil => {
+		res.render('students/add_subject', {student : hasil[0], subjects : hasil[1]})
+	})
+})
+
+router.post('/:id/add_subject', (req, res)=> {
+	req.body.StudentId = req.params.id
+	Model.StudentSubject.create(req.body).then(()=>{
+		res.redirect('/students')
+	})
+})
+
 module.exports = router
 
 

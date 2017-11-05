@@ -6,29 +6,21 @@
   <table class="table table-striped" width="40">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Subject Name</th>
-        <th>Teacher Name</th>
-        <th>Enrolled Students</th>
+        <th>No</th>
+        <th>Students Name</th>
+        <th>Score</th>
+        <th>Desc</th>
       </tr>
     </thead>
     <tbody>
-    <%subjects.forEach(subject => {%>
       <tr>
-        <td><%=subject.id%></td>
-       	<td><%=subject.subject_name%></td>
-        <td>
-          <ol>
-            <%subject.Teachers.forEach(hasil =>{%>
-              <li><%=hasil.first_name%> <%=hasil.last_name%></li>
-            <%})%>
-          <ol>
-        </td>
+        <%students.forEach(student => {%>
+          <td><%=student.id%></td>
+         	<td><%=student.first_name%></td>
+        <%})%> 
         <td>
           <a href="/subjects/<%=subject.id%>/enrolledstudents" class="btn btn-primary" role="button">Enrolled Students</a>
         </td>
-      </tr>
-    <%})%>
     </tbody>
   </table>
 </div>
