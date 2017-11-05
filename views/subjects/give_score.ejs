@@ -1,0 +1,27 @@
+<%-include('../partials/header')%>
+<%-include('../partials/menu')%>
+
+
+<div class="ui container" style="margin-top:3em;">
+      <table style="font-size:15px;">
+        <tr>
+          <td>Student Name</td>
+          <td>:</td>
+          <td><%=student.first_name%></td>
+        </tr>
+        <tr>
+          <td>Subject</td>
+          <td>:</td>
+          <td><%=subject.subject_name%></td>
+        </tr>
+      </table>
+      <form action="/subjects/<%=subject.id%>/<%=student.id%>/givescore" method="post">
+        <div class="ui large icon input">
+          <input type="text" name="score" placeholder="Score">
+        </div>
+        <br>
+        <input class="ui primary button" type="submit" value="Submit">
+      </form>
+</div>
+
+<%-include('../partials/footer')%>

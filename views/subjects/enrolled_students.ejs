@@ -14,13 +14,17 @@
     </thead>
     <tbody>
       <tr>
-        <%students.forEach(student => {%>
+        <%subjects.Students.forEach(student => {%>
           <td><%=student.id%></td>
-         	<td><%=student.first_name%></td>
+         	<td><%=student.first_name%> <%=student.last_name%></td>
+          <td>
+            <%if(student.StudentSubject != null){%>
+              <%=student.StudentSubject.score%>
+            <%}else{%>
+              <a href="/subjects/<%=subjects.id%>/<%=student.id%>/givescore" class="btn btn-primary" role="button">Give Score</a>
+            <%}%>
+          </td>
         <%})%> 
-        <td>
-          <a href="/subjects/<%=subject.id%>/enrolledstudents" class="btn btn-primary" role="button">Enrolled Students</a>
-        </td>
     </tbody>
   </table>
 </div>
