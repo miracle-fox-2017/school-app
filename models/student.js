@@ -33,9 +33,9 @@ module.exports = (sequelize, DataTypes) => {
 });
 Student.associate = function(models) {
 //   // associations can be defined here
-  // Student.hasMany(models.SubjectWithStudent)
-  // Student.belongsToMany(models.Subject, { through: models.SubjectWithStudent })
-//   // Student.hasMany(models.SubujectWithStudent)
+  Student.hasMany(models.SubjectWithStudent,{foreignKey: 'studentId', sourceKey: 'id'})
+  Student.belongsToMany(models.Subject, { through: { model: models.SubjectWithStudent, unique: false } ,foreignKey: 'studentId', sourceKey: 'id'})
+  // Student.hasMany(models.SubujectWithStudent)
 }
   return Student;
 };

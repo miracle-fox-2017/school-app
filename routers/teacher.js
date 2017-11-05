@@ -5,7 +5,7 @@ const route = express.Router();
 
 
 route.get('/',(req,res)=>{
-  Models.Teacher.findAll().then( teachers => {
+  Models.Teacher.findAll({order: ['first_name']}).then( teachers => {
     let newteacher = teachers.map( teacher => {
       return new Promise ( (resolve,reject) => {
         teacher.getSubject().then( subject => {

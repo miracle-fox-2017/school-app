@@ -5,7 +5,7 @@ const route = express.Router();
 
 
 route.get('/',(req,res)=>{
-  Model.Student.findAll().then(data=>{
+  Model.Student.findAll({order: ['first_name']}).then(data=>{
     // res.send(data)
     res.render('student',{student : data})
   })
@@ -22,7 +22,8 @@ route.post('/add',(req,res)=>{
   Model.Student.create({ first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email })
   .then(task => {
     res.redirect('/student')
-  }).catch(err=>{
+  })
+  .catch(err=>{
     err = err.errors[0].type +' : ' + err.errors[0].message
     // res.send(err)
     // err =
@@ -34,13 +35,12 @@ route.post('/add',(req,res)=>{
 route.get('/edit/:id',(req,res)=>{
   Model.Student.findById(req.params.id).then(data => {
   // res.send(data)
-  res.render('studentEdit',{edit : data})
+    res.render('studentEdit',{edit : data})
   })
 })
 
 route.post('/edit/:id',(req,res)=>{
-  Model.Student.update({first_name:req.body.first_name, last_name: req.body.last_name, email: req.body.email },
-    {where: { id: req.params.id }})
+  Model.Student.update({first_name:req.body.first_name, last_name: req.body.last_name, email: req.body.email },{where: { id: req.params.id }})
   .then(() => {res.redirect('/student')})
 })
 

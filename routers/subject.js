@@ -44,23 +44,38 @@ route.get('/',(req,res)=>{
 })
 
 route.get('/:id/enrolledstudents',(req,res) => {
-  // Models.Subject.findById(req.params.id).then(subjects => {
-    Models.SubjectWithStudent.findAll({where: {subjectId:req.params.id}}).then( subject => {
-      let newsubject = subject.map( data => {
-        return new Promise ((resolve, reject) => {
-          data.getStudent().then( student =>{
-            data.student = student;
+  Models.Subject.findById(req.params.id).then(subjects => {
+
+      subjects.getSubjectWithStudents().then(subjectstudent =>{
+          let newsubject = subjectstudent.map( data => {
+            return new Promise ((resolve, reject) => {
+              subjectstudent.getStudents().then(student=>{
+                subjects.student = student;
+                resolve(subjects)
+              })
+            })
           })
-        })
-      })
+
+
+    // Models.SubjectWithStudent.findAll({where: {subjectId:req.params.id}}).then( subject => {
+    //   let newsubject = subject.map( data => {
+    //     return new Promise ((resolve, reject) => {
+    //       // console.log(data);
+    //       data.getStudent().then( student =>{
+    //         // console.log(student);
+    //         data.student = student;
+    //         console.log(data);
+    //       })
+    //     })
+    //   })
 
       Promise.all(newsubject).then(subjectwithstudent => {
-        console.log(subjectwithstudent);
-        res.send(subjectwithstudent)
-        // res.render('enrolledstudents',{subject : subjects})
+        // console.log(subjectwithstudent);
+        // res.send(subjectwithstudent)
+        res.render('enrolledstudents',{subject : subjectwithstudent})
       })
     })
-      // })
+  })
     // let newsubject = subjects.map( subject)
     // res.render('enrolledstudents',{subject : subjects})
   // })

@@ -11,20 +11,26 @@
         text-align: center;
       }
       table {
-      border-collapse: collapse;
-      width: 100%;
-      padding: 20px
-    }
-
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
       }
-    form{
-      text-align: center;
-      padding: 20px
-    }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      form{
+        text-align: center;
+        padding: 20px
+      }
+
     </style>
   </head>
   <body>
@@ -36,6 +42,7 @@
     <table>
       <thead>
         <tr>
+          <td>No</td>
           <td>ID</td>
           <td>FIRST NAME</td>
           <td>LAST NAME</td>
@@ -45,8 +52,9 @@
           <td>OPTIONS</td>
         </tr>
       </thead>
-      <%student.forEach(dt=>{%>
+      <%student.forEach((dt,index)=>{%>
         <tr>
+          <td><%=`${index+1}`%></td>
           <td><%=dt.id%></td>
           <td><%=dt.first_name%></td>
           <td><%=dt.last_name%></td>
@@ -58,9 +66,9 @@
       <%})%>
     </table>
     <script>
-function myFunction() {
-    confirm("DELETE THIS STUDENT ?");
-}
-</script>
+      function myFunction() {
+        confirm("DELETE THIS STUDENT ?");
+      }
+    </script>
   </body>
 </html>
