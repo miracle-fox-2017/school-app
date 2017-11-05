@@ -17,5 +17,9 @@ module.exports = (sequelize, DataTypes) => {
   Teacher.associate = model => {
     Teacher.belongsTo(model.Subject, { foreignKey: 'idSubject' })
   }
+
+  Teacher.prototype.getFullName = function () {
+    return this.first_name + ' ' + this.last_name
+  }
   return Teacher;
 };

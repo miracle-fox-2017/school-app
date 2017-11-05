@@ -3,7 +3,12 @@ const router = express.Router();
 const Model = require('./../models')
 
 router.get('/', function (req, res) {
-    Model.Subject.findAll().then((dataSubjects) => {
+    Model.Subject.findAll({
+        include: [{
+            model: Model.Teacher
+        }]
+    }).then((dataSubjects) => {
+       
         res.render('subject', { dataSubjects: dataSubjects, pageTitle: 'Subject' })
     }).catch((reason) => {
         res.send(reason)
