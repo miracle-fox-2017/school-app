@@ -11,6 +11,8 @@
             <th class="center aligned one wide">NO</th>
             <th class="center aligned one wide">ID</th>
             <th>Subject Name</th>
+            <th>Teachers</th>
+            <th>Action</th>
             <th class="center aligned three wide">Option</th>
           </tr></thead>
           <tbody class="left aligned">
@@ -19,6 +21,18 @@
                 <td class="center aligned"><%=i+1%></td>
                 <td class="center aligned"><%=subject.id%></td>
                 <td><%=subject.subject_name%></td>
+                <td>
+                  <%if(subject.Teachers.length > 0){
+                    subject.Teachers.forEach(teacher => {%>
+                      <ol>
+                        <li><%=teacher.getFullname()%></li>
+                      </ol>
+                  <%})
+                    }else{%>
+                    unassign
+                  <%}%>
+                </td>
+                <td><a href="/subjects/<%=subject.id%>/enrolledstudents">Enrolled Students</a></td>
                 <td class="center aligned">
                   <div class="ui buttons">
                     <a class="ui blue button" href="/subjects/edit/<%=subject.id%>">Edit</a>

@@ -14,6 +14,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Full Name</th>
+            <th>Action</th>
             <th class="center aligned three wide">Option</th>
           </tr></thead>
           <tbody class="left aligned">
@@ -25,6 +26,7 @@
                 <td><%=student.last_name%></td>
                 <td><%=student.email%></td>
                 <td><%=student.getFullname()%></td>
+                <td><a href="/students/<%=student.id%>/addsubject">Add Subject</a></td>
                 <td class="center aligned">
                   <div class="ui buttons">
                     <a class="ui blue button" href="/students/edit/<%=student.id%>">Edit</a>

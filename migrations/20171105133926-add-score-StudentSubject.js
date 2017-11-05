@@ -3,14 +3,14 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     queryInterface.addColumn(
-     'Teachers',
-      'email',
-      Sequelize.STRING)
+     'StudentSubjects',
+      'score',
+      Sequelize.INTEGER)
   },
 
   down: (queryInterface, Sequelize) => {
     queryInterface.removeColumn(
-      'Teachers',
-      'email')
+      'StudentSubjects',
+      'score')
   }
 };

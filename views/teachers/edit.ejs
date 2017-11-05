@@ -22,6 +22,18 @@
           </div>
         </p>
         <p>
+          <select name="SubjectId">
+            <option value="">-select subject-</option>
+            <%subjects.forEach(subject => {
+              if(teacher.SubjectId == subject.id){%>
+                <option class="item" value="<%=subject.id%>" selected><%=subject.subject_name%></option>
+              <%}else{%>
+                <option class="item" value="<%=subject.id%>"><%=subject.subject_name%></option>
+            <%}
+            })%>
+          </select>
+        </p>
+        <p>
           <input class="ui primary button" type="submit" value="Submit">
         </p>
       </form>

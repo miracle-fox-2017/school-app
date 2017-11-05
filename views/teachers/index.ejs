@@ -13,6 +13,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Subject</th>
             <th class="center aligned three wide">Option</th>
           </tr></thead>
           <tbody class="left aligned">
@@ -23,6 +24,13 @@
                 <td><%=teacher.first_name%></td>
                 <td><%=teacher.last_name%></td>
                 <td><%=teacher.email%></td>
+                <td>
+                  <%if(teacher.Subject){%>
+                    <%=teacher.Subject.subject_name%>
+                  <%}else{%>
+                    unassign
+                  <%}%>
+                </td>
                 <td class="center aligned">
                   <div class="ui buttons">
                     <a class="ui blue button" href="/teachers/edit/<%=teacher.id%>">Edit</a>

@@ -2,13 +2,6 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
     queryInterface.addConstraint('Students', ['email'], {
       type: 'unique',
       name: 'custom_unique_constraint_email_Student'

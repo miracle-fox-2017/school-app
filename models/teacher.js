@@ -11,5 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Teacher.prototype.getFullname = function () {
+    return `${this.first_name} ${this.last_name}`
+  }
+
+  Teacher.associate = models => {
+    Teacher.belongsTo(models.Subject);
+  }
   return Teacher;
 };

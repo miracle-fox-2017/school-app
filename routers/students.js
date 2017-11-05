@@ -3,7 +3,7 @@ const router = express.Router();
 const Model = require('../models');
 
 router.get('/', (req, res) => {
-  Model.Student.findAll({order: [['id']]}).then(students => {
+  Model.Student.findAll({order: [['first_name']]}).then(students => {
     res.render('students', {title:'Students',students:students})
   })
 })
@@ -42,6 +42,24 @@ router.get('/delete/:id', (req, res) => {
   Model.Student.destroy({where:req.params}).then(() => {
     res.redirect('/students')
   })
+})
+
+router.get('/:id/addsubject', (req, res) => {
+  Promise.all([
+    Model.Student.findById(req.params.id),
+    Model.Subject.findAll()
+  ]).then(rows => {
+    res.render('students/addSubject', {title:'Add Subject', student:rows[0], subjects:rows[1]})
+  })
+})
+
+router.post('/:id/addsubject', (req, res) => {
+  req.body.StudentId = req.params.id
+  Model.StudentSubject.create(req.body).then(() => {
+    res.redirect('/students')
+  })
+  // res.send('addSubject')
+  // console.log(req.params);
 })
 
 module.exports = router;
