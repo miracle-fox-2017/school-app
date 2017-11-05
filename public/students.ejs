@@ -21,6 +21,7 @@
                     <td>ID</td>
                     <td>Nama Depan</td>
                     <td>Nama Belakang</td>
+                    <td>Nama Lengkap</td>
                     <td>Alamat Email</td>
                     <td>Action</td>
                 </tr>
@@ -29,9 +30,10 @@
                     <td><%=value.id%></td>
                     <td><%=value.first_name%></td>
                     <td><%=value.last_name%></td>
+                    <td>Sementara</td>
                     <td><%=value.email%></td>
                     <td>
-                        <a href="#">Edit</a>
+                        <a href="/students/edit/<%=value.id%>">Edit</a>
                         <a href="/students/delete/<%=value.id%>">Hapus</a>
                     </td>
                 </tr>
