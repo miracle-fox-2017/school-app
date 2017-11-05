@@ -1,0 +1,33 @@
+<% %>
+
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Student</title>
+</head>
+<body>
+<h3>Add Student Data</h3>
+<h4><a href="/students">show all data</a></h4>
+<p><%=error%></p>
+	<form action="/teachers/add" method="post">
+  		First Name<br>
+  		<input type="text" name="first_name" placeholder="First Name">
+  		<br>
+  		Last Name<br>
+  		<input type="text" name="last_name" placeholder="Last Name">
+  		<br>
+  		Email<br>
+  		<input type="text" name="email" placeholder="Email">
+  		<br>
+  		Subject<br>
+  		<select name="subject">
+  		<%subjects.forEach(subject=> {%>
+  			<option value="<%=subject.id%>"><%=subject.subject_name%></option>
+  		<%})%>
+		</select> 
+  		<br><br>
+  		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
