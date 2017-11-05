@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
             validate: { isEmail: { msg: 'Invalid email.' } },
         }
     })
+          Student.associate = function (models){
+            Student.belongsToMany(models.Subject, {through : 'StudentSubject'})
+            Student.hasMany(models.StudentSubject)
+          }
+
+
         Student.prototype.getFullname = function() {
         return this.first_name + ' ' + this.last_name;
       }

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Subjects</title>
+    <title>Teacher</title>
   </head>
     <style media="screen">
     table, th, td {
@@ -16,19 +16,27 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
+        <th>Subject</th>
+        <th>action</th>
       </tr>
         <% let i = 1 %>
-        <% rows.forEach(function(row){%>
+        <% rows.forEach(function(row){ %>
       <tr>
         <td> <%= row.id %> </td>
         <td> <%= row.first_name %> </td>
         <td> <%= row.last_name %> </td>
         <td> <%= row.email %> </td>
+        <td> <% if(row.SubjectId == null){ %>
+             <%= 'unassigned' %>
+        <% } else { %>
+          <%= row.subject.subject_name %>
+          <% } %>
+        </td>
+        <td> <a href="/teacher/edit/<%=row.id%>"> edit</a> <a href="/teacher/delete/<%=row.id%>">delete</a> </td>
+        <% i++ %>
         <% }) %>
-        <td></td>
+        <a href="/teacher/add" class="btn btn-default">add Teacher</a>
       </tr>
-
     </table>
-
   </body>
 </html>

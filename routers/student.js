@@ -3,8 +3,7 @@ const router = express.Router();
 const model = require("../models");
 
 router.get('/', function (req, res) {
-
-  model.Student.findAll().then((rows)=>{
+  model.Student.findAll({order: [['id', 'ASC']]}).then((rows)=>{
     res.render('students' , {rows})
     console.log(rows);
   }).catch((err)=>{
@@ -13,7 +12,6 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function(req,res){
-  res.send('masuk add')
   res.render('add', {rows: null});
 })
 
@@ -63,5 +61,72 @@ router.get('/delete/:id', function(req, res) {
     res.send(err)
   })
 })
+
+router.get('/:id/addsubject', (req, res) => {
+  // res.send('router add subject udah jadi')
+  model.Student.findOne({where : {id: req.params.id} })
+  .then( students => {
+    model.Subject.findAll()
+    .then(subjects => {
+      res.render('addSubject', {students: students, subjects : subjects})
+    })
+  })
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+router.post('/:id/addsubject', (req, res) => {
+  req.body.StudentId = req.params.id;
+  model.Student.create(req.body)
+  .then(() => {
+    res.redirect('/students')
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

@@ -13,18 +13,23 @@
     <table>
       <tr>
         <th>ID</th>
-        <th>Subject Name</th>
+        <th>Subject</th>
+        <th>Teacher</th>
+        <th>Students</th>
+        <th>Option</th>
       </tr>
-        <% let i = 1 %>
         <% rows.forEach(function(row){%>
       <tr>
         <td> <%= row.id %> </td>
         <td> <%= row.subject_name %> </td>
-        <% }) %>
-        <td></td>
+        <td> <%= row.teacher %> </td>
+        <td><a href="/subjects/<%=row.id%>/enrolledstudents">enrolledstudents</a></td>
       </tr>
-
+      <% }) %>
     </table>
 
   </body>
 </html>
+<script type="text/javascript">
+
+</script>

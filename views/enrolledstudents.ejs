@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enrolled Students</title>
+  </head>
+  <body>
+    <h1><%= subject.subject_name %></h1>
+    <table border="1">
+      <tr>
+        <th>No</th>
+        <th>first_name</th>
+        <th>score</th>
+      </tr>
+      <% studentsubjects.forEach((s,i)=>{ %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= s.Student.first_name %></td>
+           <td><% if(s.score != null){ %>
+            <%= s.score %>
+            <% } else { %>
+              <a href="<%= s.id %>givescore">Score</a>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

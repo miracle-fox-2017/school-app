@@ -17,6 +17,7 @@
         <th>Last Name</th>
         <th>full name</th>
         <th>Email</th>
+        <th>Subject</th>
         <th>action</th>
       </tr>
         <% let i = 1 %>
@@ -27,6 +28,7 @@
         <td> <%= row.last_name %> </td>
         <td> <%= row.getFullname() %> </td>
         <td> <%= row.email %> </td>
+        <td><a href="/students/<%= row.id%>/addsubject">Add Subjects</a></td>
         <td> <a href="/students/edit/<%=row.id%>"> edit</a> <a href="/students/delete/<%=row.id%>">delete</a> </td>
         <% i++ %>
         <% }) %>
