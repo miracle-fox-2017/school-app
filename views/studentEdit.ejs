@@ -4,17 +4,16 @@
     <meta charset="utf-8">
     <title>Edit Students</title>
   </head>
-  <h1>Edit Students Data</h1>
-  <form class="" action="/students/edit/ <%= studData.id %>" method="post">
-    First Name <br>
-    <input type="text" name="first_name" value="<%= studData.first_name %>"><br>
-    Last Name <br>
-    <input type="text" name="last_name" value="<%= studData.last_name %>"><br>
-    Email <br>
-    <input type="text" name="email" value="<%= studData.email %>"><br>
-    <input type="submit" name="" value="Edit Student">
-  </form>
   <body>
-    
+    <h1>Edit Students Data</h1>
+    <form class="" action="/students/edit/<%= studData.id %>" method="post">
+      First Name <br>
+      <input type="text" name="first_name" value="<%= studData.first_name %>"><br>
+      Last Name <br>
+      <input type="text" name="last_name" value="<%= studData.last_name %>"><br>
+      Email <br>
+      <input type="text" name="email" value="<%= studData.email %>"><br>
+      <input type="submit" name="" value="Edit Student">
+    </form>
   </body>
 </html>

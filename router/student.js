@@ -26,7 +26,7 @@ router.post('/add', function(req, res){
     }).then(function(berhasil){
     res.redirect('/students')
   }).catch(function(err){
-    res.render('studentAdd', {err:err.message}) //buat tampilan validasi error
+    res.render('studentAdd', {err:err.message, studData:null}) //buat tampilan validasi error
     console.log(err.message);
   })
 })
