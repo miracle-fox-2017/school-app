@@ -1,0 +1,33 @@
+<% include partials/head%>
+
+    <body>
+        <header>
+            <% include partials/menu%>
+                <h3>Add Data Teacher</h3>
+        </header>
+        <%= message%>
+
+            <div class="main-form">
+                <form action="/teachers/add" method="POST">
+                    First Name : <br>
+                    <input name="first_name" type="text" placeholder="First Name" /> <br> Last Name :
+                    <br>
+                    <input name="last_name" type="text" placeholder="Last Name" /> <br> Email :
+                    <br>
+                    <input name="email" type="text" placeholder="Email" />
+                    <br> Subject Name : <br>
+                    <select name="idSubject">
+                        <% dataSubjects.forEach((subject)=>{%>
+                    <option value="<%= subject.id%>">
+                               <%= subject.subject_name%>     
+                    </option>
+                        <%})%>
+                     
+                    </select> <br>
+                    <br>
+                    <input type="submit" value="Add Teacher">
+                </form>
+            </div>
+    </body>
+
+    </html>

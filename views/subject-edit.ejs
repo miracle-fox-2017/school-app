@@ -1,0 +1,20 @@
+<% include partials/head%>
+
+    <body>
+        <header>
+            <%include partials/menu%>
+                <h3>Edit Subject</h3>
+        </header>
+            <div class="main-form">
+
+                <form action="/subjects/edit/<%= dataSubject.id%>" method="POST">
+                    Subject Name : <br>
+                    <input type="text" name="subject_name" value="<%= dataSubject.subject_name%>" placeholder="First Name" />  <br>
+                    <br>
+                    <input type="submit" value="Edit Subject" />
+
+                </form>
+            </div>
+    </body>
+
+    </html>

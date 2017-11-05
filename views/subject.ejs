@@ -16,6 +16,15 @@
                     <th>
                         Subject Name
                     </th>
+                    <th>
+                        Teachers
+                    </th>
+                    <th>
+                        Enrolled Students
+                    </th>
+                    <th colspan="2">
+                        Action
+                    </th>
                 </tr>
                 <% dataSubjects.forEach((subject)=>{%>
                     <tr>
@@ -25,12 +34,26 @@
                         <td>
                             <%= subject.subject_name%>
                         </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <a href="/subjects/edit/<%= subject.id%>"> Edit</a>
+                        </td>
+                        <td>
+                            <a href="/subjects/delete/<%= subject.id%>"> Delete</a>
+                        </td>
                     </tr>
                     <%})%>
 
             </table>
         </div>
-
+        <a href="/subjects/add">
+            Add Subject
+        </a>
     </body>
 
     </html>

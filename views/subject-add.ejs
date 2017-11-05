@@ -1,0 +1,19 @@
+<% include partials/head%>
+
+    <body>
+        <header>
+            <% include partials/menu%>
+                <h3>Add Data Subject</h3>
+        </header>
+        <div class="main-form">
+            <form action="/subjects/add" method="POST">
+                Subject Name: <br>
+                <input name="subject_name" type="text" placeholder="Subject Name" /> <br>
+                <br>
+
+                <input type="submit" value="Add Subject">
+            </form>
+        </div>
+    </body>
+
+    </html>
