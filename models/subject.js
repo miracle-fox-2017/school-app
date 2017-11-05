@@ -1,15 +1,13 @@
 'use strict';
-const 
 module.exports = (sequelize, DataTypes) => {
   var Subject = sequelize.define('Subject', {
     subject_name: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        Subjet.hasMany(Teacher)
-      }
-    }
   });
+  Subject.associate = function(models) {
+    Subject.hasMany(models.Teacher)  
+  };
+  Subject.prototype.getFullName = function(){
+      return this.first_name + ' ' + this.last_name;
+  }  
   return Subject;
 };

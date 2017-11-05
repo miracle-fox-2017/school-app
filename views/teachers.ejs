@@ -4,23 +4,37 @@
 	<title>Teacher</title>
 </head>
 <body>
-<table border="1">
-	<thead>
-		<tr>
-		<th>first_name</th>
-		<th>last_name</th>
-		<th>email</th>
-		</tr>
-	</thead>
-	<tbody>
-	<% for (let i = 0 ; i< allTeacher.length ; i++) {%>
-		<tr>
-		<td> <%= allTeacher[i].first_name %> </td>
-		<td> <%= allTeacher[i].last_name %> </td>
-		<td> <%= allTeacher[i].email %> </td>
-		</tr>
-	<%}%>
-	</tbody>
-</table>		
+<h1> ALL TEACHER</h1>
+<h4> <a href ="/teachers/add"> add teacher</a>	</h4>	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>first_name</th>
+				<th>last_name</th>
+				<th>email</th>
+				<th>subject name</th>
+				<th colspan="2"> options </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% allTeacher.forEach(teacher =>{ %>
+			<tr>
+				<td> <%= teacher.first_name %> </td>
+				<td> <%= teacher.last_name %> </td>
+				<td> <%= teacher.email %> </td>
+				<td> <%= teacher.subject%> </td>
+				<td> <a href="/teachers/edit/<%= teacher.id %>"> edit </a></td>
+				<td> <a onclick= "return deleteConfirm()" href="/teachers/delete/<%= teacher.id %>">delete </a></td>	
+			</tr>
+			<%})%>
+		</tbody>
+	</table>	
+	<script type="text/javascript">
+		function deleteConfirm(){
+			let ask = confirm("Delete this Student? ");
+			if (ask == true) return true;
+			else return false;
+		}
+	</script>		
 </body>
 </html>

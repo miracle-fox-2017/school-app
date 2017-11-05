@@ -9,15 +9,21 @@
 		<tr>
 		<th>id</th>
 		<th>subject_name</th>
+		<th>Full Name</th>
 		</tr>
 	</thead>
 	<tbody>
-	<% for (let i = 0 ; i< allSubject.length ; i++) {%>
+	<% allSubject.forEach(subject => {%>
 		<tr>
-		<td> <%= allSubject[i].id %> </td>
-		<td> <%= allSubject[i].subject_name %> </td>
+		<td> <%= subject.id %> </td>
+		<td> <%= subject.subject_name %> </td>
+			<td><% subject.Teachers.forEach(teacher => {%>
+			<li style="list-style-type: decimal;"> <%= teacher.first_name %> <%= teacher.last_name %>	
+			</li>
+			<%})%>
+			</td>
 		</tr>
-	<%}%>
+	<%})%>
 	</tbody>
 </table>		
 </body>
