@@ -1,15 +1,31 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Teacher = sequelize.define('Teacher', {
-    first_name: DataTypes.STRING,
+    first_name: {
+      type : DataTypes.STRING,
+      validate : {
+        notEmpty: {
+          msg: "first name harus diisi"
+        }
+      }
+    },
     last_name: DataTypes.STRING,
-    email: DataTypes.STRING,
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: "Maaf Email Tidak Boleh Kosong"
+        },
+        isEmail: {
+          msg: "Maaf Format Email Anda Salah"
+        }
       }
     }
   });
+
+  Teacher.associate = function(models) {
+      Teacher.belongsTo(models.Subject,{foreignKey:"SubjectId"})
+  }
   return Teacher;
+
 };

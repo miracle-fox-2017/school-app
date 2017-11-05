@@ -7,20 +7,19 @@
   <body>
     <table border="1">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+
+        <th>Full Name</th>
         <th>Email</th>
       </tr>
-      <%data.forEach((dataparams)=>{%>
+      <%dataStudents.forEach((dataparams)=>{%>
         <tr>
-        <td><%=dataparams.first_name%></td>
-        <td><%=dataparams.last_name%></td>
-        <td><%=dataparams.email%></td>
-        <td><a href="/students/edit/<%=dataparams.id%>"> Edit </td>
-      <td><a href="/students/delete/<%dataparams.id%>"> Delete </td>
+          <td><%=dataparams.getFullname()%></td>
+          <td><%=dataparams.email%></td>
+          <td><a href="/students/edit/<%=dataparams.id%>"> Edit </td>
+          <td><a href="/students/delete/<%dataparams.id%>"> Delete </td>
         </tr>
       <%})%>
     </table>
-
+    <a href="/teachers/add">Add Students</a>
   </body>
 </html>

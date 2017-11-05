@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Subjects</title>
+</head>
+
+<body>
+    <% if(error != null){ %>
+        <p>
+            <%= error %>
+        </p>
+        <% } %>
+        <table>
+          <tr>
+            <form action="/subjects/add" method="post">
+                <td><input type="text" name="subject_name" placeholder="Subject Name"></td>
+                <td><input type="submit" value="Add"></td>
+            </form>
+          </tr>
+        </table>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Teacher Data</title>
+  </head>
+  <body>
+      <table border="1">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+
+        </tr>
+        <tr>
+          <form class="" action="/teachers/edit/<%=dataTeachers.id%>" method="post" >
+              <td><input type="text" name="first_name" value="<%=dataTeachers.first_name%>"></td>
+              <td><input type="text" name="last_name" value="<%=dataTeachers.last_name%>"></td>
+              <td><input type="text" name="email" value="<%=dataTeachers.email%>"></td>
+              <td> <input type="submit" value="SAVE"></td>
+          </form>
+        </tr>
+      </table>
+      <tr>
+        <td><a href="/teachers"> View All Teachers </td>
+      </tr>
+  </body>
+</html>

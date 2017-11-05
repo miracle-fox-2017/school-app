@@ -13,16 +13,18 @@
 
       </tr>
 
-      <%data.forEach((dataparams)=>{%>
+      <%dataTeachers.forEach((dataparams)=>{%>
         <tr>
         <td><%=dataparams.first_name%></td>
         <td><%=dataparams.last_name%></td>
         <td><%=dataparams.email%></td>
+        <td><a href="/teachers/edit/<%=dataparams.id%>"> Edit </td>
+        <td><a href="/teachers/delete/<%dataparams.id%>"> Delete </td>
         </tr>
       <%})%>
 
     </table>
 
-
+    <a href="/teachers/add">Add Teachers</a>
   </body>
 </html>

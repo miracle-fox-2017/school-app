@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Teachers</title>
+    <title>Subjects</title>
   </head>
   <body>
     <table border="1">
@@ -14,11 +14,13 @@
       <%data.forEach((dataparams)=>{%>
         <tr>
         <td><%=dataparams.subject_name%></td>
+        <td><a href="/subjects/edit/<%=dataparams.id%>"> Edit </td>
+        <td><a href="/subjects/delete/<%dataparams.id%>"> Delete </td>
         </tr>
       <%})%>
 
     </table>
 
-
+    <a href="/teachers/add">Add Subjects</a>
   </body>
 </html>

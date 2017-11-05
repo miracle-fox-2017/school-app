@@ -6,8 +6,8 @@ const db = require('../models')
 
 //menampilkan semua data Student
 router.get('/', (req,res) => {
-  db.Student.findAll().then((data) => {
-    res.render('students',{data});
+  db.Student.findAll().then((dataStudents) => {
+    res.render('students',{dataStudents});
 }).catch((err)=>{
   console.log(err);
 })
@@ -32,8 +32,8 @@ router.post('/add',(req,res) => {
 
 //menampilkan data student berdasarkan id
 router.get('/edit/:id',(req,res) => {
-  db.Student.findById(req.params.id).then((data) => {
-    res.render('editstudents',{data});
+  db.Student.findById(req.params.id).then((dataStudents) => {
+    res.render('editstudents',{dataStudents});
   }).catch((err)=>{
   console.log(err);
   })
@@ -51,9 +51,7 @@ router.post('/edit/:id',(req,res) => {
   console.log(err);
   })
 })
-//((data) => {
-  // res.render('students',{data});
-// })
+
 
 //delete data student
 router.get('/delete/:id',(req,res)=>{
