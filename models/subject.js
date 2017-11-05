@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     subject_name: DataTypes.STRING
   });
   Subject.associate = (models) => {
-    Subject.hasMany('Teacher');
-    Subject.belongsToMany(models.Student, { through: 'Student_Subject' })
-    Subject.hasMany(models.Student_Subject)
+    Subject.hasMany(models.Teacher);
+    Subject.belongsToMany(models.Student, { through: 'Students_Subject' })
+    Subject.hasMany(models.Students_Subject)
   }
   return Subject;
 };

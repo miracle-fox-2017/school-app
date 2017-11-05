@@ -50,7 +50,7 @@ router.get('/delete/:id', (req, res) => {
 })
 
 router.get('/test', (req, res) => {
-  db.Student_Subject.findAll().then(results => {
+  db.Students_Subject.findAll().then(results => {
     console.log(results);
     res.send(results)
   }).catch(err => {

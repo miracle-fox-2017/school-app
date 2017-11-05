@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Student_Subject = sequelize.define('Students-Subjects', {
+  var Students_Subject = sequelize.define('Students_Subject', {
     StudentId: DataTypes.INTEGER,
     SubjectId: DataTypes.INTEGER
   });
-  Student_Subject.associate = models => {
-    Student_Subject.belongsTo(models.Student, {foreignKey : 'StudentId'})
-    Student_Subject.belongsTo(models.Subject, {foreignKey : 'SubjectId'})
+  Students_Subject.associate = models => {
+    Students_Subject.belongsTo(models.Student, {foreignKey : 'StudentId'})
+    Students_Subject.belongsTo(models.Subject, {foreignKey : 'SubjectId'})
   }
-  return Student_Subject;
+  return Students_Subject;
 };
