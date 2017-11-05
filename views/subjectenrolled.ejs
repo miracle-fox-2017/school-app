@@ -11,6 +11,7 @@
         <th>No</th>
         <th>Name</th>
         <th>Score</th>
+        <th>Scoreletter</th>
       </tr>
       <%for(var i = 0; i < data.length; i++) {%>
       <tr>
@@ -21,6 +22,7 @@
         <%} else {%>
           <td><a href="/subjects/<%=data[i].SubjectId%>/givescore/<%=data[i].StudentId%>">Give Score</a></td>
         <%}%>
+        <td><%=data[i].getscoreletter()%></td>
       </tr>
       <%}%>
     </table>

@@ -46,15 +46,23 @@ router.get('/delete/:id', (req, res) => {
 router.get('/edit/:id', (req, res) => {
   model.Teacher.findOne({where:{id:req.params.id}}).then((teacher) => {
     model.Subject.findAll().then((subject) => {
-      res.render('teacheredit', {teacher:teacher, subject:subject})
+      // res.send(subject)
+      res.render('teacheredit', {teacher:teacher, subject:subject, pesan:''})
     })
   })
 })
 
 
 router.post('/edit/:id', (req, res) => {
-  model.Teacher.update({first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, SubjectId: req.body.SubjectId}, {where: {id: req.params.id}}).then(() => {
+  model.Teacher.update({id:req.params.id, first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, SubjectId: req.body.SubjectId}, {where: {id: req.params.id}}).then(() => {
     res.redirect('/teachers')
+  }).catch((err) => {
+    model.Teacher.findOne({where:{id: req.params.id}}).then((teacher) => {
+      model.Subject.findAll().then((subject) => {
+        // res.send(subject)
+        res.render('teacheredit', {teacher: teacher, subject:subject, pesan: err.errors[0].message})
+      })
+    })
   })
 })
 
