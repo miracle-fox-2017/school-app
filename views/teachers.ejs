@@ -1,52 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Teacher</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style media="screen">
+table tr:nth-child(1){
+  counter-reset: rowNumber;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}
+</style>
+<script type="text/javascript">
+function sort(ascending, columnClassName, tableId) {
+  var tbody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+  let rows = tbody.getElementsByTagName('tr');
+  let unsorted = true;
+  while (unsorted) {
+    unsorted = false;
+    for (var r = 0; r < rows.length - 1; r++) {
+      var row = rows[r];
+      var nextRow = rows[r + 1];
+      var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
+      var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
+      value = value.replace(',', '.');
+      nextValue = nextValue.replace(',', '.');
+
+      if (!isNaN(value)) {
+        value = parseFloat(value);
+        nextValue = parseFloat(nextValue);
+      }
+
+      if (ascending ? value > nextValue : value < nextValue) {
+        tbody.insertBefore(nextRow, row);
+        unsorted = true;
+      }
+    }
+  }
+};
+</script>
+<title>Teacher</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hacktiv8</a>
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hacktiv8</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/">HOME</a></li>
+        <li class="active"><a href="/teachers">TEACHERS</a></li>
+        <li><a href="/subjects">SUBJECTS</a></li>
+        <li><a href="/students">STUDENTS</a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/">HOME</a></li>
-      <li class="active"><a href="/teachers">TEACHERS</a></li>
-      <li><a href="/subjects">SUBJECTS</a></li>
-      <li><a href="/students">STUDENTS</a></li>
-    </ul>
-  </div>
-</nav>
+  </nav>
   <div class="container">
     <h2>TEACHERS DATA</h2>
     <div class="table-responsive">
-      <table class="table">
+      <a href="teachers/add">ADD TEACHER</a>
+      <table class="table" id="teachers">
         <thead>
           <tr>
+            <th>NO</th>
             <th>ID</th>
-            <th>FIRST NAME</th>
+            <th>FIRST NAME
+              <a href="javascript:sort(true, 'name', 'teachers');">asc</a>
+              <a href="javascript:sort(false, 'name', 'teachers');">des</a>
+            </th>
             <th>LAST NAME</th>
             <th>EMAIL</th>
-            <th>ACTION</th>
+            <th>SUBJECT</th>
+            <th colspan="2">OPTIONS</th>
           </tr>
         </thead>
         <tbody>
           <%dataContacts.forEach (row=> {%>
             <tr>
+              <td></td>
               <td><%= row.id %></td>
-              <td><%= row.first_name %></td>
+              <td class='name'><%= row.first_name %></td>
               <td><%= row.last_name %></td>
               <td><%= row.email %></td>
-              <td><a href="/teachers/delete/<%= row.id %>">DELETE</a></td>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-    </body>
-    </html>
+              <%if(row.Subject){%>
+                <td><%= row.Subject.subject_name %></td>
+                <%} else {%>
+                  <td>Unassigned</td>
+                  <%}%>
+                  <td>
+                    <a href="/teachers/edit/<%=row.id%>">EDIT</a>
+                    <a href="/teachers/delete/<%= row.id %>">DELETE</a>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </body>
+        </html>

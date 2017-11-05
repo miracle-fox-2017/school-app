@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style media="screen">
+table tr:nth-child(1){
+  counter-reset: rowNumber;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}
+</style>
   <title>Subject</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,37 +25,49 @@
 </head>
 <body>
   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hacktiv8</a>
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hacktiv8</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/teachers">TEACHERS</a></li>
+        <li class="active"><a href="/subjects">SUBJECTS</a></li>
+        <li><a href="/students">STUDENTS</a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/">HOME</a></li>
-      <li><a href="/teachers">TEACHERS</a></li>
-      <li class="active"><a href="/subjects">SUBJECTS</a></li>
-      <li><a href="/students">STUDENTS</a></li>
-    </ul>
-  </div>
-</nav>
+  </nav>
   <div class="container">
     <h2>SUBJECT DATA</h2>
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
+            <th>NO</th>
             <th>ID</th>
             <th>SUBJECT NAME</th>
+            <th>TEACHER</th>
+            <th>ACTIONS</th>
           </tr>
         </thead>
         <tbody>
           <%dataContacts.forEach (row=> {%>
             <tr>
+              <td></td>
               <td><%= row.id %></td>
               <td><%= row.subject_name %></td>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-    </body>
-    </html>
+              <td>
+                <ol>
+                  <%for(let x = 0; x < row.Teachers.length; x++){%>
+                    <li><%=row.Teachers[x].fullName()%></li>
+                    <%}%>
+                  </ol>
+                </td>
+                <td><a href="/subjects/<%=row.id%>/enrolledstudents">Enrolled Students</td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </body>
+      </html>

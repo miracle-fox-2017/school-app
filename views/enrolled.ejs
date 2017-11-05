@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-  function myFunction() {
-    confirm("are you sure?!");
-    swal({
-      icon: "success",
-    });
-  }
-  </script>
-  <style media="screen">
-  table tr:nth-child(1){
-    counter-reset: rowNumber;
-  }
-
-  table tr {
-    counter-increment: rowNumber;
-  }
-
-  table tr td:first-child::before {
-    content: counter(rowNumber);
-    min-width: 1em;
-    margin-right: 0.5em;
-  }
-  </style>
   <script type="text/javascript">
   function sort(ascending, columnClassName, tableId) {
     var tbody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
@@ -52,7 +29,7 @@
     }
   };
   </script>
-  <title>Student</title>
+  <title>Enrolled</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -69,46 +46,35 @@
         <li><a href="/">HOME</a></li>
         <li><a href="/teachers">TEACHERS</a></li>
         <li><a href="/subjects">SUBJECTS</a></li>
-        <li class="active"><a href="/students">STUDENTS</a></li>
+        <li><a href="/students">STUDENTS</a></li>
       </ul>
     </div>
   </nav>
   <div class="container">
-    <h2>STUDENTS DATA</h2>
-    <div class="table-responsive">
-      <a href="students/add">ADD STUDENT</a>
-      <table class="table" id="student">
-        <thead>
+    <%if(data[0] !== undefined){%>
+      <h2><%=data[0].Subject.subject_name%></h2>
+      <%}else{%>
+        <h2>Please enroll at least ONE student first</h2>
+        <%}%>
+        <table class="table" id="enrolled">
           <tr>
-            <th>NO</th>
-            <th>ID</th>
-            <th>FIRST NAME
-              <a href="javascript:sort(true, 'name', 'student');">asc</a>
-              <a href="javascript:sort(false, 'name', 'student');">des</a>
+            <th>Name
+              <a href="javascript:sort(true, 'name', 'enrolled');">asc</a>
+              <a href="javascript:sort(false, 'name', 'enrolled');">des</a>
             </th>
-            <th>LAST NAME</th>
-            <th>EMAIL</th>
-            <th>ACTIONS</th>
-            <th colspan="2">OPTIONS</th>
+            <th>Score</th>
           </tr>
-        </thead>
-        <tbody>
-          <%dataContacts.forEach (row=> {%>
+          <%data.forEach (row=> {%>
             <tr>
-              <td></td>
-              <td><%= row.id %></td>
-              <td class='name'><%= row.first_name %></td>
-              <td><%= row.last_name %></td>
-              <td><%= row.email %></td>
-              <td><a href="/students/<%=row.id%>/addsubject">ADD SUBJECT</a></td>
-              <td>
-                <a href="/students/edit/<%= row.id %>">EDIT</a>
-                <a href="/students/delete/<%= row.id %>" onclick="myFunction()">DELETE</a>
-              </td>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-    </body>
-    </html>
+              <td class='name'><%=row.Student.fullName()%></td>
+              <% if (row.score) { %>
+                <td><%= row.score %></td>
+                <% } else { %>
+                  <td><a href="/subjects/<%= row.id %>/givescore">GIVE SCORE</a></td>
+                  <% } %>
+                </tr>
+                <%})%>
+              </table>
+            </div>
+          </body>
+          </html>
