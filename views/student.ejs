@@ -22,7 +22,7 @@
       }
 
       fieldset {
-        width : 40%;
+        width : 60%;
       }
 
       a {
@@ -42,6 +42,7 @@
             <th><b>Id</b></th>
             <th><b>First Name</b></th>
             <th><b>Last Name</b></th>
+            <th><b>E-mail</b></th>
             <th><b>EDIT DATA</b></th>
             <th><b>DELETE DATA</b></th>
           </thead>
@@ -52,6 +53,7 @@
             <td><%= rowStudents[i].id %></td>
             <td><%= rowStudents[i].first_name %></td>
             <td><%= rowStudents[i].last_name %></td>
+            <td><%= rowStudents[i].email %></td>
             <td><a href = "/students/edit/<%= rowStudents[i].id %>">EDIT</a></td>
             <td><a href = "/students/delete/<%= rowStudents[i].id %>">DELETE</a></td>
           </tr>

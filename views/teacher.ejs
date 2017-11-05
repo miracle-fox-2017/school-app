@@ -22,7 +22,12 @@
       }
 
       fieldset {
-        width : 50%;
+        width : 70%;
+      }
+
+      a {
+        text-decoration: none;
+        color : white;
       }
 
     </style>
@@ -36,6 +41,8 @@
         <th><b>First Name</b></th>
         <th><b>Last Name</b></th>
         <th><b>E-mail</b></th>
+        <th><b>EDIT DATA</b></th>
+        <th><b>DELETE DATA</b></th>
       </thead>
 
       <tbody>
@@ -45,6 +52,8 @@
             <td><%= rowTeachers[i].first_name %></td>
             <td><%= rowTeachers[i].last_name %></td>
             <td><%= rowTeachers[i].email %></td>
+            <td><a href = '/teachers/edit/<%= rowTeachers[i].id %>'>EDIT</a></td>
+            <td><a href = '/teachers/delete/<%= rowTeachers[i].id %>'>DELETE</a></td>
           </tr>
         <%}%>
       </tbody>

@@ -9,5 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  // Subjects.associate = function(models) {
+  //   Subjects.belongsTo(models.Teacher, {foreignkey : 'Subject_Id'});
+  // }
+
   return Subjects;
 };

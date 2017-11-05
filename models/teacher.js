@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true
       }
-  }
-});
+    }
+    // Subject_Id  :  DataTypes.INTEGER
+  });
+
+  // Teacher.associate = function (models) {
+  //    Teacher.belongsTo(models.Subjects, {foreignkey : 'Subject_Id'} );
+  // }
+
   return Teacher;
 };

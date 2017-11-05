@@ -16,6 +16,40 @@ app.set('view engine', 'ejs');
 app.get('/teachers', function(req, res) {
   db.Teacher.findAll().then(function (rowTeachers) {
     res.render('teacher',{rowTeachers});
+  }).catch((err) => {
+    res.send(err);
+  });
+})
+
+app.get('/teachers/add', function(req, res) {
+  res.render('formTeacher')
+})
+
+app.post('/teachers/add', function(req, res) {
+  db.Teacher.create(req.body).then(function (berhasil) {
+    res.redirect('/teachers')
+  }).catch(function(err){
+    console.log(err);
+  })
+})
+
+app.get('/teachers/edit/:id', function(req, res) {
+  db.Teacher.findById(req.params.id).then(function(rowTeachers) {
+    res.render('editTeacher', {rowTeachers: [rowTeachers] })
+  })
+})
+
+app.post('/teachers/edit/:id', function(req, res) {
+  let data = {
+    id    : req.params.id,
+    first_name : req.body.first_name,
+    last_name : req.body.last_name,
+    email  : req.body.email
+  };
+  db.Teacher.update(data, {
+    where : { id: req.params.id }
+  }).then(function() {
+    res.redirect('/teachers')
   })
 })
 
@@ -24,6 +58,14 @@ app.get('/teachers', function(req, res) {
 app.get('/subjects', function(req, res) {
   db.Subjects.findAll().then(function (rowSubjects) {
     res.render('subject',{rowSubjects});
+  })
+})
+
+app.get('/teachers/delete/:id', function(req, res) {
+  db.Teacher.destroy({
+    where : {id:req.params.id}
+  }).then(function () {
+    res.redirect('/teachers')
   })
 })
 
@@ -67,8 +109,6 @@ app.post('/students/edit/:id', function(req, res) {
   })
 })
 
-
-
 app.get('/students/delete/:id', function(req, res) {
   db.Students.destroy({
     where : {id:req.params.id}
@@ -77,7 +117,6 @@ app.get('/students/delete/:id', function(req, res) {
   })
 })
 
-// /public static upsert(values: Object, options: Object): Promise<created>
 //==============================================
 
 app.get('/', function(req, res) {

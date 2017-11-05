@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>HALAMAN FORM STUDENTS</title>
+    <title>HALAMAN EDIT STUDENTS</title>
 
         <style type = "text/css">
 
@@ -29,37 +29,38 @@
 
   </head>
   <body style = "background-color :aquamarine">
+    <% rowTeachers.forEach(teacher => { %>
 
       <fieldset>
-        <legend> <b>FORM DATA STUDENT </b> </legend>
-          <form action="/students/add" method="post">
+        <legend> <b>FORM EDIT STUDENT </b> </legend>
+          <form action="/teachers/edit/<%= teacher.id %>" method="post">
             <table border = "0">
               <tr>
                 <td width = "150px">First Name</td>
                 <td width = "50px">:</td>
-                <td><input type="text" name="first_name"></td>
+                <td><input type="text" name="first_name" value = "<%= teacher.first_name %>"></td>
               </tr>
 
               <tr>
                 <td width = "150px">Last Name</td>
                 <td width = "50px">:</td>
-                <td><input type="text" name="last_name"></td>
+                <td><input type="text" name="last_name" value = "<%= teacher.last_name %>"></td>
               </tr>
 
               <tr>
-                <td width = "150px">Email</td>
+                <td width = "150px">E-mail</td>
                 <td width = "50px">:</td>
-                <td><input type="text" name="email"></td>
+                <td><input type="text" name="email" value = "<%= teacher.email %>"></td>
               </tr>
 
               <tr>
                 <td width = "150px"></td>
                 <td width = "50px"></td>
-                <td><input type="submit" value = "Add Student"></td>
+                <td><input type="submit" value = "Edit Teacher"></td>
               </tr>
             </table>
           </form>
       </fieldset>
-
+<% }) %>
   </body>
 </html>
