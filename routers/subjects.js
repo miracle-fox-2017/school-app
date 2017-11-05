@@ -3,7 +3,10 @@ const router = express.Router()
 const model = require('../models');
 
 router.get('/', function (req, res) {
-  model.Subject.findAll()
+  model.Subject.findAll(
+    {
+      order: [["subject_name", "ASC" ]]
+    })
     .then(dataSubjects=>{
       let newDataSubjects = dataSubjects.map(subject=>{
         return new Promise(function(resolve, reject) {
@@ -78,6 +81,69 @@ router.get('/edit/:id', (req, res)=>{
       .catch(err=>{
           res.send(err)
         })
+ })
+
+ router.get('/:id/enrolledstudents', (req, res)=>{
+   model.Subject.findById(req.params.id)
+    .then(dataSubject=>{
+      model.Student_Subject.findAll(
+        {
+          include: ['Student']
+        })
+        .then(dataStudentSubject=>{
+          res.render('enrolledStudents',
+            {
+              dataSubject:dataSubject,
+              allDataStudents:dataStudentSubject
+            })
+        })
+    })
+    .catch(err=>{
+      console.log(err);
+      res.send(err)
+    })
+ })
+
+ router.get('/:id/givescore', (req, res)=>{
+   model.Student_Subject.findById(req.params.id)
+    .then(studentsubjet=>{
+      Promise.all(
+        [
+          model.Student.findById(studentsubjet.StudentId),
+          model.Subject.findById(studentsubjet.SubjectId)
+        ])
+         .then(allData =>{
+          //  res.send(studentsubjet)
+           res.render('giveScore',
+           {
+             studentsubjet:studentsubjet,
+             dataStudent:allData[0],
+             dataSubject:allData[1]
+           })
+         })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.send(err)
+      })
+ })
+
+ router.post('/:id/givescore', (req, res)=>{
+  //  res.send(req.params.id)
+   model.Student_Subject.update(
+     {
+       score: req.body.score
+     },
+     {
+       where:{ id: req.params.id}
+     })
+      .then(()=>{
+        res.redirect(`/subjects/${req.body.SubjectId}/enrolledstudents`)
+      })
+      .catch(err=>{
+        console.log(err);
+        res.send(err)
+      })
  })
 
 module.exports = router

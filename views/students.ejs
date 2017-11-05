@@ -5,24 +5,16 @@
   <% include ./partials/menu %>
   <section class="hero is-info is-medium">
   <div class="hero-body">
-    <div class="container has-text-centered">
-      <h3 class="subtitle">
-          <a href="/students/add" class="button is-light">
-             add student
-          </a>
-      </h3>
-    </div>
-    <br/>
     <table class="table is-bordered is-striped is-narrow is-fullwidth">
       <tr>
-        <th class="is-link">Id</th>
+        <th class="is-link">No</th>
         <th class="is-link">Full Name</th>
         <th class="is-link">Email</th>
         <th class="is-link" colspan="3">Actions</th>
       </tr>
-      <%dataStudents.forEach(Student=>{%>
+      <%dataStudents.forEach((Student, index)=>{%>
         <tr>
-          <th><%=Student.id%></th>
+          <th><%=index + 1%></th>
           <td><%=Student.getFullname()%></td>
           <td><%=Student.email%></td>
           <td>

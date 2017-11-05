@@ -3,7 +3,10 @@ const router = express.Router()
 const model = require('../models');
 
 router.get('/', function (req, res) {
-  model.Teacher.findAll()
+  model.Teacher.findAll(
+    {
+      order: [["first_name", "ASC" ]]
+    })
     .then(dataTeachers=>{
       let newDataTeacher = dataTeachers.map(dataTeacher=>{
         return new Promise(function(resolve, reject) {
@@ -16,7 +19,6 @@ router.get('/', function (req, res) {
       })
       Promise.all(newDataTeacher)
         .then(dataTeacherSubject=>{
-          console.log(dataTeacherSubject);
           res.render('teachers', {dataTeachers:dataTeacherSubject})
         })
     })
@@ -28,6 +30,7 @@ router.get('/', function (req, res) {
 router.get('/add', (req, res)=>{
   model.Subject.findAll()
     .then(dataSubjects=>{
+      console.log(dataSubjects);
       res.render('addTeacher', {error:'',dataSubjects:dataSubjects})
     })
     .catch(err=>{
@@ -37,6 +40,7 @@ router.get('/add', (req, res)=>{
 
 router.post('/add', (req, res)=>{
   let input = req.body
+  console.log(input);
   model.Teacher.create(
     {
       first_name: input.first_name,

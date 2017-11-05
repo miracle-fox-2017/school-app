@@ -8,25 +8,32 @@
   <div class="container has-text-centered">
     <table class="table is-striped is-narrow is-fullwidth">
       <tr>
-        <th class="is-link">Id</th>
+        <th class="is-link">No</th>
         <th class="is-link">Subject Name</th>
         <th class="is-link">Teachers</th>
-        <th colspan="2" class="is-link">Actions</th>
+        <th colspan="3" class="is-link">Actions</th>
       </tr>
-      <%dataSubjects.forEach(Subject=>{%>
+      <%dataSubjects.forEach((Subject, index)=>{%>
         <tr>
-          <th><%=Subject.id%></th>
+          <th><%=index + 1%></th>
           <td><%=Subject.subject_name%></td>
           <td>
               <ol>
                 <%if(Subject.teacherName){
                   Subject.teacherName.forEach(teacherName=>{%>
                   <li>
-                      <%=teacherName.first_name%>
+                      <%=teacherName.first_name+' '+teacherName.last_name%>
                   </li>
                 <%})%>
                 <%}%>
               </ol>
+          </td>
+          <td>
+            <a href="/subjects/<%=Subject.id%>/enrolledstudents">
+                <span class="has-text-link">
+                  <i>Enrolled Students</i>
+                </span>
+            <a>
           </td>
           <td>
             <a href="/subjects/edit/<%=Subject.id%>">

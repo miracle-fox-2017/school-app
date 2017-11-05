@@ -1,11 +1,53 @@
-<section class="hero is-info">
-  <div class="hero-body">
-    <div class="container">
-<nav class="breadcrumb is-right" aria-label="breadcrumbs">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/teachers">Teachers</a></li>
-    <li><a href="/subjects">Subjects</a></li>
-    <li><a href="/students">Students</a></li>
-  </ul>
+ <section class="hero is-small is-info">
+   <div class="hero-body">
+  <nav class="navbar is-transparent">
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <h1 class="title"> School <i class="fa fa-american-sign-language-interpreting fa-1x"></i> Apps</h1>
+    </a>
+    <div class="navbar-burger burger" data-target="navMenuTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="navMenuTransparentExample" class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" href="/">
+        Home
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link is-active" href="/teachers">
+          Teachers
+        </a>
+        <div id="blogDropdown" class="navbar-dropdown is-boxed" data-style="width: 18rem;">
+            <a class="navbar-item" href="/teachers/add">
+              <div class="navbar-content">
+                <p>
+                  <large class="has-text-link">Add Teacher</large>
+                </p>
+              </div>
+            </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link is-active" href="/students">
+          Students
+        </a>
+        <div id="blogDropdown" class="navbar-dropdown is-boxed" data-style="width: 18rem;">
+            <a class="navbar-item" href="/students/add">
+              <div class="navbar-content">
+                <p>
+                  <large class="has-text-link">Add Student</large>
+                </p>
+              </div>
+            </a>
+        </div>
+      </div>
+      <a class="navbar-item" href="/subjects">
+        Subjects
+      </a>
+    </div>
+  </div>
 </nav>
