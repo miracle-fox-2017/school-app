@@ -12,6 +12,8 @@
         <td><strong> First Name </strong></td>
         <td><strong> Last Name </strong></td>
         <td><strong> Email </strong></td>
+        <td><strong> Subject Id </strong></td>
+        <td><strong> Subject </strong></td>
       </tr>
       <% rowsTeacher.forEach(function(list) { %>
         <tr>
@@ -19,6 +21,13 @@
           <td><%= list.first_name%></td>
           <td><%= list.last_name%></td>
           <td><%= list.email%></td>
+          <td><%= list.SubjectId%></td>
+          <% if(list.Subject != null){ %>
+            <td><%= list.Subject.subject_name%></td>
+          <%}else{%>
+            <td> Unassigned </td>
+          <% } %>
+
           <td><a href="/teachers/edit/<%= list.id%>"> EDIT </a></td>
           <td><a href="/teachers/delete/<%= list.id%>"> DELETE </a></td>
         </tr>

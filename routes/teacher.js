@@ -4,7 +4,8 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/',function(req, res){
-  db.Teacher.findAll().then(function(rows){
+  db.Teacher.findAll({include:
+  [db.Subject]}).then(function(rows){
     res.render('teacher', {rowsTeacher : rows})
   }).catch(function(err){
     console.log(err);
@@ -23,7 +24,9 @@ router.post('/add',function(req, res){
 
 router.get('/edit/:id',function(req, res){
   db.Teacher.findById(req.params.id).then(function(rows){
-    res.render('editTeacher', {rowsEdit : rows})
+    db.Subject.findAll().then(function(rowsSubject){
+      res.render('editTeacher', {rowsEdit : rows, rowsSubject: rowsSubject})
+    })
   })
 })
 
