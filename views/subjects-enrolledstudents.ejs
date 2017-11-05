@@ -26,6 +26,11 @@
     <%if(data_StudentSubject.length == 0){%>
       <p style="text-align:center;">Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini.</p>
     <%}else{%>
+      <div style="text-align: center; margin-top:22px;">
+        <p class="title is-2">Enrolled Students</p>
+        <p class="subtitle is-4"><%=`- ${data_StudentSubject[0].Subject.subject_name} Subject Data -`%></p>
+        <hr>
+      </div>
       <table class="table is-striped is-fullwidth">
           <tr>
             <th><abbr title="Position">NO</abbr></th>
@@ -46,17 +51,17 @@
               <td>
                 <a href="/subjects/<%=data_StudentSubject[i].id%>/givescore" class="button is-small"style="width:120px; text-align:center;">Give Score</a>
               </td>
-              <% if(data_StudentSubject.score >= 88){ %>
+              <% if(data_StudentSubject[i].score >= 88){ %>
                 <td style="text-align:center;">A</td>
-              <% }else if(data_StudentSubject.score >= 78){ %>
+              <% }else if(data_StudentSubject[i].score >= 78){ %>
                 <td style="text-align:center;">B</td>
-              <% }else if(data_StudentSubject.score >= 65){ %>
+              <% }else if(data_StudentSubject[i].score >= 65){ %>
                 <td style="text-align:center;">C</td>
-              <% }else if(data_StudentSubject.score >= 50){ %>
+              <% }else if(data_StudentSubject[i].score >= 50){ %>
                 <td style="text-align:center;">D</td>
-              <% }else if(data_StudentSubject.score < 50){ %>
+              <% }else if(data_StudentSubject[i].score <= 50 && data_StudentSubject[i].score !== null ){ %>
                 <td style="text-align:center;">E</td>
-              <% }else if(data_StudentSubject.score == null){ %>
+              <% }else if(data_StudentSubject[i].score === null){ %>
                 <td style="text-align:center;">-</td>
               <% } %>
             </tr>

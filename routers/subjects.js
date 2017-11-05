@@ -78,7 +78,7 @@ router.get('/delete/:id',function(req,res){
 
 router.get('/:id/enrolledstudents', function(req,res){
   model.StudentSubject.findAll({
-    include    : [model.Student],
+    include    : [model.Student,model.Subject],
     order      : [[ { model: model.Student, as: 'Student' }, 'first_name', 'ASC']],
     attributes : ['id','SubjectId','StudentId','score'],
     where      : {
@@ -86,6 +86,7 @@ router.get('/:id/enrolledstudents', function(req,res){
     }
   }).then(data_StudentSubject=>{
     model.Subject.findById(req.params.id).then(data_Subjects => {
+      // res.send(data_StudentSubject)
       res.render('subjects-enrolledstudents',{data_StudentSubject:data_StudentSubject,data_Subjects:data_Subjects.subject_name})
     })
   }).catch(err => {
@@ -98,20 +99,31 @@ router.get('/:id/enrolledstudents', function(req,res){
 //----------------------
 router.get('/:id/givescore', function(req,res){
   // res.send(req.params.id)
-  model.Subject.findById(req.params.id).then(data_StudentSubject=>{
-    console.log(data_StudentSubject)
-    // Promise.all([
-    //   model.Subject.findById(data_StudentSubject.SubjectId),
-    //   model.Student.findById(data_StudentSubject.StudentId)
-    // ]).then(allData=>{
-    //   // console.log('>>>>',data_StudentSubject);
-    //   res.send(data_StudentSubject)
-    //   res.render('give-score',{data_StudentSubject:data_StudentSubject,data_Subjects:allData[0],data_Students:allData[1]})
-    // })
-  }).catch(err=>{
+  model.StudentSubject.findOne({
+    include : [model.Student,model.Subject],
+    where   : {
+      id    : req.params.id
+    }
+  }).then(data_StudentSubject=>{
+    // res.send(data_StudentSubject)
+    res.render('give-score',{data_StudentSubject:data_StudentSubject})
+  }).catch(err => {
     console.log(err);
   })
 })
 
+router.post('/:id/givescore', function(req,res){
+  model.StudentSubject.update({
+    score : req.body.score
+  },{
+    where : {
+      id  : req.params.id
+    }
+  }).then(function(){
+    res.redirect('../../../subjects')
+  }).catch(function(err){
+    console.log(err);
+  })
+})
 
 module.exports=router
