@@ -26,7 +26,7 @@ router.post('/add', function(req, res){
     }).then(function(berhasil){
     res.redirect('/students')
   }).catch(function(err){
-    res.send(err.message)
+    res.render('studentAdd', {err:err.message}) //buat tampilan validasi error
     console.log(err.message);
   })
 })
@@ -62,7 +62,5 @@ router.get('/delete/:id', function(req, res){
     console.log(err);
   })
 })
-
-// buat instance method untuk menggabungkan nama dengan .prototype
 
 module.exports = router

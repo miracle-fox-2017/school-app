@@ -28,5 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  
+  Student.prototype.gabungNama = function(){
+    return `${this.first_name} ${this.last_name}`
+  }
+  
   return Student;
 };

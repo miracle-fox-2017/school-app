@@ -12,6 +12,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
+        <th>Full Name </th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -21,6 +22,7 @@
           <td><%= studData[i].first_name %></td>
           <td><%= studData[i].last_name %></td>
           <td><%= studData[i].email %></td>
+          <td><%= studData[i].gabungNama() %></td>
           <td><a href="students/edit/<%=studData[i].id%>">Edit</a></td>
           <td><a href="students/delete/<%=studData[i].id%>">Delete</a></td>
         </tr>
