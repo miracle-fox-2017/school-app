@@ -45,7 +45,13 @@
           <div class="select is-fullwidth">
             <select name="SubjectId">
               <% for(let i=0; i<data_Subjects.length; i++) {%>
-                <option value="<%=data_Subjects[i].id%>"><%=data_Subjects[i].subject_name%></option>
+                <%
+                  let selected = ''
+                  if(data_teachers.SubjectId == data_Subjects[i].id){
+                    selected = "selected"
+                  }
+                %>
+                <option value="<%=data_Subjects[i].id%>" <%=selected%>><%=data_Subjects[i].subject_name%></option>
               <%}%>
             </select>
           </div>

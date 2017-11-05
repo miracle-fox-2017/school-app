@@ -23,7 +23,7 @@ router.get('/', function(req,res){
     let subjectsWithTeachers = data_Subjects.map( subjects => {
       return new Promise(function(resolve,reject){
         subjects.getTeachers().then(withTeacher => {
-          subjects.first_name = withTeacher
+          subjects.teacher = withTeacher
           resolve(subjects)
         })
       })

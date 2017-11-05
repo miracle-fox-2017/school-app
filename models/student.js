@@ -32,6 +32,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  Student.associate = function (models) {
+    Student.belongsToMany(models.Subject,{
+      through    : 'StudentSubject',
+      foreignKey : 'StudentId'
+    })
+  }
+
   Student.prototype.getFullname = function() {
     return `${this.first_name} ${this.last_name}`
   };

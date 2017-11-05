@@ -76,7 +76,13 @@ li a:hover:not(.active) {
 
     .container_index{
       margin-top: 13px;
-			max-width: 555px;
+			max-width: 777px;
+			margin: 10% auto 0 auto;
+		}
+
+    .container_addsubject{
+      margin-top: 13px;
+			max-width: 444px;
 			margin: 10% auto 0 auto;
 		}
 

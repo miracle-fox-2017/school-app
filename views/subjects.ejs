@@ -44,11 +44,9 @@
 
 
           <td>
-            <% if(data_Subjects[i].first_name){ %>
-              <%for(let j=0; j<data_Subjects[i].first_name.length; j++){%>
-                 <%= `${j+1}. ${data_Subjects[i].first_name[j].first_name} ${data_Subjects[i].first_name[j].last_name}` %> <br>
-                 <%}%>
-            <% } %>
+            <%for(let j=0; j<data_Subjects[i].teacher.length; j++){%>
+              <%= `${j+1}. ${data_Subjects[i].teacher[j].first_name} ${data_Subjects[i].teacher[j].last_name}` %> <br>
+            <%}%>
           </td>
 
           <td style="text-align:center;">

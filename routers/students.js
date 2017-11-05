@@ -68,6 +68,32 @@ router.get('/delete/:id', function(req,res){
   })
 })
 
+//----------------------
+// CREATE MANY TO MANY
+//----------------------
+
+router.get('/:id/addsubject', function(req,res){
+  model.Student.findById(req.params.id).then( data_Students => {
+    model.Subject.findAll().then( data_Subject => {
+      // res.send(data_Students)
+      res.render('students-addsubject', {data_Students:data_Students,data_Subject:data_Subject})
+    })
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
+router.post('/:id/addsubject', function(req,res){
+  model.StudentSubject.create({
+    StudentId : req.params.id,
+    SubjectId : req.body.SubjectId
+  }).then(function(){
+    res.redirect('../../students')
+  }).catch(function(err){
+    console.log(err);
+  })
+})
+
 
 
 

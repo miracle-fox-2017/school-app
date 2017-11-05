@@ -25,7 +25,7 @@ router.get('/',function(req,res){
     let teacherWithSubject = data_teachers.map(teachers => {
       return new Promise(function(resolve,reject){
         teachers.getSubject().then(withSubject => {
-          teachers.subject_name = withSubject
+          teachers.subject = withSubject
           resolve(teachers)
         })
       })

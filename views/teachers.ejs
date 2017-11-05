@@ -36,7 +36,6 @@
         </tr>
       </thead>
       <tbody>
-        <%=JSON.stringify(data_teachers.subjectName)%>
         <% for(let i=0; i<data_teachers.length; i++){%>
         <tr>
           <td><%=data_teachers[i].id%></td>
@@ -45,7 +44,7 @@
           <td><%=data_teachers[i].email%></td>
 
           <% if(data_teachers[i].SubjectId){ %>
-             <td><%=data_teachers[i].subject_name.subject_name%></td>
+            <td><%=data_teachers[i].subject.subject_name%></td>
           <% } else { %>
             <td style="color:#ff3860;">unassigned</td>
           <%}%>
