@@ -29,7 +29,7 @@
 						<% if(student.Score !== null) { %>
 								<%= student.Score; %>
 						<% } else { %>
-							<a href="#">Give Score</a>
+							<a href="/subjects/<%= student.Student.id %>/givescore">Give Score</a>
 						<% } %>
 					</td>
 				</tr>
