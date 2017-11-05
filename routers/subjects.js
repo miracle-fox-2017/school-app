@@ -77,17 +77,32 @@ router.get('/delete/:id',function(req,res){
 //------------------------
 
 router.get('/:id/enrolledstudents', function(req,res){
-  model.StudentSubject.findAll({
-    include : [model.Subject,model.Student],
-    where   : {
-      SubjectId : req.params.id
-    }
-  }).then(data_StudentSubject => {
-    // res.send(data_StudentSubject)
-    res.render('subjects-enrolledstudents',{data_StudentSubject:data_StudentSubject})
-  }).catch(err => {
-    console.log(err);
-  })
+  model.Subject.findById(req.params.id).then(data_Subjects=>{
+    model.StudentSubject.findAll({
+      include : [model.Student],
+      attributes: ['id', 'SubjectId', 'StudentId', 'score']
+    }).then(StudentSubjectWithStudent=>{
+      // res.send(StudentSubjectWithStudent)
+      res.render('subjects-enrolledstudents',{data_Subjects:data_Subjects,StudentSubjectWithStudent:StudentSubjectWithStudent})
+    })
+  }).catch()
+  // model.StudentSubject.findAll(
+  //   {
+  //     attributes: ['id', 'SubjectId', 'StudentId', 'score']
+  //   }).then(data=>{
+  //   res.send(data)
+  // })
+  // model.StudentSubject.findAll({
+  //   include : [model.Subject,model.Student],
+  //   where   : {
+  //     SubjectId : req.params.id
+  //   }
+  // }).then(data_StudentSubject => {
+  //   res.send(data_StudentSubject)
+  //   res.render('subjects-enrolledstudents',{data_StudentSubject:data_StudentSubject})
+  // }).catch(err => {
+  //   console.log(err);
+  // })
 })
 
 router.get('/delete/:id/enrolledstudents',function(req,res){
@@ -105,16 +120,19 @@ router.get('/delete/:id/enrolledstudents',function(req,res){
 //----------------------
 //    GET GIVE SCORE
 //----------------------
-router.get('/:id/:ids/givescore', function(req,res){
-  model.StudentSubject.findAll({
-    include  : [model.Subject,model.Student],
-    where    : {
-      SubjectId : req.params.id,
-      StudentId : req.params.ids
-    }
-  }).then(data_StudentSubject=>{
-    // res.send(data_StudentSubject);
-    res.render('give-score',{data_StudentSubject:data_StudentSubject})
+router.get('/:id/givescore', function(req,res){
+  // res.send(req.params.id)
+  model.StudentSubject.findById(req.params.id).then(data_StudentSubject=>{
+    console.log(data_StudentSubject);
+    res.send(data_StudentSubject)
+    // Promise.all([
+    //   model.Subject.findById(data_StudentSubject.SubjectId),
+    //   model.Student.findById(data_StudentSubject.StudentId)
+    // ]).then(allData=>{
+    //   // console.log('>>>>',data_StudentSubject);
+    //   res.send(data_StudentSubject)
+    //   res.render('give-score',{data_StudentSubject:data_StudentSubject,data_Subjects:allData[0],data_Students:allData[1]})
+    // })
   }).catch(err=>{
     console.log(err);
   })

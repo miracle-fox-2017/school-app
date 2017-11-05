@@ -22,17 +22,17 @@
       </div>
     </div>
     <div class="container_addsubject">
-      <form action="/subjects/<%=data_StudentSubject[0].SubjectId%>/<%=data_StudentSubject[0].StudentId%>/givescore" method="post">
+      <form action="#" method="post">
         <table style="margin-top:-33px;"class="table is-striped is-fullwidth">
           <tr>
             <th style="width:150px;">Student Name</th>
             <th style="width:30px;">:</th>
-            <td><%=`${data_StudentSubject[0].Student.first_name} ${data_StudentSubject[0].Student.last_name}`%></td>
+            <td><%=`${data_Students.first_name}`%></td>
           </tr>
           <tr>
             <th style="width:150px;">Subject Name</th>
             <th style="width:30px;">:</th>
-            <td><%=data_StudentSubject[0].Subject.subject_name%></td>
+            <td><%=data_Subjects.subject_name%></td>
           </tr>
           <tr>
             <th style="width:150px;">Score</th>

@@ -24,54 +24,49 @@
   <div class="container_enrolled">
 
     <div style="a:2px; text-align:left; margin-bottom:25px;">
+      <% for(let i=0; i<StudentSubjectWithStudent.length; i++) {%>
       <% enroll = ''
       enrolll = ''
-      if(data_StudentSubject[0]){
-        enrolll = 'Enrolled' + ' ' + data_StudentSubject[0].Subject.subject_name + ' ' + ' Subject Data'
+      if(StudentSubjectWithStudent[i].SubjectId == data_Subjects.id){
+        enrolll = 'Enrolled' + ' ' + data_Subjects.subject_name + ' ' + ' Subject Data'
       }else{
         enroll = "Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini."
       }%>
+      <%}%>
         <p class="title is-4" style="text-align:center; margin-bottom:13px;"><span><%=enrolll%></span> <span style="color:#ff3860;"><%=enroll%></span> </p>
     </div>
 
     <table class="table is-striped is-fullwidth">
-      <tr>
-        <th><abbr title="Position">NO</abbr></th>
-        <th>STUDENT NAME</th>
-        <th style="width:120px; text-align:center;">SCORE</th>
-        <th style="width:99px; text-align:center;">DESC</th>
-        <!-- <th>ACTIONS</th> -->
-      </tr>
-        <% for(let i=0; i<data_StudentSubject.length; i++) {%>
+        <tr>
+          <th><abbr title="Position">NO</abbr></th>
+          <th>STUDENT NAME</th>
+          <th style="width:120px; text-align:center;">SCORE</th>
+          <th style="width:99px; text-align:center;">DESC</th>
+        </tr>
+
+        <% for(let i=0; i<StudentSubjectWithStudent.length; i++) {%>
+          <%if(StudentSubjectWithStudent[i].SubjectId == data_Subjects.id){%>
           <tr>
-            <th>
+            <td>
               <%=[i+1]%>
-            </th>
+            </td>
 
             <td>
-              <%if(data_StudentSubject[i].Student){%>
-                <%=`${data_StudentSubject[i].Student.first_name} ${data_StudentSubject[i].Student.last_name}`%>
+              <%if(StudentSubjectWithStudent[i].SubjectId == data_Subjects.id){%>
+                <%=`${StudentSubjectWithStudent[i].Student.first_name} ${StudentSubjectWithStudent[i].Student.last_name}`%>
               <%}%>
             </td>
-            <% if (data_StudentSubject[i].score){ %>
-              <td><%=data_StudentSubject[i].score%></td>
-            <% }else{ %>
-              <td><a href="/subjects/<%=data_StudentSubject[i].SubjectId%>/<%=data_StudentSubject[i].StudentId%>/givescore" class="button is-small"style="width:120px; text-align:center;">Give Score</a></td>
-            <%}%>
-
-            <td style="color:#00d1b2; width:99px; text-align:center;"></td>
-            <!-- <td style="color:#00d1b2; width:99px; text-align:center;">
-              <a class="button is-small" href="/subjects/delete/<%=data_StudentSubject[i].SubjectId%>/enrolledstudents" onclick="return confirm('are you sure to delete?!');">
-                <span class="icon">
-                  <i class="fa fa-trash-o"></i>
-                </span>
-                <span>delete</span>
-              </a>
-            </td> -->
+            <td>
+              <a href="/subjects/<%=StudentSubjectWithStudent[i].id%>/givescore" class="button is-small"style="width:120px; text-align:center;">Give Score</a>
+            </td>
+            <td>
+              #
+            </td>
           </tr>
+          <%}%>
         <%}%>
-    </table>
-  </div>
 
+      </table>
+  </div>
 </body>
 </html>
