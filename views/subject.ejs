@@ -25,10 +25,19 @@
     <table>
       <tr>
         <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Actions</th>
       </tr>
       <%subjectsRows.forEach((subject)=>{%>
           <tr>
             <td> <%=subject.subject_name%> </td>
+            <td>
+            <%for( let i = 0; i < subject.dataValues.Teachers.length; i++ ){%>
+              <%= i+1+'.'+subject.dataValues.Teachers[i].dataValues.first_name+' '+
+              subject.dataValues.Teachers[i].dataValues.last_name %><br>
+            <%}%>
+          </td>
+          <td> <a href="/subjects/<%=subject.id%>/enrolledstudents"> Enrolled Students </a> </td>
           </tr>
       <%})%>
   </body>

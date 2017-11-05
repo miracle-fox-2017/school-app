@@ -9,13 +9,11 @@ module.exports = (sequelize, DataTypes) => {
               notEmpty:true,
             }
           }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    },
   });
+  Student.associate = function(models) {
+    // associations can be defined here
+    Student.belongsToMany(models.Subjects, { through: models.SubStudents, foreignKey: 'studentId', as: 'subject' });
+  }
   Student.prototype.getFullName = function () {
     return this.first_name+' '+this.last_name;
   }

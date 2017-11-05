@@ -62,7 +62,7 @@ router.post('/students/edit/:id',(req,res)=>{
   model.Students.update(obj, option).then((studentsRows)=>{
     res.redirect('/students')
   }).catch((err)=>{
-    console.log(err.errors[0].message)
+    //console.log(err.errors[0].message)
     if( err.errors[0].message == "Validation isEmail on email failed" ) {
       let status = 'edit'
       let msg = "Email is not valid"
@@ -79,8 +79,7 @@ router.post('/students/edit/:id',(req,res)=>{
       })
     }
   })
-})
-module.exports = router
+});
 
 //delete student
 router.get('/students/delete/:id',(req,res)=>{
@@ -92,3 +91,31 @@ router.get('/students/delete/:id',(req,res)=>{
     console.log(err)
   })
 })
+
+//menampilkan form add subject
+router.get('/students/:id/addsubject',(req,res) => {
+  let id = req.params.id
+  let msg = ''
+  let status = 'subject'
+  model.Students.findById(id).then((studentsRows) => {
+    //console.log(studentsRows)
+    model.Subjects.findAll({ attributes: ['subject_name', 'id'] }).then((subjectsRows)=>{
+      res.render('student',{studentsRows, subjectsRows, status, msg})
+    }).catch((err)=>{
+      console.log(err)
+    })
+  })
+})
+//menambah subject
+router.post('/students/:id/addsubject', (req,res) => {
+  let obj = { subjectId: req.body.subject_id,
+              studentId: req.params.id }
+  model.SubStudents.create(obj).then( (success) => {
+    console.log(obj)
+    res.redirect('/students')
+  }).catch((err)=>{
+    console.log(err);
+  })
+})
+
+module.exports = router

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
   <style>
@@ -35,6 +35,7 @@
             <th>Email</th>
             <th>Full Name</th>
             <th>Action</th>
+            <th>Option</th>
           </tr>
           <% studentsRows.forEach((student)=> { %>
               <tr>
@@ -42,6 +43,7 @@
                 <td> <%=student.last_name%> </td>
                 <td> <%=student.email%> </td>
                 <td> <%=student.fullName%> </td>
+                <td> <a href='/students/<%=student.id%>/addsubject'> Add Subject </td>
                 <td><button onclick="window.location.href='students/edit/<%= student.id %>'">Edit</a>
                     <button onclick="myFunction(<%= student.id %>)">Delete</button>
               </tr>
@@ -63,6 +65,7 @@
          <br><br>
          <input type="submit" value="ADD">
         </form>
+
     <% }else if(status == 'edit') {  %>
         <h2> EDIT STUDENT DATA </h2>
         <p> <a href="/students">show all data</a></p>
@@ -79,8 +82,32 @@
         <br><br>
         <input type="submit" value="EDIT"/>
         </form>
+
+    <% }else if(status == 'subject') {  %>
+        <h2> Add Subject To Student </h2>
+        <%= msg %>
+        <form action="/students/<%=studentsRows.id%>/addsubject" method="post">
+        First Name:<br>
+        <input type="text" name="first_name" value = "<%=studentsRows.first_name%>"  required/>
+        <br>
+        Last Name:<br>
+        <input type="text" name="last_name" value = "<%=studentsRows.last_name%>" required=true/>
+        <br>
+        Email:<br>
+        <input type="text" name="email" value = "<%=studentsRows.email %>" required=true/>
+        <br>
+        Subject:<br>
+        <select name="subject_id" required=true>
+              <option value = NULL >--select subject--</option>
+              <% subjectsRows.forEach( (subject) => {%>
+                  <option value="<%=subject.id%>"><%= subject.subject_name %></option>
+              <% }) %>
+        </select>
+        <br><br>
+        <input type="submit" value="add subject"/>
+        </form>
     <% } %>
-    <p id="demo"></p>
+
   </body>
   <script>
       function myFunction(data) {
