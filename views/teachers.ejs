@@ -10,18 +10,29 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
+        <th>Subjects</th>
 
       </tr>
 
-      <%dataTeachers.forEach((dataparams)=>{%>
+      <%results.forEach((dataparams)=>{%>
         <tr>
         <td><%=dataparams.first_name%></td>
         <td><%=dataparams.last_name%></td>
         <td><%=dataparams.email%></td>
+        <td>
+          <select name="subjects">
+            <%for(let i=0;i<dataparams.Subject;i++){%>
+              <%if (dataparams.Subject == null) {%>
+              <option value="<%=dataparams.Subject.ID%>"><%=dataparams.Subject.subject_name%></option>
+              <%}else{%>
+                <option value="<%=unassigned%>"><%=unassigned%></option>
+              <%}%>
+          </select>
+        </td>
         <td><a href="/teachers/edit/<%=dataparams.id%>"> Edit </td>
         <td><a href="/teachers/delete/<%dataparams.id%>"> Delete </td>
         </tr>
-      <%})%>
+      <%}})%>
 
     </table>
 

@@ -4,13 +4,22 @@ const db = require('../models')
 
 
 
-router.get('/', (req,res)=>{
-  db.Teacher.findAll().then((dataTeachers) => {
-    res.render('teachers',{dataTeachers})
-  }).catch((err)=>{
-    console.log(err);
-    })
-
+// router.get('/', (req,res)=>{
+//   db.Teacher.findAll().then((dataTeachers) => {
+//     res.render('teachers',{dataTeachers})
+//   }).catch((err)=>{
+//     console.log(err);
+//     })
+//
+// })
+router.get('/', (req,res) => {
+  db.Teacher.findAll({
+    include: [db.Subject]
+  }).then((results) => {
+    res.render('teachers', {results});
+  }).catch((err) => {
+    res.send(err);
+  })
 })
 
 router.get('/add', (req, res) => {
@@ -18,7 +27,7 @@ router.get('/add', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-    db.teacher.create(req.body).then((user) => {
+    db.Teacher.create(req.body).then((user) => {
         res.redirect('/teachers');
     }).catch((err) => {
         res.render('addteachers', { error: err.errors[0].message });
@@ -26,16 +35,27 @@ router.post('/add', (req, res) => {
 
 });
 
+// router.get('/edit/:id', (req, res) => {
+//     db.Teacher.findById(req.params.id).then((dataTeachers) => {
+//         res.render('editteacher', { dataTeachers, error: null });
+//     }).catch((err) => {
+//         res.send(err);
+//     });
+// });
 router.get('/edit/:id', (req, res) => {
-    db.teacher.findById(req.params.id).then((dataTeachers) => {
-        res.render('editteacher', { dataTeachers, error: null });
-    }).catch((err) => {
-        res.send(err);
-    });
-});
+  db.Teacher.findById(req.params.id)
+  .then(dataTeachers => {
+    db.Subject.findAll()
+    .then(dataSubjects => {
+      res.render('editTeacher', {dataTeachers, dataSubjects})
+    })
+  }).catch(err => {
+    console.log(err);
+  })
+})
 
 router.post('/edit/:id', (req, res) => {
-    db.teacher.update(req.body, { where: { id: req.params.id } }).then((dataTeachers) => {
+    db.Teacher.update(req.body, { where: { id: req.params.id } }).then((dataTeachers) => {
         res.redirect('/teachers');
     }).catch((err) => {
         db.student.findById(req.params.id).then((dataTeachers) => {
@@ -45,7 +65,7 @@ router.post('/edit/:id', (req, res) => {
 });
 
 router.get('/delete/:id', (req, res) => {
-    db.teacher.destroy({ where: { id: req.params.id } }).then((dataTeachers) => {
+    db.Teacher.destroy({ where: { id: req.params.id } }).then((dataTeachers) => {
         res.redirect('/teachers');
     }).catch((err) => {
         res.send(err);

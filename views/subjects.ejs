@@ -7,20 +7,33 @@
   <body>
     <table border="1">
       <tr>
+        <th>ID</th>
         <th>Subject Name</th>
 
       </tr>
 
-      <%data.forEach((dataparams)=>{%>
-        <tr>
-        <td><%=dataparams.subject_name%></td>
-        <td><a href="/subjects/edit/<%=dataparams.id%>"> Edit </td>
-        <td><a href="/subjects/delete/<%dataparams.id%>"> Delete </td>
-        </tr>
-      <%})%>
+      <%let i = 1;
+       results.forEach((result) => {%>
+         <tr>
+         <td><%=i%></td>
+         <td><%=result.subject_name%></td>
+         <td>
+         <%if (result.Teacher !== null) {
+           result.Teachers.forEach(teacher => { %>
+             <ul>
+               <li>
+                 <%=teacher.first_name%>
+                 <%=teacher.last_name%>
+               </li>
+             </ul>
+           <%})%>
+         <%}%>
+         </td>
+         </tr>
+       <%i++; })%>
 
     </table>
 
-    <a href="/teachers/add">Add Subjects</a>
+    <a href="/subjects/add">Add Subjects</a>
   </body>
 </html>
