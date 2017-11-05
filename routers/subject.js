@@ -47,10 +47,27 @@ router.post('/edit/:id', (req, res) => {
 //subject join student
 router.get('/:id/enrolledstudents', (req, res) => {
     db.studentswithsubject.findAll({ order: [['id', 'ASC']], include: [db.subject,db.student] }).then((dataSubjects) => {
-        res.send(dataSubjects);
+        res.render('enrolled',{ dataSubjects });
     }).catch((err) => {
         res.send(err);
     });
+});
+
+//score
+router.get('/:id/givescore', (req, res) => {
+    db.studentswithsubject.findById(req.params.id,{ order: [['id', 'ASC']], include: [db.student] }).then((dataSubjects) => {
+        res.render('givescore', { dataSubjects });
+        // res.send(dataSubjects);
+    }).catch((err) => {
+        res.send(err);
+    });
+    // res.render('givescore', { error: null });
+});
+
+router.post('/:id/givescore', (req, res) => {
+    db.studentswithsubject.update(req.body, { where: { id: req.params.id } }).then((set) => {
+        res.redirect('/subjects');
+    })
 });
 
 //hapus subject
