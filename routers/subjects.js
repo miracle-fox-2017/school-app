@@ -90,5 +90,35 @@ router.get('/:id/enrolledstudents', function(req,res){
   })
 })
 
+router.get('/delete/:id/enrolledstudents',function(req,res){
+  model.StudentSubject.destroy({
+    where : {
+      id  : req.params.id
+    }
+  }).then(function(){
+    res.redirect('../../../subjects')
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
+//----------------------
+//    GET GIVE SCORE
+//----------------------
+router.get('/:id/:ids/givescore', function(req,res){
+  model.StudentSubject.findAll({
+    include  : [model.Subject,model.Student],
+    where    : {
+      SubjectId : req.params.id,
+      StudentId : req.params.ids
+    }
+  }).then(data_StudentSubject=>{
+    res.send(data_StudentSubject);
+    res.render('give-score',{data_StudentSubject:data_StudentSubject})
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
 
 module.exports=router
