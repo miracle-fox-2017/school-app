@@ -82,42 +82,47 @@ router.get('/delete/:id', function (req, res){
 
 router.get('/:id/enrolledstudents', function (req, res){
   Model.StudentSubjects.findAll({
-    include: [ { all:true } ]
+    where: {SubjectId: req.params.id},
+    include: [ {model: Model.Students } ],
+    order: [ [ Model.Students, 'first_name' ] ]
   })
-  .then(data=>{
-    Model.Subjects.findOne({where: {id: req.params.id} })
+  .then(studentsubjects=>{
+    Model.Subjects.findOne({where: {id: studentsubjects[0].SubjectId} })
     .then(subject=>{
-      res.render('enrolled_students', {data:data, subject:subject})
+      res.render('enrolled_students', {data:studentsubjects, subject:subject})
     })
+    // console.log(studentsubjects);
   }).catch(err=>{
-    console.log(err);
-  })
-})
-
-router.get('/:SubjectId/:StudentId/give-score', function (req, res){
-  // console.log(req.params.SubjectId);
-  Model.Students.findOne({where: {id: req.params.StudentId} })
-  .then(student=>{
-    Model.Subjects.findOne({where: {id: req.params.SubjectId} })
-    .then(subject=>{
-      res.render('give-score',{student:student, subject:subject})
+    res.render('header_msg', {
+      msg:'Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini.'
     })
-    // console.log(student);
   })
 })
 
-router.post('/:SubjectId/:StudentId/give-score', function (req, res){
+router.get('/:id/givescore', function (req, res){
+  Model.StudentSubjects.findOne({where: {id: req.params.id} })
+  .then(data=>{
+    // console.log(data.StudentId);
+    Model.Students.findOne({where: {id: data.StudentId} })
+    .then(student=>{
+      Model.Subjects.findOne({where: {id: data.SubjectId} })
+      .then(subject=>{
+        res.render('give-score',{student:student, subject:subject})
+      })
+    })
+  })
+})
+
+router.post('/:id/givescore', function (req, res){
   let updated = {
-    StudentId: req.params.StudentId,
-    SubjectId: req.params.SubjectId,
+    StudentId: req.body.StudentId,
+    SubjectId: req.body.SubjectId,
     score: req.body.score
   }
   // console.log(updated);
-  Model.StudentSubjects.update(updated, {where: {StudentId: req.params.StudentId }})
+  Model.StudentSubjects.update(updated, {where: {id: req.params.id }})
   .then(()=>{
-    res.redirect(`/subjects/${req.params.SubjectId}/enrolledstudents`)
-    // res.send('helo')
-    // res.redirect(`/students/edit/${req.params.id}`)
+    res.redirect(`/subjects/${req.body.SubjectId}/enrolledstudents`)
   }).catch(err=>{
     console.log(err);
   })
