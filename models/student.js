@@ -40,15 +40,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        
-      }
-    }
   });
-
+    Student.associate = function(models){
+        Student.belongsToMany(models.Subject, {through : 'StudentSubject'})
+    }
     Student.prototype.getFullName = function(){
       return this.first_name + ' ' + this.last_name;
     }
