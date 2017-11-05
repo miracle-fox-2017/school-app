@@ -48,4 +48,21 @@ router.get('/delete/:id', (req, res)=>{
 	})
 })
 
+router.get('/:id/addsubject', (req, res)=> {
+	Model.Student.findById(req.params.id).then(student=> {
+		Model.Subject.findAll().then(subjects=>{
+			// res.send(subjects)
+			res.render('addSubjectStudent', {student, subjects})
+		})
+	})
+})
+
+router.post('/:id/addsubject', (req, res)=> {
+	Model.School.create({StudentId : req.params.id, SubjectId : req.body.subject}).then(()=> {
+		res.redirect('/students')
+	}).catch(err=> {
+		console.log(err);
+	})
+})
+
 module.exports = router
