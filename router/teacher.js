@@ -30,7 +30,10 @@ router.post('/add', function(req, res){
 
 router.get('/edit/:id', function(req, res){
   db.Teacher.findById(req.params.id).then(function(teachData){
-    res.render('teacherEdit', {teachData:teachData})
+    db.Subject.findAll()
+    .then(function(subjData){
+      res.render('teacherEdit', {teachData:teachData, subjData:subjData})
+    })
   }).catch(function(err){
     console.log(err);
   })
