@@ -11,17 +11,41 @@
 </head>
 <body>
 
-  <% include assets/partials/nav-bar %>
+<% include assets/partials/nav-bar %>
 
   <div class="container">
     <div style="margin:auto; width: 50%;">
-      <!-- <label style="text-align: center;" class="label is-medium">Add Student</label> -->
       <div style="text-align: center; margin-top:22px;">
         <p class="title is-2">Give Score</p>
         <p class="subtitle is-5">input score student</p>
+        <hr>
       </div>
-
-
+    </div>
+    <div class="container_addsubject">
+      <form action="/subjects/<%=data_StudentSubject[0].SubjectId%>/<%=data_StudentSubject[0].StudentId%>/givescore" method="post">
+        <table style="margin-top:-33px;"class="table is-striped is-fullwidth">
+          <tr>
+            <th style="width:150px;">Student Name</th>
+            <th style="width:30px;">:</th>
+            <td><%=`${data_StudentSubject[0].Student.first_name} ${data_StudentSubject[0].Student.last_name}`%></td>
+          </tr>
+          <tr>
+            <th style="width:150px;">Subject Name</th>
+            <th style="width:30px;">:</th>
+            <td><%=data_StudentSubject[0].Subject.subject_name%></td>
+          </tr>
+          <tr>
+            <th style="width:150px;">Score</th>
+            <th style="width:30px;">:</th>
+            <td>
+              <input class="input" type="text" name="score" value="" required>
+            </td>
+          </tr>
+        </table>
+        <div style="text-align: center; margin-top: 35px;">
+          <input class="button is-success is-outlined is-medium" type="submit" value="Submit input">
+        </div>
+      </form>
     </div>
   </div>
 </body>
