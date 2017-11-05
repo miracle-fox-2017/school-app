@@ -24,13 +24,18 @@
   <div class="container_enrolled">
 
     <div style="a:2px; text-align:left; margin-bottom:25px;">
-        <%=JSON.stringify(data_StudentSubject)%>
-        <% if(!data_StudentSubject){ %>
+      <%=JSON.stringify(data_StudentSubject[0])%>
+        <% enroll = ''
+        enrolll = ''
+        if(data_StudentSubject[0]){
+        enrolll = data_StudentSubject[0].Subject.subject_name
+        }else{
+        enroll = "Masih Kosong di"
+        }%>
 
-        <%}else{%>
-          <H1 style="font-weight:bold; text-align:center; color:#ff3860; margin-bottom:13px;">Enrolled Masih Kosong di Subject Data</H1>
-        <%}%>
-    </div>
+        <p class="title is-4" style="text-align:center; margin-bottom:13px;">Enrolled <span style="color:#23d160;"><%=enrolll%></span> <span style="color:#ff3860;"><%=enroll%></span> Subject Data</p>
+
+      </div>
 
     <table class="table is-striped is-fullwidth">
       <tr>
