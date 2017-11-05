@@ -72,5 +72,23 @@ router.get('/delete/:id',function(req,res){
   })
 })
 
+//------------------------
+//  GET ENROLLED STUDENT
+//------------------------
+
+router.get('/:id/enrolledstudents', function(req,res){
+  model.StudentSubject.findAll({
+    include : [model.Subject,model.Student],
+    where   : {
+      SubjectId : req.params.id
+    }
+  }).then(data_StudentSubject => {
+    // res.send(data_StudentSubject)
+    res.render('subjects-enrolledstudents',{data_StudentSubject:data_StudentSubject})
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
 
 module.exports=router

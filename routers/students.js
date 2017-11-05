@@ -69,7 +69,7 @@ router.get('/delete/:id', function(req,res){
 })
 
 //----------------------
-// CREATE MANY TO MANY
+// CREATE ADD SUBJECT
 //----------------------
 
 router.get('/:id/addsubject', function(req,res){

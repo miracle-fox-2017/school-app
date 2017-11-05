@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../assets/css/bulma.min.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/mystyle.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <title>SchoolApp-Enrolled-Students</title>
+</head>
+<body>
+
+  <div class="tabs is-toggle is-fullwidth">
+    <ul>
+      <li><a href="/subjects"><span class="icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span>BACK STUDENTS</span>
+    </a></li>
+    </ul>
+  </div>
+
+  <div class="container_enrolled">
+
+    <div style="a:2px; text-align:left; margin-bottom:25px;">
+        <%=JSON.stringify(data_StudentSubject)%>
+        <% if(!data_StudentSubject){ %>
+
+        <%}else{%>
+          <H1 style="font-weight:bold; text-align:center; color:#ff3860; margin-bottom:13px;">Enrolled Masih Kosong di Subject Data</H1>
+        <%}%>
+    </div>
+
+    <table class="table is-striped is-fullwidth">
+      <tr>
+        <th><abbr title="Position">NO</abbr></th>
+        <th>STUDENT NAME</th>
+        <th style="width:120px; text-align:center;">SCORE</th>
+        <th style="width:99px; text-align:center;">DESC</th>
+      </tr>
+        <% for(let i=0; i<data_StudentSubject.length; i++) {%>
+          <tr>
+            <th>
+              <%=[i+1]%>
+            </th>
+            <td><%=`${data_StudentSubject[i].Student.first_name} ${data_StudentSubject[i].Student.last_name}`%></td>
+            <% if (data_StudentSubject[i].score){ %>
+              <td><%=data_StudentSubject[i].score%></td>
+            <% }else{ %>
+              <td><a href="#" class="button is-small"style="width:120px; text-align:center;">Give Score</a></td>
+            <%}%>
+
+            <td style="color:#00d1b2; width:99px; text-align:center;"></td>
+          </tr>
+        <%}%>
+    </table>
+  </div>
+
+</body>
+</html>

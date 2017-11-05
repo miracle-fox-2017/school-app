@@ -86,6 +86,12 @@ li a:hover:not(.active) {
 			margin: 10% auto 0 auto;
 		}
 
+    .container_enrolled{
+      margin-top: 13px;
+			max-width: 555px;
+			margin: 10% auto 0 auto;
+		}
+
 		#content{
 			border: 2px dotted green;
 			padding: 18px;
