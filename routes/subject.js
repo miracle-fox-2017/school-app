@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
             model: Model.Teacher
         }]
     }).then((dataSubjects) => {
-       
+
         res.render('subject', { dataSubjects: dataSubjects, pageTitle: 'Subject' })
     }).catch((reason) => {
         res.send(reason)
@@ -49,6 +49,18 @@ router.post('/edit/:id', function (req, res) {
             res.send(reason)
         })
 })
+//kerjain cuuy
+// router.get('/:id/enrolledstudents', function (req, res) {
+//     Model.StudentSubject.findAll({
+//         include: [Model.Student, Model.Subject], where:
+//         {
+//             idSubject: req.params.id
+//         }
+//     }).then((result) => {
+//         console.log(result)
+//         //res.render('enrolled-students', { dataStudentSubject: result, pageTitle: 'Enrolled Student' })
+//     })
+// })
 
 router.get('/delete/:id', function (req, res) {
     Model.Subject.destroy({

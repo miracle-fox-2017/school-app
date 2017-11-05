@@ -22,6 +22,9 @@
                     <th>
                         Full Name
                     </th>
+                    <th>
+                        Subjects
+                    </th>
                     <th colspan="2">
                         Action
                     </th>
@@ -43,7 +46,9 @@
                         <td>
                             <%= student.getFullName()%>
                         </td>
-
+                        <td>
+                            <a href="/students/<%= student.id%>/addsubject">Add Subject</a>
+                        </td>
                         <td>
                             <a href="/students/edit/<%= student.id%>"> Edit</a>
                         </td>

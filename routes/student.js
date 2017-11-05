@@ -54,6 +54,24 @@ router.post('/edit/:id', function (req, res) {
         })
 })
 
+//Kerjain lagi yaaaa...
+router.get('/:id/addsubject', function (req, res) {
+    Promise.all([
+        Model.Student.findById(req.params.id),
+        Model.Subject.findAll()
+    ]).then((result) => {
+        res.render('student-subject', { dataStudent: result[0], dataSubject: result[1], pageTitle: "Add Data Subject" })
+    })
+})
+router.post('/:id/addsubject', function (req, res) {
+    Model.StudentSubject.create({
+        idStudent: req.params.id,
+        idSubject: req.body.SubjectId
+    }).then((result) => {
+        res.redirect('../../students')
+    })
+})
+
 router.get('/delete/:id', function (req, res) {
     Model.Student.destroy({
         where: {

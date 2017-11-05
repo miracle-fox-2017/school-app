@@ -1,0 +1,29 @@
+<% include partials/head %>
+
+    <body>
+        <header>
+            <% include partials/menu%>
+                <h3>Students Data</h3>
+        </header>
+        <div id="form-input">
+            <form action="/students/<%=dataStudent.id %>/addsubject" method="post">
+                <br> First Name :
+                <br>
+                <input type="text" name="first_name" value="<%=dataStudent.first_name %>"> <br> Last Name :
+                <br>
+                <input type="text" name="last_name" value="<%=dataStudent.last_name %>"><br> Email :
+                <br>
+                <input type="text" name="email" value="<%=dataStudent.email%>"><br>
+                <br>
+                <select name="idSubject"> 
+                            <%dataSubject.forEach((subject)=>{ %>
+                        <option value="<%=subject.id%>"><%=subject.subject_name%></option>
+                        <%})%>
+                    </select>
+                <input type="submit" value="Save">
+            </form>
+
+        </div>
+    </body>
+
+    </html>
