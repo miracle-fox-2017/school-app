@@ -9,7 +9,14 @@ router.get("/",(req,res)=>{
     Model.Student.findAll({
         order:[["id","ASC"]]
     }).then((rows)=>{
-        res.render("students",{studentRows:rows});
+        const newObject=rows.map((value)=>{
+            const lastName=value.dataValues.last_name;
+            const firstName=value.dataValues.first_name;
+            value.dataValues.fullname=value.getFullName();
+            return value;
+        });
+        console.log(newObject.length);
+        res.render("students",{studentRows:newObject});
     }).catch((err)=>{
         res.send(err);
     });

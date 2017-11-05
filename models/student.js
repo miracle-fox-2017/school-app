@@ -47,12 +47,10 @@ module.exports = (sequelize, DataTypes) => {
         associate: function(models){
             // associations can be defined here
         }
-    },
-    instanceMethods:{
-        getFullName:function(first,last){
-            return first+" "+last;
-        }
     }
   });
+  Student.prototype.getFullName=function(first,last){
+      return this.first_name+" "+this.last_name;
+  }
   return Student;
 };

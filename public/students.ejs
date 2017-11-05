@@ -28,13 +28,13 @@
                 <%studentRows.map((value)=>{%>
                 <tr>
                     <td><%=value.id%></td>
-                    <td><%=value.first_name%></td>
-                    <td><%=value.last_name%></td>
-                    <td>Sementara</td>
-                    <td><%=value.email%></td>
+                    <td><%=value.dataValues.first_name%></td>
+                    <td><%=value.dataValues.last_name%></td>
+                    <td><%=value.dataValues.fullname%></td>
+                    <td><%=value.dataValues.email%></td>
                     <td>
-                        <a href="/students/edit/<%=value.id%>">Edit</a>
-                        <a href="/students/delete/<%=value.id%>">Hapus</a>
+                        <a href="/students/edit/<%=value.dataValues.id%>">Edit</a>
+                        <a href="/students/delete/<%=value.dataValues.id%>">Hapus</a>
                     </td>
                 </tr>
                 <%})%>
