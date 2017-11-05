@@ -5,37 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     email: {
       type:DataTypes.STRING,
+      unique:true,
       validate: {
         isEmail: {
           msg : "email format is incorrect"
-        },
-        isUnique :{
-          function(value, next) {
-             if (value) {
-                 Student.find({
-                     where : {
-                         email : value
-                     }
-                 })
-                 .success(function(user) {
-                     if (user) {
-                         next('Already taken')
-                     }
-                     else {
-                         next()
-                     }
-                 })
-                 .error(function(err) {
-                     next(err.message);
-                 });
-            }
-            else {
-                 next("String is empty");
-            }
-          }
-       }
+        }
 
-      },
+
+      }
    }
   //  return Student;
   },  {
@@ -53,13 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       this.setDataValue('last_name', names.slice(-1).join(' '));
     },
   }
-},
-  {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
+});
+Student.associate = function(models) {
+//   // associations can be defined here
+  // Student.hasMany(models.SubjectWithStudent)
+  // Student.belongsToMany(models.Subject, { through: models.SubjectWithStudent })
+//   // Student.hasMany(models.SubujectWithStudent)
+}
   return Student;
 };

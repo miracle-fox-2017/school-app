@@ -23,10 +23,10 @@ route.post('/add',(req,res)=>{
   .then(task => {
     res.redirect('/student')
   }).catch(err=>{
-    // err = err.errors[0].type +' : ' + err.errors[0].message
-    res.send(err)
+    err = err.errors[0].type +' : ' + err.errors[0].message
+    // res.send(err)
     // err =
-    // res.render('studentAdd',{err})
+    res.render('studentAdd',{err})
   })
 
 })
@@ -49,6 +49,24 @@ route.get('/delete/:id',(req,res)=>{
     res.redirect('/student')
   })
 })
+
+route.get('/:id/addsubject',(req,res)=>{
+  Model.Student.findById(req.params.id).then(student=>{
+    Model.Subject.findAll().then(subjects => {
+      res.render('addSubjectStudent',{student : student, subjects : subjects})
+    })
+  })
+})
+
+route.post('/:id/addsubject',(req,res)=>{
+  // res.send(req.params.id)
+  Model.SubjectWithStudent.create({subjectId : req.body.subject,studentId : req.params.id})
+  .then(subject=>{
+    res.redirect('/student')
+  })
+})
+
+
 // Task.destroy({ where: {subject: 'programming'},truncate: true /* this will ignore where and truncate the table instead */
 //   });
 

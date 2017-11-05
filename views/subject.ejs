@@ -25,18 +25,28 @@
     </style>
   </head>
   <body>
-    <h2>Subjects</h2>
+    <h2>All Subjects Data</h2><br>
     <table>
       <thead>
         <tr>
           <td>ID</td>
           <td>SUBJECT NAME</td>
+          <td>TEACHERS</td>
+          <td>ACTIONS</td>
         </tr>
       </thead>
       <%subject.forEach(dt=>{%>
         <tr>
           <td><%=dt.id%></td>
           <td><%=dt.subject_name%></td>
+          <td>
+            <ol>
+              <% dt.teacher.forEach(data=>{ %>
+                <li><%=`${data.first_name} ${data.last_name}`%></li>
+              <% })%>
+            </ol>
+          </td>
+          <td><a href="/subject/<%=dt.id%>/enrolledstudents">Enrolled Student</a></td>
         </tr>
       <%})%>
     </table>

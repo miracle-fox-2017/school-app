@@ -42,6 +42,7 @@
           <td>FULL NAME</td>
           <td>EMAIL</td>
           <td>ACTION</td>
+          <td>OPTIONS</td>
         </tr>
       </thead>
       <%student.forEach(dt=>{%>
@@ -51,6 +52,7 @@
           <td><%=dt.last_name%></td>
           <td><%=dt.fullName%></td>
           <td><%=dt.email%></td>
+          <td><a href="/student/<%=dt.id%>/addsubject">Add Subject</a></td>
           <td><a href="/student/edit/<%=dt.id%>">Edit</a>  ||  <a href="/student/delete/<%=dt.id%>" onclick="myFunction()">Delete</a></td>
         </tr>
       <%})%>

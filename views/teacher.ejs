@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Teacher</title>
     <style media="screen">
-      h2{
+      div{
         text-align: center;
       }
       table {
@@ -25,7 +25,10 @@
     </style>
   </head>
   <body>
-    <h2>Teachers</h2>
+    <div class="">
+      <h2>All Data Teachers</h2><br>
+      <a href="/teacher/add/">Add Teacher Data</a>
+    </div>
     <table>
       <thead>
         <tr>
@@ -33,6 +36,8 @@
           <td>FIRST NAME</td>
           <td>LAST NAME</td>
           <td>EMAIL</td>
+          <td>SUBJECT</td>
+          <td>OPTIONS</td>
         </tr>
 
           <%teacher.forEach(dt =>{ %>
@@ -41,7 +46,15 @@
             <td><%=dt.first_name%></td>
             <td><%=dt.last_name%></td>
             <td><%=dt.email%></td>
-            
+            <% if (dt.subject == null){ %>
+              <td>Unassigned</td>
+            <% } %>
+            <% if (dt.subject != null){%>
+              <td><%=dt.subject.subject_name%></td>
+            <% } %>
+            <td><a href="/teacher/edit/<%=dt.id%>">Edit</a>  ||
+            <a href="/teacher/delete/<%=dt.id%>">Delete</a></td>
+
             </tr>
           <% })%>
 
