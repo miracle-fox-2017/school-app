@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail: true,
+        isEmail: true
         // isUnique: function(value, callback){
         //   console.log(this.dataValues.id, '----------------------');
         //   if(this.dataValues.id == '' || this.dataValues.id == null){
