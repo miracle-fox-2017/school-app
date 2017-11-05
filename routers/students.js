@@ -23,7 +23,9 @@ router.post('/add', function(req,res){
 
 //READ
 router.get('/', function(req,res){
-  model.Student.findAll().then(data_Students=>{
+  model.Student.findAll({
+    order: [['first_name', 'ASC']]
+  }).then(data_Students=>{
     res.render('students', {data_Students:data_Students})
   }).catch(err =>{
     console.log(err);

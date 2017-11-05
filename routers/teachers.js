@@ -21,7 +21,9 @@ router.post('/add',function(req,res){
 //READ
 router.get('/',function(req,res){
   //test manipulasi data
-  model.Teacher.findAll().then(data_teachers => {
+  model.Teacher.findAll({
+    order: [['first_name', 'ASC']]
+  }).then(data_teachers => {
     let teacherWithSubject = data_teachers.map(teachers => {
       return new Promise(function(resolve,reject){
         teachers.getSubject().then(withSubject => {

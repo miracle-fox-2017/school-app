@@ -78,9 +78,10 @@ router.get('/delete/:id',function(req,res){
 
 router.get('/:id/enrolledstudents', function(req,res){
   model.StudentSubject.findAll({
-    include : [model.Student],
-    attributes: ['id','SubjectId','StudentId','score'],
-    where : {
+    include    : [model.Student],
+    order      : [[ { model: model.Student, as: 'Student' }, 'first_name', 'ASC']],
+    attributes : ['id','SubjectId','StudentId','score'],
+    where      : {
       SubjectId : req.params.id
     }
   }).then(data_StudentSubject=>{
