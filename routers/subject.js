@@ -73,6 +73,26 @@ router.get('/:id/givescore', function (req, res){
   })
 })
 
+// router.get('/add', function (req, res) {
+//   res.render('')
+// })
+
+// router.get('/add', function(req,res){
+//   res.render('addTeacher', {rows: null});
+// })
+//
+// router.post('/add', function (req, res){
+//   model.Teacher.create( {first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     email : req.body.email})
+//     .then(allTeacher => {
+//     res.redirect('/teacher')
+//   }).catch(err => {
+//     console.log(err);
+//     res.render('addTeacher', {rows : err})
+//   })
+// })
+
 
 
 

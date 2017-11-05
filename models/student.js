@@ -14,7 +14,21 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             unique: true,
             allowNull: {msg: 'Email is required.' },
-            validate: { isEmail: { msg: 'Invalid email.' } },
+            validate: {isUnique: function (value, next) {
+                    var self = this;
+                    Student.find({where: {email: value}})
+                        .then(function (user) {
+                            // reject if a different user wants to use the same email
+                            if (user && self.id !== user.id) {
+                                return next('Email already in use!');
+                            }
+                            return next();
+                        })
+                        .catch(function (err) {
+                            return next(err);
+                        });
+                }
+            }
         }
     })
           Student.associate = function (models){
