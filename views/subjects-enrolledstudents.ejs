@@ -14,7 +14,7 @@
   <div class="tabs is-toggle is-fullwidth">
     <ul>
       <li><a href="/subjects"><span class="icon">
-        <i class="fa fa-user"></i>
+        <i class="fa fa-arrow-left"></i>
       </span>
       <span>BACK SUBJECT</span>
     </a></li>
@@ -23,50 +23,47 @@
 
   <div class="container_enrolled">
 
-    <div style="a:2px; text-align:left; margin-bottom:25px;">
-      <% for(let i=0; i<StudentSubjectWithStudent.length; i++) {%>
-      <% enroll = ''
-      enrolll = ''
-      if(StudentSubjectWithStudent[i].SubjectId == data_Subjects.id){
-        enrolll = 'Enrolled' + ' ' + data_Subjects.subject_name + ' ' + ' Subject Data'
-      }else{
-        enroll = "Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini."
-      }%>
-      <%}%>
-        <p class="title is-4" style="text-align:center; margin-bottom:13px;"><span><%=enrolll%></span> <span style="color:#ff3860;"><%=enroll%></span> </p>
-    </div>
-
-    <table class="table is-striped is-fullwidth">
-        <tr>
-          <th><abbr title="Position">NO</abbr></th>
-          <th>STUDENT NAME</th>
-          <th style="width:120px; text-align:center;">SCORE</th>
-          <th style="width:99px; text-align:center;">DESC</th>
-        </tr>
-
-        <% for(let i=0; i<StudentSubjectWithStudent.length; i++) {%>
-          <%if(StudentSubjectWithStudent[i].SubjectId == data_Subjects.id){%>
+    <%if(data_StudentSubject.length == 0){%>
+      <p style="text-align:center;">Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini.</p>
+    <%}else{%>
+      <table class="table is-striped is-fullwidth">
           <tr>
-            <td>
-              <%=[i+1]%>
-            </td>
-
-            <td>
-              <%if(StudentSubjectWithStudent[i].SubjectId == data_Subjects.id){%>
-                <%=`${StudentSubjectWithStudent[i].Student.first_name} ${StudentSubjectWithStudent[i].Student.last_name}`%>
-              <%}%>
-            </td>
-            <td>
-              <a href="/subjects/<%=StudentSubjectWithStudent[i].id%>/givescore" class="button is-small"style="width:120px; text-align:center;">Give Score</a>
-            </td>
-            <td>
-              #
-            </td>
+            <th><abbr title="Position">NO</abbr></th>
+            <th>STUDENT NAME</th>
+            <th style="width:120px; text-align:center;">SCORE</th>
+            <th style="width:99px; text-align:center;">DESC</th>
           </tr>
-          <%}%>
-        <%}%>
 
-      </table>
+          <% for(let i=0; i<data_StudentSubject.length; i++) {%>
+            <%if(data_StudentSubject[i].Student !== null){%>
+            <tr>
+              <td>
+                <%=[i+1]%>
+              </td>
+              <td>
+                <%=`${data_StudentSubject[i].Student.getFullname()}`%>
+              </td>
+              <td>
+                <a href="/subjects/<%=data_StudentSubject[i].id%>/givescore" class="button is-small"style="width:120px; text-align:center;">Give Score</a>
+              </td>
+              <% if(data_StudentSubject.score >= 88){ %>
+                <td style="text-align:center;">A</td>
+              <% }else if(data_StudentSubject.score >= 78){ %>
+                <td style="text-align:center;">B</td>
+              <% }else if(data_StudentSubject.score >= 65){ %>
+                <td style="text-align:center;">C</td>
+              <% }else if(data_StudentSubject.score >= 50){ %>
+                <td style="text-align:center;">D</td>
+              <% }else if(data_StudentSubject.score < 50){ %>
+                <td style="text-align:center;">E</td>
+              <% }else if(data_StudentSubject.score == null){ %>
+                <td style="text-align:center;">-</td>
+              <% } %>
+            </tr>
+            <%}%>
+          <%}%>
+        </table>
+    <%}%>
   </div>
 </body>
 </html>

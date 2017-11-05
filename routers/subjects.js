@@ -77,42 +77,17 @@ router.get('/delete/:id',function(req,res){
 //------------------------
 
 router.get('/:id/enrolledstudents', function(req,res){
-  model.Subject.findById(req.params.id).then(data_Subjects=>{
-    model.StudentSubject.findAll({
-      include : [model.Student],
-      attributes: ['id', 'SubjectId', 'StudentId', 'score']
-    }).then(StudentSubjectWithStudent=>{
-      // res.send(StudentSubjectWithStudent)
-      res.render('subjects-enrolledstudents',{data_Subjects:data_Subjects,StudentSubjectWithStudent:StudentSubjectWithStudent})
-    })
-  }).catch()
-  // model.StudentSubject.findAll(
-  //   {
-  //     attributes: ['id', 'SubjectId', 'StudentId', 'score']
-  //   }).then(data=>{
-  //   res.send(data)
-  // })
-  // model.StudentSubject.findAll({
-  //   include : [model.Subject,model.Student],
-  //   where   : {
-  //     SubjectId : req.params.id
-  //   }
-  // }).then(data_StudentSubject => {
-  //   res.send(data_StudentSubject)
-  //   res.render('subjects-enrolledstudents',{data_StudentSubject:data_StudentSubject})
-  // }).catch(err => {
-  //   console.log(err);
-  // })
-})
-
-router.get('/delete/:id/enrolledstudents',function(req,res){
-  model.StudentSubject.destroy({
+  model.StudentSubject.findAll({
+    include : [model.Student],
+    attributes: ['id','SubjectId','StudentId','score'],
     where : {
-      SubjectId  : req.params.id
+      SubjectId : req.params.id
     }
-  }).then(function(){
-    res.redirect('../../../subjects')
-  }).catch(err=>{
+  }).then(data_StudentSubject=>{
+    model.Subject.findById(req.params.id).then(data_Subjects => {
+      res.render('subjects-enrolledstudents',{data_StudentSubject:data_StudentSubject,data_Subjects:data_Subjects.subject_name})
+    })
+  }).catch(err => {
     console.log(err);
   })
 })
@@ -122,9 +97,8 @@ router.get('/delete/:id/enrolledstudents',function(req,res){
 //----------------------
 router.get('/:id/givescore', function(req,res){
   // res.send(req.params.id)
-  model.StudentSubject.findById(req.params.id).then(data_StudentSubject=>{
-    console.log(data_StudentSubject);
-    res.send(data_StudentSubject)
+  model.Subject.findById(req.params.id).then(data_StudentSubject=>{
+    console.log(data_StudentSubject)
     // Promise.all([
     //   model.Subject.findById(data_StudentSubject.SubjectId),
     //   model.Student.findById(data_StudentSubject.StudentId)
