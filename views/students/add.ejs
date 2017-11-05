@@ -9,8 +9,11 @@
     <a href="/teachers">Teachers</a>
     <a href="/subjects">Subjects</a>
     <a href="/students">Students</a>
-
-    <br><br>
+    <% if(error) { %>
+      <h4 style="color: red"><%= error + '\n' %></h4>
+    <% } else { %>
+      <br><br>
+    <% } %>
     <form class="" action="/students/add" method="post">
       <label for="">First Name</label><br>
       <input type="text" name="first_name" placeholder="input your first name"><br>

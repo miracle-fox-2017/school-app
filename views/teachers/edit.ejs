@@ -21,6 +21,15 @@
       <label for="">Email</label><br>
       <input type="text" name="email" value="<%= dataTeacher.email %>"><br>
       <br>
+      <label for="">Subject</label><br>
+      <select class="" name="SubjectId">
+        <% dataSubjects.forEach(subject => { %>
+          <option value="<%= subject.id %>"
+            <%= dataTeacher.SubjectId == subject.id ? "selected" : ""%>><%= subject.subject_name %>
+          </option>
+        <% }) %>
+      </select><br>
+      <br>
       <input type="submit" name="" value="Submit">
     </form>
   </body>

@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('students/add')
+  res.render('students/add', {error: false})
 })
 
 router.post('/add', function (req, res) {
@@ -24,7 +24,9 @@ router.post('/add', function (req, res) {
     res.redirect('/students')
   })
   .catch(error => {
-    res.send(error)
+    // console.log(error);
+    // res.send(error.errors[0].message)
+    res.render('students/add', {error: error.message})
   })
 })
 
