@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'email format is incorrect'
         }
+      },
+      unique: {
+        args: true,
+        msg: 'Validation error: email already exists'
       }
     },
     SubjectId: DataTypes.INTEGER

@@ -4,31 +4,11 @@ const Model = require('../models')
 const router = express.Router()
 
 // define the teachers page route
-/* -----------------------------------------------------------------------------
-##Use include
-router.get('/', function (req, res) {
-  Model.Teacher.findAll({
-    include: [{
-      model: Model.Subject,
-      attributes: ['id','subject_name']
-    }],
-    order: [['id', 'ASC']]
-  })
-  .then(dataTeachers => {
-    res.render('teachers/index', {dataTeachers: dataTeachers})
-  })
-  .catch(error => {
-    res.send(error)
-  })
-})
------------------------------------------------------------------------------ */
-
 router.get('/', function (req, res) {
   Model.Teacher.findAll({order: [['first_name', 'ASC']]})
   .then(teachers => {
     let newTeachers = teachers.map(teacher => {
       return new Promise((resolve, reject) => {
-        // res.send(teacher)
         teacher.getSubject()
         .then(teacherSubject => {
           teacher.teacherSubject = teacherSubject
@@ -50,7 +30,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('teachers/add')
+  res.render('teachers/add', {error: false})
 })
 
 router.post('/add', function (req, res) {
@@ -59,7 +39,7 @@ router.post('/add', function (req, res) {
     res.redirect('/teachers')
   })
   .catch(error => {
-    res.send(error)
+    res.render('teachers/add', {error: error.message})
   })
 })
 
@@ -68,7 +48,6 @@ router.get('/edit/:id', function (req, res) {
   .then(dataTeacher => {
     Model.Subject.findAll()
     .then(dataSubjects => {
-      // res.send(dataSubjects)
       res.render('teachers/edit', {dataTeacher: dataTeacher, dataSubjects: dataSubjects})
     })
   })

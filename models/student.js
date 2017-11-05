@@ -38,5 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     return `${this.first_name} ${this.last_name}`
   };
 
+  Student.associate = function(models) {
+    Student.belongsToMany(models.Subject, {through: 'StudentSubject'})
+    Student.hasMany(models.StudentSubject)
+  }
+
   return Student;
 };

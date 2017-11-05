@@ -13,7 +13,7 @@
     <table>
       <thead>
         <tr>
-          <th>Id</th>
+          <th>No</th>
           <th>Subject Name</th>
           <th>Teachers</th>
           <th>Actions</th>
@@ -37,6 +37,7 @@
               <% } %>
             </td>
             <td>
+              <a href="/subjects/<%= data.id %>/enrolledstudents">Enrolled Students</a>
               <a href="/subjects/edit/<%= data.id %>">Edit</a>
               <a href="/subjects/delete/<%= data.id %>">Delete</a>
             </td>

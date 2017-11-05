@@ -3,9 +3,9 @@ const Model = require('../models')
 
 const router = express.Router()
 
-// define the home page route
+// define the student page route
 router.get('/', function (req, res) {
-  Model.Student.findAll({order: [['id', 'ASC']]})
+  Model.Student.findAll({order: [['first_name', 'ASC']]})
   .then(dataStudents => {
     res.render('students/index', {dataStudents: dataStudents})
   })
@@ -24,8 +24,6 @@ router.post('/add', function (req, res) {
     res.redirect('/students')
   })
   .catch(error => {
-    // console.log(error);
-    // res.send(error.errors[0].message)
     res.render('students/add', {error: error.message})
   })
 })
@@ -53,6 +51,29 @@ router.post('/edit/:id', function (req, res) {
 router.get('/delete/:id', function (req, res) {
   Model.Student.destroy({where: req.params})
   .then(dataStudent => {
+    res.redirect('/students')
+  })
+  .catch(error => {
+    res.send(error)
+  })
+})
+
+router.get('/:id/addsubject', function (req, res) {
+  Model.Student.findById(req.params.id)
+  .then(dataStudent => {
+    Model.Subject.findAll()
+    .then(dataSubjects => {
+      res.render('students/addsubject', {dataStudent: dataStudent, dataSubjects: dataSubjects})
+    })
+  })
+})
+
+router.post('/:id/addsubject', function (req, res) {
+  Model.StudentSubject.create({
+    StudentId: req.params.id,
+    SubjectId: req.body.SubjectId
+  })
+  .then(() => {
     res.redirect('/students')
   })
   .catch(error => {
