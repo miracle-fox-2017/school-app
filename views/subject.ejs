@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Subject</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td><strong> ID </strong></td>
+        <td><strong> Subject Name </strong></td>
+      </tr>
+      <% rowsSubject.forEach(function(list) { %>
+        <tr>
+          <td><%= list.id%></td>
+          <td><%= list.subject_name%></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

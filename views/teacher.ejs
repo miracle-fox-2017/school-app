@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teacher</title>
+  </head>
+  <body>
+      <h3> <a href="/teachers/add/"> Add Teacher </a> </h3>
+    <table border="1">
+      <tr>
+        <td><strong> ID </strong></td>
+        <td><strong> First Name </strong></td>
+        <td><strong> Last Name </strong></td>
+        <td><strong> Email </strong></td>
+      </tr>
+      <% rowsTeacher.forEach(function(list) { %>
+        <tr>
+          <td><%= list.id%></td>
+          <td><%= list.first_name%></td>
+          <td><%= list.last_name%></td>
+          <td><%= list.email%></td>
+          <td><a href="/teachers/edit/<%= list.id%>"> EDIT </a></td>
+          <td><a href="/teachers/delete/<%= list.id%>"> DELETE </a></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
