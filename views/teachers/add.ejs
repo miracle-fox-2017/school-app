@@ -1,25 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Add</title>
-  </head>
-  <body>
+<%include ../partials/navbar.ejs%>
 
-  <form action="/teachers/add" method="post">
-  First name:<br>
-  <input type="text" name="first_name" value=""><br>
-  Last name:<br>
-  <input type="text" name="last_name" value=""><br>
-  Email:<br>
-  <input type="text" name="email" value=""><br>
 
-  <select name="SubjectId">
-    <%dataSubjects.forEach(item =>{%>
-      <option value="<%=item.id%>"><%=item.subject_name%></option>
-    <%})%>
-    </select>
+  <div class="ui container">
+    <h1>Add New Student</h1>
+    <%if (err) {%>
+    <div class="ui text shape">
+      <div class="sides">
+      <div class="active ui header side" style="color:red">Format Email Salah</div>
+    </div>
+    </div>
+    <%}%>
 
-  <input type="submit" value="Submit">
-</form>
+
+    <form class="ui form" action="/teachers/add" method="post">
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" name="first_name" value=""><br>
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value=""><br>
+      </div>
+
+
+      <div class="ui form">
+          <div class="field">
+      <label>Subject</label>
+      <select class="ui search dropdown" name="SubjectId">
+        <%dataSubjects.forEach(item =>{%>
+        <option value="<%=item.id%>"><%=item.subject_name%></option>
+        <%})%>
+      </select>
+
+      <div class="field">
+        <label>E-mail</label>
+        <input type="text" name="email" value=""><br>
+      </div>
+      </div>
+    <button class="ui button" type="submit">Submit</button>
+    </form>
+</div>
   </body>
+</html>

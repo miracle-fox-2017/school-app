@@ -1,29 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Students</title>
-  </head>
-  <body>
+<%include ../partials/navbar.ejs%>
+
+
+    <div class="ui container">
     <h1>Edit</h1>
 
 
-    <form action="/teachers/edit/<%=dataTeachers.id%>" method="post">
-    First name:<br>
-    <input type="text" name="first_name" value="<%=dataTeachers.first_name%>"><br>
-    Last name:<br>
-    <input type="text" name="last_name" value="<%=dataTeachers.last_name%>"><br>
-    Email:<br>
-    <input type="text" name="email" value="<%=dataTeachers.email%>"><br>
-    <br>
+    <form class="ui form" action="/teachers/edit/<%=dataTeachers.id%>" method="post">
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" name="first_name" value="<%=dataTeachers.first_name%>"><br>
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="<%=dataTeachers.last_name%>"><br>
+      </div>
+      <div class="ui form success">
 
-    <select class="" name="SubjectId">
-      <%dataSubjects.forEach(item =>{%>
-      <option value="<%=item.id%>"><%=item.subject_name%></option>
-      <%})%>
-    </select>
+      <div class="ui form">
+      <div class="field">
+      <label>Subject</label>
+      <select class="ui search dropdown" name="SubjectId">
+        <%dataSubjects.forEach(item =>{%>
+        <option value="<%=item.id%>"><%=item.subject_name%></option>
+        <%})%>
+      </select>
 
-    <input type="submit" value="Submit">
+      <div class="field">
+        <label>E-mail</label>
+        <input type="text" name="email" value="<%=dataTeachers.email%>"><br>
+      </div>
+      </div>
+        <button class="ui button" type="submit">Submit</button>
   </form>
+</div>
   </body>
 </html>

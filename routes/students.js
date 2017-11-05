@@ -56,8 +56,6 @@ router.post('/edit/:id', (req,res) =>{
     }, {where: {id:req.params.id}}).then(() =>{
       res.redirect('/students')
     })
-    .catch(err =>{
-    })
 })
 
 

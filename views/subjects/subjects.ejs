@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <style>
-    table, th, td {
-     border: 1px solid black;
-    }
-    </style>
-    <h1>Subjects</h1>
-    <a href="/subjects/add">Add</a>
+<%include ../partials/navbar.ejs%>
 
-    <table class="pure-table">
+  <div class="ui container">
+    <h1><a href="/subjects">Subjects</a></h1>
+
+    <a href="/subjects/add"><button class="ui basic button"><i class="icon user"></i>Add</button></a>
+
+
+    <table class="ui line celled table">
       <thead>
           <tr>
               <th>ID</th>
@@ -30,15 +23,15 @@
               <td><%=item.subject_name%></td>
               <td><%=item.Teachers%></td>
               <td>
-                <a href="/subjects/<%=item.id%>/enrolledStudent">Enrolled Student</a>
-                <a href="/subjects/edit/<%=item.id%>">Edit</a>
-                <a href="/subjects/delete/<%=item.id%>">Delete</a>
+                <a href="/subjects/<%=item.id%>/enrolledStudent">Enrolled Student</a> ||
+                <a href="/subjects/edit/<%=item.id%>"><i class="edit icon"></i></a> ||
+                <a href="/subjects/delete/<%=item.id%>"> <i class="remove user icon"></i></a>
               </td>
           </tr>
 
         <%})%>
       </tbody>
-
   </table>
+  </div>
   </body>
 </html>

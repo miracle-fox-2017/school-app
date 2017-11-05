@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Add</title>
-  </head>
-  <body>
+<%include ../partials/navbar.ejs%>
+
+    <div class="ui container">
     <h1>Add New Subject</h1>
 
-  <form action="/subjects/add" method="post">
-  Subject:<br>
-  <input type="text" name="subject_name" value=""><br>
-  <input type="submit" value="Submit">
-</form>
+    <form class="ui form" action="/subjects/add" method="post">
+      <div class="field">
+        <label>Subject</label>
+        <input type="text" name="subject_name" placeholder="Ex: Javascript">
+      </div>
+      <button class="ui button" type="submit">Submit</button>
+    </form>
+  </div>
   </body>
 </html>

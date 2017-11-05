@@ -24,11 +24,12 @@ router.get('/', (req, res) =>{
 
 router.get('/add', (req,res) =>{
   model.Subject.findAll().then(dataSubjects =>{
-    res.render('teachers/add', {dataSubjects:dataSubjects})
+    res.render('teachers/add', {dataSubjects:dataSubjects, err:null})
   })
 })
 
 router.post('/add', (req,res) =>{
+  console.log(req.body);
   model.Teacher.create(
     {
       first_name:req.body.first_name,
@@ -38,6 +39,10 @@ router.post('/add', (req,res) =>{
     }
   ).then(() =>{
     res.redirect('/teachers')
+  }).catch(err => {
+    model.Subject.findAll().then(dataSubjects =>{
+      res.render('teachers/add', {dataSubjects:dataSubjects, err:err})
+    })
   })
 })
 
@@ -72,18 +77,6 @@ router.get('/delete/:id', (req, res) => {
 })
 
 
-
-
-
-// router.get('/', (req, res) =>{
-//   model.Teacher.findAll({
-//     include: [
-//       {model: model.Subject}
-//     ]
-//   }).then(teachers => {
-//      res.render('teachers/teachers', {dataTeachers:teachers})
-//   })
-// })
 
 
 module.exports = router;

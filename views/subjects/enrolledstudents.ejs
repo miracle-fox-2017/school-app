@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Enrolled Student</title>
-  </head>
-  <body>
-  <style>
-  table, th, td {
-   border: 1px solid black;
-  }
-  </style>
-    <h3><%= dataSubject.subject_name%></h3>
+<%include ../partials/navbar.ejs%>
 
-    <table>
+
+  <div class="ui container">
+      <h3><%= subject_name%></h3>
+
+
+      <table class="ui single line celled table">
       <th>No</th>
       <th>Students Name</th>
       <th>Score</th>
@@ -33,8 +26,18 @@
             <a style="none" href="/subjects/<%=item.id%>/givescores">give score</a>
           <%}%>
           </td>
+          <%if(item.score >= 90){%>
+            <td>A</td>
+          <%}else if(item.score >= 80){%>
+            <td>B</td>
+          <%}else if(item.score < 80 && item.score !== null){%>
+            <td>C</td>
+          <%}else if(item.score == null){%>
+            <td>NaN</td>
+          <%}%>
       </tr>
         <%})%>
     </table>
+  </div>
   </body>
 </html>

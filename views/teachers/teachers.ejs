@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Teachers</title>
-  </head>
-  <body>
-  <style>
-  table, th, td {
-   border: 1px solid black;
-  }
-  </style>
+<%include ../partials/navbar.ejs%>
+
+
+  <div class="ui container">
+
     <h1>Teachers</h1>
-    <a href="/teachers/add">Add</a>
-    <table class="pure-table">
+  <a href="/teachers/add"><button class="ui basic button"><i class="icon user"></i>Add</button></a>
+
+    <table class="ui single line celled table">
       <thead>
           <tr>
               <th>ID</th>
@@ -40,8 +34,8 @@
 
               </td>
               <td>
-                <a href="/teachers/edit/<%=item.id%>">Edit</a>
-                <a href="/teachers/delete/<%=item.id%>">Delete</a>
+                <a href="/teachers/edit/<%=item.id%>"> <i class="edit icon"></i></a>
+                <a href="/teachers/delete/<%=item.id%>"> <i class="remove user icon"></i></a>
               </td>
           </tr>
 
@@ -49,6 +43,8 @@
       </tbody>
 
   </table>
-
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
   </body>
 </html>

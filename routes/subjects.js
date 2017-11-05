@@ -14,7 +14,6 @@ router.get('/', (req, res) =>{
             }
           })
           subject.Teachers = arrNama
-
           resolve(subject)
         })
       })
@@ -79,8 +78,10 @@ router.get('/:id/enrolledStudent', (req, res) => {
     ]
   })
   .then(dataSubject => {
-    res.send(dataSubject)
-   res.render('subjects/enrolledstudents', {dataSubject:dataSubject})
+    model.Subject.findById(req.params.id).then(rows =>{
+       res.render('subjects/enrolledstudents', {dataSubject:dataSubject, subject_name:rows.subject_name})
+    })
+  //
   })
 })
 

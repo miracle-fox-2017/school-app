@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Students</title>
-  </head>
-  <body>
-    <style media="screen">
-    table, th, td {
-     border: 1px solid black;
-    }
-    </style>
-    <h1>Students</h1>
-   <a href="/students/add"><button>add</button></a>
+<%include ../partials/navbar.ejs%>
 
 
-    <table class="pure-table">
+<div class="ui container">
+
+  <h1>Students</h1>
+  <a href="/students/add"><button class="ui basic button"><i class="icon user"></i>Add</button></a>
+
+
+    <table class="ui single line celled table">
       <thead>
           <tr>
               <th>ID</th>
@@ -35,9 +28,9 @@
               <td><%=item.last_name%></td>
               <td><%=item.email%></td>
               <td>
-              <a href="/students/<%=item.id%>/addsubject"><button>Add Subject</button></a>
-              <a href="/students/edit/<%=item.id%>"><button>Edit</button></a>
-                <button onclick="myFunction()"> <a href="/students/delete/<%=item.id%>"> delete</button></a>
+              <a href="/students/<%=item.id%>/addsubject">Add Subject</a> ||
+              <a href="/students/edit/<%=item.id%>"><i class="edit icon"></i></a> ||
+              <a href="/students/delete/<%=item.id%>"> <i class="remove user icon" onclick="myFunction()"></i></a>
               </td>
           </tr>
 
@@ -45,6 +38,7 @@
       </tbody>
 
   </table>
+</div>
   <script type="text/javascript">
   function myFunction(){
   if (window.confirm("Do you really want to delete?")) {

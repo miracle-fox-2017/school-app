@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Students</title>
-  </head>
-  <body>
+<%include ../partials/navbar.ejs%>
+
+
+    <div class="ui container">
     <h1>Add Subject</h1>
 
 
-    <form action="/students/<%=dataStudent.id%>/addsubject" method="post">
-    First name:<br>
-    <input type="text" name="first_name" value="<%=dataStudent.first_name%>"><br>
-    Last name:<br>
-    <input type="text" name="last_name" value="<%=dataStudent.last_name%>"><br>
-    Email:<br>
-    <input type="text" name="email" value="<%=dataStudent.email%>"><br>
-    <br>
+    <h3>Student:       <%=dataStudent.getFullName()%></h3>
+
+    <form class="ui form" action="/students/<%=dataStudent.id%>/addsubject" method="post">
+
+    <div class="ui form">
+      <div class="field"></div>
     <select class="" name="SubjectId">
       <%dataSubjects.forEach(item =>{%>
       <option value="<%=item.id%>"><%=item.subject_name%></option>
       <%})%>
     </select>
 
-    <input type="submit" value="Submit">
+    </div>
+  </br>
+    <button class="ui button" type="submit">Submit</button>
+    </div>
   </form>
+
   </body>
 </html>

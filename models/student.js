@@ -7,19 +7,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         isEmail: true,
-        isUnique: function(value, callback){
-          console.log(this.dataValues.id, '----------------------');
-          if(this.dataValues.id == '' || this.dataValues.id == null){
-
-            Student.findAll({where:{email:value}}).then(rows =>{
-              if(rows.length > 0){
-                return callback('Email Double')
-              }else{
-                callback()
-              }
-            })
-          }
-        }
+        // isUnique: function(value, callback){
+        //   console.log(this.dataValues.id, '----------------------');
+        //   if(this.dataValues.id == '' || this.dataValues.id == null){
+        //
+        //     Student.findAll({where:{email:value}}).then(rows =>{
+        //       if(rows.length > 0){
+        //         return callback('Email Double')
+        //       }else{
+        //         callback()
+        //       }
+        //     })
+        //   }
+        // }
       }
     }
   });
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   //   return error
   // }
   Student.prototype.getFullName = function(){
-    return this.first_name + '' + this.last_name
+    return this.first_name + ' ' + this.last_name
   }
 
 
