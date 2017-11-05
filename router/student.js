@@ -1,11 +1,11 @@
 const express = require ('express');
 const router  = express.Router();
 
-const Model   = require('../models')
+const model   = require('../models')
 
 
 router.get('/', function(req,res){
-	Model.Student.findAll()
+	model.Student.findAll()
 	.then(allStudents =>{
 		res.render('students', {allStudents : allStudents})	
 	})
@@ -19,7 +19,7 @@ router.get('/add', function(req,res){
 })
 
 router.post('/add', function(req,res){
-	Model.Student.create(req.body)
+	model.Student.create(req.body)
 	.then(allStudents =>{
 		res.redirect('/students')
 	})
@@ -29,14 +29,14 @@ router.post('/add', function(req,res){
 })
 
 router.get('/edit/:id', function(req,res){
-	Model.Student.findById(req.params.id)
+	model.Student.findById(req.params.id)
 	.then(student =>{
 		res.render('edit', {edit : student, message: null})
 	})
 })
 
 router.post('/edit/:id', function(req,res){
-	Model.Student.update( { id : req.body.id,
+	model.Student.update( { id : req.body.id,
 		first_name : req.body.first_name,
 		last_name : req.body.last_name,
 		email : req.body.email}, {where : {
@@ -46,7 +46,7 @@ router.post('/edit/:id', function(req,res){
 		res.redirect('/students')
 	})
 	.catch(err =>{
-		Model.Student.findById(req.params.id)
+		model.Student.findById(req.params.id)
 		.then(student =>{
 			res.render('edit', {edit : student, message: err})
 		})			
@@ -54,13 +54,35 @@ router.post('/edit/:id', function(req,res){
 })
 
 router.get('/delete/:id', function(req,res){
-	Model.Student.destroy({where : {
+	model.Student.destroy({where : {
 		id : req.params.id
 	}})
 	.then(() =>{
 		res.redirect('/students')
 	})
 	.catch(err =>{
+		res.send(err);
+	})
+})
+
+router.get('/:id/addsubject', function(req,res){
+	model.Subject.findAll().then(allSubject => {
+		model.Student.findById(req.params.id)
+		.then(addStudentSubject => {
+			res.render('addSubject', {addedStudent : addStudentSubject, allSubject : allSubject, message : undefined })
+		})
+	})
+	.catch(err => {
+		res.send(err);
+	})
+})
+
+router.post('/:id/addsubject', function(req,res){
+	model.StudentSubject.create( { StudentId : req.params.id , SubjectId : req.body.id})
+	.then(student => {
+		res.redirect('/students')
+	})
+	.catch(err => {
 		res.send(err);
 	})
 })

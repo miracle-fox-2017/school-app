@@ -15,4 +15,17 @@ router.get('/', function(req,res){
 	})
 })
 
+router.get('/:id/enrolledstudents', function(req,res) {
+	model.Subject.findById(req.params.id, {
+		include: [ { model : model.Student}]
+	}).then(subject => {
+		// console.log(subject.dataValues.Students.length)
+		res.render('enrolledstudents', {subject : subject})
+	})
+	.catch(err => {
+		res.send(err);
+	})
+		
+})
+
 module.exports = router;

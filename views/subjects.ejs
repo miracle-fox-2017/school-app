@@ -10,6 +10,7 @@
 		<th>id</th>
 		<th>subject_name</th>
 		<th>Full Name</th>
+		<td>Action </td>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,6 +23,7 @@
 			</li>
 			<%})%>
 			</td>
+		<td><a href="/subjects/<%= subject.id %>/enrolledstudents">Enrolled Students</td>	
 		</tr>
 	<%})%>
 	</tbody>
