@@ -5,7 +5,8 @@ const db = require('../models');
 //
 
 router.get('/',function(req, res){
-  db.Student.findAll().then(function(rows){
+  db.Student.findAll({include:
+  [db.Subject]}).then(function(rows){
     res.render('student', {rowsStudent : rows})
   }).catch(function(err){
     console.log(err);
@@ -29,14 +30,8 @@ router.get('/edit/:id',function(req, res){
 })
 
 router.post('/edit/:id', function(req, res) {
-   let data = {
-     id    : req.params.id,
-     first_name : req.body.first_name,
-     last_name : req.body.last_name,
-     email  : req.body.email
-   };
 
-   db.Student.update(data, {where: { id: req.params.id }
+   db.Student.update(req.body, {where: { id: req.params.id }
    }).then(function() {
      res.redirect('/students')
    })
@@ -45,6 +40,23 @@ router.post('/edit/:id', function(req, res) {
 router.get('/delete/:id', function(req, res){
   db.Student.destroy({where: {id:req.params.id}
   }).then(function() {
+    res.redirect('/students')
+  })
+})
+
+router.get('/:id/addsubject',function(req, res){
+  db.Student.findById(req.params.id).then(function(rowsStudent){
+    db.Subject.findAll().then(function(rows){
+      res.render('addSubjectToStudent', {rowsStudent: rowsStudent, rowsSubject : rows})
+    }).catch(function(err){
+      console.log(err);
+    })
+  })
+})
+
+router.post('/:id/addsubject', function(req, res){
+  db.StudentSubject.create(req.body).then(function(){
+    // console.log(rowsStudentSubject);
     res.redirect('/students')
   })
 })

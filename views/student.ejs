@@ -12,6 +12,9 @@
         <td><strong> First Name </strong></td>
         <td><strong> Last Name </strong></td>
         <td><strong> Email </strong></td>
+        <td><strong> Full Name </strong></td>
+        <td><strong> Add Subject </strong></td>
+
       </tr>
       <% rowsStudent.forEach(function(list) { %>
         <tr>
@@ -19,6 +22,8 @@
           <td><%= list.first_name%></td>
           <td><%= list.last_name%></td>
           <td><%= list.email%></td>
+          <td><%= list.getFullNameStudent() %></td>
+          <td> <a href="/students/<%= list.id%>/addsubject"> Add Subject </a> </td>
           <td><a href="/students/edit/<%= list.id%>"> EDIT </a></td>
           <td><a href="/students/delete/<%= list.id%>"> DELETE </a></td>
         </tr>

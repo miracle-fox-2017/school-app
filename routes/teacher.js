@@ -31,17 +31,16 @@ router.get('/edit/:id',function(req, res){
 })
 
 router.post('/edit/:id', function(req, res) {
-   let data = {
-     id    : req.params.id,
-     first_name : req.body.first_name,
-     last_name : req.body.last_name,
-     email  : req.body.email
-   };
-
-   db.Teacher.update(data, {where: { id: req.params.id }
-   }).then(function() {
-     res.redirect('/teachers')
-   })
+  db.Teacher.findById(req.params.id).then((rowsTeacher) => {
+    rowsTeacher.update(req.body).then(() => {
+      res.redirect('/teachers')
+    }).catch((err) => {
+      console.log(err);
+      // db.Subject.findById(req.params.id).then((rowsEdit) => {
+      //   res.render('editTeacher', {rowsEdit : rowsEdit})
+      // })
+    })
+  })
 })
 
 router.get('/delete/:id', function(req, res){
