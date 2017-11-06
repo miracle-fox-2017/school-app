@@ -4,8 +4,10 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/',function(req, res){
-  db.Teacher.findAll({include:
-  [db.Subject]}).then(function(rows){
+  db.Teacher.findAll({
+    include:[db.Subject],
+    order: [['first_name', 'ASC']]
+  }).then(function(rows){
     res.render('teacher', {rowsTeacher : rows})
   }).catch(function(err){
     console.log(err);
