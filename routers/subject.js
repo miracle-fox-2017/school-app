@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const score = require('../helpers/score');
 
 
 router.get('/', (req, res) => {
@@ -46,8 +47,16 @@ router.post('/edit/:id', (req, res) => {
 
 //subject join student
 router.get('/:id/enrolledstudents', (req, res) => {
-    db.studentswithsubject.findAll({ order: [['id', 'ASC']], include: [db.subject,db.student] }).then((dataSubjects) => {
-        res.render('enrolled',{ dataSubjects });
+    db.studentswithsubject.findAll({ where: { subjectId: req.params.id },order: [['id', 'ASC']], include: [db.subject,db.student] }).then((dataSubjects) => {
+        // res.send(dataSubjects);
+        dataSubjects.forEach(function(element) {
+            element.score = score(element.score);
+        });
+
+        res.send(dataSubjects);
+
+        // res.render('enrolled',{ dataSubjects });
+
     }).catch((err) => {
         res.send(err);
     });
@@ -55,7 +64,7 @@ router.get('/:id/enrolledstudents', (req, res) => {
 
 //score
 router.get('/:id/givescore', (req, res) => {
-    db.studentswithsubject.findById(req.params.id,{ order: [['id', 'ASC']], include: [db.student] }).then((dataSubjects) => {
+    db.studentswithsubject.find({ where: { id: req.params.id }, order: [['id', 'ASC']], include: [db.student, db.subject] }).then((dataSubjects) => {
         res.render('givescore', { dataSubjects });
         // res.send(dataSubjects);
     }).catch((err) => {

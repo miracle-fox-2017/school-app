@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("partials/header.ejs",{title:"Enrolled"}) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Enrolled Students</title>
-</head>
-
-<body>
-    <h3><%=  dataSubjects[0].subject.subject_name %></h3>
+    <h3>
+        <% if(dataSubjects[0]) { %>
+            <%=  dataSubjects[0].subject.subject_name %>
+        <% } %>
+    </h3>
     <table border="1">
         <tr>
             <td>Name</td>
@@ -18,9 +13,9 @@
         <% dataSubjects.forEach((rows) => { %>
 
             <tr>
-                <td><%= rows.student.first_name %></td>
+                <td><%= rows.student.getFullname() %></td>
                 <td>
-                    <% if( rows.score == null ) { %>
+                    <% if( rows.score == 'empty' ) { %>
                         <a href="/subjects/<%= rows.id %>/givescore">give score</a>
                     <% } else { %>
                         <%= rows.score %>
@@ -30,6 +25,4 @@
 
         <% }) %>
     </table>
-</body>
-
-</html>
+<%- include partials/footer.ejs %>

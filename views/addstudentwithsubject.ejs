@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("partials/header.ejs",{title:"Add Student Subject"}) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Subject Student</title>
-</head>
-
-<body>
     <table>
         <tr>
             <td><%= dataStudents.first_name %></td>
@@ -29,6 +20,4 @@
         </select>
         <input type="submit" value="Simpan">
     </form>
-</body>
-
-</html>
+<%- include partials/footer.ejs %>

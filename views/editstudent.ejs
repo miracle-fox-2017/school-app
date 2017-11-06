@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("partials/header.ejs",{title:"Add Student"}) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Student</title>
-</head>
-
-<body>
     <% if(error != null){ %>
         <p>
             <%= error %>
@@ -20,6 +11,4 @@
         <input type="text" name="email" placeholder="Email" value="<%= dataStudents.email %>">
         <input type="submit" value="Edit">
     </form>
-</body>
-
-</html>
+<%- include partials/footer.ejs %>

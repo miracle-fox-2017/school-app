@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("partials/header.ejs",{title:"Give Score"}) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Score</title>
-</head>
-
-<body>
-    <p><%= dataSubjects.student.first_name %></p>
+    <p>Name : <%= dataSubjects.student.first_name %></p> 
+    <p>Subject : <%= dataSubjects.subject.subject_name %></p>
         <form action="/subjects/<%= dataSubjects.id %>/givescore" method="post">
             <input type="text" name="score" placeholder="Score">
             <input type="submit" value="Simpan">
         </form>
-</body>
-
-</html>
+<%- include partials/footer.ejs %>

@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Teachers</title>
-</head>
-<body>
+<%- include("partials/header.ejs",{title:"Teacher"}) %>
     <a href="/teachers/add">Add</a>
     <table border="1">
         <tr>
             <td>No</td>
-            <td>First Name</td>
-            <td>Last Name</td>
+            <td>Name</td>
             <td>Email</td>
             <td>Subject</td>
             <td>Action</td>
@@ -30,10 +21,7 @@
                 <%= no %>
             </td>
             <td>
-                <%= rows.first_name %>
-            </td>
-            <td>
-                <%= rows.last_name %>
+                <%= rows.getFullname() %>
             </td>
             <td>
                 <%= rows.email %>
@@ -62,5 +50,4 @@
     
     %>
     </table>
-</body>
-</html>
+<%- include partials/footer.ejs %>
