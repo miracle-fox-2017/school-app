@@ -34,7 +34,7 @@ router.get('/:id/enrolledstudents', function (req, res) {
 router.get('/:studentId/givescore', function (req, res) {
 	Model.StudentSubject.findOne({
 		include: [Model.Student, Model.Subject],
-		where: { id: req.params.studentId }
+		where: { StudentId: req.params.studentId }
 	}).then(foundStudentSubject => {
 		res.render('give-score', { foundStudentSubject: foundStudentSubject})
 
@@ -50,11 +50,12 @@ router.post('/:id/givescore', function(req, res) {
 		},
 		{
 			where: {
-				StudentId: req.body.StudentId
+				StudentId: req.body.StudentId,
+				SubjectId: req.body.SubjectId
 			}
 		})
 		.then(allModelData => {
-			res.redirect('/subjects')
+			res.redirect(`/subjects/${req.body.SubjectId}/enrolledstudents`)
 		}).catch(err => res.send(err));
 })
 
