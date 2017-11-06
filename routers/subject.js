@@ -74,58 +74,64 @@ router.get('/delete/:id', function (req, res) {
 })
 
 router.get('/:id/enrolledstudents', function (req, res) {
-  Model.Subject.findAll({
-    where: req.params,
-    order: [['subject_name', 'ASC']]
+  console.log(req.params);
+  Model.Subject.findOne({
+    include: [{
+        model: Model.StudentSubject,
+        attributes: ['id', 'StudentId', 'SubjectId', 'score'],
+
+    }],
+    where: req.params
   })
-  .then(subjects => {
-    let newSubject = subjects.map(subject => {
+  .then(subject => {
+    let newSubject = subject.StudentSubjects.map(studentSubject => {
       return new Promise((resolve, reject) => {
-        subject.getStudents({order: [['first_name', 'ASC']]})
-        .then(subjectStudent => {
-          subject.subjectStudent = subjectStudent
-          resolve(subject)
+        studentSubject.getStudent()
+        .then(student => {
+          studentSubject.fullName = student.getFullName()
+          resolve(studentSubject)
         })
       })
     })
 
     Promise.all(newSubject)
-    .then(dataSubject => {
-      // console.log(dataSubject[0].subjectStudent);
-      // res.send(dataSubject[0])
-      res.render('subjects/enrolledstudents', {dataSubject: dataSubject[0]})
-    })
-    .catch(error => {
-      res.send(error)
+    .then(studentSubject => {
+      // res.send(studentSubject)
+      res.render('subjects/enrolledstudents', {dataSubject: subject, dataStudentSubject: studentSubject})
     })
   })
 })
 
-router.get('/:SubjectId/:StudentId/givescore', function (req, res) {
-  // console.log(req.params);
-  Model.Subject.findOne({where: {id: req.params.SubjectId}})
+router.get('/:id/givescore', function (req, res) {
+  console.log(req.params);
+  Model.StudentSubject.findOne({
+    include: [Model.Subject, Model.Student],
+    attributes: ['id', 'StudentId', 'SubjectId', 'score'],
+    where: req.params
+  })
   .then(subject => {
-    subject.getStudents({where: {id: req.params.StudentId}})
-    .then(subjectWithStudent => {
-      // console.log(subjectWithStudent);
-      res.send(subjectWithStudent)
-      // res.render('subjects/givescore', {dataSubject: subject, dataStudent: subjectWithStudent[0]})
-    })
-    .catch(error => {
-      res.send(error)
-    })
+    // res.send(subject)
+    res.render('subjects/givescore', {dataSubject: subject})
   })
   .catch(error => {
     res.send(error)
   })
 })
 
-router.post('/:SubjectId/:StudentId/givescore', function (req, res) {
-  console.log(req.params);
-  console.log(req.body);
-  Model.StudentSubject.update(req.body)
-  .then(() => {
-    res.redirect('/subjects')
+router.post('/:id/givescore', function (req, res) {
+  Model.StudentSubject.findOne({
+    // include: [Model.Subject, Model.Student],
+    attributes: ['id', 'StudentId', 'SubjectId', 'score'],
+    where: req.params
+  })
+  .then(studentSubject => {
+    Model.StudentSubject.update(req.body, {where: req.params})
+    .then(() => {
+      res.redirect('/subjects/'+studentSubject.SubjectId+'/enrolledstudents')
+    })
+    .catch(error => {
+      res.send(error)
+    })
   })
   .catch(error => {
     res.send(error)

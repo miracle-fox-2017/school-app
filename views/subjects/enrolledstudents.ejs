@@ -21,16 +21,16 @@
         </tr>
       </thead>
       <tbody>
-        <% dataSubject.subjectStudent.forEach((student, index) => { %>
+        <% dataStudentSubject.forEach((student, index) => { %>
           <tr>
             <td><%= index + 1 %></td>
-            <td><%= student.id %></td>
-            <td><%= student.getFullName() %></td>
+            <td><%= student.StudentId %></td>
+            <td><%= student.fullName %></td>
             <td>
-              <% if(student.StudentSubject.score) { %>
-                <%= student.StudentSubject.score %>
+              <% if(student.score) { %>
+                <%= student.score %>
               <% } else { %>
-                <a href="/subjects/<%= dataSubject.id %>/<%= student.id %>/givescore">Give Score</a>
+                <a href="/subjects/<%= student.id %>/givescore">Give Score</a>
               <% } %>
             </td>
             <td></td>
