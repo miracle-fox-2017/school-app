@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 		include : [{
 			model : Model.Teacher
 		}],
-		order : [['id']]
+		order : [['id', 'ASC']]
 	}).then(subjects =>{
 		res.render('subjects/list', {subjects})
 	})
@@ -21,10 +21,7 @@ router.get('/:id/enrolledstudents', (req, res)=> {
 			order : [['first_name']]
 		}],
 	}).then(subjects =>{
-		console.log(subjects.Students[0].StudentSubject.score)
-
-
-			res.render('subjects/enrolled_students', {subjects})
+		res.render('subjects/enrolled_students', {subjects})
 		})
 })
 
