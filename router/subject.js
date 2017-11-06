@@ -51,15 +51,6 @@ router.get('/:id/enrolledstudents', function(req,res) {
 // })
 
 router.get('/:id/givescore', function(req,res) {
-	// model.StudentSubject.findById(req.params.id, {
-	// 	include : [model.Subject,model.Student],
-	// }).then(inputScore => {
-	// 	console.log(inputScore)
-	// 	res.render('insertScore', {student : inputScore})
-	// })
-	// .catch(err => {
-	// 	res.send(err)
-	// })
 	model.StudentSubject.findOne({
 		attributes : ['id', 'StudentId', 'SubjectId', 'score'],
 		include : [model.Subject,model.Student],
@@ -75,7 +66,6 @@ router.get('/:id/givescore', function(req,res) {
 
 router.post('/:id/givescore', function(req,res) {
 	console.log(req.body)
-	// console.log(req.params.id)
 	model.StudentSubject.update( {score : req.body.score}, {
 		attributes : ['id', 'StudentId', 'SubjectId', 'score'],
 		where : {
