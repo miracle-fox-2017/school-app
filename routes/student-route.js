@@ -54,8 +54,14 @@ router.get('/delete/:id', (req, res) => {
 			id: req.params.id
 		}
 	}).then(success =>{
+		Model.StudentSubject.destroy({
+			where: {
+				StudentId: req.params.id
+			}
+		})
 		res.redirect('/students');
 	}).catch(err => res.send(err));
+
 })
 
 router.get('/:id/addsubject', (req, res) => {
