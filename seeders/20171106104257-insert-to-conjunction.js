@@ -12,10 +12,10 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.addColumn('Teachers', 'SubjectId', {type:Sequelize.INTEGER})
+    return queryInterface.addColumn('StudentSubjects', 'score', {type:Sequelize.INTEGER})
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Teachers', 'SubjectId')
+    return queryInterface.removeColumn('StudentSubjects', 'score')
   }
 };
