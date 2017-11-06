@@ -30,7 +30,7 @@ router.post('/add', (req, res) =>{
     }).catch(err =>{
       console.log(err);
       if(err){
-      res.render('students/add',{error:err.message})
+      res.render('students/add',{error:err.errors[0]})
       }
     })
 })
@@ -48,14 +48,17 @@ router.post('/edit/:id', (req,res) =>{
   let email = req.body.email
 
   model.Student.update(
-    {
-      id:req.params.id,
-      first_name:first_name,
-      last_name:last_name,
-      email:email
-    }, {where: {id:req.params.id}}).then(() =>{
-      res.redirect('/students')
-    })
+  {
+    id:req.params.id,
+    first_name:first_name,
+    last_name:last_name,
+    email:email
+  }, {where: {id:req.params.id}}).then(() =>{
+    res.redirect('/students')
+  })
+  .catch(err => {
+    console.log(err);
+  })
 })
 
 

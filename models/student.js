@@ -6,20 +6,22 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail: true
-        // isUnique: function(value, callback){
-        //   console.log(this.dataValues.id, '----------------------');
-        //   if(this.dataValues.id == '' || this.dataValues.id == null){
-        //
-        //     Student.findAll({where:{email:value}}).then(rows =>{
-        //       if(rows.length > 0){
-        //         return callback('Email Double')
-        //       }else{
-        //         callback()
-        //       }
-        //     })
-        //   }
-        // }
+        isEmail: true,
+
+
+        isUnique: function(value, callback){
+          if(this.dataValues.id == '' || this.dataValues.id == null){
+            Student.findAll({where:{email:value}}).then(rows =>{
+              if(rows.length > 0){
+                callback('Email address already in use')
+              }else{
+                callback()
+              }
+            })
+          } else {
+            callback()
+          }
+        }
       }
     }
   });

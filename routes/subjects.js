@@ -75,19 +75,19 @@ router.get('/:id/enrolledStudent', (req, res) => {
     where:{SubjectId:req.params.id},
     include:[
       {model:model.Student}
-    ]
+    ],
+    order: [ [ { model: model.Student, as: 'Student' }, 'first_name', 'ASC'] ],
   })
   .then(dataSubject => {
     model.Subject.findById(req.params.id).then(rows =>{
        res.render('subjects/enrolledstudents', {dataSubject:dataSubject, subject_name:rows.subject_name})
     })
-  //
   })
 })
 
 
 router.get('/:id/givescores', (req, res) => {
-  console.log(req.params);
+  //console.log(req.params);
   model.StudentSubject.findOne({
     where:{id:req.params.id},
     include:[
@@ -104,7 +104,7 @@ router.get('/:id/givescores', (req, res) => {
 router.post('/:id/givescores', (req, res) => {
   model.StudentSubject.update(
     {score: req.body.score},
-    {where:{id:req.params.id}}
+    {where:{StudentId:req.body.StudentId, SubjectId:req.body.SubjectId}}
   )
   .then(() => {
     res.redirect('/subjects')

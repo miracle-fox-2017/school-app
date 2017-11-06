@@ -10,9 +10,9 @@
       <th>Students Name</th>
       <th>Score</th>
       <th>Desc</th>
-        <%dataSubject.forEach(item => {%>
+        <%dataSubject.forEach((item, index) => {%>
       <tr>
-          <td></td>
+          <td><%=index + 1%></td>
           <td>
             <%if(item.Student !== null){%>
             <%=item.Student.getFullName()%>

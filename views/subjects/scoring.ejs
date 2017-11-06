@@ -10,7 +10,9 @@
       </div>
       <div class="field">
         <label>Score</label>
-        <input type="integer" name="score" value=""><br>
+        <input type="text" name="score" value=""><br>
+        <input type="hidden" name='StudentId' value="<%=data.StudentId%>">
+        <input type="hidden" name='SubjectId' value="<%=data.SubjectId%>">
       </div>
         <button class="ui button" type="submit">Submit</button>
   </form>

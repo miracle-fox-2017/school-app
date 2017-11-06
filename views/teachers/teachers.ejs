@@ -19,8 +19,9 @@
       </thead>
 
       <tbody>
-        <%dataTeachers.forEach(item =>{%>
+        <%dataTeachers.forEach((item, index) =>{%>
           <tr>
+              <td><%=index + 1%></td>
               <td><%=item.id%></td>
               <td><%=item.first_name%></td>
               <td><%=item.last_name%></td>
