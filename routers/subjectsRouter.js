@@ -17,13 +17,14 @@ router.get('/', (req,res) => {
 router.get('/:id/enrolledstudents', (req, res) => {
   db.Subject.findById(req.params.id, {
     include: [{
-      model:db.Students_Subject, include:[{
-        model:db.Student
-      }]
+      model:db.Students_Subject,
+      include:[{
+        model:db.Student,
+        order: [[db.Student, 'first_name', 'ASC']]
+        }]
     }]
   })
   .then(results => {
-    // results.getStudents().
     res.render('enrolledstudents', {results})
   })
 })
