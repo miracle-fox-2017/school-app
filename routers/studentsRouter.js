@@ -3,7 +3,10 @@ const db = require(`../models`);
 const router = express.Router();
 
 router.get('/', (req,res) => {
-  db.Student.findAll().then((results) => {
+  db.Student.findAll({
+    order: [['first_name', 'ASC']]
+  }
+  ).then((results) => {
     res.render('students', {results});
   }).catch((err) => {
     console.log(err);

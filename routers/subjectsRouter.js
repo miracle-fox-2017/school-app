@@ -23,6 +23,7 @@ router.get('/:id/enrolledstudents', (req, res) => {
     }]
   })
   .then(results => {
+    // results.getStudents().
     res.render('enrolledstudents', {results})
   })
 })

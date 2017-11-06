@@ -5,10 +5,12 @@ const router = express.Router();
 
 router.get('/', (req,res) => {
   db.Teacher.findAll({
-    include: [db.Subject]
+    include: [db.Subject],
+    order: [['first_name', 'ASC']]
   }).then((results) => {
     res.render('teachers', {results});
   }).catch((err) => {
+    console.log(err);
     res.send(err);
   })
 })

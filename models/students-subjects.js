@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var Students_Subject = sequelize.define('Students_Subject', {
     id: {
       primaryKey: true,
+      autoIncrement: true,
       type: DataTypes.INTEGER
     },
     StudentId: DataTypes.INTEGER,
