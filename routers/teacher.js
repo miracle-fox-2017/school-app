@@ -47,13 +47,18 @@ route.post('/edit/:id',(req,res) => {
 
 
 route.get('/add',(req,res)=>{
-  res.render('addTeacher')
+  let err  ='';
+  res.render('addTeacher',{err : err})
 })
 
 route.post('/add',(req,res)=>{
   Models.Teacher.create({ first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email })
   .then(task=>{
       res.redirect('/teacher')
+  })
+  .catch(err =>{
+      err = err.errors[0].type +' : ' + err.errors[0].message
+      res.render('studentAdd',{err})
   })
 })
 

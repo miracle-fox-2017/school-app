@@ -44,17 +44,27 @@ route.get('/',(req,res)=>{
 })
 
 route.get('/:id/enrolledstudents',(req,res) => {
-  Models.Subject.findById(req.params.id).then(subjects => {
-
-      subjects.getSubjectWithStudents().then(subjectstudent =>{
-          let newsubject = subjectstudent.map( data => {
-            return new Promise ((resolve, reject) => {
-              subjectstudent.getStudents().then(student=>{
-                subjects.student = student;
-                resolve(subjects)
-              })
-            })
-          })
+  Models.Subject.findById(req.params.id,{
+    include: [{
+      model : Models.SubjectWithStudent,
+      include : [{
+        model : Models.Student,
+        order : [[Models.Student,'first_name', 'ASC']]
+      }]
+    }]
+  })
+  .then(subjects => {
+    console.log(subjects);
+      // subjects.getSubjectWithStudents().then(subjectstudent =>{
+      //     let newsubject = subjectstudent.map( data => {
+      //       console.log(data);
+      //       return new Promise ((resolve, reject) => {
+      //         data.getStudents().then(student=>{
+      //           subjects.student = student;
+      //           resolve(subjects)
+      //         })
+      //       })
+      //     })
 
 
     // Models.SubjectWithStudent.findAll({where: {subjectId:req.params.id}}).then( subject => {
@@ -69,18 +79,40 @@ route.get('/:id/enrolledstudents',(req,res) => {
     //     })
     //   })
 
-      Promise.all(newsubject).then(subjectwithstudent => {
-        // console.log(subjectwithstudent);
-        // res.send(subjectwithstudent)
-        res.render('enrolledstudents',{subject : subjectwithstudent})
-      })
-    })
+    //   Promise.all(newsubject).then(subjectwithstudent => {
+    //     // console.log(subjectwithstudent);
+    //     // res.send(subjectwithstudent)
+        res.render('enrolledstudents',{subjects : subjects})
+    //   })
+    // })
   })
     // let newsubject = subjects.map( subject)
     // res.render('enrolledstudents',{subject : subjects})
   // })
 
 })
+
+route.get('/:subjectid/:studentid/givescore',(req,res) => {
+  Models.Subject.findById(req.params.subjectid)
+  .then(subject => {
+    Models.Student.findById(req.params.studentid)
+    .then(student => {
+      // res.send(student)
+      res.render('givescore',{subject : subject , student : student})
+    })
+  })
+  // res.render('giveScore')
+})
+
+
+route.post('/:subjectid/:studentid/givescore',(req,res)=>{
+  Models.SubjectWithStudent.update({score : req.body.score},{where : {subjectId : req.params.subjectid ,studentId : req.params.studentid}})
+  .then( data =>{
+    res.redirect(`/subject/${req.params.subjectid}/enrolledstudents`)
+  })
+
+})
+
 
 
 

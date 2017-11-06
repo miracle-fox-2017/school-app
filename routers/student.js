@@ -45,7 +45,8 @@ route.post('/edit/:id',(req,res)=>{
 })
 
 route.get('/delete/:id',(req,res)=>{
-  Model.Student.destroy({where :{id : req.params.id},truncate: true}).then(()=>{
+  Model.Student.destroy({where :{id : req.params.id}}).then(()=>{
+    Model.SubjectWithStudent.destroy({where :{studentId : req.params.id}})
     res.redirect('/student')
   })
 })

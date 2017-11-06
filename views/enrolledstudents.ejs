@@ -6,25 +6,58 @@
     <style media="screen">
       div{
         text-align: center;
-      }
-      td{
+      }h2{
         text-align: center;
+      }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      form{
+        text-align: center;
+        padding: 20px
       }
     </style>
   </head>
   <body>
     <div class="">
-      <h1><%=subject.subject_name%></h1>
+      <h1><%=subjects.subject_name%></h1>
       <a href="/subject">Return All Subject Data</a>
     </div>
     <div class="">
       <table>
         <thead>
           <tr>
+            <td>NO</td>
             <td>Name</td>
             <td>Score</td>
           </tr>
         </thead>
+            <%subjects.SubjectWithStudents.forEach((students,index) =>{%>
+              <tr>
+                <td><%=index + 1%></td>
+                <td><%=students.Student.fullName%></td>
+
+                <% if (students.score == null){ %>
+                  <td><a href="/subject/<%=students.subjectId%>/<%=students.studentId%>/givescore">Give Score</a></td>
+                <% } %>
+                <% if (students.score != null){%>
+                  <td><%=students.score%></td>
+                <% } %>
+              </tr>
+
+            <%})%>
 
       </table>
     </div>
