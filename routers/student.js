@@ -60,6 +60,8 @@ router.get('/:id/addsubject', (req, res) => {
 router.post('/:id/addsubject', (req, res) => {
   model.StudentSubject.create({StudentId: req.params.id, SubjectId: req.body.id}).then(() => {
     res.redirect('/students')
+  }).catch((err) => {
+    res.send(err)
   })
 })
 

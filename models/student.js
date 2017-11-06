@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             where: {email: value}
           }).then((result) =>{
             if(result && this.id != result.id) {
-              callback('email dah ada')
+              callback('email dah ada', value)
             }
             else {
               callback()
