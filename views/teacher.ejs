@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs",{title:"Teacher"}) %>
+    <a href="/teachers/add">Add</a>
+    <table border="1">
+        <tr>
+            <td>No</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Subject</td>
+            <td>Action</td>
+        </tr>
+    <% 
+    
+     let no = 1;
+
+     dataTeachers.forEach(rows => { 
+        
+    %>
+
+        <tr>
+            <td>
+                <%= no %>
+            </td>
+            <td>
+                <%= rows.getFullname() %>
+            </td>
+            <td>
+                <%= rows.email %>
+            </td>
+            <td>
+                <% if(rows.subject == null){ %>
+
+                    <p>Unassigned</p>
+
+                <% }else{ %>
+
+                    <p><%= rows.subject.subject_name %></p>
+
+                <% } %>
+            </td>
+            <td>
+                <a href="/teachers/edit/<%= rows.id %>">Edit</a> | <a href="/teachers/delete/<%= rows.id %>">Delete</a>
+            </td>
+        </tr>
+
+    <% 
+
+    no++;
+
+    });
+    
+    %>
+    </table>
+<%- include partials/footer.ejs %>

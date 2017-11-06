@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs",{title:"Enrolled"}) %>
+
+    <h3>
+        <% if(dataSubjects[0]) { %>
+            <%=  dataSubjects[0].subject.subject_name %>
+        <% } %>
+    </h3>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Score</td>
+        </tr>
+        <% dataSubjects.forEach((rows) => { %>
+
+            <tr>
+                <td><%= rows.student.getFullname() %></td>
+                <td>
+                    <% if( rows.score == 'empty' ) { %>
+                        <a href="/subjects/<%= rows.id %>/givescore">give score</a>
+                    <% } else { %>
+                        <%= rows.score %>
+                    <% } %>
+                </td>
+            </tr>
+
+        <% }) %>
+    </table>
+<%- include partials/footer.ejs %>

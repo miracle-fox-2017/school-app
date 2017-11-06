@@ -1,0 +1,12 @@
+<%- include("partials/header.ejs",{title:"Edit Subject"}) %>
+
+    <% if(error != null){ %>
+        <p>
+            <%= error %>
+        </p>
+        <% } %>
+            <form action="/subjects/edit/<%= dataSubjects.id %>" method="post">
+                <input type="text" name="subject_name" placeholder="First Name" value="<%= dataSubjects.subject_name %>">
+                <input type="submit" value="Edit">
+            </form>
+<%- include partials/footer.ejs %>

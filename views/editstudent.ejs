@@ -1,0 +1,14 @@
+<%- include("partials/header.ejs",{title:"Add Student"}) %>
+
+    <% if(error != null){ %>
+        <p>
+            <%= error %>
+        </p>
+    <% } %>
+    <form action="/students/edit/<%= dataStudents.id %>" method="post">
+        <input type="text" name="first_name" placeholder="First Name" value="<%= dataStudents.first_name %>">
+        <input type="text" name="last_name" placeholder="Last Name" value="<%= dataStudents.last_name %>">
+        <input type="text" name="email" placeholder="Email" value="<%= dataStudents.email %>">
+        <input type="submit" value="Edit">
+    </form>
+<%- include partials/footer.ejs %>

@@ -1,0 +1,9 @@
+<%- include("partials/header.ejs",{title:"Give Score"}) %>
+
+    <p>Name : <%= dataSubjects.student.first_name %></p> 
+    <p>Subject : <%= dataSubjects.subject.subject_name %></p>
+        <form action="/subjects/<%= dataSubjects.id %>/givescore" method="post">
+            <input type="text" name="score" placeholder="Score">
+            <input type="submit" value="Simpan">
+        </form>
+<%- include partials/footer.ejs %>

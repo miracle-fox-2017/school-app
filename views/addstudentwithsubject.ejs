@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs",{title:"Add Student Subject"}) %>
+
+    <table>
+        <tr>
+            <td><%= dataStudents.first_name %></td>
+        </tr>
+        <tr>
+            <td><%= dataStudents.last_name %></td>
+        </tr>
+        <tr>
+            <td><%= dataStudents.email %></td>
+        </tr>
+    </table>
+    <form action="/students/<%= dataStudents.id %>/addsubject" method="post">
+        <input type="hidden" name="studentId" value="<%= dataStudents.id %>">
+        <select name="subjectId">
+            <% dataSubject.forEach((row) => { %>
+                <option value="<%= row.id %>"><%= row.subject_name %></option>
+            <% }) %>
+        </select>
+        <input type="submit" value="Simpan">
+    </form>
+<%- include partials/footer.ejs %>
