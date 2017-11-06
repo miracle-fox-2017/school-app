@@ -6,9 +6,7 @@
     <title>Teachers</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Teachers List</h1>
-    </div>
+    <%-include("./partials/navigation",{title:"Teachers List"})%>
     <a href="/teachers/add">Tambah Guru</a>
     <div class="content">
         <%if(teachersRows.length === 0){%>

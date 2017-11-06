@@ -6,9 +6,7 @@
     <title>Subjects</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Subjects List</h1>
-    </div>
+    <%-include("./partials/navigation",{title:"Subjects List"})%>
     <div class="content">
         <%if(subjectRows.length === 0){%>
             <div class="empty">

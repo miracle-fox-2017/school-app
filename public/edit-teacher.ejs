@@ -6,9 +6,7 @@
     <title>Edit Teacher</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Edit Teacher</h1>
-    </div>
+    <%-include("./partials/navigation",{title:"Edit Teacher"})%>
     <a href="/teachers">Back</a>
     <%if(error.length > 0){%>
         <h1><%=error%></h1>

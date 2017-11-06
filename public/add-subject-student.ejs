@@ -6,9 +6,7 @@
     <title>Add Subject to <%=murid.fullname%></title>
 </head>
 <body>
-    <div class="header">
-        <h1>Add Subject to <%=murid.fullname%></h1>
-    </div>
+    <%-include("./partials/navigation",{title:"Add Subject"})%>
     <a href="/students">Back</a>
     <div class="content">
         <form action="/students/<%=murid.id%>/addsubject" method="post">

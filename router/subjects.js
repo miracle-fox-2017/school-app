@@ -47,7 +47,6 @@ router.get("/:id/enrolledstudents",(req,res)=>{
                 });
             });
             Promise.all(getId).then((hasil)=>{
-                console.log(hasil);
                 res.render("students-enrolled",{students:hasil});
             });
         });
