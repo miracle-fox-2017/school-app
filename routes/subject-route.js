@@ -15,14 +15,14 @@ router.get('/', function (req, res) {
 router.get('/:subjectId/enrolledstudents', function (req, res) {
 	Model.StudentSubject.findAll(
 	{
+		order: [ [{model: Model.Student}, 'first_name', 'ASC'] ],
 		attributes: ['id', 'StudentId', 'SubjectId', 'Score'],
 		where: {
 			SubjectId: req.params.subjectId,
 		},
 		include: [{
 			model: Model.Student,
-		}],
-		order: [ [ { model: Model.Student, as: 'Student' }, 'first_name', 'ASC'] ]
+		}]
 	}).then(allStudentSubjectData => {
 
 		Model.Subject.findOne({
