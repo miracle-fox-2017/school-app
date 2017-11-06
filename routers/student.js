@@ -6,12 +6,36 @@ const db = require('../models')
 
 //menampilkan semua data Student
 router.get('/', (req,res) => {
-  db.Student.findAll().then((dataStudents) => {
+  db.Student.findAll({
+    order:[['first_name','ASC']]
+  }).then((dataStudents) => {
     res.render('students',{dataStudents});
+  }).catch((err)=>{
+    console.log(err);
+  })
+})
+
+//menampilkan input data subject
+router.get('/:id/addsubject',(req,res)=>{
+  db.Student.findById(req.params.id).then((dataStudents) => {
+    db.Subject.findAll().then(dataSubjects => {
+      res.render('addSubjectsToStudents',{dataStudents,dataSubjects});
+  })
 }).catch((err)=>{
-  console.log(err);
+    console.log(err);
+  })
 })
+
+//menerima input data subject
+router.post('/:id/addsubject',(req,res)=>{
+  // console.log(req.body);
+  db.SubjectStudent.create(req.body).then((data) => {
+      res.redirect('/students');
+    }).catch((err)=>{
+    console.log(err);
+    })
 })
+
 
 //mengirim data yang sudah di input
 router.get('/add',(req,res) => {

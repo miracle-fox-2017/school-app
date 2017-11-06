@@ -14,6 +14,7 @@ const db = require('../models')
 // })
 router.get('/', (req,res) => {
   db.Teacher.findAll({
+    order:[['first_name','ASC']],
     include: [db.Subject]
   }).then((results) => {
     res.render('teachers', {results});
@@ -27,7 +28,9 @@ router.get('/add', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
+
     db.Teacher.create(req.body).then((user) => {
+
         res.redirect('/teachers');
     }).catch((err) => {
         res.render('addteachers', { error: err.errors[0].message });
@@ -57,10 +60,7 @@ router.get('/edit/:id', (req, res) => {
 router.post('/edit/:id', (req, res) => {
     db.Teacher.update(req.body, { where: { id: req.params.id } }).then((dataTeachers) => {
         res.redirect('/teachers');
-    }).catch((err) => {
-        db.student.findById(req.params.id).then((dataTeachers) => {
-            res.render('editteacher', { dataTeachers, error: err.errors[0].message });
-        })
+      }).catch((err) => {
     });
 });
 

@@ -8,18 +8,23 @@
     <table border="1">
       <tr>
 
-        <th>Full Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Email</th>
+        <th>Action</th>
       </tr>
       <%dataStudents.forEach((dataparams)=>{%>
         <tr>
-          <td><%=dataparams.getFullname()%></td>
+          <td><%=dataparams.first_name%></td>
+          <td><%=dataparams.last_name%></td>
           <td><%=dataparams.email%></td>
+          <td><a href="/students/<%=dataparams.id%>/addsubject">Add Subjects</a></td>
           <td><a href="/students/edit/<%=dataparams.id%>"> Edit </td>
           <td><a href="/students/delete/<%dataparams.id%>"> Delete </td>
         </tr>
       <%})%>
     </table>
-    <a href="/teachers/add">Add Students</a>
+    <a href="/students/add">Add Students</a>
+
   </body>
 </html>

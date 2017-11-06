@@ -9,6 +9,8 @@
       <tr>
         <th>ID</th>
         <th>Subject Name</th>
+        <th>Teachers List</th>
+        <th>Actions</th>
 
       </tr>
 
@@ -27,6 +29,7 @@
                </li>
              </ul>
            <%})%>
+           <td><a href="/subjects/<%=result.id%>/enrolledstudents">Enrolled Students</a></td>
          <%}%>
          </td>
          </tr>

@@ -21,16 +21,15 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  },
-  {
-    classMethods: {
-
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
 
+  //CLASS METHOD
+  Student.associate = function(models) {
+        Student.belongsToMany(models.Subject,{through:"SubjectStudent"})
+        Student.hasMany(models.SubjectStudent)
+  }
+
+  //INSTANCE METHOD
   Student.prototype.getFullname = function() {
     return `${this.first_name} ${this.last_name}`;
   }

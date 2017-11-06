@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Subjects to Student</title>
+  </head>
+  <body>
+      <table border="1">
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Subjects</th>
+
+        </tr>
+          <tr>
+              <td><%=dataStudents.getFullname()%></td>
+              <td><%=dataStudents.email%></td>
+              <form class="" action="/students/<%=dataStudents.id%>/addsubject" method="post">
+                <input type="hidden" name="StudentId" value="<%=dataStudents.id%>">
+                <td><select name="SubjectId">
+                    <option> ---- SELECT----</option>
+                      <%  dataSubjects.forEach(function(list){ %>
+                        <% if(list.id ===   dataStudents.SubjectId){ %>
+                          <option value="<%= list.id%>" selected> <%= list.subject_name %> </option>
+                        <%} else {%>
+                          <option value="<%= list.id%>"> <%= list.subject_name %> </option>
+                        <% } %>
+                      <%})%>
+                </select></td>
+                <td> <input type="submit" value="SAVE"></td>
+              </form>
+        </tr>
+      </table>
+      <tr>
+        <td><a href="/students"> View All Students </td>
+      </tr>
+  </body>
+</html>

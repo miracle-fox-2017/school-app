@@ -17,6 +17,16 @@
               <td><input type="text" name="first_name" value="<%=dataTeachers.first_name%>"></td>
               <td><input type="text" name="last_name" value="<%=dataTeachers.last_name%>"></td>
               <td><input type="text" name="email" value="<%=dataTeachers.email%>"></td>
+              <select name="SubjectId">
+                <option> ---- SELECT----</option>
+                  <%  dataSubjects.forEach(function(list){ %>
+                    <% if(list.id ===   dataTeachers.SubjectId){ %>
+                      <option value="<%= list.id%>" selected> <%= list.subject_name %> </option>
+                    <%} else {%>
+                      <option value="<%= list.id%>"> <%= list.subject_name %> </option>
+                    <% } %>
+                  <%})%>
+              </select>
               <td> <input type="submit" value="SAVE"></td>
           </form>
         </tr>

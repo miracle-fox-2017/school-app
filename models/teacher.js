@@ -20,11 +20,15 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Maaf Format Email Anda Salah"
         }
       }
-    }
+    },
+    SubjectId: DataTypes.INTEGER
   });
 
   Teacher.associate = function(models) {
       Teacher.belongsTo(models.Subject,{foreignKey:"SubjectId"})
+  }
+  Teacher.prototype.getFullname = function() {
+    return `${this.first_name} ${this.last_name}`;
   }
   return Teacher;
 
