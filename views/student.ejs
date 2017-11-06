@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Students</title>
-</head>
-<body>
-	<%include ./partials/menu %>
+<%- include('partials/header', {title: 'Student'})  %>
+
+<main class="content">
 	<div style="text-align: center;"  class="header">
 		<h1 style="text-align: center;">Student Data</h1>
 		<a href="/students/add">Add Student</a>
@@ -53,5 +48,6 @@
 			return confirm("Delete this student?");
 		}
 	</script>
-</body>
-</html>
+</main>
+
+<%- include('partials/footer')  %>

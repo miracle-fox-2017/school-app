@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Subject</title>
-</head>
-<body>
-	<%include ./partials/menu %>
+<%- include('partials/header', {title: 'Subject'})  %>
+
+<main class="content">
 	<h1 style="text-align: center;">Subjects</h1>
 
 	<table width="100%" border="1">
@@ -39,5 +34,6 @@
 			<% }); %>
 		</tbody>
 	</table>
-</body>
-</html>
+</main>
+
+<%- include('partials/footer')  %>

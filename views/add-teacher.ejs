@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Add Teacher</title>
-</head>
-<body>
-	<%include ./partials/menu %>
+<%- include('partials/header', {title: 'Add Teacher'})  %>
+
 	<div class="header" style="text-align: center;">
 		<h1>Add Teacher Data</h1>
 		<a href="/teachers">Show all data</a>
@@ -25,12 +19,12 @@
 
 			<select name="SubjectId" id="SubjectId">
 					<option value="">Pilih Subject</option>
-				<% subjects.forEach((subject, index) => { %>
-					<option <%= (teacherFound.SubjectId == subject.id) ? 'selected' : '' %> value="<%= subject.id  %>"><%= subject.subject_name  %></option>
-				<% }); %>
+					<% subjects.forEach((subject, index) => { %>
+						<option <%= (typeof teacherFound != 'undefined' && teacherFound.SubjectId == subject.id) ? 'selected' : '' %> value="<%= subject.id  %>"><%= subject.subject_name  %></option>
+					<% }); %>
 			</select>
 			<input type="submit" value="Submit">
 		</form>
 	</div>
-</body>
-</html>
+
+<%- include('partials/footer')  %>

@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Enrolled Student</title>
-</head>
-<body>
-	<%include ./partials/menu %>
+<%- include('partials/header', {title: 'Enrolled Students'})  %>
+
 	<div style="text-align: center;">
 		<h1><%= foundSubject.subject_name %></h1>
 		<a href="/subjects">Return to Subjects</a>
@@ -41,5 +35,5 @@
 	<%} else { %>
 		<h3 style="text-align: center;">Belum ada murid</h3>
 	<% } %>
-</body>
-</html>
+
+<%- include('partials/footer')  %>

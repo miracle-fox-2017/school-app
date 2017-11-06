@@ -1,35 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Add Student</title>
-</head>
-<body>
- 	<%include ./partials/menu %>
+<%- include('partials/header', {title: 'Tambah Student'})  %>
 
-	<div class="header" style="text-align: center;">
-		<h1>Add Student Data</h1>
-		<a href="/students">Show all data</a>
-		<br><br>
-	</div>
+	<main class="content">
+		<div class="header" style="text-align: center;">
+			<h1>Add Student Data</h1>
+			<a href="/students">Show all data</a>
+			<br><br>
+		</div>
 
-	<% if(typeof studentFound !== 'undefined' && studentFound !== null) { %>
-		<h5 style="text-align: center;">Editing user <%= studentFound.first_name %></h5>
-	<% } %>
+		<% if(typeof studentFound !== 'undefined' && studentFound !== null) { %>
+			<h5 style="text-align: center;">Editing user <%= studentFound.first_name %></h5>
+		<% } %>
 
-	<% if (typeof message !== 'undefined' && message !== null){ %>
-		<p style="text-align: center; color:red;"><%= message %></p>
-	<% } %>
+		<% if (typeof message !== 'undefined' && message !== null){ %>
+			<p style="text-align: center; color:red;"><%= message %></p>
+		<% } %>
 
-	<div style="text-align: center;">
-		<form action="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? '/students/edit' : '/students/add ' %>" method="POST">
-			<input type="hidden" name="id" id="id" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.id : '' %>">
-			<input type="text" name="first_name" id="first_name" placeholder="First name" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.first_name : '' %>">
-			<input type="text" name="last_name" id="last_name" placeholder="Last name" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.last_name : '' %>">
-			<input type="text" name="email" id="email" placeholder="email" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.email : '' %>">
+		<div style="text-align: center;">
+			<form action="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? '/students/edit' : '/students/add ' %>" method="POST">
+				<input type="hidden" name="id" id="id" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.id : '' %>">
+				<input type="text" name="first_name" id="first_name" placeholder="First name" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.first_name : '' %>">
+				<input type="text" name="last_name" id="last_name" placeholder="Last name" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.last_name : '' %>">
+				<input type="text" name="email" id="email" placeholder="email" value="<%= (typeof studentFound !== 'undefined' && studentFound !== null) ? studentFound.email : '' %>">
 
-			<input type="submit" value="Submit">
-		</form>
-	</div>
-</body>
-</html>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+	</main><!-- /.content -->
+
+<%- include('partials/footer')  %>

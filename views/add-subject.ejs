@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Add Subject</title>
-</head>
-<body>
-	<%include ./partials/menu %>
+<%- include('partials/header', {title: 'Tambah Subject'})  %>
+
+<main class="content">
 	<div class="header" style="text-align: center;">
 		<h1>Add Subject Data</h1>
 		<a href="/students">Show all data</a>
@@ -33,5 +28,6 @@
 				<input type="submit" value="Kirim">
 			</form>
 	</div>
-</body>
-</html>
+</main>
+
+<%- include('partials/footer')  %>

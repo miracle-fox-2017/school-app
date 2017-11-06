@@ -1,51 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Daftar Teacher</title>
-</head>
-<body>
-	<%include ./partials/menu %>
-	<div style="text-align: center;"  class="header">
-		<h1 style="text-align: center;">Teacher Data</h1>
-		<a href="/teachers/add">Add Teacher</a>
-		<br>
-		<br>
-	</div>
+<%- include('partials/header', {title: 'Teacher'})  %>
 
-	<table width="100%" border="1">
-		<thead>
-			<tr>
-				<th>No</th>
-				<th>Id</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Subject</th>
-				<th>Action</th>
-			</tr>
-		</thead>
+	<main class="content">
+		<div style="text-align: center;"  class="header">
+			<h1 style="text-align: center;">Teacher Data</h1>
+			<a href="/teachers/add">Add Teacher</a>
+			<br>
+			<br>
+		</div>
 
-		<tbody>
-			<% teachersSubjects.forEach( function(teacher, index) { %>
+		<table width="100%" border="1">
+			<thead>
 				<tr>
-					<td><%= index + 1 %></td>
-					<td><%= teacher.id %></td>
-					<td><%= teacher.first_name %></td>
-					<td><%= teacher.last_name %></td>
-					<td><%= teacher.email %></td>
-					<% if (teacher.subject_data.subject_name == null){ %>
-						<td><%= teacher.subject_data %></td>
-					<%} else { %>
-						<td><%= teacher.subject_data.subject_name %></td>
-					<% } %>
-					<td>
-						<a href="/teachers/edit/<%= teacher.id %>">Edit</a>
-						<a href="/teachers/delete/<%= teacher.id %>">Delete</a>
-					</td>
+					<th>No</th>
+					<th>Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Subject</th>
+					<th>Action</th>
 				</tr>
-			<% }); %>
-		</tbody>
-	</table>
-</body>
-</html>
+			</thead>
+
+			<tbody>
+				<% teachersSubjects.forEach( function(teacher, index) { %>
+					<tr>
+						<td><%= index + 1 %></td>
+						<td><%= teacher.id %></td>
+						<td><%= teacher.first_name %></td>
+						<td><%= teacher.last_name %></td>
+						<td><%= teacher.email %></td>
+						<% if (teacher.subject_data.subject_name == null){ %>
+							<td><%= teacher.subject_data %></td>
+						<%} else { %>
+							<td><%= teacher.subject_data.subject_name %></td>
+						<% } %>
+						<td>
+							<a href="/teachers/edit/<%= teacher.id %>">Edit</a>
+							<a href="/teachers/delete/<%= teacher.id %>">Delete</a>
+						</td>
+					</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</main>
+
+<%- include('partials/footer')  %>
