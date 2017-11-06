@@ -9,10 +9,11 @@ const teacherRoute = require('./routes/teacher-route');
 const subjectRoute = require('./routes/subject-route');
 const studentRoute = require('./routes/student-route');
 
-
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.locals.Helper = require('./helpers/helper')
 
 app.use('/', indexRoute);
 app.use('/teachers', teacherRoute);
