@@ -1,0 +1,18 @@
+<%- include('partial/header', {title: title}) %>
+  <body>
+    <h1>Edit Teachers Data</h1>
+    <a href="/teachers">show all data</a>
+    <form class="" action="" method="post">
+      </br>First Name: <input type="text" name="first_name" value="<%= teacher.first_name %>" placeholder="first name">
+      </br>Last name: <input type="text" name="last_name" value="<%= teacher.last_name %>" placeholder="last_name">
+      </br>Email: <input type="text" name="email" value="<%= teacher.email %>" placeholder="email">
+      </br>Subjects:
+        <select class="" name="SubjectId">
+          <% subjects.forEach(s=>{ %>
+            <option value="<%= s.id %>" <% if(s.id==teacher.SubjectId){%><%= 'selected' %><% }%> ><%= s.subject_name %></option>
+          <% }) %>
+        </select>
+      </br><input type="submit" name="" value="UPDATE TEACHER">
+    </form>
+  </body>
+</html>

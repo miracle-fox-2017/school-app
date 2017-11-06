@@ -1,0 +1,29 @@
+<%- include('partial/header') %>
+  <body>
+    <h1><%= subject.subject_name %></h1>
+    <table border="1">
+      <tr>
+        <th>No</th>
+        <th>Id</th>
+        <th>Full Name</th>
+        <th>Score</th>
+        <th>Score Letter</th>
+      </tr>
+      <% data.forEach((s,i)=>{ %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= s.id %></td>
+          <td><%= s.Student.getFullName() %></td>
+          <td>
+            <% if(s.score!=null){ %>
+              <%= s.score %>
+            <% } else{ %>
+              <a href="/subjects/<%= s.id %>/givescore">Give Score</a>
+            <% } %>
+          </td>
+          <td><%= s.scoreLetter %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

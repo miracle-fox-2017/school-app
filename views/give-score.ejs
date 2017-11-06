@@ -1,0 +1,21 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Give Score</title>
+  </head>
+    <h1>Give Score</h1>
+    <a href="/students">Students</a> | <a href="/teachers/">Teachers</a> | <a href="/subjects/">Subjects</a><br><br> -->
+<%- include('partial/header', {title: title}) %>
+  <body>
+    <h1>Give Score</h1>
+    <form class="" action="" method="post">
+      <input type="hidden" name="StudentId" value="<%= student.id %>">
+      <input type="hidden" name="SubjectId" value="<%= subject.id %>">
+      Students Name : <%= student.getFullName() %><br>
+      Subject Name : <%= subject.subject_name %><br>
+      Score : <input type="text" name="score" value=""><br>
+      <input type="submit" name="" value="GIVE SCORE">
+    </form>
+  </body>
+</html>

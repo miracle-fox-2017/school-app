@@ -1,0 +1,15 @@
+<%- include('partial/header', {title: title}) %>
+  <body>
+    <h1>Adds Students Data</h1>
+    <a href="/students">show all data</a>
+    <% if(msg!=''){ %>
+      <%= msg %>
+    <% } %>
+    <form class="" action="" method="post">
+      </br> First Name: <input type="text" name="first_name" value="" placeholder="first name">
+      </br>Last name: <input type="text" name="last_name" value="" placeholder="last_name">
+      </br>Email: <input type="text" name="email" value="" placeholder="email">
+      </br><input type="submit" name="" value="ADD STUDENTS">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<%- include('partial/header', {title: title}) %>
+  <body>
+    <h1>Students Data</h1>
+    <table border="1">
+      <tr>
+        <th>No</th>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Action</th>
+        <th>Options</th>
+      </tr>
+      <% students.forEach((s,i)=>{ %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= s.id %></td>
+          <td><%= s.first_name %></td>
+          <td><%= s.last_name %></td>
+          <td><%= s.full_name %></td>
+          <td><%= s.email %></td>
+          <td><a href="/students/<%= s.id %>/addsubject">Add Subjects</a></td>
+          <td><a href="/students/edit/<%= s.id %>">Edit</a> | <a href="/students/delete/<%= s.id %>" onclick="return confirm('Delete this student?')">Delete</a></td>
+        </tr>
+      <% }) %>
+    </table>
+    </br><a href="/students/add">add student</a>
+  </body>
+</html>

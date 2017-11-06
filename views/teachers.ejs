@@ -1,0 +1,36 @@
+<%- include('partial/header', {title: title}) %>
+  <body>
+    <h1>Teachers Data</h1>
+    <table border="1">
+      <tr>
+        <th>No</th>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Action</th>
+      </tr>
+      <% teachers.forEach((t,i)=>{ %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= t.id %></td>
+          <td><%= t.first_name %></td>
+          <td><%= t.last_name %></td>
+          <td><%= t.full_name %></td>
+          <td><%= t.email %></td>
+          <td>
+            <% if(t.SubjectId==null){ %>
+              <%= 'unassigned' %>
+            <% }else{ %>
+              <%= t.subject.subject_name %>
+            <% } %>
+          </td>
+          <td><a href="/teachers/edit/<%= t.id %>">Edit</a> | <a href="/teachers/delete/<%= t.id %>">Delete</a></td>
+        </tr>
+      <% }) %>
+    </table>
+  </br><a href="/teachers/add">add teacher</a>
+  </body>
+</html>
