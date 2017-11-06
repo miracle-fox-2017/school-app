@@ -24,7 +24,15 @@ router.get('/:subjectId/enrolledstudents', function (req, res) {
 		}],
 		order: [ [ { model: Model.Student, as: 'Student' }, 'first_name', 'ASC'] ]
 	}).then(allStudentSubjectData => {
-		res.render('enrolled-student', {students: allStudentSubjectData});
+
+		Model.Subject.findOne({
+			where: {
+				id: req.params.subjectId,
+			}
+		}).then(foundSubject => {
+			res.render('enrolled-student', {foundSubject: foundSubject, students: allStudentSubjectData});
+		}).catch(err => res.send(err));
+
 	}).catch(err => res.send(err.message))
 })
 

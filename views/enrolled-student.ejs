@@ -6,36 +6,39 @@
 </head>
 <body>
 	<div style="text-align: center;">
-
+		<h1><%= foundSubject.subject_name %></h1>
 		<a href="/subjects">Return to Subjects</a>
 	</div>
 	<br /><br />
 
-
-	<table width="100%" border="1">
-		<thead>
-			<tr>
-				<th>No</th>
-				<th>Student Name</th>
-				<th>Score</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% students.forEach( function(student, index) { %>
+	<% if (students.length > 0){ %>
+		<table width="100%" border="1">
+			<thead>
 				<tr>
-				<td><%= index+1 %></td>
-					<td><%= student.Student.full_name(); %></td>
-					<td>
-						<% if(student.Score !== null) { %>
-								<%= student.Score; %>
-						<% } else { %>
-							<a href="/subjects/<%= student.id %>/givescore">Give Score</a>
-						<% } %>
-					</td>
+					<th>No</th>
+					<th>Student Name</th>
+					<th>Score</th>
 				</tr>
-			<%}); %>
-		</tbody>
-	</table>
+			</thead>
+
+			<tbody>
+				<% students.forEach( function(student, index) { %>
+					<tr>
+					<td><%= index+1 %></td>
+						<td><%= student.Student.full_name(); %></td>
+						<td>
+							<% if(student.Score !== null) { %>
+									<%= student.Score; %>
+							<% } else { %>
+								<a href="/subjects/<%= student.id %>/givescore">Give Score</a>
+							<% } %>
+						</td>
+					</tr>
+				<%}); %>
+			</tbody>
+		</table>
+	<%} else { %>
+		<h3 style="text-align: center;">Belum ada murid</h3>
+	<% } %>
 </body>
 </html>
