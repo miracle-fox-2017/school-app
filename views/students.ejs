@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <ul class="nav nav-tabs">
+          <li class=""><a href="/">Home</a></li>
+          <li><a href="/teachers">First Name</a></li>
+          <li><a href="/subjects">Last Name</a></li>
+          <li><a href="/students">Email</a></li>
+        </ul>
+      </header>
+      <div class="">
+        <div class="text-center">
+          <h1>Students Data</h1>
+          <a href="/students/add">Add Student</a>
+        </div>
+        <hr>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Firts Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Option</th>
+            </tr>
+          </thead>
+          <% rows.forEach(data=>{%>
+          <tbody>
+            <tr>
+              <td><%= data.id %></td>
+              <td><%= data.first_name %></td>
+              <td><%= data.last_name %></td>
+              <td><%= data.email %></td>
+            </tr>
+          </tbody>
+          <% });%>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

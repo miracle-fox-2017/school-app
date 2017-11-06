@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <ul class="nav nav-tabs">
+          <li class=""><a href="/">Home</a></li>
+          <li><a href="/teachers">Teachers</a></li>
+          <li><a href="/subjects">Subjects</a></li>
+          <li><a href="/students">Student</a></li>
+        </ul>
+      </header>
+      <div class="">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Subject Name</th>
+            </tr>
+          </thead>
+          <% rows.forEach(data=>{%>
+          <tbody>
+            <tr>
+              <td><%= data.id %></td>
+              <td><%= data.subject_name %></td>
+            </tr>
+          </tbody>
+          <% })  %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
