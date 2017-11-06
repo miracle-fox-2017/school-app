@@ -19,11 +19,21 @@
                 <tr>
                     <td>ID</td>
                     <td>Subject Name</td>
+                    <td>Teacher Name</td>
+                    <td>Enrolled Students</td>
                 </tr>
                 <%subjectRows.map((value)=>{%>
                 <tr>
                     <td><%=value.id%></td>
                     <td><%=value.subject_name%></td>
+                    <td>
+                        <%value.teacher.map((list)=>{%>
+                        <li style="list-style:decimal;"><%=list%></li>
+                        <%})%>
+                    </td>
+                    <td>
+                        <a href="/subjects/<%=value.id%>/enrolledstudents" target="_blank">Enrolled Students</a>
+                    </td>
                 </tr>
                 <%})%>
             </table>

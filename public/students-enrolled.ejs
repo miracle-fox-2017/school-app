@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Students Enrolled</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Students Enrolled</h1>
+        <h2><%=students[0].subject%></h2>
+    </div>
+    <a href="#" onclick="window.close()">Close</a>
+    <div class="content">
+        <table border="1">
+            <tr>
+                <td>No</td>
+                <td>Name</td>
+                <td>Score</td>
+            </tr>
+            <%students.map((value,i)=>{%>
+            <tr>
+                <td><%=i + 1%></td>
+                <td><%=value.fullname%></td>
+                <td>
+                    <%if(value.score === null){%>
+                    <a href="/subjects/<%=value.conjunctionId%>/givescore">Give Score</a>
+                    <%}else{%>
+                        <%=value.score%>
+                    <%}%>
+                </td>
+            </tr>
+            <%})%>
+        </table>
+    </div>
+</body>
+</html>

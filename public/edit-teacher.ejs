@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Edit Student</title>
+    <title>Edit Teacher</title>
 </head>
 <body>
     <div class="header">
-        <h1>Edit Student</h1>
+        <h1>Edit Teacher</h1>
     </div>
-    <a href="/students">Back</a>
+    <a href="/teachers">Back</a>
     <%if(error.length > 0){%>
         <h1><%=error%></h1>
     <%}%>
     <div class="content">
-        <form action="/students/edit/<%=data.id%>" method="post">
+        <form action="/teachers/edit/<%=data.id%>" method="post">
             <input type="hidden" name="id" value="<%=data.id%>">
             <table border="1">
                 <tr>
@@ -28,6 +28,21 @@
                 <tr>
                     <td>Alamat Email</td>
                     <td><input type="text" name="email" value="<%=data.email%>" placeholder="Type your email address" required></td>
+                </tr>
+                <tr>
+                    <td>Subject</td>
+                    <td>
+                        <select name="SubjectId">
+                            <option value="">Select Subject</option>
+                            <%subject.map((value)=>{
+                                if(value.id === data.SubjectId){%>
+                                    <option value="<%=value.id%>" selected><%=value.subject_name%></option>
+                                <%}else{%>
+                                    <option value="<%=value.id%>"><%=value.subject_name%></option>
+                                <%}
+                            })%>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">
