@@ -1,0 +1,44 @@
+<%- include ../partials/header %>
+  <body>
+    <%- include ../partials/navbar %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>ID Subj</th>
+          <th>Subject Name</th>
+          <th>Teachers</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataSubjects.forEach((data, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= data.id%></td>
+            <td><%= data.subject_name %></td>
+            <td>
+              <% if(data.subjectTeacher.length) { %>
+                <% data.subjectTeacher.forEach((teacher, index) => { %>
+                  <%= `${index + 1}. ${teacher.getFullName()}` %>
+                  <% if(index < data.subjectTeacher.length - 1) { %>
+                    <br>
+                  <% } %>
+                <% }) %>
+              <% } else { %>
+                -
+              <% } %>
+            </td>
+            <td>
+              <a href="/subjects/<%= data.id %>/enrolledstudents">Enrolled Students</a>
+              <a href="/subjects/edit/<%= data.id %>">Edit</a>
+              <a href="/subjects/delete/<%= data.id %>">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <a href="/subjects/add">Add Subject</a>
+  </body>
+</html>

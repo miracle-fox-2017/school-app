@@ -1,0 +1,13 @@
+<%- include ../partials/header %>
+  <body>
+    <%- include ../partials/navbar %>
+
+    <br><br>
+    <form class="" action="/subjects/edit/<%= dataSubject.id %>" method="post">
+      <label for="">Subject Name</label><br>
+      <input type="text" name="subject_name" value="<%= dataSubject.subject_name %>"><br>
+      <br>
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html>

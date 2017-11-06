@@ -1,0 +1,17 @@
+<%- include ../partials/header %>
+  <body>
+    <%- include ../partials/navbar %>
+
+    <br><br>
+    <form class="" action="/subjects/<%= dataSubject.id %>/givescore" method="post">
+      <label for=""><b>Student Name: </b></label>
+      <input type="text" name="StudentId" value="<%= dataSubject.Student.id %>" hidden><%= dataSubject.Student.getFullName() %><br>
+      <label for=""><b>Subject Name: </b></label>
+      <input type="text" name="SubjectId" value="<%= dataSubject.Subject.id %>" hidden><%= dataSubject.Subject.subject_name %><br>
+      <label for=""><b>Score: </b></label>
+      <input type="text" name="score" placeholder="ex: 0 - 100"><br>
+      <br>
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html>

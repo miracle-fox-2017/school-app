@@ -1,0 +1,22 @@
+<%- include ../partials/header %>
+  <body>
+    <%- include ../partials/navbar %>
+    <% if(error) { %>
+      <h4 style="color: red"><%= error + '\n' %></h4>
+    <% } else { %>
+      <br><br>
+    <% } %>
+    <form class="" action="/teachers/add" method="post">
+      <label for="">First Name</label><br>
+      <input type="text" name="first_name" placeholder="input your first name"><br>
+      <br>
+      <label for="">Last Name</label><br>
+      <input type="text" name="last_name" placeholder="input your last name"><br>
+      <br>
+      <label for="">Email</label><br>
+      <input type="text" name="email" placeholder="input your email address"><br>
+      <br>
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html>
