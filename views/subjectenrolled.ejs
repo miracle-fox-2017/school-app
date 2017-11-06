@@ -14,9 +14,9 @@
         <%if(data[i].score != null) {%>
           <td><%=data[i].score%></td>
         <%} else {%>
-          <td><a href="/subjects/<%=data[i].SubjectId%>/givescore/<%=data[i].StudentId%>">Give Score</a></td>
+          <td><a href="/subjects/<%=data[i].id%>/givescore">Give Score</a></td>
         <%}%>
-        <td><%=data[i].getscoreletter()%></td>
+        <td><%=data[i].scoreletter%></td>
       </tr>
       <%}%>
     </table>

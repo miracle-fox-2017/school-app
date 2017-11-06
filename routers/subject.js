@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const model = require('../models')
+const scoreletter = require('../helper/scoreletter');
 
 router.get('/', (req, res) => {
   model.Subject.findAll({include: [model.Teacher]}).then((subject) => {
@@ -41,6 +42,7 @@ router.get('/:id/enrolledstudents', (req, res) => {
     var arrPromise = studentssubjects.map((studentsubject) => {
       return new Promise((resolve, reject) => {
         studentsubject.getStudent().then((student) => {
+          studentsubject.scoreletter = scoreletter(studentsubject.score)
           if(student == null) {
             studentsubject.full_name = ""
           }
@@ -53,7 +55,7 @@ router.get('/:id/enrolledstudents', (req, res) => {
     })
 
     Promise.all(arrPromise).then((hasil) => {
-      // res.send(hasil)
+      console.log(hasil);
       hasil[0].getSubject().then((subject) => {
         hasil.sort((a, b) => {
           if(a.full_name > b.full_name) {
@@ -63,28 +65,28 @@ router.get('/:id/enrolledstudents', (req, res) => {
             return -1
           }
         })
-        res.send(hasil)
         res.render('subjectenrolled', {data: hasil, subject: subject, title: 'enrolled student'})
       })
     })
   })
 })
 
-router.get('/:idsubject/givescore/:idstudent', (req, res) => {
-  model.StudentSubject.findOne({where:{SubjectId: req.params.idsubject, StudentId: req.params.idstudent}}).then((studentssubjects) => {
+router.get('/:id/givescore', (req, res) => {
+  model.StudentSubject.findOne({where:{id: req.params.id}}).then((studentssubjects) => {
     studentssubjects.getSubject().then((subject) => {
       studentssubjects.getStudent().then((student) => {
-        res.render('subjectgivescore', {subject: subject, student: student, title: 'give score'})
+        res.render('subjectgivescore', {studentssubjects: studentssubjects, subject: subject, student: student, title: 'give score'})
       })
     })
   })
 })
 
-router.post('/:idsubject/givescore/:idstudent', (req, res) => {
-  model.StudentSubject.update({score: req.body.score}, {where: {SubjectId: req.params.idsubject, StudentId: req.params.idstudent}}).then(() => {
-    res.redirect('/subjects')
+router.post('/:id/givescore', (req, res) => {
+  model.StudentSubject.update({score: req.body.score}, {where: {id: req.params.id}}).then(() => {
+    model.StudentSubject.findOne({where: {id: req.params.id}}).then((studentssubjects) => {
+      res.redirect(`/subjects/${studentssubjects.SubjectId}/enrolledstudents`)
+    })
   })
 })
-
 
 module.exports = router

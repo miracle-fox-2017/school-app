@@ -1,4 +1,4 @@
-module.exports = function scoreletter(score) {
+function scoreletter(score) {
   if(score > 85) {
     return 'A'
   }
@@ -12,6 +12,8 @@ module.exports = function scoreletter(score) {
     return 'E'
   }
   else {
-    return ''
+    return 'empty'
   }
 }
+
+module.exports = scoreletter

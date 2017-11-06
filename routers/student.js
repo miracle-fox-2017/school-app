@@ -1,9 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const model = require('../models')
+const full_name = require('../helper/full_name');
 
 router.get('/', (req, res) => {
   model.Student.findAll().then((student) => {
+    student.forEach((elemen) => {
+      elemen.full_name = full_name(elemen)
+    })
     res.render('student', {student: student, title: 'student'})
   })
 })
