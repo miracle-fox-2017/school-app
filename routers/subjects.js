@@ -44,9 +44,9 @@ router.get('/delete/:id', (req, res) => {
 
 router.get('/:id/enrolledstudents', (req, res) => {
   Model.Subject.findById(req.params.id, {
+    order: [[{model: Model.Student}, 'first_name']],
     include: [{
-    model: Model.Student,
-    order: [['first_name']]
+    model: Model.Student
   }],
   }).then(subject => {
     // res.send(subject)
