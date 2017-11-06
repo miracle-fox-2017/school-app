@@ -1,0 +1,36 @@
+<%- include("./partials/navigation", {title : "Add Subject Student"}) %>
+	<h1> ADD SUBJECT STUDENT DATA</h1>
+	<h4> <a href ="/students"> show all data </a>	</h4>
+	<% if(message != null ){%>
+	<h3> <%= message %></h3>
+	<%}%>
+	<table border="1">
+		<thead>
+			<tr>
+				<th> first_name </th>
+				<th> last_name </th>
+				<th> email </th>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<form action="/students/<%= addedStudent.id %>/addsubject " method="post">
+					<td> <input type="text" name="first_name" value="<%= addedStudent.first_name %> "> 
+					</td>
+					<td> <input type="text" name="last_name"  value="<%= addedStudent.last_name %> ""> 
+					</td>
+					<td> <input type="text" name="email" value="<%= addedStudent.email %> " > </td>
+					<td> 
+						<select name="id">
+							<% allSubject.forEach(subject => {%>
+							<option value="<%= subject.id %>"> <%= subject.subject_name %> </option>
+							<%})%>
+						</select>
+					</td>
+					<td> <input type="submit" value="Add Subject"></td>
+				</form>
+			</tr>	
+		</tbody>	
+	</table>		
+</body>	
+</html>

@@ -1,0 +1,44 @@
+<%- include("./partials/navigation", {title : "EDIT TEACHER"}) %>
+	<h1> Edit Teacher</h1>
+	<h4> <a href ="/teachers"> show all data </a>	</h4>
+	<% if(message != null ){%>
+	<h3> <%= message %></h3>
+	<%}%>
+	<table border="1">
+		<thead>
+			<tr>
+				<th> first_name </th>
+				<th> last_name </th>
+				<th> email </th>
+				<th> SubjectId </th>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<form action="/teachers/edit/<%= edit.id %>" method="post">
+					<input type="hidden" name="id" value= <%= edit.id %> >
+					<td> <input type="text" name="first_name" value="<%= edit.first_name %>"> </td>
+					<td> <input type="text" name="last_name"  value="<%= edit.last_name %>"> </td>
+					<td> <input type="text" name="email" value="<%= edit.email %>"> </td>
+					<td> 
+						<select id ="SubjectId" name="SubjectId">
+						<% allSubject.forEach(subject =>{%>
+							<% if(subject.dataValues.id == edit.SubjectId) {%>
+							<option value="<%= subject.dataValues.id %> " selected> 
+								<%= subject.dataValues.subject_name %>
+							</option> 
+							<%}else{%>
+								<option value="<%= subject.dataValues.id %> "> 
+									<%= subject.dataValues.subject_name %>
+								</option> 
+							<%}%>	
+						<%})%>					
+					</select>
+				</td>
+				<td> <input type="submit" value="Edit"></td>
+			</form>
+		</tr>	
+	</tbody>	
+</table>		
+</body>	
+</html>

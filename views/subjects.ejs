@@ -1,0 +1,36 @@
+<%- include("./partials/navigation", {title : "Subject"}) %>
+<body class="body">
+<h1>ALL SUBJECT</h1>
+<table border="1" width="100%">
+	<thead>
+		<tr>
+		<th>No </th>
+		<th>id</th>
+		<th>subject_name</th>
+		<th>Full Name</th>
+		<td>Action </td>
+		</tr>
+	</thead>
+	<tbody>
+	<% allSubject.forEach((subject, index) => {%>
+		<tr>
+		<td> <%= index+1 %> </td>
+		<td> <%= subject.id %> </td>
+		<td> <%= subject.subject_name %> </td>
+			<td><% subject.Teachers.forEach(teacher => {%>
+			<li style="list-style-type: decimal;"> <%= teacher.getFullName() %>	
+			</li>
+			<%})%>
+			</td>
+		<td><a href="/subjects/<%= subject.id %>/enrolledstudents">Enrolled Students</td>	
+		</tr>
+	<%})%>
+	</tbody>
+</table>		
+</body>
+
+<style type="text/css">
+	.body {
+		text-align: center;
+	}
+</style>

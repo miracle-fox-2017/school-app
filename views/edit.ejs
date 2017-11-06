@@ -1,0 +1,27 @@
+<%- include("./partials/navigation", {title : "EDIT STUDENT"}) %>
+<% if(message != null ){%>
+	<h3> <%= message %></h3>
+<%}%>
+	<h1> EDIT STUDENT </h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th> first_name </th>
+				<th> last_name </th>
+				<th> email </th>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<form action="/students/edit/<%= edit.id %> " method="post">
+					 <input type="hidden" name="id" value= <%= edit.id %> >
+				<td> <input type="text" name="first_name" value="<%= edit.first_name %>"> </td>
+				<td> <input type="text" name="last_name"  value="<%= edit.last_name %>"> </td>
+				<td> <input type="text" name="email" value="<%= edit.email %>"> </td>
+				<td> <input type="submit" value="EDIT"></td>
+				</form>
+			</tr>	
+		</tbody>	
+	</table>		
+</body>	
+</html>

@@ -1,0 +1,43 @@
+<%- include("./partials/navigation", {title : "Teacher"}) %>
+<body class="body">
+	<h1> ALL TEACHER DATA</h1>
+	<h4> <a href ="/teachers/add"> add teacher</a>	</h4>	
+	<table border="1" width="100%">
+		<thead>
+			<tr>
+				<th>No </th>
+				<th>first_name</th>
+				<th>last_name</th>
+				<th>email</th>
+				<th>subject name</th>
+				<th colspan="2"> options </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% allTeacher.forEach((teacher,index) =>{ %>
+			<tr>
+				<td> <%= index+1 %></td>
+				<td> <%= teacher.first_name %> </td>
+				<td> <%= teacher.last_name %> </td>
+				<td> <%= teacher.email %> </td>
+				<td> <%= teacher.subject%> </td>
+				<td> <a href="/teachers/edit/<%= teacher.id %>"> edit </a></td>
+				<td> <a onclick= "return deleteConfirm()" href="/teachers/delete/<%= teacher.id %>">delete </a></td>	
+			</tr>
+			<%})%>
+		</tbody>
+	</table>	
+	<script type="text/javascript">
+		function deleteConfirm(){
+			let ask = confirm("Delete this Student? ");
+			if (ask == true) return true;
+			else return false;
+		}
+	</script>		
+</body>
+
+<style type="text/css">
+	.body {
+		text-align: center;
+	}
+</style>
