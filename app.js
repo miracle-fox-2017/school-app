@@ -10,6 +10,8 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+// helper
+app.locals.getScore = require('./helpers/subject-getscore');
 
 //routers
 let index = require('./routers/index')
