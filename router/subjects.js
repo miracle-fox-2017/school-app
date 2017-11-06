@@ -3,6 +3,7 @@ const router=express.Router();
 
 // Import Model
 const Model=require("../models");
+const score=require("../helpers/nilai");
 
 router.get("/",(req,res)=>{ // Halaman awal subject
     Model.Subject.findAll().then((rows)=>{
@@ -43,6 +44,7 @@ router.get("/:id/enrolledstudents",(req,res)=>{
                     studentData.conjunctionId=student.dataValues.id;
                     studentData.subject=row.subject_name;
                     studentData.score=student.score;
+                    studentData.alphabet=score(student.score);
                     return studentData;
                 });
             });

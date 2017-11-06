@@ -17,6 +17,7 @@
                 <td>No</td>
                 <td>Name</td>
                 <td>Score</td>
+                <td>Alias</td>
             </tr>
             <%students.map((value,i)=>{%>
             <tr>
@@ -29,6 +30,7 @@
                         <%=value.score%>
                     <%}%>
                 </td>
+                <td><%=value.alphabet%></td>
             </tr>
             <%})%>
         </table>
