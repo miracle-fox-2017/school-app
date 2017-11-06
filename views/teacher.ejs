@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+    <% include partials/title %>
+    <p><a href="/teachers/add">add</a></p>
+    <% include ./partials/menu %>
     <table>
       <tr>
         <th>No</th>
@@ -28,8 +24,6 @@
           <td><a href="/teachers/delete/<%=teacher[i].id%>">delete</a></td>
         </tr>
       <%}%>
-      <p><%=teacher[0].SubjectId%></p>
     </table>
-    <p><a href="/teachers/add">add</a></p>
   </body>
 </html>

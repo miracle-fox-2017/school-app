@@ -4,14 +4,12 @@ const model = require('../models')
 
 router.get('/', (req, res) => {
   model.Subject.findAll({include: [model.Teacher]}).then((subject) => {
-    // res.send(subject)
-
-    res.render('subject', {subject: subject})
+    res.render('subject', {subject: subject, title: 'Subject'})
   })
 })
 
 router.get('/add', (req, res) => {
-  res.render('subjectadd')
+  res.render('subjectadd', {title: 'Subject Add'})
 })
 
 router.post('/add', (req, res) => {
@@ -28,7 +26,7 @@ router.get('/delete/:id', (req, res) => {
 
 router.get('/edit/:id', (req, res) => {
   model.Subject.findOne({where:{id:req.params.id}}).then((subject) => {
-    res.render('subjectedit', {subject:subject})
+    res.render('subjectedit', {subject:subject, title: 'Subject Edit'})
   })
 })
 
@@ -65,8 +63,8 @@ router.get('/:id/enrolledstudents', (req, res) => {
             return -1
           }
         })
-        // res.send(hasil)
-        res.render('subjectenrolled', {data: hasil, subject: subject})
+        res.send(hasil)
+        res.render('subjectenrolled', {data: hasil, subject: subject, title: 'enrolled student'})
       })
     })
   })
@@ -76,7 +74,7 @@ router.get('/:idsubject/givescore/:idstudent', (req, res) => {
   model.StudentSubject.findOne({where:{SubjectId: req.params.idsubject, StudentId: req.params.idstudent}}).then((studentssubjects) => {
     studentssubjects.getSubject().then((subject) => {
       studentssubjects.getStudent().then((student) => {
-        res.render('subjectgivescore', {subject: subject, student: student})
+        res.render('subjectgivescore', {subject: subject, student: student, title: 'give score'})
       })
     })
   })

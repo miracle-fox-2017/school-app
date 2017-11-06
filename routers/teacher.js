@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
       })
     })
     Promise.all(arrPromiseTeacher).then((hasil) => {
-      res.render('teacher', {teacher: hasil})
+      res.render('teacher', {teacher: hasil, title: 'teacher'})
     })
   })
 })
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 
 router.get('/add', (req, res) => {
   model.Subject.findAll().then((subject) => {
-    res.render('teacheradd', {subject: subject})
+    res.render('teacheradd', {subject: subject, title: 'teacher add'})
   })
 })
 
@@ -47,7 +47,7 @@ router.get('/edit/:id', (req, res) => {
   model.Teacher.findOne({where:{id:req.params.id}}).then((teacher) => {
     model.Subject.findAll().then((subject) => {
       // res.send(subject)
-      res.render('teacheredit', {teacher:teacher, subject:subject, pesan:''})
+      res.render('teacheredit', {teacher:teacher, subject:subject, pesan:'', title: 'teacher edit'})
     })
   })
 })
@@ -60,7 +60,7 @@ router.post('/edit/:id', (req, res) => {
     model.Teacher.findOne({where:{id: req.params.id}}).then((teacher) => {
       model.Subject.findAll().then((subject) => {
         // res.send(subject)
-        res.render('teacheredit', {teacher: teacher, subject:subject, pesan: err.errors[0].message})
+        res.render('teacheredit', {teacher: teacher, subject:subject, pesan: err.errors[0].message, title: 'teacher edit'})
       })
     })
   })

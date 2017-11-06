@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'The email you entered is invalid'
         },
         isUnique: function(value, callback) {
+          console.log(value);
           Student.find({
             where: {email: value}
           }).then((result) =>{
