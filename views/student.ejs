@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    h2,p {
+      text-align: center;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      border: 1px solid #070707;
+      text-align: left;
+      padding: 5px;
+    }
+    /* tr:nth-child(even) {
+      background-color: #080808;
+    } */
+</style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+
+    <% if(status == 'tampil') { %>
+        <h2> STUDENT DATA </h2>
+        <p> <a href="/students/add">Add Student</a></p>
+        <table>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Full Name</th>
+            <th>Action</th>
+            <th>Option</th>
+          </tr>
+          <% dataStudent.forEach((student)=> { %>
+              <tr>
+                <td> <%=student.first_name%> </td>
+                <td> <%=student.last_name%> </td>
+                <td> <%=student.email%> </td>
+                <td> <%=student.fullName%> </td>
+                <td> <a href='/students/<%=student.id%>/addsubject'> Add Subject </td>
+                <td><button onclick="window.location.href='students/edit/<%= students.id %>'">Edit</a>
+                    <button onclick="myFunction(<%= students.id %>)">Delete</button>
+              </tr>
+              <% }) %>
+         </table>
+       <% }else if(status == 'add') { %>
+         <h2> ADD STUDENT </h2>
+         <p> <a href="/students">Show All data</a></p>
+         <%= msg %>
+         <form action="/students/add" method="post">
+         First Name:<br>
+         <input type="text" name="first_name" required/>
+         <br>
+         Last Name:<br>
+         <input type="text" name="last_name" required=true/>
+         <br>
+         Email:<br>
+         <input type="text" name="email" required=true/>
+         <br><br>
+         <input type="submit" value="ADD">
+        </form>
+
+    <% }else if(status == 'edit') {  %>
+        <h2> EDIT STUDENT DATA </h2>
+        <p> <a href="/students">show all data</a></p>
+        <%= msg %>
+        <form action="/students/edit/<%=dataStudent.id%>" method="post">
+        First Name:<br>
+        <input type="text" name="first_name" value = "<%=dataStudent.first_name%>"  required/>
+        <br>
+        Last Name:<br>
+        <input type="text" name="last_name" value = "<%=dataStudent.last_name%>" required=true/>
+        <br>
+        Email:<br>
+        <input type="text" name="email" value = "<%=dataStudent.email %>" required=true/>
+        <br><br>
+        <input type="submit" value="EDIT"/>
+        </form>
+
+    <% }else if(status == 'subject') {  %>
+        <h2> Add Subject To Student </h2>
+        <%= msg %>
+        <%= dataStudent.first_name %> <br>
+        <%= dataStudent.last_name %> <br>
+        <%= dataStudent.email %><br>
+        <br>
+        Subject:<br>
+        <select name="subject_id" required=true>
+              <option value = NULL >--select subject--</option>
+              <% dataSubject.forEach( (subject) => {%>
+                  <option value="<%=subject.id%>"><%= subject.subject_name %></option>
+              <% }) %>
+        </select>
+        <br><br>
+        <input type="submit" value="add subject"/>
+        </form>
+    <% } %>
+
+  </body>
+  <script>
+      function myFunction(data) {
+        console.log(data)
+        if (confirm("Delete this student?") == true) {
+            window.location = 'students/delete/'+data;
+        }else{
+            window.location = 'students';
+        }
+      }
+  </script>
+</html>
