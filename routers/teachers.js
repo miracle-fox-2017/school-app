@@ -34,7 +34,9 @@ router.get('/',function(req,res){
     })
     Promise.all(teacherWithSubject).then(teachersAndSubjects => {
       // console.log(teachersAndSubjects);
-      res.render('teachers', {data_teachers:teachersAndSubjects})
+      res.render('teachers', {
+        data_teachers : teachersAndSubjects
+      })
     })
   }).catch(err => {
     console.log(err);

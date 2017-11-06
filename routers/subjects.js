@@ -30,7 +30,9 @@ router.get('/', function(req,res){
     })
     Promise.all(subjectsWithTeachers).then(subjectsAndTeachers => {
       // console.log(subjectsAndTeachers);
-      res.render('subjects', {data_Subjects:subjectsAndTeachers})
+      res.render('subjects', {
+        data_Subjects : subjectsAndTeachers
+      })
     })
   }).catch(err=>{
     console.log(err);

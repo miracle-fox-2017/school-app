@@ -29,7 +29,9 @@ router.get('/', function(req,res){
   }).then(data_Students=>{
     res.status(200)
     // res.send(data_Students)
-    res.render('students', {data_Students:data_Students})
+    res.render('students', {
+      data_Students : data_Students
+    })
   }).catch(err =>{
     console.log(err)
     res.status(500).send('Internal Server error')

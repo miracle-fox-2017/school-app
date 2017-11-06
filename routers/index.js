@@ -8,7 +8,11 @@ router.get('/',function(req,res){
     model.Teacher.findAll(),
     model.Subject.findAll()
   ]).then( allData => {
-    res.render('index',{data_Students:allData[0],data_teachers:allData[1],data_Subjects:allData[2]})
+    res.render('index',{
+      data_Students : allData[0],
+      data_teachers : allData[1],
+      data_Subjects : allData[2]
+    })
   }).catch( err => {
     console.log(err);
   })
