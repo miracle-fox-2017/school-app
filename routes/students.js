@@ -4,14 +4,14 @@ const model = require('../models')
 
 
 router.get('/', (req, res) =>{
-  model.Student.findAll().then(dataStudents =>{
-    res.render('students/students', {dataStudents:dataStudents})
+  model.Student.findAll({order:[['first_name', 'ASC']]}).then(dataStudents =>{
+    res.render('students/students', {dataStudents:dataStudents, title:'Students'})
   })
 })
 
 
 router.get('/add', (req, res) =>{
-  res.render('students/add',{error:null})
+  res.render('students/add',{error:null, title:'add-student'})
 })
 
 router.post('/add', (req, res) =>{
@@ -30,14 +30,14 @@ router.post('/add', (req, res) =>{
     }).catch(err =>{
       console.log(err);
       if(err){
-      res.render('students/add',{error:err.errors[0]})
+      res.render('students/add',{error:err.errors[0], title:'add-student'})
       }
     })
 })
 
 router.get('/edit/:id', (req, res) =>{
   model.Student.findOne({where:{id:req.params.id}}).then(dataStudent =>{
-    res.render('students/edit',{dataStudent:dataStudent})
+    res.render('students/edit',{dataStudent:dataStudent, title:'edit-student'})
   })
 })
 
@@ -74,7 +74,7 @@ router.get('/delete/:id', (req, res) =>{
 router.get('/:id/addsubject', (req, res) => {
   model.Student.findOne({where:{id:req.params.id}}).then(dataStudent => {
     model.Subject.findAll().then(dataSubjects => {
-      res.render('students/addsubject', {dataStudent:dataStudent, dataSubjects:dataSubjects})
+      res.render('students/addsubject', {dataStudent:dataStudent, dataSubjects:dataSubjects, title:'add_subject-student'})
     })
   })
 })

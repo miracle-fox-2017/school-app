@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const ejsHelper = require('ejs-helper')
 
 app.set('view engine', 'ejs')
 
@@ -10,6 +11,9 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json())
 app.use(urlencodedParser)
+
+
+console.log(app.locals.score = require('./helpers/scoring'))
 
 const index = require('./routes/index.js')
 app.use('/', index)

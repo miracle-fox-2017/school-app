@@ -21,14 +21,14 @@ router.get('/', (req, res) =>{
     Promise.all(newData).then(subjects_teachers => {
       //console.log(subjects_teachers[3].Teachers);
       //res.send(subjects_teachers)
-      res.render('subjects/subjects',{dataSubjects:subjects_teachers})
+      res.render('subjects/subjects',{dataSubjects:subjects_teachers, title:'subjects'})
     })
   })
 })
 
 
 router.get('/add', (req, res) => {
-  res.render('subjects/add')
+  res.render('subjects/add',{title:'add-subject'})
 })
 
 router.post('/add', (req, res) => {
@@ -44,7 +44,7 @@ router.post('/add', (req, res) => {
 
 router.get('/edit/:id', (req, res) => {
   model.Subject.findOne({where:{id:req.params.id}}).then(dataSubjects => {
-      res.render('subjects/edit', {dataSubjects:dataSubjects})
+      res.render('subjects/edit', {dataSubjects:dataSubjects, title:'edit-subjects'})
   })
 })
 
@@ -70,8 +70,8 @@ router.get('/delete/:id', (req, res) => {
 
 
 router.get('/:id/enrolledStudent', (req, res) => {
+  //console.log(req.params.id, '--------------');
   model.StudentSubject.findAll({
-    attributes:['id', 'SubjectId', 'StudentId', 'score'],
     where:{SubjectId:req.params.id},
     include:[
       {model:model.Student}
@@ -79,16 +79,14 @@ router.get('/:id/enrolledStudent', (req, res) => {
     order: [ [ { model: model.Student, as: 'Student' }, 'first_name', 'ASC'] ],
   })
   .then(dataSubject => {
-    res.send(dataSubject)
     model.Subject.findById(req.params.id).then(rows =>{
-       res.render('subjects/enrolledstudents', {dataSubject:dataSubject, subject_name:rows.subject_name})
+       res.render('subjects/enrolledstudents', {dataSubject:dataSubject, subject_name:rows.subject_name, title:'enrolledstudents'})
     })
   })
 })
 
 
 router.get('/:id/givescores', (req, res) => {
-  //console.log(req.params);
   model.StudentSubject.findOne({
     where:{id:req.params.id},
     include:[
@@ -98,17 +96,19 @@ router.get('/:id/givescores', (req, res) => {
   })
   .then(data => {
     //res.send(data)
-    res.render('subjects/scoring', {data:data})
+    res.render('subjects/scoring', {data:data, title:'scoring'})
   })
 })
 
 router.post('/:id/givescores', (req, res) => {
+
   model.StudentSubject.update(
     {score: req.body.score},
     {where:{StudentId:req.body.StudentId, SubjectId:req.body.SubjectId}}
   )
   .then(() => {
-    res.redirect('/subjects')
+
+    res.redirect(`/subjects/${req.body.SubjectId}/enrolledStudent`)
   })
 })
 

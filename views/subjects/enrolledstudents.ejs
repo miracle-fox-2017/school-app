@@ -29,15 +29,9 @@
             <a style="none" href="/subjects/<%=item.id%>/givescores">give score</a>
           <%}%>
           </td>
-          <%if(item.score >= 90){%>
-            <td>A</td>
-          <%}else if(item.score >= 80){%>
-            <td>B</td>
-          <%}else if(item.score < 80 && item.score !== null){%>
-            <td>C</td>
-          <%}else if(item.score == null){%>
-            <td>NaN</td>
-          <%}%>
+          <td>
+            <%- score(item.score)%>
+          </td>
       </tr>
         <%}%>
         <%})%>
