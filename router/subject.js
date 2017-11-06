@@ -18,4 +18,28 @@ router.get('/subjects/:id/enrolledstudents', (req,res)=>{
   })
 })
 
+router.get('/subjects/:id/enrolledstudents', (req,res)=>{
+  model.SubStudents.findAll( { where:{ subjectId:req.params.id }, include:[{model: model.Subjects, as:'subject'},{model: model.Students, as:'student'}]}).then((dataSubStudents)=>{
+    let status = 'enroll'
+    res.render('subject', { dataSubStudents, status })
+  })
+})
+
+router.get('/subjects/:id/addscore', (req,res) => {
+  model.SubStudents.findAll( { attributes:['id'], where:{ studentId:req.params.id }, include:[{model: model.Subjects, as:'subject'},{model: model.Students, as:'student'}]})
+  .then((dataSubStudents) => {
+    let status = 'addscore'
+
+    res.render('subject', {dataSubStudents, status})
+  })
+})
+
+router.post('/subjects/:id/addscore', (req,res) => {
+  let obj = { score:req.body.score }
+  let option = {where: { id: req.params.id }}
+  model.SubStudents.update( obj, option).then((success) => {
+    res.redirect('/subjects')
+  })
+})
+
 module.exports = router
