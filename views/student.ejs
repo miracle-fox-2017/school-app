@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<%-include partial/index%>
     <% if(err) {%>
       masukin email yang bener oi!!!
     <%}%>
@@ -25,6 +19,7 @@
         <th>first_name</th>
         <th>last_name</th>
         <th>email</th>
+        <th>Action</th>
       </tr>
       <% for(let i = 0;i < rows.length ; i++){%>
         <tr>
@@ -33,6 +28,7 @@
             <td><%=rows[i].first_name%></td>
             <td><%=rows[i].last_name%></td>
             <td><%=rows[i].email%></td>
+            <td><a href="/student/<%=rows[i].id%>/addsubject">add subject</td>
             <td><a href="/student/delete/<%=rows[i].id%>">delete</a></td>
             <td><a href="/student/edit/<%=rows[i].id%>">edit</a></td>
           </tr>

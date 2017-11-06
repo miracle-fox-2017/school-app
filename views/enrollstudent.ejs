@@ -1,0 +1,14 @@
+<%-include partial/index%>
+    <table border>
+      <tr>
+        <th>Name</th>
+        <th>score</th>
+      </tr>
+          <tr>
+            <td><%=rows.Student.getFullName()%></td>
+            <td><%=rows.Score%></td>
+            <td><a href="/subject/<%=rows.Student.id%>/addscore">give score</td>
+          </tr>
+    </table>
+  </body>
+</html>

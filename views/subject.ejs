@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<%-include partial/index%>
     <table>
       <form class="" action="/subject" method="post">
         <tr>
@@ -23,7 +17,14 @@
         <tr>
           <td><%=rows[i].id%></td>
           <td><%=rows[i].subject_name%></td>
-          <td><%=rows[i].first_name%></td>
+          <td>
+            <% for(let j = 0;j < rows[i].teachers.length ;j++){%>
+              <ol>
+                <li><%=rows[i].teachers[j].getFullName()%><br></li>
+              </ol>
+            <%}%>
+          </td>
+          <td><a href="/subjects/<%=rows[i].id%>/enrolledstudents%>">enrolled student</a></td>
           <td><a href="/subject/delete/<%=rows[i].id%>">delete</a></td>
           <td><a href="/subject/edit/<%=rows[i].id%>">edit</a></td>
         </tr>
