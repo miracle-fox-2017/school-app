@@ -49,12 +49,22 @@ router.get('/delete/:id', (req, res) => {
   })
 })
 
-router.get('/test', (req, res) => {
-  db.Students_Subject.findAll().then(results => {
-    console.log(results);
-    res.send(results)
+router.get('/:id/addSubject', (req, res) => {
+  db.Student.findById(req.params.id)
+  .then(student => {
+    db.Subject.findAll()
+    .then(subjects => {
+      res.render('addSubject', {student, subjects})
+    })
   }).catch(err => {
     console.log(err);
+  })
+})
+
+router.post('/:id/addSubject', (req, res) => {
+  db.Students_Subject.create({StudentId:req.params.id, SubjectId:req.body.SubjectId, createdAt:new Date(), updatedAt:new Date()})
+  .then(result => {
+    res.redirect('/students');
   })
 })
 

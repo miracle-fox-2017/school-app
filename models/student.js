@@ -19,5 +19,3 @@ module.exports = (sequelize, DataTypes) => {
   }
   return Student;
 };
-
-

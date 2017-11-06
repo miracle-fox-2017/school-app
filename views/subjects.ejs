@@ -10,8 +10,9 @@
       <thead>
         <th>No</th>
         <th>Subject Name</th>
+        <th>Teachers</th>
+        <th>Action</th>
       </thead>
-      
       <tbody>
         <%let i = 1;
         results.forEach((result) => {%>
@@ -29,6 +30,9 @@
               </ul>
             <%})%>
           <%}%>
+          </td>
+          <td>
+            <a href="/subjects/<%=result.id%>/enrolledstudents">Enrolled Students</a>
           </td>
           </tr>
         <%i++; })%>
