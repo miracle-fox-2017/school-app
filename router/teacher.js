@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/teacher',function(req,res) {
-  db.teacher.findAll({order:[['id','ASC']],include:[db.Subject]}).then(rows =>{
+  db.teacher.findAll({order:[['first_name','ASC']],include:[db.Subject]}).then(rows =>{
         res.render('teacher',{rows:rows})
         // res.send(rows);
   })

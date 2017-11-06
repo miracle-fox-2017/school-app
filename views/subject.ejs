@@ -9,12 +9,14 @@
     </table>
     <table border>
       <tr>
+        <th>no</th>
         <th>id</th>
         <th>Subject_name</th>
         <th>Teacher</th>
       </tr>
       <%for(let i = 0;i < rows.length ;i++){%>
         <tr>
+          <td><%= i+1 %></td>
           <td><%=rows[i].id%></td>
           <td><%=rows[i].subject_name%></td>
           <td>

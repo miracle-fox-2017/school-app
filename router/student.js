@@ -4,7 +4,7 @@ const db = require('../models');
 
 //home
 router.get('/student',function(req,res) {
-  db.Student.findAll().then(rows =>{
+  db.Student.findAll({order:[['first_name','ASC']]}).then(rows =>{
     res.render('student',{rows:rows,err:null})
   })
   .catch(err =>{

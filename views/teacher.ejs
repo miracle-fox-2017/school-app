@@ -11,6 +11,7 @@
     </table>
     <table border>
       <tr>
+        <th>no</th>
         <th>id</th>
         <th>full name</th>
         <th>first_name</th>
@@ -20,6 +21,7 @@
       </tr>
       <% for(let i = 0;i < rows.length ; i++){%>
         <tr>
+            <td><%= i+1 %></td>
             <td><%=rows[i].id%></td>
             <td><%=rows[i].getFullName()%></td>
             <td><%=rows[i].first_name%></td>
