@@ -1,0 +1,23 @@
+<% include partials/header.ejs %>
+  <body>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Subject</th>
+        <th>Teacher</th>
+        <th>Students</th>
+      </tr>
+        <% rows.forEach(function(row){%>
+      <tr>
+        <td> <%= row.id %> </td>
+        <td> <%= row.subject_name %> </td>
+        <td> <%= row.teacher %> </td>
+        <td><a href="/subjects/<%=row.id%>/enrolledstudents">enrolledstudents</a></td>
+      </tr>
+      <% }) %>
+      <a href="/subjects/add" class="btn btn-default">add subjects</a>
+    </table>
+  </body>
+</html>
+<script type="text/javascript">
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EDIT STUDENTS</title>
+  </head>
+  <body>
+    <h1>EDIT TEACHER</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>first_name</th>
+          <th>last_name</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <form action="/teacher/edit/<%= teacher.id %>" method="post">
+            <td><input type="text" name="first_name" value="<%= teacher.first_name %>"></td>
+            <td><input type="text" name="last_name" value="<%= teacher.last_name %>"></td>
+            <td><input type="text" name="email" value="<%= teacher.email %>"></td>
+            <td><input type="submit" value="edit"></td>
+            <select  name="SubjectId">
+              <% subjects.map(row => { %>
+                <option value="<%= row.id %>" <% if(row.id == teacher.SubjectId) { %>
+                  <%= 'selected' %> <% } %> ><%= row.subject_name %>
+              </option>
+            <% }) %>
+            </select>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

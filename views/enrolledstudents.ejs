@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enrolled Students</title>
+  </head>
+  <body>
+    <h1><%= subject.subject_name %></h1>
+    <table border="1">
+      <tr>
+        <th>No</th>
+        <th>Student Name</th>
+        <th>score</th>
+        <th>give score</th>
+      </tr>
+      <% studentsubjects.forEach((subjects,i)=>{ %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td>
+            <% if(subjects.Student){ %>
+              <%= subjects.Student.first_name %>
+            <% } else { %>
+              --
+            <% } %>
+          </td>
+          <td><%= subjects.Score %> </td>
+          <td> <a href="/subjects/<%= subjects.StudentId %>/givescore">score</a></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

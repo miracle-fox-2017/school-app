@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ADD Teacher</title>
+  </head>
+  <body>
+    <h1>ADD TEACHER</h1>
+    <% if(rows !== null) { %>
+      <h4> <%= rows %> </h4>
+    <% } %>
+    <table>
+      <thead>
+        <tr>
+          <th> first_name </th>
+          <th> last_name </th>
+          <th> email </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <form action="/teacher/add" method="post">
+            <td> <input type="text" name="first_name" placeholder="Insert first_name"> </td>
+            <td> <input type="text" name="last_name" placeholder="Insert last_name"> </td>
+            <td> <input type="text" name="email" placeholder="Insert email"> </td>
+            <td> <input type="submit" value="ADD"> </td>
+
+          </form>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>
