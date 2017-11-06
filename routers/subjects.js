@@ -30,12 +30,14 @@ router.get('/', function(req,res){
     })
     Promise.all(subjectsWithTeachers).then(subjectsAndTeachers => {
       // console.log(subjectsAndTeachers);
+      res.status(200)
       res.render('subjects', {
         data_Subjects : subjectsAndTeachers
       })
     })
   }).catch(err=>{
-    console.log(err);
+    console.log(err)
+    res.status(500).send('Internal Server error')
   })
 })
 

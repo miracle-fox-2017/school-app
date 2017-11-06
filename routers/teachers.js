@@ -33,13 +33,15 @@ router.get('/',function(req,res){
       })
     })
     Promise.all(teacherWithSubject).then(teachersAndSubjects => {
-      // console.log(teachersAndSubjects);
+      // res.send(teachersAndSubjects)
+      res.status(200)
       res.render('teachers', {
         data_teachers : teachersAndSubjects
       })
     })
   }).catch(err => {
-    console.log(err);
+    console.log(err)
+    res.status(500).send('Internal Server error')
   })
 })
 
