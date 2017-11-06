@@ -1,0 +1,25 @@
+<%-include("partials/header",{title:'Enrolled Students'})%>
+  <body>
+
+    <h1><%=result.subject_name%></h1>
+    <h3><a href="/subjects">Return to Subject</a></h3>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+      <%result.SubjectStudents.forEach((result)=>{%>
+        <tr>
+          <td><%=result.id%></td>
+          <td><%=result.Student.getFullname()%></td>
+          <%if(result.Score === null){%>
+            <td><a href="/subjects/<%=result.id%>/givescore"> Give Score </a></td>
+          <%}else{%>
+            <td> <%=result.Score%> </td>
+          <%}%>
+        </tr>
+      <%})%>
+    </table>
+  </body>
+</html>

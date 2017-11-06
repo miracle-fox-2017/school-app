@@ -1,0 +1,25 @@
+<%-include("partials/header",{title:'Edit Students Data'})%>
+  <body>
+      <table border="1">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+
+        </tr>
+        <tr>
+          <form class="" action="/students/edit/<%=dataStudents.id%>" method="post" >
+              <td><input type="text" name="first_name" value="<%=dataStudents.first_name%>"></td>
+              <td><input type="text" name="last_name" value="<%=dataStudents.last_name%>"></td>
+              <td><input type="text" name="email" value="<%=dataStudents.email%>"></td>
+              <td> <input type="submit" value="SAVE"></td>
+          </form>
+        </tr>
+
+
+      </table>
+      <tr>
+        <td><a href="/students"> View All Students </td>
+      </tr>
+  </body>
+</html>
