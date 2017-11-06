@@ -9,28 +9,25 @@
     }
 
     td, th {
-      border: 1px solid #0a0a0a;
+      border: 1px solid #dddddd;
       text-align: left;
       padding: 5px;
     }
-/* 
-    tr:nth-child(even) {
-      background-color: #0a0a0a;
-    } */
+
 </style>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
     <% if(status == 'enroll'){ %>
-      <h2> <%= subdataStudent[0].dataValues.subject.subject_name %> </h2>
+      <h2> <%= substudentsRows[0].dataValues.subject.subject_name %> </h2>
       <a href="/subjects"> return to subject list </a>
       <br><br>
       <table>
         <tr>
           <th>Student</th>
         </tr>
-        <%subdataStudent.forEach((substudent)=>{%>
+        <%substudentsRows.forEach((substudent)=>{%>
               <tr>
                 <td> <%= substudent.dataValues.student.first_name+' '+substudent.dataValues.student.last_name%> </td>
               </tr>
@@ -43,13 +40,13 @@
         <th>Teacher</th>
         <th>Actions</th>
       </tr>
-      <%dataSubject.forEach((subject)=>{%>
+      <%subjectsRows.forEach((subject)=>{%>
           <tr>
             <td> <%=subject.subject_name%> </td>
             <td>
-            <%for( let i = 0; i < subject.dataValues.Teacher.length; i++ ){%>
+            <%for( let i = 0; i < subject.dataValues.Teachers.length; i++ ){%>
               <%= i+1+'.'+subject.dataValues.Teachers[i].dataValues.first_name+' '+
-              subject.dataValues.Teacher[i].dataValues.last_name %><br>
+              subject.dataValues.Teachers[i].dataValues.last_name %><br>
             <%}%>
           </td>
           <td> <a href="/subjects/<%=subject.id%>/enrolledstudents"> Enrolled Students </a> </td>

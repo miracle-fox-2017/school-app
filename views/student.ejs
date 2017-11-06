@@ -15,16 +15,12 @@
       text-align: left;
       padding: 5px;
     }
-    /* tr:nth-child(even) {
-      background-color: #080808;
-    } */
+
 </style>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-
-
     <% if(status == 'tampil') { %>
         <h2> STUDENT DATA </h2>
         <p> <a href="/students/add">Add Student</a></p>
@@ -44,8 +40,8 @@
                 <td> <%=student.email%> </td>
                 <td> <%=student.fullName%> </td>
                 <td> <a href='/students/<%=student.id%>/addsubject'> Add Subject </td>
-                <td><button onclick="window.location.href='students/edit/<%= students.id %>'">Edit</a>
-                    <button onclick="myFunction(<%= students.id %>)">Delete</button>
+                <td><button onclick="window.location.href='students/edit/<%= student.id %>'">Edit</a>
+                    <button onclick="myFunction(<%= student.id %>)">Delete</button>
               </tr>
               <% }) %>
          </table>
@@ -93,7 +89,7 @@
         Subject:<br>
         <select name="subject_id" required=true>
               <option value = NULL >--select subject--</option>
-              <% dataSubject.forEach( (subject) => {%>
+              <% dataSubject.forEach((subject) => {%>
                   <option value="<%=subject.id%>"><%= subject.subject_name %></option>
               <% }) %>
         </select>
@@ -106,7 +102,7 @@
   <script>
       function myFunction(data) {
         console.log(data)
-        if (confirm("Delete this student?") == true) {
+        if (confirm("hapus data?") == true) {
             window.location = 'students/delete/'+data;
         }else{
             window.location = 'students';
