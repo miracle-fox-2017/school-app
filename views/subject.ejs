@@ -20,14 +20,14 @@
   </head>
   <body>
     <% if(status == 'enroll'){ %>
-      <h2> <%= substudentsRows[0].dataValues.subject.subject_name %> </h2>
+      <h2> <%= dataSubStudents[0].dataValues.subject.subject_name %> </h2>
       <a href="/subjects"> return to subject list </a>
       <br><br>
       <table>
         <tr>
           <th>Student</th>
         </tr>
-        <%substudentsRows.forEach((substudent)=>{%>
+        <%dataSubStudents.forEach((substudent)=>{%>
               <tr>
                 <td> <%= substudent.dataValues.student.first_name+' '+substudent.dataValues.student.last_name%> </td>
               </tr>
@@ -40,7 +40,7 @@
         <th>Teacher</th>
         <th>Actions</th>
       </tr>
-      <%subjectsRows.forEach((subject)=>{%>
+      <%dataSubject.forEach((subject)=>{%>
           <tr>
             <td> <%=subject.subject_name%> </td>
             <td>

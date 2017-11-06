@@ -52,6 +52,7 @@
       <h2> ADD TEACHER </h2>
       <p> <a href="/teachers">Show All data</a></p>
       <%= msg %>
+
       <form action="/teachers/add" method="post">
       First Name:<br>
       <input type="text" name="first_name" required/>
@@ -104,7 +105,7 @@
   <script>
       function myFunction(data) {
         console.log(data)
-        if (confirm("Delete this teacher?") == true) {
+        if (confirm("hapus data teacher?") == true) {
             window.location = 'teachers/delete/'+data;
         }else{
             window.location = 'teachers';

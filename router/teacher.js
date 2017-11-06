@@ -23,17 +23,18 @@ router.get('/teachers/add', (req,res) => {
 })
 
 router.post('/teachers/add', (req,res) => {
-  let obj = { first_name:req.body.first_name,
+  let object = { first_name:req.body.first_name,
               last_name:req.body.last_name,
               email:req.body.email,
               subjectId:req.body.subjectid}
-  model.Teachers.create(obj).then((dataTeacher)=> {
-    console.log(obj)
+  model.Teachers.create(object).then((dataTeacher)=> {
+    console.log(object)
     res.redirect('/teachers')
   }).catch( (err) => {
-    console.log(obj)
+    console.log(object)
   })
 })
+
 
 router.get('/teachers/edit/:id', (req,res) => {
   let status = 'edit'
@@ -48,26 +49,16 @@ router.get('/teachers/edit/:id', (req,res) => {
 
 router.post('/teachers/edit/:id',(req,res)=>{
   let idEdit = req.params.id
-  let obj = { first_name:req.body.first_name,
+  let object = { first_name:req.body.first_name,
               last_name:req.body.last_name,
               email:req.body.email,
               subjectId:req.body.subjectid
             }
   let option = { where: { id: idEdit }}
-  model.Teachers.update(obj, option).then((success)=>{
+  model.Teachers.update(object, option).then((success)=>{
     res.redirect('/teachers')
   })
 })
 
-
-router.get('/teachers/delete/:id',(req,res)=>{
-  let idDelete = req.params.id
-  let option = { where: { id: idDelete }}
-  model.Teachers.destroy(option).then((dataTeacher)=>{
-    res.redirect('/teachers')
-  }).catch((err)=>{
-    console.log(err)
-  })
-})
 
 module.exports = router

@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     subjectId: DataTypes.STRING,
 
   });
-    //classMethods:
       Teacher.associate = function(models) {
         // associations can be defined here
         Teacher.belongsTo(models.Subjects,  {

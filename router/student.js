@@ -22,10 +22,10 @@ router.get('/students/add', (req,res)=> {
 })
 
 router.post('/students/:id/addsubject', (req,res) => {
-    let obj = { subjectId: req.body.subject_id,
-                studentId: req.params.id }
-    model.SubStudents.create(obj).then( (success) => {
-      console.log(obj)
+    let object = { subjectId: req.body.subject_id,
+                 studentId: req.params.id }
+    model.SubStudents.create(object).then( (success) => {
+      console.log(object)
       res.redirect('/students')
     }).catch((err)=>{
       console.log(err);
@@ -33,10 +33,10 @@ router.post('/students/:id/addsubject', (req,res) => {
   })
 
 router.post('/students/add', (req,res)=> {
-  let obj = { first_name:req.body.first_name,
+  let object = { first_name:req.body.first_name,
               last_name:req.body.last_name,
               email:req.body.email}
-  model.Students.create(obj).then((dataStudent)=> {
+  model.Students.create(object).then((dataStudent)=> {
     res.redirect('/students')
   }).catch((err)=> {
     if( err.errors[0].message == "Validation email failed" ) {
@@ -64,11 +64,11 @@ router.get('/students/edit/:id',(req,res)=> {
 
 router.post('/students/edit/:id',(req,res)=>{
   let idEdit = req.params.id
-  let obj = { first_name:req.body.first_name,
+  let object = { first_name:req.body.first_name,
               last_name:req.body.last_name,
               email:req.body.email}
   let option = { where: { id: idEdit }}
-  model.Students.update(obj, option).then((dataStudent)=>{
+  model.Students.update(object, option).then((dataStudent)=>{
     res.redirect('/students')
   }).catch((err)=>{
     if( err.errors[0].message == "Validation isEmail on email failed" ) {
