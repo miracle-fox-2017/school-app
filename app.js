@@ -12,6 +12,9 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// use helpers
+app.locals.scoreLetter = require('./helpers/scoreLetter');
+
 // require routers
 const index = require('./routers/index')
 const teacher = require('./routers/teacher')
