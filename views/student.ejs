@@ -1,44 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Student Data</title>
-    <style media="screen">
-      h2{
-        text-align: center;
-      }
-      div{
-        text-align: center;
-      }
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-
-      form{
-        text-align: center;
-        padding: 20px
-      }
-
-    </style>
-  </head>
-  <body>
-    <h2>Students Data</h2>
+<%- include partial/headerWithMenubar %>
+    <h2>All Students Data</h2>
     <div class="center">
       <a href="/student/add" >Add Student</a>
     </div>
-    
+
     <table>
       <thead>
         <tr>
@@ -65,10 +30,5 @@
         </tr>
       <%})%>
     </table>
-    <script>
-      function myFunction() {
-        confirm("DELETE THIS STUDENT ?");
-      }
-    </script>
-  </body>
-</html>
+    <%- include partial/ConfirmDelete%>
+<%- include partial/footer%>

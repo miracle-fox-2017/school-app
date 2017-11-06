@@ -7,14 +7,14 @@ const route = express.Router();
 route.get('/',(req,res)=>{
   Model.Student.findAll({order: ['first_name']}).then(data=>{
     // res.send(data)
-    res.render('student',{student : data})
+    res.render('student',{student : data, title : 'All Data Students'})
   })
 })
 
 route.get('/add',(req,res)=>{
   let err  ='';
   let uniq ='';
-  res.render('studentAdd',{err : err,uniq : uniq})
+  res.render('studentAdd',{err : err,uniq : uniq, title : 'ADD Data Student'})
 })
 
 
@@ -35,7 +35,7 @@ route.post('/add',(req,res)=>{
 route.get('/edit/:id',(req,res)=>{
   Model.Student.findById(req.params.id).then(data => {
   // res.send(data)
-    res.render('studentEdit',{edit : data})
+    res.render('studentEdit',{edit : data,title : 'Edit Data Student'})
   })
 })
 
@@ -54,7 +54,7 @@ route.get('/delete/:id',(req,res)=>{
 route.get('/:id/addsubject',(req,res)=>{
   Model.Student.findById(req.params.id).then(student=>{
     Model.Subject.findAll().then(subjects => {
-      res.render('addSubjectStudent',{student : student, subjects : subjects})
+      res.render('addSubjectStudent',{student : student, subjects : subjects,title : 'ADD Subject To Student'})
     })
   })
 })

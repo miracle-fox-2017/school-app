@@ -1,36 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Teacher</title>
-    <style media="screen">
-      div{
-        text-align: center;
-      }
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-
-      form{
-        text-align: center;
-        padding: 20px
-      }
-
-    </style>
-  </head>
-  <body>
+<%- include partial/headerWithMenubar%>
     <div class="">
       <h2>All Data Teachers</h2><br>
       <a href="/teacher/add/">Add Teacher Data</a>
@@ -61,7 +29,7 @@
               <td><%=dt.subject.subject_name%></td>
             <% } %>
             <td><a href="/teacher/edit/<%=dt.id%>">Edit</a>  ||
-            <a href="/teacher/delete/<%=dt.id%>">Delete</a></td>
+            <a href="/teacher/delete/<%=dt.id%>" onclick="myFunction()">Delete</a></td>
 
             </tr>
           <% })%>
@@ -69,5 +37,5 @@
 
       </thead>
     </table>
-  </body>
-</html>
+    <%- include partial/ConfirmDelete%>
+  <%- include partial/footer%>

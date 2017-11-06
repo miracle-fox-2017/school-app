@@ -1,5 +1,6 @@
 const express = require('express');
 const Models = require('../models');
+const ScoreByLetter = require('../helper/enrolledByLetter')
 
 const route = express.Router();
 
@@ -16,7 +17,7 @@ route.get('/',(req,res)=>{
 
         if(index === subjects.length-1) {
           // console.log(arr);
-          res.render('subject',{subject:arr})
+          res.render('subject',{subject:arr, title : "All Data Subject"})
         }
 
       })
@@ -54,7 +55,7 @@ route.get('/:id/enrolledstudents',(req,res) => {
     }]
   })
   .then(subjects => {
-    console.log(subjects);
+    // console.log(subjects);
       // subjects.getSubjectWithStudents().then(subjectstudent =>{
       //     let newsubject = subjectstudent.map( data => {
       //       console.log(data);
@@ -82,7 +83,8 @@ route.get('/:id/enrolledstudents',(req,res) => {
     //   Promise.all(newsubject).then(subjectwithstudent => {
     //     // console.log(subjectwithstudent);
     //     // res.send(subjectwithstudent)
-        res.render('enrolledstudents',{subjects : subjects})
+        let SubjectScore = ScoreByLetter(subjects);
+        res.render('enrolledstudents',{subjects : SubjectScore, title : 'Enrolled Data Subject'})
     //   })
     // })
   })
@@ -98,7 +100,7 @@ route.get('/:subjectid/:studentid/givescore',(req,res) => {
     Models.Student.findById(req.params.studentid)
     .then(student => {
       // res.send(student)
-      res.render('givescore',{subject : subject , student : student})
+      res.render('givescore',{subject : subject , student : student, title : 'Give Score Student'})
     })
   })
   // res.render('giveScore')

@@ -21,7 +21,7 @@ route.get('/',(req,res)=>{
     Promise.all(newteacher).then( newsubject => {
       // console.log(newsubject);
       // res.send(newsubject[0].subject_name)
-      res.render('teacher',{teacher : newsubject})
+      res.render('teacher',{teacher : newsubject, title : 'All Data Teachers'})
     })
   })
 })
@@ -30,7 +30,7 @@ route.get('/edit/:id',(req,res) => {
   Models.Teacher.findById(req.params.id).then( teacher => {
     Models.Subject.findAll().then( subject => {
       // res.send(subject)
-      res.render('editTeacher',{teacher :teacher, subject : subject})
+      res.render('editTeacher',{teacher :teacher, subject : subject, title : 'Edit Data Teachers'})
     })
     // res.render('editTeacher',{teacher})
   })
@@ -48,7 +48,7 @@ route.post('/edit/:id',(req,res) => {
 
 route.get('/add',(req,res)=>{
   let err  ='';
-  res.render('addTeacher',{err : err})
+  res.render('addTeacher',{err : err, title : 'ADD Data Teachers'})
 })
 
 route.post('/add',(req,res)=>{
