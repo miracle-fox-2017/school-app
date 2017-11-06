@@ -21,7 +21,6 @@ router.post('/add', (req, res) => {
 			res.redirect('/students');
 		})
 		.catch(err => {
-			console.log(err);
 			var msg = encodeURIComponent(err.message);
   			res.redirect('/students/add/?err=' + msg);
 		});

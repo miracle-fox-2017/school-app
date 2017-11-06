@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Model = require('../models');
-
+const Helper = require('../helpers/helper');
 
 router.get('/', function (req, res) {
 	Model.Subject.findAll({include: [Model.Teacher]})
@@ -30,10 +30,16 @@ router.get('/:subjectId/enrolledstudents', function (req, res) {
 				id: req.params.subjectId,
 			}
 		}).then(foundSubject => {
+
+			allStudentSubjectData.forEach( function(student, index) {
+				student.scoreLetter = Helper.getScoreLetter(student.Score);
+			});
+
 			res.render('enrolled-student', {foundSubject: foundSubject, students: allStudentSubjectData});
 		}).catch(err => res.send(err));
 
 	}).catch(err => res.send(err.message))
+
 })
 
 router.get('/:subjectId/givescore', function (req, res) {

@@ -13,6 +13,7 @@
 					<th>No</th>
 					<th>Student Name</th>
 					<th>Score</th>
+					<th>Score Letter</th>
 				</tr>
 			</thead>
 
@@ -28,6 +29,7 @@
 								<a href="/subjects/<%= student.id %>/givescore">Give Score</a>
 							<% } %>
 						</td>
+						<td><%= student.scoreLetter %></td>
 					</tr>
 				<%}); %>
 			</tbody>
