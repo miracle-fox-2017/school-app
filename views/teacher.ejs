@@ -18,8 +18,9 @@
                     <th>Subject</th>
                     <th colspan="2">Action</th>
                 </tr>
-                <% dataTeachers.forEach((teacher)=>{%>
+                <% dataTeachers.forEach((teacher, index)=>{%>
                     <tr>
+                        <td><%= index+1%></td>
                         <td>
                             <%= teacher.id%>
                         </td>

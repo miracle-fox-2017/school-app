@@ -14,7 +14,7 @@
                             <form action="/subjects/<%= dataStudentSubject.id%>/givescore" method="POST">
                                 Score : <br>
                                 <input name="score" type="text" placeholder="Score" />
-
+                                <input name="idSubject" type="hidden" placeholder="Score"  value="<%= dataStudentSubject.idSubject%>"/>
                                 <input type="submit" value="Add Score">
                             </form>
                         </div>

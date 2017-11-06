@@ -9,6 +9,7 @@
         <div class="main-table">
             <table>
                 <tr>
+                    <th>No</th>
                     <th>ID</th>
                     <th>
                         First Name
@@ -29,8 +30,9 @@
                         Action
                     </th>
                 </tr>
-                <% dataStudents.forEach((student)=>{%>
+                <% dataStudents.forEach((student, index)=>{%>
                     <tr>
+                        <td><%= index+1%></td>
                         <td>
                             <%= student.id%>
                         </td>

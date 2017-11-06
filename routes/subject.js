@@ -141,7 +141,10 @@ router.get('/:id/givescore', function (req, res) {
 })
 
 router.post('/:id/givescore', function (req, res) {
-   // let StudentSubjectId = req.params.id
+    let idSubject = req.body.idSubject
+    // console.log(req.body)
+    //console.log(req.query)
+    // let StudentSubjectId = req.params.id
     Model.StudentSubject.update(
         {
             score: req.body.score
@@ -152,7 +155,7 @@ router.post('/:id/givescore', function (req, res) {
                 id: req.params.id
             }
         }).then(() => {
-            res.redirect('/subjects')
+            res.redirect(`/subjects/${idSubject}/enrolledstudents`)
         })
 })
 
