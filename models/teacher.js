@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     SubjectId : DataTypes.INTEGER
   })
 
-  Teacher.associate = model=>{
+  Teacher.associate = function(model){
     Teacher.belongsTo(model.Subject)
   } 
   return Teacher;

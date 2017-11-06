@@ -10,17 +10,17 @@ module.exports = (sequelize, DataTypes) => {
           msg : 'Email Format is incorrect'
         },
         isUnique : function(value, cb){
-          let checkId = Student.find({where : {id : this._modelOptions.whereCollection.id}}).then(result=>{
-            console.log(result);
-          })
-
-          if(value && !checkId){
+          console.log(this);
+          if(value){
             Student.find({where : {email : value}}).then(result=>{
-              if(result){
-                cb('Email sudah ada')
-              }else{
-                cb()
-              }
+              if(result && !this._modelOptions.whereCollection){
+                  cb('Email sudah ada')
+              }else
+                if(result && result.id != this.id){
+                  cb('Email sudah ada')
+                }else{
+                  cb()
+                }
             }).catch(err=>{
               cb(err)
             })
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
 
-  Student.associate = model => {
+  Student.associate = function(model){
     Student.hasMany(model.School)
     Student.belongsToMany(model.Subject, {through : 'School'})
   }

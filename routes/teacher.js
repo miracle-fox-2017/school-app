@@ -6,7 +6,9 @@ router.get('/', (req, res)=>{
 	Model.Teacher.findAll().then(teachers=>{
 		let result = teachers.map(teacher=> {
 			return new Promise((resolve, reject) => {
-				Model.Subject.findOne({where: {id : teacher.SubjectId}}).then(subject=> {
+				teacher.getSubject().then(subject=> {
+					// teacher.subject = subject.subject_name
+					// resolve(teacher)
 					if(subject){
 						teacher.subject = subject.subject_name
 						resolve(teacher)	

@@ -2,11 +2,17 @@
 <html>
 <head>
 	<title>Teacher</title>
+	<% include ./partials/head %>
 </head>
 <body>
+<header>
+    <% include ./partials/header %>
+</header>
 <h3>Teachers Data</h3>
 <h4><a href="/teachers/add">Add Teachers Data</a></h4>
-<table>
+<main>
+    <div class="jumbotron">
+    <table>
 	<thead>
 		<td>Id</td>
 		<td>First Name</td>
@@ -34,7 +40,12 @@
 			</tr>
 		<%})%>
 	</tbody>
-</table>
+	</table>
+    </div>
+</main>
+<footer>
+    <% include ./partials/footer %>
+</footer>
 <script>
 function myFunction() {
     confirm("delete this teacher?!");

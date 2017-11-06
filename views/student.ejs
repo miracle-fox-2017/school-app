@@ -3,8 +3,12 @@
 <html>
 <head>
 	<title>Student</title>
+	<% include ./partials/head %>
 </head>
 <body>
+<header>
+    <% include ./partials/header %>
+</header>
 <h3>Students Data</h3>
 <h4><a href="/students/add">add student</a></h4>
 <table>
@@ -34,7 +38,9 @@
 		<%})%>
 	</tbody>
 </table>
-
+<footer>
+    <% include ./partials/footer %>
+</footer>
 <script>
 function myFunction() {
     confirm("delete this student?!");

@@ -5,6 +5,7 @@
 	<title>Edit Student</title>
 </head>
 <body>
+<%=err%>
 	<form action="/students/edit/<%=siswa.id%>" method="post">
   		First Name:<br>
   		<input type="text" name="first_name" value="<%=siswa.first_name%>">

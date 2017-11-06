@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     Score: DataTypes.INTEGER
   })
 
-  School.associate = model=> {
+  School.associate = function(model) {
     School.belongsTo(model.Subject)
     School.belongsTo(model.Student)
   }
