@@ -8,6 +8,7 @@
 <table border="1">
 	<thead>
 		<tr>
+		<th>No </th>
 		<th>id</th>
 		<th>subject_name</th>
 		<th>Full Name</th>
@@ -15,12 +16,13 @@
 		</tr>
 	</thead>
 	<tbody>
-	<% allSubject.forEach(subject => {%>
+	<% allSubject.forEach((subject, index) => {%>
 		<tr>
+		<td> <%= index+1 %> </td>
 		<td> <%= subject.id %> </td>
 		<td> <%= subject.subject_name %> </td>
 			<td><% subject.Teachers.forEach(teacher => {%>
-			<li style="list-style-type: decimal;"> <%= teacher.first_name %> <%= teacher.last_name %>	
+			<li style="list-style-type: decimal;"> <%= teacher.getFullName() %>	
 			</li>
 			<%})%>
 			</td>

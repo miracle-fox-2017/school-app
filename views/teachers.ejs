@@ -9,6 +9,7 @@
 	<table border="1">
 		<thead>
 			<tr>
+				<th>No </th>
 				<th>first_name</th>
 				<th>last_name</th>
 				<th>email</th>
@@ -17,8 +18,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% allTeacher.forEach(teacher =>{ %>
+			<% allTeacher.forEach((teacher,index) =>{ %>
 			<tr>
+				<td> <%= index+1 %></td>
 				<td> <%= teacher.first_name %> </td>
 				<td> <%= teacher.last_name %> </td>
 				<td> <%= teacher.email %> </td>

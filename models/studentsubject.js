@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   StudentSubject.associate = function(models){
-    StudentSubject.belongsTo(models.Subject);
-    StudentSubject.belongsTo(models.Student);
+    StudentSubject.belongsTo(models.Subject, { onDelete: 'cascade', hooks: true});
+    StudentSubject.belongsTo(models.Student, { onDelete: 'cascade', hooks: true});
   }
   return StudentSubject;
 };

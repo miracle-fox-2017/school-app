@@ -21,33 +21,34 @@ router.get('/:id/enrolledstudents', function(req,res) {
 	model.Subject.findById(req.params.id,{
 		include: [ { model : model.Student}]
 	}).then(subject => {
-		// console.log(subject.id)
-		// console.log(subject.Students)
 		model.StudentSubject.findAll({
 			attributes : ['id', 'StudentId', 'SubjectId', 'score'],
 			include : [model.Subject,model.Student],
 			where : {SubjectId : subject.id},
+			order : [[{model : model.Student}, 'first_name', 'ASC']]	
 		})
 		.then(data => {
-			// console.log(data[0].Subject)
-			// console.log(data[0].Subject)
 			res.render('enrolledstudents', {subject : data})
 		})
 	})
 	.catch(err => {
 		res.send(err);
 	})
-
-	// model.Subject.findById(req.params.id,{
-	// 	include: [ { model : model.Student}]
-	// }).then(subject => {
-	// 	console.log(subject.Students[0].StudentSubject)
-	// 	res.render('enrolledstudents', {subject : subject})
-	// })
-	// .catch(err => {
-	// 	res.send(err);
-	// })
 })
+
+// router.get('/test', function (req,res) {
+	
+// 	model.Subject.findAll({
+// 		include: [{model : model.Student}, {model : model.StudentSubject, attributes: ['id']} ]
+// 	}).then(subject => {
+// 		console.log(subject[0].StudentSubjects)
+// 		res.send("masuk")
+// 	})
+// 	.catch(err => {
+// 		console.log(err)
+// 		res.send(err);
+// 	})
+// })
 
 router.get('/:id/givescore', function(req,res) {
 	// model.StudentSubject.findById(req.params.id, {

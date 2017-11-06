@@ -9,14 +9,16 @@
 	<table border="1" width="70%">
 		<thead>
 			<tr>
+				<th> No </th>
 				<th> name </th>
 				<th> score </th>
 			</tr>
 		</thead>
 		<tbody>
-			<% subject.forEach(student => {%>	
+			<% subject.forEach((student,index) => {%>	
 			<tr>
-				<td> <%= student.Student.first_name %> <%= student.Student.last_name %></td>
+				<td> <%= index+1 %> </td>
+				<td> <%= student.Student.getFullName() %></td>
 				<% if (student.score == null) {%>
 				<td><a href="/subjects/<%= student.id %>/givescore"> Give Score </a></td>
 				<%}else{%>

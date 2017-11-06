@@ -5,7 +5,9 @@ const model   = require('../models')
 
 
 router.get('/', function(req,res){
-	model.Student.findAll()
+	model.Student.findAll({
+		order : [['first_name', 'ASC']]
+	})
 	.then(allStudents =>{
 		res.render('students', {allStudents : allStudents})	
 	})
@@ -54,14 +56,19 @@ router.post('/edit/:id', function(req,res){
 })
 
 router.get('/delete/:id', function(req,res){
-	model.Student.destroy({where : {
-		id : req.params.id
+	model.StudentSubject.destroy({where : {
+		StudentId : req.params.id
 	}})
-	.then(() =>{
-		res.redirect('/students')
-	})
-	.catch(err =>{
-		res.send(err);
+	.then(() => {
+		model.Student.destroy({where : {
+			id : req.params.id
+		}})
+		.then(() =>{
+			res.redirect('/students')
+		})
+		.catch(err =>{
+			res.send(err);
+		})
 	})
 })
 

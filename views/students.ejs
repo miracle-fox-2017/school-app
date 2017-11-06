@@ -9,6 +9,7 @@
 	<table border="1" width="70%">
 		<thead>
 			<tr>
+				<th> no </th>
 				<th> id </th>
 				<th> first_name </th>
 				<th> last_name </th>
@@ -18,8 +19,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% allStudents.forEach(student => {%>	
+			<% allStudents.forEach((student, index) => {%>	
 			<tr>
+				<td> <%= index+1 %> </td>
 				<td> <%= student.id %> </td>
 				<td> <%= student.first_name  %> </td>
 				<td> <%= student.last_name  %> </td>
