@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Insert Score</title>
-</head>
-<body>
-<% include ./partials/navigation %>	
+<%- include("./partials/navigation", {title : "INSERT SCORE"}) %>
 <h2>Insert Score</h2>
 <form accept="/subjects/<%= student.id %>/givescore" method="post">
 	<thead>

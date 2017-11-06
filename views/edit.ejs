@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>EDIT Student</title>
-</head>
-<body>
-<% include ./partials/navigation %>	
+<%- include("./partials/navigation", {title : "EDIT STUDENT"}) %>
 <% if(message != null ){%>
 	<h3> <%= message %></h3>
 <%}%>

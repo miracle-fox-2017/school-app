@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Students</title>
-</head>
-<body>
-<% include ./partials/navigation %>	
+<%- include("./partials/navigation", {title : "Student"}) %>
+<body class="body">
 <h1> ALL STUDENT DATA</h1>
 <h4> <a href ="/students/add"> add student</a>	</h4>	
-	<table border="1" width="70%">
+	<table border="1" width="100%">
 		<thead>
 			<tr>
-				<th> no </th>
+				<th> No </th>
 				<th> id </th>
 				<th> first_name </th>
 				<th> last_name </th>
@@ -43,4 +38,9 @@
 		}
 	</script>
 </body>
-</html>
+
+<style type="text/css">
+	.body {
+		text-align: center;
+	}
+</style>

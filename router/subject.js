@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const model = require('../models');
+const fullscore = require ('../helpers/score')
 
 router.get('/', function(req,res){
 	model.Subject.findAll({
@@ -28,6 +29,10 @@ router.get('/:id/enrolledstudents', function(req,res) {
 			order : [[{model : model.Student}, 'first_name', 'ASC']]	
 		})
 		.then(data => {
+			console.log(data)
+			data.forEach(dataWithScore => {
+				dataWithScore.scoreAlphabet = fullscore(dataWithScore)
+			})
 			res.render('enrolledstudents', {subject : data})
 		})
 	})

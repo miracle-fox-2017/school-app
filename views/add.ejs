@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Add Student</title>
-</head>
-<body>
-<% include ./partials/navigation %>	
+<%- include("./partials/navigation", {title : "Add Student Data"}) %>
 <h1> ADD STUDENT DATA</h1>
 <h4> <a href ="/students"> show all data </a>	</h4>
 <% if(message != null ){%>
