@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Model = require('./../models')
 const getScore = require('./../helpers/scoreLetter')
+
 router.get('/', function (req, res) {
     Model.Subject.findAll().then((dataSubjects) => {
 
@@ -79,6 +80,7 @@ router.get('/:id/enrolledstudents', function (req, res) {
         let newDataSS = dataSS.map((studentsubject) => {
             return new Promise((resolve, reject) => {
                 studentsubject.getStudent().then((dataStudents) => {
+                    //console.log(dataStudents.sort())
                     if (dataStudents) {
                         studentsubject.fullname = dataStudents.first_name + ' ' + dataStudents.last_name
                     } else {
@@ -89,15 +91,12 @@ router.get('/:id/enrolledstudents', function (req, res) {
             })
         })
         Promise.all(newDataSS).then((result) => {
+            // console.log(result)
+
             let count = 0;
-            // result.forEach((nilai) => {
-            //     let hurufScore = getScore(nilai.score)
-
-            // })
-
-            //console.log(result)
             result[0].getSubject().then((dataSubject) => {
                 result.forEach((nilai) => {
+                    // console.log(nilai)
                     nilai.hurufScore = getScore(nilai)
                     count++
                     if (count == result.length) {

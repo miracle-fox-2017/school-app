@@ -10,6 +10,7 @@
         <div class="main-table">
             <table>
                 <tr>
+                    <th>No</th>
                     <th>
                         Id
                     </th>
@@ -23,8 +24,11 @@
                         Action
                     </th>
                 </tr>
-                <% dataSubjects.forEach((subject)=>{%>
+                <% dataSubjects.forEach((subject, index)=>{%>
                     <tr>
+                        <td>
+                            <%= index+1%>
+                        </td>
                         <td>
                             <%= subject.id%>
                         </td>
@@ -37,7 +41,7 @@
                                 <% subject.Teachers.forEach((teacher)=>{%>
                                     <li>
                                         <%= teacher.getFullName()%>
-                                           
+
                                     </li>
                                     <%})%>
                             </ol>

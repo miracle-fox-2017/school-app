@@ -3,7 +3,11 @@ const router = express.Router();
 const Model = require('./../models')
 
 router.get('/', function (req, res) {
-    Model.Student.findAll().then((dataStudents) => {
+    Model.Student.findAll({
+        order: [
+            ['first_name', 'ASC']
+        ]
+    }).then((dataStudents) => {
         res.render('student', { dataStudents: dataStudents, pageTitle: "Students" })
     }).catch((reason) => {
         res.send(reason)
