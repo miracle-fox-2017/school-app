@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div style="text-align: center;">
-		<h1><%= foundSubject.subject_name%></h1>
+
 		<a href="/subjects">Return to Subjects</a>
 	</div>
 	<br /><br />
@@ -30,7 +30,7 @@
 						<% if(student.Score !== null) { %>
 								<%= student.Score; %>
 						<% } else { %>
-							<a href="/subjects/<%= student.StudentId %>/givescore">Give Score</a>
+							<a href="/subjects/<%= student.id %>/givescore">Give Score</a>
 						<% } %>
 					</td>
 				</tr>
