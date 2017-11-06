@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Give Score</title>
-  </head>
+<%- include ../partials/header %>
   <body>
-    <a href="/">Home</a>
-    <a href="/teachers">Teachers</a>
-    <a href="/subjects">Subjects</a>
-    <a href="/students">Students</a>
+    <%- include ../partials/navbar %>
 
     <br><br>
     <form class="" action="/subjects/<%= dataSubject.id %>/givescore" method="post">

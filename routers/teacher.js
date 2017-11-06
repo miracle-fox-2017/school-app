@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
     .then(dataTeachers => {
       // console.log(dataTeachers[0]);
       // res.send(dataTeachers[0].teacherSubject.subject_name)
-      res.render('teachers/index', {dataTeachers: dataTeachers})
+      res.render('teachers/index', {pageTitle: 'Teacher Page', dataTeachers: dataTeachers})
     })
   })
   .catch(error => {
@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('teachers/add', {error: false})
+  res.render('teachers/add', {pageTitle: 'Add Teacher', error: false})
 })
 
 router.post('/add', function (req, res) {
@@ -39,7 +39,7 @@ router.post('/add', function (req, res) {
     res.redirect('/teachers')
   })
   .catch(error => {
-    res.render('teachers/add', {error: error.message})
+    res.render('teachers/add', {pageTitle: 'Add Teacher', error: error.message})
   })
 })
 
@@ -48,7 +48,7 @@ router.get('/edit/:id', function (req, res) {
   .then(dataTeacher => {
     Model.Subject.findAll()
     .then(dataSubjects => {
-      res.render('teachers/edit', {dataTeacher: dataTeacher, dataSubjects: dataSubjects})
+      res.render('teachers/edit', {pageTitle: 'Edit Teacher', dataTeacher: dataTeacher, dataSubjects: dataSubjects})
     })
   })
   .catch(error => {

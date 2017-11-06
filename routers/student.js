@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', function (req, res) {
   Model.Student.findAll({order: [['first_name', 'ASC']]})
   .then(dataStudents => {
-    res.render('students/index', {dataStudents: dataStudents})
+    res.render('students/index', {pageTitle: 'Student Page', dataStudents: dataStudents})
   })
   .catch(error => {
     res.send(error)
@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('students/add', {error: false})
+  res.render('students/add', {pageTitle: 'Add Student', error: false})
 })
 
 router.post('/add', function (req, res) {
@@ -24,14 +24,14 @@ router.post('/add', function (req, res) {
     res.redirect('/students')
   })
   .catch(error => {
-    res.render('students/add', {error: error.message})
+    res.render('students/add', {pageTitle: 'Add Student', error: error.message})
   })
 })
 
 router.get('/edit/:id', function (req, res) {
   Model.Student.findById(req.params.id)
   .then(dataStudent => {
-    res.render('students/edit', {dataStudent: dataStudent})
+    res.render('students/edit', {pageTitle: 'Edit Student', dataStudent: dataStudent})
   })
   .catch(error => {
     res.send(error)
@@ -63,7 +63,7 @@ router.get('/:id/addsubject', function (req, res) {
   .then(dataStudent => {
     Model.Subject.findAll()
     .then(dataSubjects => {
-      res.render('students/addsubject', {dataStudent: dataStudent, dataSubjects: dataSubjects})
+      res.render('students/addsubject', {pageTitle: 'Add Student Subject', dataStudent: dataStudent, dataSubjects: dataSubjects})
     })
   })
 })

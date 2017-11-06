@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
     .then(dataSubjects => {
       // console.log(dataSubjects[0].subjectTeacher[0].first_name);
       // res.send(dataSubjects[1].subjectTeacher[0])
-      res.render('subjects/index', {dataSubjects: dataSubjects})
+      res.render('subjects/index', {pageTitle: 'Subject Page', dataSubjects: dataSubjects})
     })
   })
   .catch(error => {
@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('subjects/add')
+  res.render('subjects/add', {pageTitle: 'Add Subject'})
 })
 
 router.post('/add', function (req, res) {
@@ -46,7 +46,7 @@ router.post('/add', function (req, res) {
 router.get('/edit/:id', function (req, res) {
   Model.Subject.findById(req.params.id)
   .then(dataSubject => {
-    res.render('subjects/edit', {dataSubject: dataSubject})
+    res.render('subjects/edit', {pageTitle: 'Edit Subject', dataSubject: dataSubject})
   })
   .catch(error => {
     res.send(error)
@@ -96,8 +96,8 @@ router.get('/:id/enrolledstudents', function (req, res) {
 
     Promise.all(newSubject)
     .then(studentSubject => {
-      // res.send(studentSubject)
-      res.render('subjects/enrolledstudents', {dataSubject: subject, dataStudentSubject: studentSubject})
+      // res.send(subject)
+      res.render('subjects/enrolledstudents', {pageTitle: 'Enrolled Students', dataSubject: subject, dataStudentSubject: studentSubject})
     })
   })
 })
@@ -111,7 +111,7 @@ router.get('/:id/givescore', function (req, res) {
   })
   .then(subject => {
     // res.send(subject)
-    res.render('subjects/givescore', {dataSubject: subject})
+    res.render('subjects/givescore', {pageTitle: 'Give Score', dataSubject: subject})
   })
   .catch(error => {
     res.send(error)

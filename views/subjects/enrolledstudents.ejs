@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Enrolled Students</title>
-  </head>
+<%- include ../partials/header %>
   <body>
-    <a href="/">Home</a>
-    <a href="/teachers">Teachers</a>
-    <a href="/subjects">Subjects</a>
-    <a href="/students">Students</a>
-
+    <%- include ../partials/navbar %>
+    <h2><%= dataSubject.subject_name %></h2>
     <table>
       <thead>
         <tr>
@@ -33,7 +25,13 @@
                 <a href="/subjects/<%= student.id %>/givescore">Give Score</a>
               <% } %>
             </td>
-            <td></td>
+            <td>
+              <% if(student.score) { %>
+
+              <% } else { %>
+                  Empty
+              <% } %>
+            </td>
           </tr>
         <% }) %>
       </tbody>

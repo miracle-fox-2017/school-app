@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Add Student</title>
-  </head>
+<%- include ../partials/header %>
   <body>
-    <a href="/">Home</a>
-    <a href="/teachers">Teachers</a>
-    <a href="/subjects">Subjects</a>
-    <a href="/students">Students</a>
+    <%- include ../partials/navbar %>
     <% if(error) { %>
       <h4 style="color: red"><%= error + '\n' %></h4>
     <% } else { %>
