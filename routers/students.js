@@ -24,11 +24,15 @@ router.post('/add', function(req,res){
 //READ
 router.get('/', function(req,res){
   model.Student.findAll({
+    // offset: 5, limit: 5,
     order: [['first_name', 'ASC']]
   }).then(data_Students=>{
+    res.status(200)
+    // res.send(data_Students)
     res.render('students', {data_Students:data_Students})
   }).catch(err =>{
-    console.log(err);
+    console.log(err)
+    res.status(500).send('Internal Server error')
   })
 })
 
@@ -59,11 +63,18 @@ router.post('/edit/:id', function(req,res){
 
 //DELETE
 router.get('/delete/:id', function(req,res){
-  model.Student.destroy({
-    where : {
-      id  : req.params.id
-    }
-  }).then(function(){
+  Promise.all([
+    model.Student.destroy({
+      where : {
+        id : req.params.id
+      }
+    }),
+    model.StudentSubject.destroy({
+      where : {
+        StudentId : req.params.id
+      }
+    })
+  ]).then(function(){
     res.redirect('../../students')
   }).catch(err=>{
     console.log(err);
