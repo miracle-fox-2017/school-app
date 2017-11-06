@@ -23,7 +23,6 @@ router.get('/add', (req, res)=>{
 
 router.post('/add', (req, res)=>{
   Model.Student.create(req.body).then(dataStudent=>{
-    console.log(dataStudent);
     res.redirect('/students')
   })
   .catch(err=>{
@@ -31,4 +30,38 @@ router.post('/add', (req, res)=>{
   })
 })
 
+router.get('/edit/:id', (req, res)=>{
+  Model.Student.findById(req.params.id).then(dataStudent=>{
+    let dataS= {
+      rows : dataStudent
+    }
+    console.log(dataS);
+    res.render('students-edit', dataS)
+  })
+  .catch(err=>{
+    res.send(err)
+  })
+})
+
+router.post('/edit/:id', (req, res)=>{
+  Model.Student.update(req.body, {
+    where :{id : req.body.id}
+  }).then(dataStudent=>{
+    res.redirect('/students')
+  })
+  .catch(err=>{
+    res.send(err)
+  })
+})
+
+router.get('/delete/:id', (req, res)=>{
+  Model.Student.destroy({
+    where : {id : req.params.id}
+  }).then(dataStudent =>{
+    res.redirect('/students')
+  })
+  .catch(err=>{
+    res.send(err)
+  })
+})
 module.exports = router;

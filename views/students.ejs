@@ -41,6 +41,7 @@
               <td><%= data.first_name %></td>
               <td><%= data.last_name %></td>
               <td><%= data.email %></td>
+              <td class="text-center"><a href="/students/edit/<%= data.id%>">Edit</a> || <a href="/students/delete/<%= data.id%>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
             </tr>
           </tbody>
           <% });%>
