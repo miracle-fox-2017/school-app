@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   StudentSubject.associate = (model) => {
-    StudentSubject.belongsTo(model.Subject, { foreignKey: 'idSubject' })
-    StudentSubject.belongsTo(model.Student, { foreignKey: 'idStudent' })
+    StudentSubject.belongsTo(model.Subject, { foreignKey: 'idSubject', targetKey: 'id' })
+    StudentSubject.belongsTo(model.Student, { foreignKey: 'idStudent', targetKey: 'id' })
   }
   return StudentSubject;
 };

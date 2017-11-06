@@ -66,21 +66,29 @@ router.get('/:id/addsubject', function (req, res) {
 router.post('/:id/addsubject', function (req, res) {
     Model.StudentSubject.create({
         idStudent: req.params.id,
-        idSubject: req.body.SubjectId
+        idSubject: req.body.idSubject
     }).then((result) => {
         res.redirect('../../students')
     })
 })
 
 router.get('/delete/:id', function (req, res) {
-    Model.Student.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(() => {
-        res.redirect("../../students")
+    Promise.all([
+        Model.Student.destroy({
+            where: {
+                id: req.params.id
+            }
+        }),
+        Model.StudentSubject.destroy({
+            where: {
+                idStudent: req.params.id
+            }
+        })
+
+    ]).then(() => {
+        res.redirect('../../students')
     }).catch((reason) => {
-        res.send(reason)
+        res.render(reason)
     })
 
 })
