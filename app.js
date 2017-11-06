@@ -9,7 +9,6 @@ app.set('view engine', 'ejs');
 
 let db = require('./models');
 
-
 const homeRouter = require('./routers/index.js');
 app.use('/', homeRouter);
 

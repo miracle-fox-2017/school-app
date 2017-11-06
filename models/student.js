@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             unique: true,
             allowNull: {msg: 'Email is required.' },
-            validate: {isUnique: function (value, next) {
+            validate: {
+                    isEmail: true,
+                    isUnique: function (value, next) {
                     var self = this;
                     Student.find({where: {email: value}})
                         .then(function (user) {

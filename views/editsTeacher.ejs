@@ -21,7 +21,7 @@
             <td><input type="text" name="last_name" value="<%= teacher.last_name %>"></td>
             <td><input type="text" name="email" value="<%= teacher.email %>"></td>
             <td><input type="submit" value="edit"></td>
-            <select  name="SubjectsId">
+            <select  name="SubjectId">
               <% subjects.map(row => { %>
                 <option value="<%= row.id %>" <% if(row.id == teacher.SubjectId) { %>
                   <%= 'selected' %> <% } %> ><%= row.subject_name %>

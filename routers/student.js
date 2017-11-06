@@ -3,7 +3,7 @@ const router = express.Router();
 const model = require("../models");
 
 router.get('/', function (req, res) {
-  model.Student.findAll({order: [['id', 'ASC']]}).then((rows)=>{
+  model.Student.findAll({order: [['first_name', 'ASC']]}).then((rows)=>{
     res.render('students' , {rows})
     console.log(rows);
   }).catch((err)=>{
@@ -18,8 +18,8 @@ router.get('/add', function(req,res){
 router.post('/add', function (req, res){
   model.Student.create( {first_name: req.body.first_name,
     last_name: req.body.last_name,
-    email : req.body.email})
-    .then(allStudents => {
+    email : req.body.email
+  }).then(allStudents => {
     res.redirect('/students')
   }).catch(err => {
     console.log(err);
@@ -52,7 +52,8 @@ router.post('/edit/:id', function(req, res) {
 
 
 router.get('/delete/:id', function(req, res) {
-  model.Student.destroy ( { where : { id : req.params.id}
+  model.Student.destroy ( {
+    where : { id : req.params.id}
   })
   .then(()=> {
     res.redirect('/students')
@@ -68,6 +69,7 @@ router.get('/:id/addsubject', (req, res) => {
   .then( students => {
     model.Subject.findAll()
     .then(subjects => {
+      // res.send(subjects)
       res.render('addSubject', {students: students, subjects : subjects})
     })
   })
@@ -78,7 +80,8 @@ router.get('/:id/addsubject', (req, res) => {
 
 router.post('/:id/addsubject', (req, res) => {
   req.body.StudentId = req.params.id;
-  model.Student.create(req.body)
+  // res.send(req.body)
+  model.StudentSubject.create(req.body)
   .then(() => {
     res.redirect('/students')
   })

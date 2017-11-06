@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const model = require("../models");
+const helper = require("../helper/get.js")
 
 router.get('/', function (req, res) {
   model.Subject.findAll().then(subjects => {
@@ -28,6 +29,20 @@ router.get('/', function (req, res) {
     console.log(err);
   })
 })
+//
+router.get('/add', (req,res) => {
+  res.render('subjectAdd', {rows: null})
+})
+
+router.post('/add', (req,res) => {
+  model.Subject.create(req.body)
+  .then(data => {
+    res.redirect('/subjects')
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
 router.get('/:id/enrolledstudents', function (req, res){
   model.StudentSubject.findAll({
     where: {SubjectId: req.params.id},
@@ -37,7 +52,11 @@ router.get('/:id/enrolledstudents', function (req, res){
   .then(studentsubjects=>{
     model.Subject.findOne({where: {id: studentsubjects[0].SubjectId} })
     .then(subject=>{
-      // res.send(studentsubjects[0])
+
+      studentsubjects.forEach(rows => {
+        rows.Score = helper(rows.Score)
+      })
+      // res.send(studentsubjects)
       res.render('enrolledstudents', {studentsubjects:studentsubjects, subject:subject})
     })
     // console.log(studentsubjects);
@@ -49,29 +68,50 @@ router.get('/:id/enrolledstudents', function (req, res){
 
 router.get('/:id/givescore', function (req, res){
   // res.send('router give score udah jadi')
-  model.StudentSubject.findOne({
-    where :
-    {
-      id : req.params.id
-    }
-  }).then(data => {
-    model.Student.findOne({
-      where :
-      {
-        id : data.StudentId
-      }
-    }).then(student =>{
-      model.Subject.findOne({
-        where : {
-          id : data.SubjectId
-        }
-      }).then(subject => {
-        // res.send(subject)
-        res.render('give_score', {student : student, subject : subject})
-      })
-    })
+  model.StudentSubject.findById(req.params.id)
+  .then(rows => {
+    res.render('give_score', {rows:rows})
   })
+  // model.StudentSubject.findOne({
+  //   where :
+  //   {
+  //     id : req.params.id
+  //   }
+  // }).then(data => {
+  //   model.Student.findOne({
+  //     where :
+  //     {
+  //       id : data.StudentId
+  //     }
+  //   }).then(student =>{
+  //     model.Subject.findOne({
+  //       where : {
+  //         id : data.SubjectId
+  //       }
+  //     }).then(subject => {
+  //       // res.send(subject)
+  //       res.render('give_score', {student : student, subject : subject})
+  //     })
+  //   })
+  // })
 })
+
+router.post('/:id/givescore', (req,res) => {
+  model.StudentSubject.update(req.body,{
+    where : {
+      id : req.params.id} })
+      .then(() => {
+        res.redirect('/subjects')
+      })
+      .catch(err => {
+        console.log(err);
+      })
+})
+
+
+// router.post('/:id/givescore', function (req,res) => {
+//
+// })
 
 // router.get('/add', function (req, res) {
 //   res.render('')
@@ -92,16 +132,5 @@ router.get('/:id/givescore', function (req, res){
 //     res.render('addTeacher', {rows : err})
 //   })
 // })
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;

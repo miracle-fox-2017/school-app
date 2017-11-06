@@ -3,8 +3,9 @@ const router = express.Router();
 const model = require("../models");
 
 router.get('/', function (req, res) {
-  model.Teacher.findAll({order: [['id', 'ASC']]}).then(teachers => {
+  model.Teacher.findAll({order: [['first_name', 'ASC']]}).then(teachers => {
     let newTeacher = teachers.map(teacher => {
+      // res.send(teacher)
       return new Promise((resolve, reject) => {
         teacher.getSubject().then(subjectWith => {
           teacher.subject = subjectWith;

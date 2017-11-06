@@ -10,19 +10,22 @@
     <table border="1">
       <tr>
         <th>No</th>
-        <th>first_name</th>
+        <th>Student Name</th>
         <th>score</th>
+        <th>give score</th>
       </tr>
-      <% studentsubjects.forEach((s,i)=>{ %>
+      <% studentsubjects.forEach((subjects,i)=>{ %>
         <tr>
           <td><%= i+1 %></td>
-          <td><%= s.Student.first_name %></td>
-           <td><% if(s.score != null){ %>
-            <%= s.score %>
+          <td>
+            <% if(subjects.Student){ %>
+              <%= subjects.Student.first_name %>
             <% } else { %>
-              <a href="<%= s.id %>givescore">Score</a>
+              --
             <% } %>
           </td>
+          <td><%= subjects.Score %> </td>
+          <td> <a href="/subjects/<%= subjects.StudentId %>/givescore">score</a></td>
         </tr>
       <% }) %>
     </table>

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Subjects</title>
-  </head>
-    <style media="screen">
-    table, th, td {
-    border: 1px solid black;
-    }
-    </style>
+<% include partials/header.ejs %>
   <body>
     <table>
       <tr>
@@ -16,7 +6,6 @@
         <th>Subject</th>
         <th>Teacher</th>
         <th>Students</th>
-        <th>Option</th>
       </tr>
         <% rows.forEach(function(row){%>
       <tr>
@@ -26,10 +15,9 @@
         <td><a href="/subjects/<%=row.id%>/enrolledstudents">enrolledstudents</a></td>
       </tr>
       <% }) %>
+      <a href="/subjects/add" class="btn btn-default">add subjects</a>
     </table>
-
   </body>
 </html>
 <script type="text/javascript">
-
 </script>
