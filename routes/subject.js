@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Model = require('./../models')
-
+const getScore = require('./../helpers/scoreLetter')
 router.get('/', function (req, res) {
     Model.Subject.findAll().then((dataSubjects) => {
 
@@ -89,9 +89,25 @@ router.get('/:id/enrolledstudents', function (req, res) {
             })
         })
         Promise.all(newDataSS).then((result) => {
+            let count = 0;
+            // result.forEach((nilai) => {
+            //     let hurufScore = getScore(nilai.score)
+
+            // })
+
+            //console.log(result)
             result[0].getSubject().then((dataSubject) => {
-                //console.log(result)
-                res.render('enrolled-students', { dataStudentSubject: result, dataSubject: dataSubject, pageTitle: 'Enrolled Students' })
+                result.forEach((nilai) => {
+                    nilai.hurufScore = getScore(nilai)
+                    count++
+                    if (count == result.length) {
+                        res.render('enrolled-students', { dataStudentSubject: result, dataSubject: dataSubject, pageTitle: 'Enrolled Students' })
+                    }
+                    // console.log(result)
+
+                })
+                // console.log(result)
+
             })
         }).catch((reason) => {
             Model.Subject.findById(req.params.id).then((dataSubject) => {
