@@ -22,7 +22,16 @@
       }
 
       fieldset {
-        width : 30%;
+        width : 60%;
+      }
+
+      a {
+        text-decoration: none;
+        color : white;
+      }
+
+      a:hover {
+        color : grey;
       }
 
     </style>
@@ -35,6 +44,8 @@
       <thead>
         <th><b>Id</b></th>
         <th><b>Subject Name</b></th>
+        <th><b>Teacher</b></th>
+        <th><b>Action</b></th>
       </thead>
 
       <tbody>
@@ -42,7 +53,20 @@
           <tr>
             <td><%= rowSubjects[i].id %></td>
             <td><%= rowSubjects[i].subject_name %></td>
+            <td>
+              <ol>
+                <% for(let j = 0 ; j < rowSubjects[i].Teachers.length ; j++) { %>
+                  <li>
+                    <%= rowSubjects[i].Teachers[j].first_name %>
+                    <%= rowSubjects[i].Teachers[j].last_name %>
+                  </li>
+            <% } %>
+
+          </td>
+
+          <td><a href= "/subjects/<%= rowSubjects[i].id %>/enrolledstudents">Enrolled Students</a></td>
           </tr>
+
         <%}%>
       </tbody>
 

@@ -29,8 +29,6 @@
 
   </head>
   <body style = "background-color :aquamarine">
-    <% rowTeachers.forEach(teacher => { %>
-
       <fieldset>
         <legend> <b>FORM EDIT STUDENT </b> </legend>
           <form action="/teachers/edit/<%= teacher.id %>" method="post">
@@ -54,6 +52,20 @@
               </tr>
 
               <tr>
+                <td width = "150px">Subject Id</td>
+                <td width = "50px">:</td>
+                <td><select name = "SubjectId">
+                  <option>-----SELECT-----</option>
+                    <% rowSubjects.forEach((subject) => {
+                      if(subject.id == teacher.SubjectId) { %>
+                        <option value = "<%= subject.id %>" selected> <%= subject.subject_name %></option>
+                          <% } else { %>
+                            <option value = "<%= subject.id %>"> <%= subject.subject_name %></option>
+                      <% }}) %>
+                </td>
+              </tr>
+
+              <tr>
                 <td width = "150px"></td>
                 <td width = "50px"></td>
                 <td><input type="submit" value = "Edit Teacher"></td>
@@ -61,6 +73,5 @@
             </table>
           </form>
       </fieldset>
-<% }) %>
   </body>
 </html>

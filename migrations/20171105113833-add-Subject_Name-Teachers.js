@@ -2,10 +2,10 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    queryInterface.addColumn( 'Teachers', 'Subject_Id', { type : Sequelize.INTEGER } );
+    queryInterface.addColumn( 'Teachers', 'SubjectId', { type : Sequelize.INTEGER } );
   },
 
   down: function (queryInterface, Sequelize) {
-    queryInterface.removeColumn( 'Teachers', 'Subject_Id');
+    queryInterface.removeColumn( 'Teachers', 'SubjectId');
   }
 };

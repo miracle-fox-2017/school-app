@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <fieldset>
+      <legend>GIVE SCORE</legend>
+    <table border = "1">
+      <tr>
+        <th>Student Name</th>
+        <th>Subject Name</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td><%=dataStudent.first_name%></td>
+        <td><%=dataSubject.subject_name%></td>
+      <form class="" action = "/subjects/<%=rows.id%>/givescore" method = "post">
+        <td><input type="text" name="Score"></td>
+        <td><input type="submit" value="SUBMIT"></td>
+      </form>
+      </tr>
+    </fieldset>
+    </table>
+  </body>
+</html>

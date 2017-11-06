@@ -22,7 +22,7 @@
       }
 
       fieldset {
-        width : 70%;
+        width : 80%;
       }
 
       a {
@@ -41,21 +41,27 @@
         <th><b>First Name</b></th>
         <th><b>Last Name</b></th>
         <th><b>E-mail</b></th>
+        <th><b>Subject_Name</b></th>
         <th><b>EDIT DATA</b></th>
         <th><b>DELETE DATA</b></th>
       </thead>
 
       <tbody>
-        <% for(let i = 0 ; i < rowTeachers.length ; i++) { %>
+        <% rowTeachers.forEach((teacher) => { %>
           <tr>
-            <td><%= rowTeachers[i].id %></td>
-            <td><%= rowTeachers[i].first_name %></td>
-            <td><%= rowTeachers[i].last_name %></td>
-            <td><%= rowTeachers[i].email %></td>
-            <td><a href = '/teachers/edit/<%= rowTeachers[i].id %>'>EDIT</a></td>
-            <td><a href = '/teachers/delete/<%= rowTeachers[i].id %>'>DELETE</a></td>
+            <td><%= teacher.id %></td>
+            <td><%= teacher.first_name %></td>
+            <td><%= teacher.last_name %></td>
+            <td><%= teacher.email %></td>
+              <% if(teacher.Subject !== null)  {%>
+                <td><%= teacher.Subject.subject_name %></td>
+                 <% } else { %>
+                   <td>Unassigned</td>
+              <%}%>
+            <td><a href = '/teachers/edit/<%= teacher.id %>'>EDIT</a></td>
+            <td><a href = '/teachers/delete/<%= teacher.id %>'>DELETE</a></td>
           </tr>
-        <%}%>
+        <%  }) %>
       </tbody>
 
     </table>
