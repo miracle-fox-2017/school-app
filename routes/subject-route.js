@@ -12,8 +12,8 @@ router.get('/', function (req, res) {
 		.catch(err => res.send(err.message));
 })
 
-router.get('/:id/enrolledstudents', function (req, res) {
-	Model.Subject.findById(req.params.id).then(foundSubject => {
+router.get('/:subjectId/enrolledstudents', function (req, res) {
+	Model.Subject.findById(req.params.subjectId).then(foundSubject => {
 
 		Model.StudentSubject.findAll(
 		{
@@ -22,7 +22,7 @@ router.get('/:id/enrolledstudents', function (req, res) {
 			}],
 			order: [ [ { model: Model.Student, as: 'Student' }, 'first_name', 'ASC'] ],
 			where: {
-				SubjectId: req.params.id
+				SubjectId: req.params.subjectId
 			}
 		}).then(allStudentSubjectData => {
 			res.render('enrolled-student', {foundSubject: foundSubject, students: allStudentSubjectData});
@@ -33,6 +33,7 @@ router.get('/:id/enrolledstudents', function (req, res) {
 
 router.get('/:studentId/givescore', function (req, res) {
 	Model.StudentSubject.findOne({
+		attributes: ['id', 'StudentId', 'SubjectId', 'Score'],
 		include: [Model.Student, Model.Subject],
 		where: { StudentId: req.params.studentId }
 	}).then(foundStudentSubject => {
@@ -43,15 +44,13 @@ router.get('/:studentId/givescore', function (req, res) {
 })
 
 router.post('/:id/givescore', function(req, res) {
-
 	Model.StudentSubject.update(
 		{
 			Score: req.body.Score
 		},
 		{
 			where: {
-				StudentId: req.body.StudentId,
-				SubjectId: req.body.SubjectId
+				id: req.body.StudentSubjectId,
 			}
 		})
 		.then(allModelData => {
