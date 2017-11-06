@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 10px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {background-color: #f1f1f1}
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+      }
+    </style>
+    <meta charset="utf-8">
+    <title>School App: <%= title %></title>
+  </head>
+    
+    <!-- <a href="/">Home</a> | <a href="/students">Students</a> | <a href="/teachers/">Teachers</a> | <a href="/subjects/">Subjects</a><br><br> -->
+    
+    <div class="dropdown">
+      <a href="/"><button class="dropbtn">Home</button></a>
+    </div>
+    <div class="dropdown">
+      <a href="/students"><button class="dropbtn">Students</button></a>
+      <div class="dropdown-content">
+        <a href="/students">All Students Data</a>
+        <a href="/students/add">Add Student</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="/students"><button class="dropbtn">Teachers</button></a>
+      <div class="dropdown-content">
+        <a href="/teachers">All Teachers Data</a>
+        <a href="/teachers/add">Add Teacher</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="/subjects"><button class="dropbtn">Subjects</button></a>
+      <div class="dropdown-content">
+        <a href="/teachers">All Subjects Data</a>
+        <a href="/subjects/add">Add Subject</a>
+      </div>
+    </div>

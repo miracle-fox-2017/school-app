@@ -3,24 +3,16 @@ const router = express.Router();
 
 const Model = require('../models');
 
+const getFullName = require('../helper/fullname')
 
 router.get('/', function (req, res) {
   // res.send('di students')
   Model.Students.findAll({order: [['first_name','ASC']]})
-  .then(
-    data=>{
-      // let result = [];
-      // for(let i = 0; i<data.length; i++){
-      //   let obj = {
-      //     id: data[i].id,
-      //     first_name : data[i].first_name,
-      //     last_name : data[i].last_name,
-      //     email : data[i].email,
-      //     full_name : data[i].getFullName()
-      //   }
-      //   result.push(obj);
-      // }
-      res.render('students', {students: data})
+  .then(datas=>{
+      datas.forEach(data=>{
+        data.full_name = getFullName(data)
+      })
+      res.render('students', {students: datas, title:"Students"})
     }
   ).catch(err=>{
       console.log(err);
@@ -29,7 +21,7 @@ router.get('/', function (req, res) {
 
 router.get('/add', function (req, res) {
   // res.send('di students add')
-  res.render('students_add',{msg: ''})
+  res.render('students_add',{msg: '', title:"Students"})
 })
 
 router.post('/add', function (req, res) {
@@ -58,7 +50,7 @@ router.post('/add', function (req, res) {
 router.get('/edit/:id', function (req, res){
   Model.Students.findOne({where: {id: req.params.id} })
   .then(data=>{
-    res.render('students_edit', {student: data})
+    res.render('students_edit', {student: data, title:"Students"})
     // console.log(data);
     // res.send(req.params.id)
   }).catch(err=>{
@@ -97,7 +89,7 @@ router.get('/:id/addsubject', function (req, res){
   .then(students=>{
     Model.Subjects.findAll()
     .then(subjects=>{
-      res.render('students_assign', {students: students, subjects: subjects})
+      res.render('students_assign', {students: students, subjects: subjects, title:"Students"})
       
     })
   }).catch(err=>{

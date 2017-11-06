@@ -3,6 +3,9 @@ const router = express.Router();
 
 const Model = require('../models');
 
+const getFullName = require('../helper/fullname')
+const scoring = require('../helper/scoring')
+
 router.get('/', function (req, res) {
   Model.Subjects.findAll()
   .then(subjects=>{
@@ -20,8 +23,21 @@ router.get('/', function (req, res) {
     // console.log(reverseJoin);
     Promise.all(reverseJoin)
     .then(data=>{
+      let forEachCb = (data, cb) => {
+        data.forEach((d,i)=>{
+          if(d.teachers.length != 0){
+            d.teachers.forEach((teacher,j)=>{
+              data[i].teachers[j].full_name = getFullName(teacher);
+            })
+          }
+        })
+        cb(data)
+      }
+      
+      forEachCb(data,newdata=>{
+        res.render('subjects', {subjects: newdata, title:"Subjects"})
+      })
       // console.log(data[0].teachers[0].first_name);
-      res.render('subjects', {subjects: data})
     })
   }).catch(err=>{
     console.log(err);
@@ -30,7 +46,7 @@ router.get('/', function (req, res) {
 
 router.get('/add', function (req, res) {
   // res.send('di students add')
-  res.render('subjects_add',{msg: ''})
+  res.render('subjects_add',{msg: '', title:"Subjects"})
 })
 
 router.post('/add', function (req, res) {
@@ -49,7 +65,7 @@ router.post('/add', function (req, res) {
 router.get('/edit/:id', function (req, res){
   Model.Subjects.findOne({where: {id: req.params.id} })
   .then(data=>{
-    res.render('subjects_edit', {subject: data})
+    res.render('subjects_edit', {subject: data, title:"Subjects"})
     // console.log(data);
     // res.send(req.params.id)
   }).catch(err=>{
@@ -89,12 +105,26 @@ router.get('/:id/enrolledstudents', function (req, res){
   .then(studentsubjects=>{
     Model.Subjects.findOne({where: {id: studentsubjects[0].SubjectId} })
     .then(subject=>{
-      res.render('enrolled_students', {data:studentsubjects, subject:subject})
+      let forEachCb = (studentsubjects, cb) => {
+        studentsubjects.forEach((ss,i)=>{
+          // console.log(ss.score);
+          studentsubjects[i].scoreLetter = scoring(ss.score)
+        })
+        cb(studentsubjects)
+      }
+      
+      forEachCb(studentsubjects, newStudentSubject=>{
+        res.render('enrolled_students', {data:newStudentSubject, subject:subject, title:"Subjects"})
+      })
+      
+      // console.log(subject);
+      // res.render('enrolled_students', {data:studentsubjects, subject:subject, title:"Subjects"})
     })
     // console.log(studentsubjects);
   }).catch(err=>{
     res.render('header_msg', {
-      msg:'Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini.'
+      msg:'Belum ada siswa terdaftar, masukkan siswa ke subject. Jika sudah silahkan kembali ke halaman ini.',
+      title:"Subjects"
     })
   })
 })
@@ -107,7 +137,7 @@ router.get('/:id/givescore', function (req, res){
     .then(student=>{
       Model.Subjects.findOne({where: {id: data.SubjectId} })
       .then(subject=>{
-        res.render('give-score',{student:student, subject:subject})
+        res.render('give-score',{student:student, subject:subject, title:"Subjects"})
       })
     })
   })
