@@ -1,0 +1,52 @@
+  <%- include('assets/partials/nav-bar',{my_title:'Add Subject Student - SchoolApp', folder:'../../'})%>
+
+  <div class="container_addsubject">
+    <div style="text-align:center; margin-bottom:8%;">
+      <p class="title is-3">ADD SUBJECT DATA</p>
+      <p class="subtitle is-4">add subject to student</p>
+      <hr>
+    </div>
+    <table class="table is-striped is-fullwidth">
+      <tr>
+        <th style="width:150px;">First Name</th>
+        <th style="width:30px;">:</th>
+        <td><%=data_Students.first_name%></td>
+      </tr>
+      <tr>
+        <th style="width:150px;">Last Name</th>
+        <th style="width:30px;">:</th>
+        <td><%=data_Students.last_name%></td>
+      </tr>
+      <tr>
+        <th style="width:150px;">Email</th>
+        <th style="width:30px;">:</th>
+        <td><%=data_Students.email%></td>
+      </tr>
+    </table>
+    <form action="/students/<%=data_Students.id%>/addsubject" method="post">
+      <div style="margin-top: 6%;" class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Subject</label>
+          </div>
+          <div class="field-body" style="margin-right:3%;">
+            <div class="field ">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select name="SubjectId">
+                    <% for(let j=0; j<data_Subject.length; j++) {%>
+                      <option value="<%=data_Subject[j].id%>"><%=data_Subject[j].subject_name%></option>
+                    <%}%>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 55px;">
+          <input class="button is-success is-outlined is-medium" type="submit" value="Submit input">
+        </div>
+    </form>
+  </div>
+
+</body>
+</html>

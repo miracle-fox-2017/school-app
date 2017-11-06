@@ -1,0 +1,62 @@
+  <%- include('assets/partials/nav-bar',{my_title:'Students - SchoolApp',folder:''})%>
+
+  <div class="container">
+    <div style="text-align:center; margin-bottom:5%;">
+      <p class="title is-2">STUDENTS DATA</p>
+      <p class="subtitle is-4">show all table students | <a style="margin-top:0.4%;" class="button is-success is-small" href="/students/add">
+        <span class="icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <span>add student</span>
+      </a></p>
+    </div>
+
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FULLNAME</th>
+          <th>EMAIL</th>
+          <th style="text-align:center">ADD SUBJECTS</th>
+          <th style="text-align:center">OPTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<data_Students.length; i++){%>
+        <tr>
+          <td><%=data_Students[i].id%></td>
+          <td><%=data_Students[i].getFullname()%></td>
+          <td><%=data_Students[i].email%></td>
+          <td style="text-align:center;">
+            <p class="field">
+              <a class="button is-small" href="/students/<%=data_Students[i].id%>/addsubject">
+                <span class="icon">
+                  <i class="fa fa-book"></i>
+                </span>
+                <span>add subjects</span>
+              </a>
+          </td>
+          <td style="text-align:center;">
+            <p class="field">
+              <a class="button is-small" href="/students/edit/<%=data_Students[i].id%>">
+                <span class="icon">
+                  <i class="fa fa-pencil"></i>
+                </span>
+                <span>update</span>
+              </a>
+              <a class="button is-small" href="/students/delete/<%=data_Students[i].id%>" onclick="return confirm('are you sure to delete?!');">
+                <span class="icon">
+                  <i class="fa fa-trash-o"></i>
+                </span>
+                <span>delete</span>
+              </a>
+            </p>
+          </td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+</html>

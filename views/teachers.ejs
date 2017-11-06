@@ -1,0 +1,63 @@
+  <%- include('assets/partials/nav-bar', {my_title:'Teacher - SchoolApp',folder:''}) %>
+
+  <div class="container_teacher">
+    <div style="text-align:center; margin-bottom:5%;">
+      <p class="title is-2">TEACHER DATA</p>
+      <p class="subtitle is-4">show all table teacher | <a style="margin-top:0.4%;" class="button is-success is-small" href="/teachers/add">
+        <span class="icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <span>add teacher</span>
+      </a></p>
+    </div>
+
+
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FIRST NAME</th>
+          <th>LAST NAME</th>
+          <th>EMAIL</th>
+          <th>SUBJECT</th>
+          <th style="text-align:center">OPTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<data_teachers.length; i++){%>
+        <tr>
+          <td><%=data_teachers[i].id%></td>
+          <td><%=data_teachers[i].first_name%></td>
+          <td><%=data_teachers[i].last_name%></td>
+          <td><%=data_teachers[i].email%></td>
+
+          <% if(data_teachers[i].SubjectId){ %>
+            <td><%=data_teachers[i].subject.subject_name%></td>
+          <% } else { %>
+            <td style="color:#ff3860;">unassigned</td>
+          <%}%>
+
+          <td>
+            <p class="field">
+              <a class="button is-small" href="/teachers/edit/<%=data_teachers[i].id%>">
+                <span class="icon">
+                  <i class="fa fa-pencil"></i>
+                </span>
+                <span>update</span>
+              </a>
+              <a class="button is-small" href="/teachers/delete/<%=data_teachers[i].id%>" onclick="return confirm('are you sure to delete?!');">
+                <span class="icon">
+                  <i class="fa fa-trash-o"></i>
+                </span>
+                <span>delete</span>
+              </a>
+            </p>
+          </td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

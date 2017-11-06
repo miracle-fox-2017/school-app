@@ -1,0 +1,43 @@
+  <%- include('assets/partials/nav-bar',{my_title:'Add Teacher - SchoolApp', folder:'../'})%>
+
+  <div class="container">
+
+    <div style="text-align:center; margin-bottom:8%;">
+      <p class="title is-2">ADD TEACHER DATA</p>
+      <p class="subtitle is-4"><a href="/teachers">show all table teachers</a></p>
+    </div>
+
+    <div style="font-weight:bold; color:#ff3860; text-align:center; margin-bottom:1%;">
+      <%=error%>
+    </div>
+
+    <form action="/teachers/add" method="post">
+      <div class="field">
+        <label class="label">First Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" name="first_name" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" name="last_name" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" name="email" required>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top:33px;" class="control">
+          <!-- <button type="submit" value="Submit" class="button is-primary">Submit</button> -->
+          <input class="button is-success is-outlined is-medium" type="submit" value="Submit input">
+          <input class="button is-success is-outlined is-medium" type="reset" value="Reset input">
+        </div>
+    </form>
+  </div>
+
+</body>
+</html>

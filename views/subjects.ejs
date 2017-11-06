@@ -1,0 +1,72 @@
+  <%- include('assets/partials/nav-bar',{my_title:'Subjects - SchoolApp',folder:''})%>
+
+  <div class="container_subject">
+    <div style="text-align:center; margin-bottom:5%;">
+      <p class="title is-2">SUBJECT DATA</p>
+      <p class="subtitle is-4">show all table subject | <a style="margin-top:0.4%;" class="button is-success is-small" href="/subjects/add">
+        <span class="icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <span>add subject</span>
+      </a></p>
+    </div>
+
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th style="text-align:center;">SUB ID</th>
+          <th>SUBJECT NAME</th>
+          <th style="text-align:center">TEACHER</th>
+          <th style="text-align:center;">ACTIONS</th>
+          <th style="text-align:center;">OPTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(let i=0; i<data_Subjects.length; i++){%>
+        <tr>
+          <td><%=i+1%></td>
+          <td style="text-align:center; font-weight:bold;"><%=data_Subjects[i].id%></td>
+          <td><%=data_Subjects[i].subject_name%></td>
+
+
+          <td>
+            <%for(let j=0; j<data_Subjects[i].teacher.length; j++){%>
+              <%= `${j+1}. ${data_Subjects[i].teacher[j].first_name} ${data_Subjects[i].teacher[j].last_name}` %> <br>
+            <%}%>
+          </td>
+
+          <td style="text-align:center;">
+            <p class="field">
+              <a class="button is-small" href="/subjects/<%=data_Subjects[i].id%>/enrolledstudents">
+                <span class="icon">
+                  <i class="fa fa-graduation-cap"></i>
+                </span>
+                <span>enroll students</span>
+              </a>
+            </p>
+          </td>
+          <td style="text-align:center;">
+            <p class="field">
+              <a class="button is-small" href="/subjects/edit/<%=data_Subjects[i].id%>">
+                <span class="icon">
+                  <i class="fa fa-pencil"></i>
+                </span>
+                <span>update</span>
+              </a>
+              <a class="button is-small" href="/subjects/delete/<%=data_Subjects[i].id%>" onclick="return confirm('are you sure to delete?!');">
+                <span class="icon">
+                  <i class="fa fa-trash-o"></i>
+                </span>
+                <span>delete</span>
+              </a>
+            </p>
+          </td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
