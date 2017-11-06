@@ -7,7 +7,8 @@
         <tr>
           <th>No</th>
           <th>Student</th>
-          <th>Score</th>
+          <th>Score By Number</th>
+          <th>Score By Letter</th>
         </tr>
         <%let i = 0%>
         <%substudentsRows.forEach((substudent)=>{%>
@@ -19,6 +20,11 @@
                   <td> <%= substudent.score %> </td>
                 <%}else{%>
                   <td> <a href="/subjects/<%= substudent.studentId %>/addscore"> give score </a> </td>
+                <%}%>
+                <%if(substudent.scoreL == null){%>
+                  <td>empty</td>
+                <%}else{%>
+                <td> <%=substudent.scoreL%> </td>
                 <%}%>
               </tr>
         <%})%>

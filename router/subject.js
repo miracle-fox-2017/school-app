@@ -17,7 +17,7 @@ router.get('/subjects/:id/enrolledstudents', (req,res)=>{
     let status = 'enroll'
     console.log(substudentsRows.id);
     substudentsRows.forEach((substudent)=>{
-      substudent.score = konversi(substudent.score)
+      substudent.scoreL = konversi(substudent.score)
     })
     //res.send(substudentsRows)
     res.render('subject', { substudentsRows, status })
