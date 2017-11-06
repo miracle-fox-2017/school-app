@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enrolled Students</title>
+  </head>
+  <body>
+    <h1><%= subjData.subject_name %></h1>
+    <h2><a href="/subjects">return to subject list</a></h2>
+    <table border=1>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      <% studData.forEach(function(stud){ %>
+        <tr>
+          <td><%= stud.gabungNama() %></td>
+          <% if(stud.SubjectStudent.Score === null){%>
+            <td><a href="/subjects/<%=stud.SubjectStudent.id%>/givescore">Give Score</a></td>
+          <%}else{%>
+            <td><%= stud.SubjectStudent.Score %></td>
+          <%}%>
+        </tr>
+      <% }) %>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+</html>

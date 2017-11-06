@@ -4,7 +4,11 @@ const router = express.Router();
 const db = require('../models')
 
 router.get('/', function(req, res){
-  db.Student.findAll().then(function (studData){
+  db.Student.findAll({
+    order: [
+      ['first_name','ASC']
+    ]
+  }).then(function (studData){
     res.render('student', {studData:studData})
     // res.send(studData)
   }).catch(function(err){
@@ -60,6 +64,54 @@ router.get('/delete/:id', function(req, res){
     res.redirect('/students')
   }).catch(function(err){
     console.log(err);
+  })
+})
+
+router.get('/:id/addsubject', function(req, res){
+  db.Student.findById(req.params.id).then(function(studData){
+    db.Subject.findAll().then(function(subjData){
+      // console.log(studData);
+      // res.send(subjData)
+      res.render('studentAddSubject', {
+        studData:studData,
+        subjData:subjData
+      })
+    })
+  }).catch(function(err){
+    console.log(err);
+  })
+})
+
+// router.get('/:id/addsubject', function(req, res){
+//   db.Student.findAll({
+//     where: {id: req.params.id},
+//     include:[{
+//       model: db.Subject,
+//       through: {
+//         attributes: ['subject_name']
+//       }
+//     }]
+//   }).then(function(studData){
+//     // console.log(studData);
+//     res.send(studData)
+//     // res.render('studentAddSubject', {studData:studData})
+//   }).catch(function(err){
+//     console.log(err);
+//   })
+// })
+
+router.post('/:id/addsubject', function(req, res){
+  db.Student.findById(req.params.id).then(function(studData){
+    db.SubjectStudent.create({
+      StudentId: req.params.id,
+      SubjectId: req.body.SubjectId
+    }).then(function(berhasil){
+      res.redirect('/students')
+    }).catch(function(err){
+      console.log(err);
+    })
+    // console.log(req.params.id);
+    // res.send(req.body)
   })
 })
 

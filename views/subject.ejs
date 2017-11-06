@@ -10,18 +10,21 @@
       <tr>
         <th>ID</th>
         <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Actions</th>
       </tr>
       <% for(let i = 0; i < subjData.length; i++){ %>
         <tr>
           <td><%= subjData[i].id %></td>
           <td><%= subjData[i].subject_name %></td>
-          <% subjData[i].Teachers.forEach(function(teacher){%>
-            <% if(teacher != null){%>
-              <td><%= `${teacher.first_name} ${teacher.last_name}`%></td>
-            <%}else{%>
-              <td>unassigned</td>
-            <%}%>
-          <%})%>
+          <td><ul>
+            <%subjData[i].Teachers.forEach(function(teacher){%>
+              <% if(teacher != null){%>
+                <li><%= `${teacher.first_name} ${teacher.last_name}`%></li>
+              <%}%>
+            <%})%>
+          </ul></td>
+          <td><a href="/subjects/<%=subjData[i].id %>/enrolledstudents">Enrolled Students</a></td>
         </tr>
         <% } %>
     </table>

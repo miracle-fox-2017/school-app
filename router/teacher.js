@@ -4,7 +4,12 @@ const router = express.Router();
 const db = require('../models')
 
 router.get('/', function (req, res){
-  db.Teacher.findAll({include: [db.Subject]}).then(function (teachData){
+  db.Teacher.findAll({
+    include: [db.Subject],
+    order: [
+      ['first_name','ASC']
+    ]
+  }).then(function (teachData){
     res.render('teacher',{teachData:teachData})
     // res.send(teachData[0].Subject.subject_name)
   }).catch(function(err){
