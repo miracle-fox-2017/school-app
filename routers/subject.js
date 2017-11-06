@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const helper = require('../helpers/convertScore')
 
 
 
@@ -73,6 +74,11 @@ router.get('/:id/enrolledstudents',(req,res)=>{
     }]
       }]
     }).then(result=>{
+      result.SubjectStudents.forEach((dataScore)=>{
+        dataScore.Score = helper(dataScore.Score)
+      })
+      // res.send(result)
+      // res.send(`${result.SubjectStudents[0].Score}`)
       res.render('enrolledstudents',{result})
     })
 })
