@@ -4,8 +4,11 @@ const Model = require('../models');
 
 //tampilin
 router.get('/', (req, res)=> {
-  Model.Teacher.findAll({ include: [Model.Subject] }).then((results) => {
-    res.render('teachers.ejs', { error: null, dataContacts: results });
+  Model.Teacher.findAll({
+    order: [['first_name', 'ASC']],
+    include: [Model.Subject]
+  }).then((results) => {
+    res.render('teachers.ejs', { error: null, dataContacts: results, pageTitle: 'Teachers' });
   });
 });
 
@@ -23,7 +26,7 @@ router.get('/delete/:id', function (req, res) {
 //add
 router.get('/add', (req, res) => {
   Model.Subject.findAll().then(function (subjectsData) {
-    res.render('addTeacher.ejs', { Subjects: subjectsData });
+    res.render('addTeacher.ejs', { Subjects: subjectsData, pageTitle: 'Add Teacher' });
   });
 });
 
@@ -45,7 +48,7 @@ router.post('/add', (req, res) => {
 router.get('/edit/:id', (req, res) => {
   Model.Teacher.findById(req.params.id).then(data => {
     Model.Subject.findAll().then(function (subjectsData) {
-      res.render('editTeacher', { data: data, Subjects: subjectsData });
+      res.render('editTeacher', { data: data, Subjects: subjectsData, pageTitle: 'Edit Teacher' });
     });
   });
 });

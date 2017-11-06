@@ -1,55 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="text/javascript">
-  function sort(ascending, columnClassName, tableId) {
-    var tbody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
-    let rows = tbody.getElementsByTagName('tr');
-    let unsorted = true;
-    while (unsorted) {
-      unsorted = false;
-      for (var r = 0; r < rows.length - 1; r++) {
-        var row = rows[r];
-        var nextRow = rows[r + 1];
-        var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
-        var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
-        value = value.replace(',', '.');
-        nextValue = nextValue.replace(',', '.');
-
-        if (!isNaN(value)) {
-          value = parseFloat(value);
-          nextValue = parseFloat(nextValue);
-        }
-
-        if (ascending ? value > nextValue : value < nextValue) {
-          tbody.insertBefore(nextRow, row);
-          unsorted = true;
-        }
-      }
-    }
-  };
-  </script>
-  <title>Enrolled</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <% include ./partials/head %>
 </head>
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Hacktiv8</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/teachers">TEACHERS</a></li>
-        <li><a href="/subjects">SUBJECTS</a></li>
-        <li><a href="/students">STUDENTS</a></li>
-      </ul>
-    </div>
-  </nav>
+  <header>
+    <% include ./partials/header %>
+  </header>
   <div class="container">
     <%if(data[0] !== undefined){%>
       <h2><%=data[0].Subject.subject_name%></h2>
@@ -58,23 +15,25 @@
         <%}%>
         <table class="table" id="enrolled">
           <tr>
-            <th>Name
-              <a href="javascript:sort(true, 'name', 'enrolled');">asc</a>
-              <a href="javascript:sort(false, 'name', 'enrolled');">des</a>
-            </th>
+            <th>Name</th>
             <th>Score</th>
+            <th>Score By Letter</th>
           </tr>
           <%data.forEach (row=> {%>
             <tr>
-              <td class='name'><%=row.Student.fullName()%></td>
+              <td><%=row.Student.fullName()%></td>
               <% if (row.score) { %>
                 <td><%= row.score %></td>
                 <% } else { %>
                   <td><a href="/subjects/<%= row.id %>/givescore">GIVE SCORE</a></td>
                   <% } %>
+                  <td><%=scoreLetter(row.score)%></td>
                 </tr>
                 <%})%>
               </table>
             </div>
+            <footer>
+              <% include ./partials/footer %>
+            </footer>
           </body>
           </html>

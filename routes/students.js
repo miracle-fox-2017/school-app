@@ -4,14 +4,16 @@ const Model = require('../models');
 
 //tampilin
 router.get('/', (req, res)=> {
-  Model.Student.findAll().then((results) => {
-    res.render('students.ejs', { error: null, dataContacts: results });
+  Model.Student.findAll({
+    order: [['first_name', 'ASC']]
+  }).then((results) => {
+    res.render('students.ejs', { error: null, dataContacts: results, pageTitle: 'Students' });
   });
 });
 
 //add
 router.get('/add', (req, res) => {
-  res.render('addStudent.ejs');
+  res.render('addStudent.ejs', { pageTitle: 'Add Student' });
 });
 
 router.post('/add', (req, res) => {
@@ -27,27 +29,37 @@ router.post('/add', (req, res) => {
     res.redirect('../students');
   }).catch((err) => {
     // res.send(err.errors[0].message)
-    res.render('addStudent', { error: err });
+    res.render('addStudent', { error: err, pageTitle: 'Add Student' });
   });
 });
 
 // delete
 router.get('/delete/:id', function(req, res) {
-  Model.Student.destroy({
-    where: {
-      id: req.params.id
-    }
-  }).then(function (dataContacts) {
+  Promise.all([
+    Model.Student.destroy({
+      where: {
+        id: req.params.id
+      }
+    }),
+    Model.student_subject.destroy({
+      where: {
+        StudentId: req.params.id
+      }
+    })
+  ]).then(function () {
     res.redirect('../../students');
-  })
-})
+  }).catch(err => {
+    console.log(err);
+  });
+});
 
 // edit
 router.get('/edit/:id', (req, res) => {
   Model.Student.findById(req.params.id).then(data => {
     res.render('editStudent', {
       title: 'Student Edit - School App',
-      data: data
+      data: data,
+      pageTitle: 'Edit Student'
     });
   });
 });
@@ -71,7 +83,7 @@ router.post('/edit/:id', (req, res) => {
 router.get('/:id/addsubject', function (req, res) {
   Model.Student.findAll({ where: { id: req.params.id } }).then(function (data) {
     Model.Subject.findAll().then(function (subjectsData) {
-      res.render('addSubject', { data: data, Subjects: subjectsData });
+      res.render('addSubject', { data: data, Subjects: subjectsData, pageTitle: 'Add Subjects' });
     });
   });
 });
