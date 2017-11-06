@@ -79,6 +79,7 @@ router.get('/:id/enrolledStudent', (req, res) => {
     order: [ [ { model: model.Student, as: 'Student' }, 'first_name', 'ASC'] ],
   })
   .then(dataSubject => {
+    res.send(dataSubject)
     model.Subject.findById(req.params.id).then(rows =>{
        res.render('subjects/enrolledstudents', {dataSubject:dataSubject, subject_name:rows.subject_name})
     })

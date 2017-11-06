@@ -10,9 +10,12 @@
       <th>Students Name</th>
       <th>Score</th>
       <th>Desc</th>
+
         <%dataSubject.forEach((item, index) => {%>
+            <%if(item.Student != null){%>
       <tr>
           <td><%=index + 1%></td>
+
           <td>
             <%if(item.Student !== null){%>
             <%=item.Student.getFullName()%>
@@ -36,8 +39,11 @@
             <td>NaN</td>
           <%}%>
       </tr>
+        <%}%>
         <%})%>
+
     </table>
+
   </div>
   </body>
 </html>
