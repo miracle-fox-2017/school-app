@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Add Subject to <%=murid.fullname%></title>
+</head>
+<body>
+    <%-include("./partials/navigation",{title:"Add Subject"})%>
+    <a href="/students">Back</a>
+    <div class="content">
+        <form action="/students/<%=murid.id%>/addsubject" method="post">
+            <input type="hidden" name="StudentId" value="<%=murid.id%>">
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Nama Depan</td>
+                    <td>Nama Belakang</td>
+                    <td>Alamat Email</td>
+                </tr>
+                <tr>
+                    <td><%=murid.id%></td>
+                    <td><%=murid.first_name%></td>
+                    <td><%=murid.last_name%></td>
+                    <td><%=murid.email%></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Subjek</td>
+                    <td colspan="2">
+                        <select name="SubjectId">
+                            <option value="">PILIH SUBJECT</option>
+                            <%subject.map((value)=>{%>
+                            <option value="<%=value.id%>"><%=value.subject_name%></option>
+                            <%})%>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <input type="submit" value="Add">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

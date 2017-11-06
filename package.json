@@ -1,0 +1,29 @@
+{
+  "name": "school-app",
+  "version": "0.1.0",
+  "description": "Latihan PostgreSQL Basic",
+  "main": "index.js",
+  "scripts": {
+      "watch": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomybudiman/school-app.git"
+  },
+  "keywords": [
+    "PostgreSQL"
+  ],
+  "author": "Tomy Djaya Budiman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomybudiman/school-app/issues"
+  },
+  "homepage": "https://github.com/tomybudiman/school-app#readme",
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "pg": "^7.3.0",
+    "sequelize": "^4.20.3"
+  }
+}

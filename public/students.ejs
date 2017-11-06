@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Students</title>
+</head>
+<body>
+    <%-include("./partials/navigation",{title:"Students List"})%>
+    <a href="/students/add">Tambah Murid</a>
+    <div class="content">
+        <%if(studentRows.length === 0){%>
+            <div class="empty">
+                <span>Kosong</span>
+            </div>
+        <%}else{%>
+            <table border="1">
+                <tr>
+                    <td>No</td>
+                    <td>Nama Depan</td>
+                    <td>Nama Belakang</td>
+                    <td>Nama Lengkap</td>
+                    <td>Alamat Email</td>
+                    <td>Action</td>
+                </tr>
+                <%studentRows.map((value,i)=>{%>
+                <tr>
+                    <td><%=i + 1%></td>
+                    <td><%=value.dataValues.first_name%></td>
+                    <td><%=value.dataValues.last_name%></td>
+                    <td><%=value.dataValues.fullname%></td>
+                    <td><%=value.dataValues.email%></td>
+                    <td>
+                        <a href="/students/<%=value.id%>/addsubject">Add Subject</a>
+                        <a href="/students/edit/<%=value.id%>">Edit</a>
+                        <a href="/students/delete/<%=value.id%>">Hapus</a>
+                    </td>
+                </tr>
+                <%})%>
+            </table>
+        <%}%>
+    </div>
+</body>
+</html>

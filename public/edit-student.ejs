@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edit Student</title>
+</head>
+<body>
+    <%-include("./partials/navigation",{title:"Edit Student"})%>
+    <a href="/students">Back</a>
+    <%if(error.length > 0){%>
+        <h1><%=error%></h1>
+    <%}%>
+    <div class="content">
+        <form action="/students/edit/<%=data.id%>" method="post">
+            <input type="hidden" name="id" value="<%=data.id%>">
+            <table border="1">
+                <tr>
+                    <td>Nama Depan</td>
+                    <td><input type="text" name="first_name" value="<%=data.first_name%>" placeholder="Type your first name" required></td>
+                </tr>
+                <tr>
+                    <td>Nama Depan</td>
+                    <td><input type="text" name="last_name" value="<%=data.last_name%>" placeholder="Type your last name" required></td>
+                </tr>
+                <tr>
+                    <td>Alamat Email</td>
+                    <td><input type="text" name="email" value="<%=data.email%>" placeholder="Type your email address" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Save">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

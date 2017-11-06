@@ -1,0 +1,70 @@
+<style media="screen">
+    @import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto:100,300');
+    body {
+        margin: 0;
+    }
+    #navigation {
+        margin: 0;
+        padding: 0;
+        height: 75px;
+        overflow: hidden;
+        margin-bottom: 50px;
+        background-color: rgb(120,213,87);
+        -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+    }
+    #navigation li {
+        float: left;
+        color: white;
+        height: 100%;
+        list-style: none;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #navigation .title {
+        font-size: 40px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-family: "Pacifico",fantasy;
+    }
+    #navigation span {
+        top: 50%;
+        font-size: 20px;
+        position: relative;
+        display: inline-block;
+        font-family: "Roboto";
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    #navigation a {
+        color: white;
+        position: relative;
+        text-decoration: none;
+    }
+    #navigation a::before {
+        left: 0;
+        right: 0;
+        opacity: 0;
+        width: 25%;
+        content: "";
+        height: 1px;
+        bottom: -4px;
+        margin: auto;
+        position: absolute;
+        background-color: white;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+    }
+    #navigation a:hover::before {
+        opacity: 1;
+        width: 100%;
+    }
+</style>
+<ul id="navigation">
+    <li>
+        <span class="title"><%=title%></span>
+    </li>
+    <li><span><a href="/teachers">Teacher</a></span></li>
+    <li><span><a href="/subjects">Subject</a></span></li>
+    <li><span><a href="/students">Student</a></span></li>
+</ul>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Subjects</title>
+</head>
+<body>
+    <%-include("./partials/navigation",{title:"Subjects List"})%>
+    <div class="content">
+        <%if(subjectRows.length === 0){%>
+            <div class="empty">
+                <span>Kosong</span>
+            </div>
+        <%}else{%>
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Subject Name</td>
+                    <td>Teacher Name</td>
+                    <td>Enrolled Students</td>
+                </tr>
+                <%subjectRows.map((value)=>{%>
+                <tr>
+                    <td><%=value.id%></td>
+                    <td><%=value.subject_name%></td>
+                    <td>
+                        <%value.teacher.map((list)=>{%>
+                        <li style="list-style:decimal;"><%=list%></li>
+                        <%})%>
+                    </td>
+                    <td>
+                        <a href="/subjects/<%=value.id%>/enrolledstudents" target="_blank">Enrolled Students</a>
+                    </td>
+                </tr>
+                <%})%>
+            </table>
+        <%}%>
+    </div>
+</body>
+</html>
