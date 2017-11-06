@@ -3,6 +3,8 @@ const router = express.Router();
 
 const db = require('../models')
 
+const scoreToABC = require('../helpers/score_to_abc')
+
 router.get('/', function (req, res){
   db.Subject.findAll({include: [db.Teacher]}).then(function (subjData){
     // console.log(subjData[0].Teachers);
@@ -16,7 +18,10 @@ router.get('/', function (req, res){
 router.get('/:id/enrolledstudents', function(req, res){
   db.Subject.findById(req.params.id).then(function(subjData){
     subjData.getStudents().then(function(studData){
-      // res.send(studData)
+      studData.forEach(function(obj){
+        obj.SubjectStudent.Score = scoreToABC(obj.SubjectStudent.Score)
+      })
+      // res.send(`${studData[2].SubjectStudent.Score}`)
       res.render('subjectEnroll', {
         studData:studData,
         subjData:subjData
