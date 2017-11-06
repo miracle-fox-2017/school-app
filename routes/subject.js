@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const db = require('../models');
+const scoreToAbc = require('../helpers/scoreToAbc');
 
 router.get('/',function(req, res){
   db.Subject.findAll({
@@ -26,6 +27,10 @@ router.post('/add',function(req, res){
 router.get('/:id/enrolledstudents', function(req, res){
   db.Subject.findById(req.params.id).then(function(rowsSubject){
     rowsSubject.getStudents().then(function(rowsStudent){
+      rowsStudent.forEach(function(obj){
+        obj.StudentSubject.score =
+        scoreToAbc(obj.StudentSubject.score)
+      })
       res.render('enrolledstudent', {rowsSubject: rowsSubject, rowsStudent: rowsStudent})
     })
   }).catch(function(err){
@@ -40,7 +45,6 @@ router.get('/:id/givescore', function(req, res){
 })
 
 router.post('/:id/givescore', function(req, res){
-  console.log(req.params.id);
   db.StudentSubject.findById(req.params.id).then(function(rowsConjunction){
     rowsConjunction.update({score: req.body.score})
     .then(function(){
