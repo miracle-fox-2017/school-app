@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
       order: [["first_name", "ASC" ]]
     })
     .then(dataStudents=>{
-      res.render('students', {dataStudents:dataStudents})
+      res.render('students', {dataStudents:dataStudents,pageTitle:'Students'})
     })
     .catch(err=>{
       console.log(err);
@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', (req, res)=>{
-  res.render('addStudent', {error:''})
+  res.render('addStudent', {error:'',pageTitle:'Add Student'})
 })
 
 router.post('/add', (req, res)=>{
@@ -33,20 +33,21 @@ router.post('/add', (req, res)=>{
       })
       .catch(err=>{
           let error = err.message.split(',');
-          res.render('addStudent', {error:error[0]})
+          res.render('addStudent', {error:error[0],pageTitle:'Add Student'})
         })
 })
 
 router.get('/edit/:id', (req, res)=>{
   model.Student.findById(req.params.id)
     .then(dataStudent=>{
-      res.render('editStudent', {dataStudent:dataStudent})
+      res.render('editStudent', {dataStudent:dataStudent,pageTitle:'Edit Student'})
     })
     .catch(err=>{
         res.send(err)
       })
 })
- router.post('/edit/:id', (req, res)=>{
+
+router.post('/edit/:id', (req, res)=>{
    let edit = req.body
    model.Student.update(
      {
@@ -64,9 +65,9 @@ router.get('/edit/:id', (req, res)=>{
       .catch(err=>{
           res.send(err)
         })
- })
+})
 
- router.get('/delete/:id', (req, res)=>{
+router.get('/delete/:id', (req, res)=>{
    model.Student.destroy(
      {
        where: {id: req.params.id}
@@ -77,21 +78,22 @@ router.get('/edit/:id', (req, res)=>{
       .catch(err=>{
           res.send(err)
         })
- })
+})
 
- router.get('/:id/addsubject', (req, res)=>{
+router.get('/:id/addsubject', (req, res)=>{
    model.Student.findById(req.params.id)
     .then(dataStudent=>{
       model.Subject.findAll()
         .then(dataSubjects=>{
-          res.render('assignSubject', {dataSubjects:dataSubjects,dataStudent:dataStudent})
+          res.render('assignSubject', {dataSubjects:dataSubjects,dataStudent:dataStudent,pageTitle:'assign Subject'})
         })
     })
     .catch(err=>{
       res.send(err)
     })
- })
- router.post('/:id/addsubject', (req, res)=>{
+})
+
+router.post('/:id/addsubject', (req, res)=>{
    model.Student_Subject.create(
      {
        SubjectId: req.body.SubjectId,
@@ -103,5 +105,6 @@ router.get('/edit/:id', (req, res)=>{
       .catch(err=>{
         res.send(err)
       })
- })
+})
+
 module.exports = router

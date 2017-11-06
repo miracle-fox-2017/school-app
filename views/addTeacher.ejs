@@ -1,18 +1,9 @@
 <% include ./partials/head %>
-  <title>Students</title>
 </head>
 <body>
   <% include ./partials/menu %>
   <section class="hero is-info is-medium">
   <div class="hero-body">
-    <div class="container has-text-centered">
-      <h3 class="subtitle">
-          <a href="/teachers" class="button is-light">
-             show all teacher
-          </a>
-      </h3>
-    </div>
-    <br/>
     <form action="/teachers/add" method="post">
       <%if(error!==''){%>
         <div class="notification is-danger">

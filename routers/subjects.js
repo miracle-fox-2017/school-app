@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const model = require('../models');
+const scoreLetter = require('../helpers/scoreLetter');
 
 router.get('/', function (req, res) {
   model.Subject.findAll(
@@ -19,7 +20,7 @@ router.get('/', function (req, res) {
       })
       Promise.all(newDataSubjects)
         .then(allSubjectTeacher=>{
-          res.render('subjects', {dataSubjects:allSubjectTeacher,error:''})
+          res.render('subjects', {dataSubjects:allSubjectTeacher,error:'',pageTitle:'Subjects'})
         })
     })
     .catch(err=>{
@@ -43,16 +44,18 @@ router.post('/add', (req, res)=>{
           res.render('subjects', {error:error[0]})
         })
 })
+
 router.get('/edit/:id', (req, res)=>{
   model.Subject.findById(req.params.id)
     .then(dataSubject=>{
-      res.render('editSubject', {dataSubject:dataSubject})
+      res.render('editSubject', {dataSubject:dataSubject,pageTitle:'Edit Subject'})
     })
     .catch(err=>{
         res.send(err)
       })
 })
- router.post('/edit/:id', (req, res)=>{
+
+router.post('/edit/:id', (req, res)=>{
    let edit = req.body
    model.Subject.update(
      {
@@ -68,9 +71,9 @@ router.get('/edit/:id', (req, res)=>{
       .catch(err=>{
           res.send(err)
         })
- })
+})
 
- router.get('/delete/:id', (req, res)=>{
+router.get('/delete/:id', (req, res)=>{
    model.Subject.destroy(
      {
        where: {id: req.params.id}
@@ -81,30 +84,78 @@ router.get('/edit/:id', (req, res)=>{
       .catch(err=>{
           res.send(err)
         })
- })
+})
 
- router.get('/:id/enrolledstudents', (req, res)=>{
-   model.Subject.findById(req.params.id)
-    .then(dataSubject=>{
-      model.Student_Subject.findAll(
-        {
-          include: ['Student']
-        })
-        .then(dataStudentSubject=>{
-          res.render('enrolledStudents',
-            {
-              dataSubject:dataSubject,
-              allDataStudents:dataStudentSubject
-            })
-        })
-    })
-    .catch(err=>{
-      console.log(err);
-      res.send(err)
-    })
- })
+router.get('/:id/enrolledstudents', (req, res) => {
+  model.Subject.findAll(
+  {
+    where: {
+      id: req.params.id
+    },
+    include: [
+    {
+      model: model.Student,
+      through: {
+        where: {
+          SubjectId: req.params.id
+        },
+        attributes: ['id','score']
+      }
+    }],
+    order: [
+       [ model.Student, 'first_name', 'ASC' ]
+    ]
+  })
+  .then(dataSubjects =>{
+    // res.send(dataSubjects)
+    res.render('enrolledStudents',
+       {
+         allDataStudents:dataSubjects,
+         pageTitle:'Enrolled Students',
+         scoreLetter: scoreLetter
+       })
+  })
+  .catch(err=>{
+    console.log(err);
+    res.send(err)
+  })
+})
 
- router.get('/:id/givescore', (req, res)=>{
+ // router.get('/:id/enrolledstudents', (req, res)=>{
+ //   model.Subject.findById(req.params.id)
+ //    .then(dataSubject=>{
+ //      // User.findAll({
+ //      //   include: [{
+ //      //     model: Project,
+ //      //     through: {
+ //      //       attributes: ['createdAt', 'startedAt', 'finishedAt'],
+ //      //       where: {completed: true}
+ //      //     }
+ //      //   }]
+ //      // });
+ //      model.Student_Subject.findAll(
+ //        {
+ //          include: ['Student'],
+ //          order: [
+ //            [ 'Student', 'first_name', 'ASC' ]
+ //          ]
+ //        })
+ //        .then(dataStudentSubject=>{
+ //          // res.send(dataStudentSubject)
+ //          res.render('enrolledStudents',
+ //            {
+ //              dataSubject:dataSubject,
+ //              allDataStudents:dataStudentSubject
+ //            })
+ //        })
+ //    })
+ //    .catch(err=>{
+ //      console.log(err);
+ //      res.send(err)
+ //    })
+ // })
+
+router.get('/:id/givescore', (req, res)=>{
    model.Student_Subject.findById(req.params.id)
     .then(studentsubjet=>{
       Promise.all(
@@ -118,17 +169,18 @@ router.get('/edit/:id', (req, res)=>{
            {
              studentsubjet:studentsubjet,
              dataStudent:allData[0],
-             dataSubject:allData[1]
+             dataSubject:allData[1],
+             pageTitle:'Give Score'
            })
          })
     })
     .catch(err=>{
         console.log(err);
         res.send(err)
-      })
- })
+    })
+})
 
- router.post('/:id/givescore', (req, res)=>{
+router.post('/:id/givescore', (req, res)=>{
   //  res.send(req.params.id)
    model.Student_Subject.update(
      {
@@ -144,6 +196,6 @@ router.get('/edit/:id', (req, res)=>{
         console.log(err);
         res.send(err)
       })
- })
+})
 
 module.exports = router
