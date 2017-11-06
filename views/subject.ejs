@@ -1,0 +1,61 @@
+<%- include partial/index%>
+    <% if(status == 'enroll'){ %>
+      <h2> <%= substudentsRows[0].dataValues.subject.subject_name %> </h2>
+      <a href="/subjects"> return to subject list </a>
+      <br><br>
+      <table>
+        <tr>
+          <th>No</th>
+          <th>Student</th>
+          <th>Score By Number</th>
+          <th>Score By Letter</th>
+        </tr>
+        <%let i = 0%>
+        <%substudentsRows.forEach((substudent)=>{%>
+          <% i++ %>
+              <tr>
+                <td><%= i%> </td>
+                <td> <%= substudent.dataValues.student.first_name+' '+substudent.dataValues.student.last_name%> </td>
+                <% if(substudent.score != null){ %>
+                  <td> <%= substudent.score %> </td>
+                <%}else{%>
+                  <td> <a href="/subjects/<%= substudent.studentId %>/addscore"> give score </a> </td>
+                <%}%>
+                <%if(substudent.scoreL == null){%>
+                  <td>empty</td>
+                <%}else{%>
+                <td> <%=substudent.scoreL%> </td>
+                <%}%>
+              </tr>
+        <%})%>
+      </table>
+
+    <%}else if(status == 'tampil'){%>
+    <table>
+      <tr>
+        <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Actions</th>
+      </tr>
+      <%subjectsRows.forEach((subject)=>{%>
+          <tr>
+            <td> <%=subject.subject_name%> </td>
+            <td>
+            <%for( let i = 0; i < subject.dataValues.Teachers.length; i++ ){%>
+              <%= i+1+'.'+subject.dataValues.Teachers[i].dataValues.first_name+' '+
+              subject.dataValues.Teachers[i].dataValues.last_name %><br>
+            <%}%>
+          </td>
+          <td> <a href="/subjects/<%=subject.id%>/enrolledstudents"> Enrolled Students </a> </td>
+          </tr>
+      <%})%>
+    <%}else{%>
+      <%=substudentsRows[0].dataValues.student.first_name+' '+substudentsRows[0].dataValues.student.last_name%>
+      <form action="/subjects/<%=substudentsRows[0].id%>/addscore" method="post">
+      Score:<br>
+      <input type="text" name="score" required/>
+      <br>
+      <input type="submit" value="ADD">
+    <%}%>
+  </body>
+</html>

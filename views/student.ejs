@@ -1,0 +1,97 @@
+
+<%- include partial/index%>
+
+
+    <% if(status == 'tampil') { %>
+        <h2> STUDENT DATA </h2>
+        <p> <a href="/students/add">Add Student</a></p>
+        <table>
+          <tr>
+            <th>No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Full Name</th>
+            <th>Action</th>
+            <th>Option</th>
+          </tr>
+          <% let i = 0 %>
+          <% studentsRows.forEach((student)=> { %>
+            <%i++%>
+              <tr>
+                <td> <%=i%> </td>
+                <td> <%=student.first_name%> </td>
+                <td> <%=student.last_name%> </td>
+                <td> <%=student.email%> </td>
+                <td> <%=student.fullName%> </td>
+                <td> <a href='/students/<%=student.id%>/addsubject'> Add Subject </td>
+                <td><button onclick="window.location.href='students/edit/<%= student.id %>'">Edit</a>
+                    <button onclick="myFunction(<%= student.id %>)">Delete</button>
+              </tr>
+              <% }) %>
+         </table>
+       <% }else if(status == 'add') { %>
+         <h2> ADD STUDENT </h2>
+         <p> <a href="/students">Show All data</a></p>
+         <%= msg %>
+         <form action="/students/add" method="post">
+         First Name:<br>
+         <input type="text" name="first_name" required/>
+         <br>
+         Last Name:<br>
+         <input type="text" name="last_name" required=true/>
+         <br>
+         Email:<br>
+         <input type="text" name="email" required=true/>
+         <br><br>
+         <input type="submit" value="ADD">
+        </form>
+
+    <% }else if(status == 'edit') {  %>
+        <h2> EDIT STUDENT DATA </h2>
+        <p> <a href="/students">show all data</a></p>
+        <%= msg %>
+        <form action="/students/edit/<%=studentsRows.id%>" method="post">
+        First Name:<br>
+        <input type="text" name="first_name" value = "<%=studentsRows.first_name%>"  required/>
+        <br>
+        Last Name:<br>
+        <input type="text" name="last_name" value = "<%=studentsRows.last_name%>" required=true/>
+        <br>
+        Email:<br>
+        <input type="text" name="email" value = "<%=studentsRows.email %>" required=true/>
+        <br><br>
+        <input type="submit" value="EDIT"/>
+        </form>
+
+    <% }else if(status == 'subject') {  %>
+        <h2> Add Subject To Student </h2>
+        <%= msg %>
+        <%= studentsRows.first_name %> <br>
+        <%= studentsRows.last_name %> <br>
+        <%= studentsRows.email %><br>
+        <br>
+        Subject:<br>
+        <select name="subject_id" required=true>
+              <option value = NULL >--select subject--</option>
+              <% subjectsRows.forEach( (subject) => {%>
+                  <option value="<%=subject.id%>"><%= subject.subject_name %></option>
+              <% }) %>
+        </select>
+        <br><br>
+        <input type="submit" value="add subject"/>
+        </form>
+    <% } %>
+
+  </body>
+  <script>
+      function myFunction(data) {
+        console.log(data)
+        if (confirm("Delete this student?") == true) {
+            window.location = 'students/delete/'+data;
+        }else{
+            window.location = 'students';
+        }
+      }
+  </script>
+</html>
