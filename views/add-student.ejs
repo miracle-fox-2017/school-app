@@ -5,12 +5,14 @@
 	<title>Add Student</title>
 </head>
 <body>
+ 	<%include ./partials/menu %>
+
 	<div class="header" style="text-align: center;">
-		<h1>Add Student Data</h1>	
+		<h1>Add Student Data</h1>
 		<a href="/students">Show all data</a>
 		<br><br>
 	</div>
-	
+
 	<% if(typeof studentFound !== 'undefined' && studentFound !== null) { %>
 		<h5 style="text-align: center;">Editing user <%= studentFound.first_name %></h5>
 	<% } %>
