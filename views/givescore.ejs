@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Give <%=student.first_name%> score</title>
-  </head>
+<%- include('./partials/head', {pageTitle:pageTitle}) %>
+<%- include('./partials/header') %>
+
   <body>
     <form action="/subjects/<%=result.id%>/givescore" method="post">
       <table>

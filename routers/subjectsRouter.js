@@ -8,7 +8,7 @@ router.get('/', (req,res) => {
     include: [db.Teacher]
   })
   .then((results) => {
-    res.render('subjects', {results});
+    res.render('subjects', {results, pageTitle:"Subjects"});
   })
   .catch((err) => {
   })
@@ -25,7 +25,7 @@ router.get('/:id/enrolledstudents', (req, res) => {
     }]
   })
   .then(results => {
-    res.render('enrolledstudents', {results})
+    res.render('enrolledstudents', {results, pageTitle:"Enrolled Students"})
   })
 })
 
@@ -34,7 +34,7 @@ router.get('/:id/givescore', (req, res) => {
   .then(result => {
     result.getSubject().then(subject => {
       result.getStudent().then(student => {
-        res.render('givescore', {student, subject, result})
+        res.render('givescore', {student:student, subject:subject, result:result, pageTitle:`Give Score to ${student.first_name}`})
       })
     })
   })

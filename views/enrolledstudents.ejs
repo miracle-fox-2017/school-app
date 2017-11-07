@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Subjects Data</title>
-  </head>
+<%- include('./partials/head', {pageTitle:pageTitle}) %>
+<%- include('./partials/header') %>
+
   <body>
+    <%=JSON.stringify(results)%>
     <table>
       <h1><%=results.subject_name%></h1>
       <thead>

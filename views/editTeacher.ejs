@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Edit <%=teacherData.first_name%> <%=teacherData.last_name%></title>
-  </head>
+<%- include('./partials/head', {pageTitle:pageTitle}) %>
+<%- include('./partials/header') %>
+
   <body>
     <form action="/teachers/edit/<%=teacherData.id%>" method="post">
       <table>

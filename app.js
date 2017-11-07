@@ -17,7 +17,7 @@ app.use('/students', Students);
 
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', {pageTitle:"Home"});
 })
 
 app.listen(3000, function() {

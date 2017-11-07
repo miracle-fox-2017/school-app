@@ -8,7 +8,7 @@ router.get('/', (req,res) => {
     include: [db.Subject],
     order: [['first_name', 'ASC']]
   }).then((results) => {
-    res.render('teachers', {results});
+    res.render('teachers', {results:results, pageTitle:"All Teachers"});
   }).catch((err) => {
     console.log(err);
     res.send(err);
@@ -16,7 +16,7 @@ router.get('/', (req,res) => {
 })
 
 router.get('/add', (req, res) => {
-  res.render('addTeacher');
+  res.render('addTeacher', {pageTitle:"Add Teacher"});
 })
 
 router.post('/add', (req, res) => {
@@ -32,7 +32,7 @@ router.get('/edit/:id', (req, res) => {
   .then(teacherData => {
     db.Subject.findAll()
     .then(subjectsData => {
-      res.render('editTeacher', {teacherData, subjectsData})
+      res.render('editTeacher', {teacherData:teacherData, subjectsData:subjectsData, pageTitle:`Edit ${teacherData.first_name}`})
     })
   }).catch(err => {
     console.log(err);

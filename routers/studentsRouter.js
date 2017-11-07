@@ -7,14 +7,14 @@ router.get('/', (req,res) => {
     order: [['first_name', 'ASC']]
   }
   ).then((results) => {
-    res.render('students', {results});
+    res.render('students', {results:results, pageTitle:"Student"});
   }).catch((err) => {
     console.log(err);
   })
 })
 
 router.get('/add', (req,res) => {
-  res.render('addStudent');
+  res.render('addStudent', {pageTitle:"Add Student"});
 });
 
 router.post('/add', (req,res) => {
@@ -27,7 +27,7 @@ router.post('/add', (req,res) => {
 
 router.get('/edit/:id', (req, res) => {
   db.Student.findById(req.params.id).then(result => {
-    res.render('editStudent', {result});
+    res.render('editStudent', {result:result, pageTitle:`Edit ${result.first_name}`});
   })
 })
 
@@ -57,7 +57,7 @@ router.get('/:id/addSubject', (req, res) => {
   .then(student => {
     db.Subject.findAll()
     .then(subjects => {
-      res.render('addSubject', {student, subjects})
+      res.render('addSubject', {student:student, subjects:subjects, pageTitle:`Add Subject`})
     })
   }).catch(err => {
     console.log(err);
