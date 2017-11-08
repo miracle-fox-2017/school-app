@@ -1,0 +1,40 @@
+<%- include partial/headerWithMenubar%>
+    <div class="">
+      <h1><%=subjects.subject_name%></h1>
+      <a href="/subject">Return All Subject Data</a>
+    </div>
+    <div class="">
+      <%if(subjects.SubjectWithStudents.length !== 0){%>
+        <table>
+          <thead>
+            <tr>
+              <td>NO</td>
+              <td>Name</td>
+              <td>Score By Number</td>
+              <td>Score By Letter</td>
+            </tr>
+          </thead>
+          <%subjects.SubjectWithStudents.forEach((students,index) =>{%>
+            <tr>
+              <td><%=index + 1%></td>
+              <td><%=students.Student.fullName%></td>
+
+              <% if (students.score == null){ %>
+                <td><a href="/subject/<%=students.subjectId%>/<%=students.studentId%>/givescore">Give Score</a></td>
+              <% } else {%>
+                <td><%=students.score%></td>
+              <% } %>
+
+              <td><%=students.scoreLeter%></td>
+                </tr>
+
+                <%})%>
+
+              </table>
+      <%} else {%>
+        Enrolled students <br>
+        No Data
+      <%}%>
+    </div>
+
+<%- include partial/footer%>

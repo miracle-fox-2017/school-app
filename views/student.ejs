@@ -1,0 +1,34 @@
+<%- include partial/headerWithMenubar %>
+    <h2>All Students Data</h2>
+    <div class="center">
+      <a href="/student/add" >Add Student</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <td>No</td>
+          <td>ID</td>
+          <td>FIRST NAME</td>
+          <td>LAST NAME</td>
+          <td>FULL NAME</td>
+          <td>EMAIL</td>
+          <td>ACTION</td>
+          <td>OPTIONS</td>
+        </tr>
+      </thead>
+      <%student.forEach((dt,index)=>{%>
+        <tr>
+          <td><%=`${index+1}`%></td>
+          <td><%=dt.id%></td>
+          <td><%=dt.first_name%></td>
+          <td><%=dt.last_name%></td>
+          <td><%=dt.fullName%></td>
+          <td><%=dt.email%></td>
+          <td><a href="/student/<%=dt.id%>/addsubject">Add Subject</a></td>
+          <td><a href="/student/edit/<%=dt.id%>">Edit</a>  ||  <a href="/student/delete/<%=dt.id%>" onclick="myFunction()">Delete</a></td>
+        </tr>
+      <%})%>
+    </table>
+    <%- include partial/ConfirmDelete%>
+<%- include partial/footer%>

@@ -1,0 +1,20 @@
+<%- include partial/headerWithMenubar%>
+    <h2>Edit Teacher</h2>
+
+    <form class="" action="" method="post">
+      <input type="text" name="first_name" value="<%=teacher.first_name%>">
+      <input type="text" name="last_name" value="<%=teacher.last_name%>">
+      <input type="text" name="email" value="<%=teacher.email%>">
+      <select class="" name="subject">
+      <% subject.forEach(dt => { %>
+        <% if (dt.id == teacher.subjectId) { %>
+          <option value="<%=dt.id%>" selected><%=dt.subject_name%></option>
+        <%}%>
+        <%if (dt.id != teacher.subjectId){%>
+          <option value="<%=dt.id%>" ><%=dt.subject_name%></option>
+        <%}%>
+      <% }) %>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+  <%- include partial/footer%>
