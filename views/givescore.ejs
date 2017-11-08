@@ -1,0 +1,22 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Give Score</title>
+</head>
+<body>
+<table>
+	<tr>Student Name : <%=studentsubject.student%></tr>
+	<br>
+	<tr>Student Subject : <%=studentsubject.subject%></tr>
+	<br>
+	<form action="/subjects/<%=studentsubject.idkon%>/givescore" method="post">
+		<tr>Score : <input type="text" name="score"></tr>
+		<br>
+		<input type="submit" value="Submit">
+	</form>
+</table>
+<!-- <h3></h3> -->
+
+</body>
+</html>

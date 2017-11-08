@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teacher</title>
+	<% include ./partials/head %>
+</head>
+<body>
+<header>
+    <% include ./partials/header %>
+</header>
+<h3>Teachers Data</h3>
+<h4><a href="/teachers/add">Add Teachers Data</a></h4>
+<main>
+    <div class="jumbotron">
+    <table>
+	<thead>
+		<td>Id</td>
+		<td>First Name</td>
+		<td>Last Name</td>
+		<td>Email</td>
+		<td>Subject</td>
+		<td>Options</td>
+	</thead>
+	<tbody>
+		<%teachers.forEach(teacher=>{%>
+			<tr>
+				<td><%=teacher.id%></td>
+				<td><%=teacher.first_name%></td>
+				<td><%=teacher.last_name%></td>
+				<td><%=teacher.email%></td>
+				<%if(!teacher.subject){%>
+					<td>unassigned</td>
+				<%}else{%>
+					<td><%=teacher.subject%></td>
+				<%}%>
+				<td>
+					<a href="/teachers/edit/<%=teacher.id%>">Edit</a>
+					<a href="/teachers/delete/<%=teacher.id%>" onclick="myFunction()">Delete</a>
+				</td>
+			</tr>
+		<%})%>
+	</tbody>
+	</table>
+    </div>
+</main>
+<footer>
+    <% include ./partials/footer %>
+</footer>
+<script>
+function myFunction() {
+    confirm("delete this teacher?!");
+}
+</script>
+</body>
+</html>

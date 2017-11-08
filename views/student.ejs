@@ -1,0 +1,50 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student</title>
+	<% include ./partials/head %>
+</head>
+<body>
+<header>
+    <% include ./partials/header %>
+</header>
+<h3>Students Data</h3>
+<h4><a href="/students/add">add student</a></h4>
+<table>
+	<thead>
+		<td>Id</td>
+		<td>First Name</td>
+		<td>Last Name</td>
+		<td>Fullname</td>
+		<td>Email</td>
+		<td>Actions</td>
+		<td>Options</td>
+	</thead>
+	<tbody>
+		<%students.forEach(student=>{%>
+			<tr>
+				<td><%=student.id%></td>
+				<td><%=student.first_name%></td>
+				<td><%=student.last_name%></td>
+				<td><%=student.getFullName()%></td>
+				<td><%=student.email%></td>
+				<td><a href="/students/<%=student.id%>/addsubject">Add Subject</a></td>
+				<td>
+					<a href="/students/edit/<%=student.id%>">Edit</a>
+					<a href="/students/delete/<%=student.id%>" onclick="myFunction()">Delete</a>
+				</td>
+			</tr>
+		<%})%>
+	</tbody>
+</table>
+<footer>
+    <% include ./partials/footer %>
+</footer>
+<script>
+function myFunction() {
+    confirm("delete this student?!");
+}
+</script>
+</body>
+</html>

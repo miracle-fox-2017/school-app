@@ -1,0 +1,31 @@
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h3><%=subject.subject_name%></h3>
+<h4><a href="/subjects">return to subject list</a></h4>
+<table>
+	<thead>
+		<td>Name</td>
+		<td>Score</td>
+		<td>Description</td>
+	</thead>
+	<tbody>
+		<%students.forEach((student)=> {%>
+		<tr>
+			<td><%=student.name%></td>
+			<%if(student.Score){%>
+			<td><%=student.Score%></td>
+			<%}else{%>
+			<td><a href="/subjects/<%=student.id%>/givescore">Give Score</a></td>
+			<%}%>
+			<td><%=student.scoreLetter%></td>
+		</tr>
+		<%})%>
+	</tbody>
+</table>
+</body>
+</html>
