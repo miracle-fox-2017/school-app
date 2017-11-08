@@ -1,0 +1,31 @@
+<%- include('./partials/head', {pageTitle:pageTitle}) %>
+<%- include('./partials/header') %>
+
+  <body>
+    <form action="/subjects/<%=result.id%>/givescore" method="post">
+      <table>
+        <tr>
+          <td>Student Name</td>
+          <td>:</td>
+          <td><%=student.getFullName()%></td>
+        </tr>
+        <tr>
+          <td>Subject Name</td>
+          <td>:</td>
+          <td><%=subject.subject_name%></td>
+        </tr>
+        <tr>
+          <td>Score</td>
+          <td>:</td>
+          <td>
+            <input type="text" name="score">
+            <input type="hidden" name="SubjectId" value="<%=subject.id%>">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" align="right"><input type="submit" value="assign"></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

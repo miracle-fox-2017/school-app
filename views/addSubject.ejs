@@ -1,0 +1,34 @@
+<%- include('./partials/head', {pageTitle:pageTitle}) %>
+<%- include('./partials/header') %>
+
+  <body>
+    <form action="/students/<%=student.id%>/addSubject" method="post">
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+          <td><%=student.getFullName()%></td>
+          <td><%=student.email%></td>
+          <td>
+            <select name = "SubjectId">
+              <%subjects.forEach(subject => { %>
+                <option value="<%=subject.id%>"><%=subject.subject_name%></option>
+              <%})%>
+            </select>
+          </td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Tambah"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>

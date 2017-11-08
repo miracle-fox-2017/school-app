@@ -1,0 +1,39 @@
+<%- include('./partials/head', {pageTitle:pageTitle}) %>
+<%- include('./partials/header') %>
+
+  <body>
+    <%console.log(results[0].Teachers[0].first_name);%>
+    <table>
+      <thead>
+        <th>No</th>
+        <th>Subject Name</th>
+        <th>Teachers</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <%let i = 1;
+        results.forEach((result) => {%>
+          <tr>
+          <td><%=i%></td>
+          <td><%=result.subject_name%></td>
+          <td>
+          <%if (result.Teacher !== null) {
+            result.Teachers.forEach(teacher => { %>
+              <ul>
+                <li>
+                  <%=teacher.first_name%>
+                  <%=teacher.last_name%>
+                </li>
+              </ul>
+            <%})%>
+          <%}%>
+          </td>
+          <td>
+            <a href="/subjects/<%=result.id%>/enrolledstudents">Enrolled Students</a>
+          </td>
+          </tr>
+        <%i++; })%>
+      </tbody>
+    </table>
+  </body>
+</html>
