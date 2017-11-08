@@ -1,0 +1,18 @@
+<%- include partial/head %>
+      <div class="text-center">
+        <h1>Students Subject Score Data</h1>
+      </div>
+      <div class="">
+        <form method="post">
+          <div class="form-group">
+            <input type="hidden" name="StudentId" value="<%=rows.StudentId%>">
+            <input type="hidden" name="SubjectId" value="<%=rows.SubjectId%>">
+            <label>Score</label>
+            <input type="text" class="form-control" name="score" id="score" value="<%= rows.score%>">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

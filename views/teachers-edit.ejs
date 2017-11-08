@@ -1,0 +1,39 @@
+<%- include partial/head %>
+      <div class="text-center">
+        <h1>Edit Teacher Data</h1>
+        <p><a href="/teachers">Show All Data</a></p>
+      </div>
+      <div class="">
+        <form method="post">
+          <div class="form-group">
+            <input type="hidden" name="id" value="<%=rows.id%>">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" value="<%= rows.first_name %>">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="last_name" id="last_name" value="<%= rows.last_name %>">
+          </div>
+          <div class="form-group">
+            <label>Email address:</label>
+            <input type="email" class="form-control" name="email" id="email" value="<%= rows.email %>">
+          </div>
+          <div class="form-group">
+            <label>Subject:</label>
+            <select class="" name="SubjectId">
+              <option value="" selected disabled>---Select---</option>
+              <% data.forEach(dataSubject=>{%>
+                <% if(dataSubject.id == rows.SubjectId){ %>
+                  <option value="<%= dataSubject.id%>" selected><%= dataSubject.subject_name %></option>
+                <%}else{%>
+                  <option value="<%= dataSubject.id%>" selected><%= dataSubject.subject_name %></option>
+                <%}%>
+              <% }) %>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

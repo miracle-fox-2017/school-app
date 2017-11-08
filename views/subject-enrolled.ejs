@@ -1,0 +1,36 @@
+<%- include partial/head %>
+      <div class="">
+        <div class="text-center">
+          <h1><%= rows.subject_name %></h1>
+          <a href="/subjects">Return to Subject List</a>
+        </div>
+        <hr>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>Students</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <% let no = 1%>
+          <% rows.Students.forEach(dataStudent=>{%>
+          <tbody>
+            <tr>
+              <td><%= no%></td>
+              <td>
+              <%= dataStudent.first_name%> <%= dataStudent.last_name%>
+              </td>
+              <% if(dataStudent.StudentSubject.score != null){%>
+              <td><%= dataStudent.StudentSubject.score%></td>
+              <% }else{ %>
+              <td><a href="/subjects/<%= dataStudent.StudentSubject.StudentId %>/givescore">Give Score</a></td>
+              <% }%>
+            </tr>
+          </tbody>
+          <% no++ }) %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
