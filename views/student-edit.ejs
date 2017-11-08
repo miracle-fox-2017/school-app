@@ -1,0 +1,23 @@
+<% include partials/head%>
+
+    <body>
+        <header>
+            <%include partials/menu%>
+                <h3>Edit Student</h3>
+        </header>
+        <%= message%>
+            <div class="main-form">
+
+                <form action="/students/edit/<%= dataStudent.id%>" method="POST">
+                    First Name : <br>
+                    <input type="text" name="first_name" value="<%= dataStudent.first_name%>" placeholder="First Name" />                    <br> Last Name : <br>
+                    <input type="text" name="last_name" value="<%= dataStudent.last_name%>" placeholder="Last Name" /> <br>                    Email : <br>
+                    <input type="text" name="email" value="<%= dataStudent.email%>" placeholder="First Name" /> <br>
+                    <br>
+                    <input type="submit" value="Edit Student" />
+
+                </form>
+            </div>
+    </body>
+
+    </html>

@@ -1,0 +1,24 @@
+<% include partials/head%>
+
+    <body>
+        <header>
+            <% include partials/menu%>
+                <h3>Add Data Student</h3>
+        </header>
+        <%= message%>
+
+            <div class="main-form">
+                <form action="/students/add" method="POST">
+                    First Name : <br>
+                    <input name="first_name" type="text" placeholder="First Name" /> <br> Last Name :
+                    <br>
+                    <input name="last_name" type="text" placeholder="Last Name" /> <br> Email :
+                    <br>
+                    <input name="email" type="text" placeholder="Email" /> <br>
+                    <br>
+                    <input type="submit" value="Add Student">
+                </form>
+            </div>
+    </body>
+
+    </html>

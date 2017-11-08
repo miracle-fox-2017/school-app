@@ -1,0 +1,64 @@
+<% include partials/head %>
+
+    <body>
+        <header>
+            <% include partials/menu%>
+                <h3>Enrolled Students</h3>
+        </header>
+
+        
+        Subject :
+        <%= dataSubject.subject_name%>
+            <table border="1" cellpadding="0" cellspacing="0" width="65%">
+                <tr>
+                    <th>No</th>
+                    <th>ID</th>
+                    <th>Students Name</th>
+                    <th>Score</th>
+                    <th>Desc</th>
+
+                </tr>
+                <% if(dataStudentSubject.length > 0){%>
+                    <% dataStudentSubject.forEach(function(row, index){%>
+                        <tr>
+                            <td>
+                                <%=index+1%>
+                            </td>
+                            <td>
+                                <%=row.idStudent %>
+                            </td>
+                            <td>
+                                <%=row.fullname %>
+                            </td>
+                            <% if(row.score){%>
+                                <td>
+                                    <%= row.score%>
+                                </td>
+    
+                            <%}else{%>
+                                <td>
+                                    <a href="/subjects/<%= row.id%>/givescore">Give Score</a>
+                                </td>
+                            <%}%>
+    
+                            
+                            <td>
+                                <%= row.hurufScore%>
+                            </td>
+                            
+    
+                        </tr>
+                        <%})} else{%>
+                           <tr>
+                               <th colspan="5">Belum ada siswa yang terdaftar </th>
+                           </tr>
+                       <%}%>
+    
+               
+                
+            </table>
+            </div>
+
+    </body>
+
+    </html>

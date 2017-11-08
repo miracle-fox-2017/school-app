@@ -1,0 +1,39 @@
+<% include partials/head%>
+
+    <body>
+        <header>
+            <%include partials/menu%>
+                <h3>Edit Teacher</h3>
+        </header>
+        <%= message%>
+            <div class="main-form">
+
+                <form action="/teachers/edit/<%= dataTeacher.id%>" method="POST">
+                    First Name : <br>
+                    <input type="text" name="first_name" value="<%= dataTeacher.first_name%>" placeholder="First Name" />                    <br> Last Name : <br>
+                    <input type="text" name="last_name" value="<%= dataTeacher.last_name%>" placeholder="Last Name" /> <br>                    Email : <br>
+                    <input type="text" name="email" value="<%= dataTeacher.email%>" placeholder="First Name" /> <br>
+                    <br>
+
+                    <select name="idSubject">
+                        <% dataSubjects.forEach((subject)=>{
+                            if(subject.id == dataTeacher.idSubject) {%>
+                                <option value="<%= subject.id%>" selected>
+                                       <%= subject.subject_name%> 
+                                </option>
+                            <%}else{%>
+                                <option  value="<%= subject.id%>">
+                                        <%= subject.subject_name%> 
+                                </option>
+                           
+                    
+                        <%}})%>  
+                    </select>
+
+                    <input type="submit" value="Edit Teacher" />
+
+                </form>
+            </div>
+    </body>
+
+    </html>
