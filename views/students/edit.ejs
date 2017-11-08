@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partial/head.ejs%>
+  <body>
+    <div class="ui container" style="margin-top:3em;">
+      <h1><%=title%></h1>
+      <%include ../partial/menu.ejs%>
+      <form class="" action="/students/edit/<%=student.id%>" method="post">
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="first_name" placeholder="First Name" value="<%=student.first_name%>">
+          </div>
+        </p>
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="last_name" placeholder="Last Name" value="<%=student.last_name%>">
+          </div>
+        </p>
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="email" placeholder="Email" value="<%=student.email%>">
+          </div>
+        </p>
+        <p>
+          <input class="ui primary button" type="submit" value="Submit">
+        </p>
+      </form>
+      <%if(err){%>
+        <div class="ui error message">
+          <ul class="list">
+            <li><%=err%></li>
+          </ul>
+        </div>
+      <%}%>
+    </div>
+  </body>
+</html>

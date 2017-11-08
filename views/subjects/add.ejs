@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <%include ../partial/head.ejs%>
+  <body>
+    <div class="ui container" style="margin-top:3em;">
+      <h1><%=title%></h1>
+      <%include ../partial/menu.ejs%>
+      <form class="" action="/subjects/add" method="post">
+        <p>
+          <div class="ui large icon input">
+            <input type="text" name="subject_name" placeholder="Subject Name">
+          </div>
+        </p>
+        <p>
+          <input class="ui primary button" type="submit" value="Submit">
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

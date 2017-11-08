@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partial/head.ejs %>
+  <body>
+    <div class="ui container" style="margin-top:3em;">
+      <h1><%=title%> List</h1>
+      <%include ../partial/menu.ejs%>
+      <div class="column">
+        <h3 style="text-align:center;"><%=subject.subject_name%></h4>
+        <table class="ui celled selectable right aligned table">
+          <thead class="left aligned">
+            <tr>
+              <th class="center aligned one wide">No</th>
+              <th class="center aligned one wide">ID</th>
+              <th>Student Name</th>
+              <th>Score</th>
+              <th>Score By Letter</th>
+            </tr>
+          </thead>
+          <tbody class="left aligned">
+            <%subject.Students.forEach((student, i) => {%>
+              <tr>
+                <td class="center aligned"><%=i+1%></td>
+                <td class="center aligned"><%=student.id%></td>
+                <td><%=student.getFullname()%></td>
+                <%if(student.StudentSubject.score){%>
+                  <td><%=student.StudentSubject.score%></td>
+                  <td><%=student.StudentSubject.getLetter()%></td>
+                <%}else{%>
+                  <td><a href="/subjects/<%=subject.id%>/<%=student.id%>/givescore">Give Score</a></td>
+                  <td>-</td>
+                <%}%>
+              </tr>
+            <%})%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
