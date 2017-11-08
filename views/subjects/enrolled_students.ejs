@@ -1,0 +1,32 @@
+<%-include('../partials/header')%>
+<%-include('../partials/menu')%>
+
+<div class="container">
+  <h2>Subject Data</h2>        
+  <table class="table table-striped" width="40">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Students Name</th>
+        <th>Score</th>
+        <th>Desc</th>
+      </tr>
+    </thead>
+    <tbody>
+     <%subjects.Students.forEach(student => {%>
+      <tr>
+          <td><%=student.id%></td>
+         	<td><%=student.first_name%> <%=student.last_name%></td>
+          <td>
+            <%if(student.StudentSubject.score != null && student.StudentSubject != null){%>
+              <%=student.StudentSubject.score%>
+            <%}else{%>
+              <a href="/subjects/<%=subjects.id%>/<%=student.id%>/givescore" class="btn btn-primary" role="button">Give Score</a>
+            <%}%>
+          </td>
+        </tr>
+        <%})%>
+    </tbody>
+  </table>
+</div>
+<%-include('../partials/footer')%>

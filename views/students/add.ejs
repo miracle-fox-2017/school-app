@@ -1,0 +1,29 @@
+<%-include('../partials/header')%>
+<%-include('../partials/menu')%>
+
+<%if(err){%>
+	<%err.forEach(error =>{ %>
+		<div class="alert alert-danger">
+		  <strong>Warning!</strong> <%=error.message%>
+		</div>
+		<%})%>
+<%}%>
+
+<form style="width: 300px" action="/students/add" method="POST">
+	<div class="form-group" >
+	    <label for="first_name">Firstname:</label>
+	    <input type="text" class="form-control" name="first_name">
+	</div>
+	<div class="form-group" >
+	    <label for="last_name">Lastname:</label>
+	    <input type="text" class="form-control" name="last_name">
+	</div>
+	<div class="form-group" >
+	    <label for="email">Email address:</label>
+	    <input type="text" class="form-control" name="email">
+	</div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<%-include('../partials/footer')%>

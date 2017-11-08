@@ -1,0 +1,35 @@
+<%-include('../partials/header')%>
+<%-include('../partials/menu')%>
+
+<div class="container">
+  <h2>Subject Data</h2>        
+  <table class="table table-striped" width="40">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Subject Name</th>
+        <th>Teacher Name</th>
+        <th>Enrolled Students</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%subjects.forEach(subject => {%>
+      <tr>
+        <td><%=subject.id%></td>
+       	<td><%=subject.subject_name%></td>
+        <td>
+          <ol>
+            <%subject.Teachers.forEach(hasil =>{%>
+              <li><%=hasil.first_name%> <%=hasil.last_name%></li>
+            <%})%>
+          <ol>
+        </td>
+        <td>
+          <a href="/subjects/<%=subject.id%>/enrolledstudents" class="btn btn-primary" role="button">Enrolled Students</a>
+        </td>
+      </tr>
+    <%})%>
+    </tbody>
+  </table>
+</div>
+<%-include('../partials/footer')%>

@@ -1,0 +1,32 @@
+<%-include('../partials/header')%>
+<%-include('../partials/menu')%>
+
+<h3>Edit Teachers</h3>
+<form style="width: 300px" action="/teachers/edit/<%=teacher.id%>" method="POST">
+	<div class="form-group" >
+	    <label for="first_name">Firstname:</label>
+	    <input type="text" class="form-control" name="first_name" value="<%=teacher.first_name%>">
+	</div>
+	<div class="form-group" >
+	    <label for="last_name">Lastname:</label>
+	    <input type="text" class="form-control" name="last_name" value="<%=teacher.last_name%>">
+	</div>
+	<div class="form-group" >
+	    <label for="email">Email address:</label>
+	    <input type="email" class="form-control" name="email" 
+	    value="<%=teacher.email%>">
+	</div>
+	<div class="form-group">
+	  <label for="sel1">Select Subject:</label>
+	  <select class="form-control" name="SubjectId">
+	  <%subjects.forEach(subject => {%>
+	    <option value="<%=subject.id%>"><%=subject.subject_name%></option>
+	  <%})%>
+	  </select>
+	</div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<%-include('../partials/footer')%>
+
