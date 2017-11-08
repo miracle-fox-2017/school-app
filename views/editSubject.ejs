@@ -1,0 +1,22 @@
+<% include ./partials/head %>
+</head>
+<body>
+  <% include ./partials/menu %>
+  <section class="hero is-info is-medium">
+<div class="hero-body">
+  <div class="container has-text-centered">
+    <form action="/subjects/edit/<%=dataSubject.id%>" method="post">
+
+      <div class="field">
+        <p>
+          <input name="subject_name" class="input" value="<%=dataSubject.subject_name%>"type="text">
+          </p>
+          <br/>
+      </div>
+      <input type="submit" class="button is-primary" value="Edit">
+    </form>
+  </div>
+</div>
+</section>
+</body>
+</html>

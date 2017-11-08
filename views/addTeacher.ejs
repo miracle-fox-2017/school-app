@@ -1,0 +1,42 @@
+<% include ./partials/head %>
+</head>
+<body>
+  <% include ./partials/menu %>
+  <section class="hero is-info is-medium">
+  <div class="hero-body">
+    <form action="/teachers/add" method="post">
+      <%if(error!==''){%>
+        <div class="notification is-danger">
+          <strong><%=error%></strong>
+        </div>
+      <%}%>
+      <br/>
+      <div class="field">
+        <p class="control">
+          <input name="first_name" class="input" type="text" placeholder="First Name">
+          </p>
+          <br/>
+          <p class="control">
+          <input name="last_name" class="input" type="text" placeholder="Last Name">
+          </p>
+          <br/>
+          <p class="control">
+          <input name="email" class="input" type="text" placeholder="Email">
+          <br/>
+          <br/>
+          <div class="select">
+           <select name="SubjectId">
+             <%dataSubjects.forEach(Subject=>{%>
+               <option value="<%=Subject.id%>"><%=Subject.subject_name%></option>
+             <%})%>
+           </select>
+           </div>
+          </p>
+      </div>
+      <input type="submit" class="button is-primary" value="Simpan">
+      <a href="/teachers" class="button is-light">Batal</a>
+    </form>
+  </div>
+  </section>
+</body>
+</html>

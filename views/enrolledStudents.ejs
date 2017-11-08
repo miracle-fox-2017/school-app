@@ -1,0 +1,48 @@
+<% include ./partials/head %>
+</head>
+<body>
+  <section class="hero is-info is-medium">
+<div class="hero-body">
+  <div class="container has-text-centered">
+    <h1 class="title"><%=allDataStudents[0].subject_name%></h1>
+    <br/>
+    <h3 class="subtitle">
+        <a href="/subjects" class="button is-light">
+           return to subject list
+        </a>
+    </h3>
+    <table class="table is-striped is-narrow is-fullwidth">
+      <tr>
+        <th class="is-link">No</th>
+        <th class="is-link">Name</th>
+        <th class="is-link">Score</th>
+        <th class="is-link">Score By Letter</th>
+      </tr>
+      <%allDataStudents[0].Students.forEach((Students, index)=>{%>
+        <tr>
+          <%if(Students){%>
+            <th><%=index + 1%></th>
+            <td><%=Students.getFullname()%></td>
+            <td>
+              <%if(Students.Student_Subject.score){%>
+                <%=Students.Student_Subject.score%>
+              <%} else {%>
+                  <a href="/subjects/<%=Students.Student_Subject.id%>/givescore">
+                      <span class="has-text-link">
+                        <i>Give Score</i>
+                      </span>
+                  <a>
+              <%}%>
+            </td>
+            <td><%=scoreLetter(Students.Student_Subject.score)%></td>
+          <%} else {%>
+            <td>No Studens</td>
+          <%}%>
+        </tr>
+      <%})%>
+    </table>
+  </div>
+</div>
+</section>
+</body>
+</html>

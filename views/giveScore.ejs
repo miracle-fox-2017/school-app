@@ -1,0 +1,27 @@
+<% include ./partials/head %>
+</head>
+<body>
+  <section class="hero is-info is-medium">
+<div class="hero-body">
+  <div class="container has-text-centered">
+      <h1 class="title" >Subject Name : <%=dataSubject.subject_name%></h1>
+      <h1 class="subtitle">Student Name : <%=dataStudent.getFullname()%></h1>
+    <form action="/subjects/<%=studentsubjet.id%>/givescore" method="post">
+      <input name="SubjectId" type="hidden" value="<%=dataSubject.id%>">
+      <div class="field has-addons has-addons-centered">
+        <p class="control">
+          <input class="input" name="score" type="number" placeholder="ex. 100">
+        </p>
+      </div>
+      <h3 class="subtitle">
+          <input type="submit" class="button is-primary" value="Process">
+          <a href="/subjects/<%=dataSubject.id%>/enrolledstudents" class="button is-light">
+             Cancel
+          </a>
+      </h3>
+    </form>
+  </div>
+</div>
+</section>
+</body>
+</html>

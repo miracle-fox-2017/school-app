@@ -1,0 +1,42 @@
+<% include ./partials/head %>
+</head>
+<body>
+  <% include ./partials/menu %>
+  <section class="hero is-info is-medium">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h3 class="subtitle">
+             Add Subject to Student
+      </h3>
+    </div>
+    <br/>
+    <form action="/students/<%=dataStudent.id%>/addsubject" method="post">
+      <div class="field">
+        <p class="control">
+          <input name="first_name" class="input" type="text" value="<%=dataStudent.first_name%>" disabled>
+          </p>
+          <br/>
+          <p class="control">
+          <input name="last_name" class="input" type="text" value="<%=dataStudent.last_name%>" disabled>
+          </p>
+          <br/>
+          <p class="control">
+          <input name="email" class="input" type="text" value="<%=dataStudent.email%>" disabled>
+          <br/>
+          </p>
+          <br/>
+          <div class="select">
+           <select name="SubjectId">
+             <%dataSubjects.forEach(Subject=>{%>
+               <option value="<%=Subject.id%>"><%=Subject.subject_name%></option>
+             <%})%>
+           </select>
+           </div>
+      </div>
+      <input type="submit" class="button is-primary" value="Assign">
+      <a href="/students" class="button is-light">Batal</a>
+    </form>
+  </div>
+  </section>
+</body>
+</html>
