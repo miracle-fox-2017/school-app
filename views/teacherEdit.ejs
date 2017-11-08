@@ -1,0 +1,23 @@
+<%-include("partials/header", {title: 'Edit Teachers'})%>
+  <body>
+    <h1>Edit Teachers Data</h1>
+    <form class="" action="/teachers/edit/<%= teachData.id %>" method="post">
+      First Name <br>
+      <input type="text" name="first_name" value="<%= teachData.first_name %>"><br>
+      Last Name <br>
+      <input type="text" name="last_name" value="<%= teachData.last_name %>"><br>
+      Email <br>
+      <input type="text" name="email" value="<%= teachData.email %>"><br>
+      <select class="" name="Subject_Id">
+        <% subjData.forEach(function(subj){ %>
+          <% if(subj.id == teachData.Subject_Id){ %>
+              <option value="<%= subj.id %>" selected><%= subj.subject_name %></option>
+          <% } else { %>
+              <option value="<%= subj.id %>"><%= subj.subject_name%></option>
+          <% } %>
+        <% }) %>
+      </select>
+      <input type="submit" name="" value="Edit Teacher">
+    </form>
+  </body>
+</html>

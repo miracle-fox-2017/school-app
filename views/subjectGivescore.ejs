@@ -1,0 +1,8 @@
+<%-include("partials/header", {title: 'Give Score'})%>
+  <body>
+    <form class="" action="/subjects/<%=conjData.id%>/givescore" method="post">
+      <input type="text" name="Score" value="<%= conjData.Score %>">
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html>

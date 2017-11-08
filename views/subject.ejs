@@ -1,0 +1,27 @@
+<%-include("partials/header", {title: 'Subjects'})%>
+  <body>
+    <h1>Subjects Data</h1>
+    <table border=1>
+      <tr>
+        <th>ID</th>
+        <th>Subject Name</th>
+        <th>Teacher</th>
+        <th>Actions</th>
+      </tr>
+      <% for(let i = 0; i < subjData.length; i++){ %>
+        <tr>
+          <td><%= subjData[i].id %></td>
+          <td><%= subjData[i].subject_name %></td>
+          <td><ul>
+            <%subjData[i].Teachers.forEach(function(teacher){%>
+              <% if(teacher != null){%>
+                <li><%= `${teacher.first_name} ${teacher.last_name}`%></li>
+              <%}%>
+            <%})%>
+          </ul></td>
+          <td><a href="/subjects/<%=subjData[i].id %>/enrolledstudents">Enrolled Students</a></td>
+        </tr>
+        <% } %>
+    </table>
+  </body>
+</html>

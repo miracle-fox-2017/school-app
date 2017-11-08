@@ -1,0 +1,30 @@
+<%-include("partials/header", {title: 'Teachers'})%>
+  <body>
+    <h1>Teachers Data</h1>
+    <table border=1 >
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+      </tr>
+      <% for(let i = 0; i < teachData.length; i++){ %>
+        <tr>
+          <td><%= teachData[i].id %></td>
+          <td><%= teachData[i].first_name %></td>
+          <td><%= teachData[i].last_name %></td>
+          <td><%= teachData[i].email %></td>
+          <% if(teachData[i].Subject != null){%>
+            <td><%= teachData[i].Subject.subject_name %></td>
+          <%} else {%>
+            <td>unassigned</td>
+            <%}%>
+          <td><a href="teachers/edit/<%=teachData[i].id%>">Edit</a></td>
+          <td><a href="teachers/edit/<%=teachData[i].id%>">Delete</a></td>
+        </tr>
+        <% } %>
+    </table>
+    <a href="teachers/add"></a>
+  </body>
+</html>
