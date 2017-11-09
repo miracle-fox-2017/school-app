@@ -23,8 +23,8 @@ router.get('/:subjectId/enrolledstudents', function (req, res) {
 		include: [{
 			model: Model.Student,
 		}]
-	}).then(allStudentSubjectData => {
-
+	}
+	).then(allStudentSubjectData => {
 		Model.Subject.findOne({
 			where: {
 				id: req.params.subjectId,
@@ -34,12 +34,27 @@ router.get('/:subjectId/enrolledstudents', function (req, res) {
 			allStudentSubjectData.forEach( function(student, index) {
 				student.scoreLetter = Helper.getScoreLetter(student.Score);
 			});
-
+			// res.send(allStudentSubjectData);
 			res.render('enrolled-student', {foundSubject: foundSubject, students: allStudentSubjectData});
 		}).catch(err => res.send(err));
 
 	}).catch(err => res.send(err.message))
 
+
+	/*Model.Subject.findAll({
+		where: {
+			id: req.params.subjectId
+		},
+		include: [{
+			model: Model.StudentSubject,
+			include: [{
+				model: Model.Student
+			}]
+		}]
+	}).then(allData => {
+			res.send(allData);
+			// res.render('enrolled-student', {foundSubject: allData, students: allData});
+		}).catch(err => res.send(err.message));*/
 })
 
 router.get('/:subjectId/givescore', function (req, res) {

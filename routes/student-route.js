@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Model = require('../models');
 
+// FUNGSI HELPER
+// function checkLogin(req, res, next){
+//   if (req.session.loggedIn) {
+//     next()
+//   }else{
+//     res.redirect('/login')
+//   }
+// }
+
 router.get('/', (req, res) => {
 	Model.Student.findAll({ order: [ ['first_name', 'ASC']] })
 		.then(allStudents => {
