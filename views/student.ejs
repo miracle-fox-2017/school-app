@@ -1,0 +1,27 @@
+    <% include partials/title %>
+    <p><a href="/students/add">add</a></p>
+    <% include partials/menu %>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      <%for(var i = 0; i < student.length; i++){%>
+        <tr>
+          <td><%=student[i].id%></td>
+          <td><%=student[i].first_name%></td>
+          <td><%=student[i].last_name%></td>
+          <td><%=student[i].full_name%></td>
+          <td><%=student[i].email%></td>
+          <td><a href="/students/<%=student[i].id%>/addsubject">add subject</a></td>
+          <td><a href="/students/edit/<%=student[i].id%>">edit</a></td>
+          <td><a href="/students/delete/<%=student[i].id%>">delete</a></td>
+        </tr>
+      <%}%>
+    </table>
+  </body>
+</html>

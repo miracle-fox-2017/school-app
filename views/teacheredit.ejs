@@ -1,0 +1,19 @@
+    <% include partials/title %>
+    <form class="" action="/teachers/edit/<%=teacher.id%>" method="post">
+      <input type="input" name="first_name" value="<%=teacher.first_name%>">
+      <input type="input" name="last_name" value="<%=teacher.last_name%>">
+      <input type="input" name="email" value="<%=teacher.email%>">
+      <select class="" name="SubjectId">
+        <%for(var i = 0; i < subject.length; i++) {%>
+          <%if(subject[i].id == teacher.SubjectId) {%>
+          <option value="<%=subject[i].id%>" selected><%=subject[i].subject_name%></option>
+          <%} else {%>
+          <option value="<%=subject[i].id%>"><%=subject[i].subject_name%></option>
+          <%}%>
+        <%}%>
+      </select>
+      <input type="submit" value="submit">
+    </form>
+    <p><%=pesan%></p>
+  </body>
+  </html>

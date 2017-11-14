@@ -1,0 +1,10 @@
+    <% include partials/title %>
+    <form class="" action="/subjects/<%=studentssubjects.id%>/givescore/" method="post">
+      <p>Student name: <%=student.first_name + ' ' + student.last_name%></p>
+      <p>Subject name: <%=subject.subject_name%></p>
+      <p>score:</p>
+      <input type="input" name="score" value="">
+      <input type="submit" name="" value="submit">
+    </form>
+  </body>
+</html>

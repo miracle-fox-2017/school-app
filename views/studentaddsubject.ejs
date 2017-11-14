@@ -1,0 +1,14 @@
+    <% include partials/title %>
+    <p>First name: <%=student.first_name%></p>
+    <p>Last name: <%=student.last_name%></p>
+    <p>email: <%=student.email%></p>
+    <form class="" action="/students/<%=student.id%>/addsubject" method="post">
+      <select class="" name="id">
+        <%for(var i = 0; i < subject.length; i++) {%>
+        <option value="<%=subject[i].id%>"><%=subject[i].subject_name%></option>
+        <%}%>
+      </select>
+      <input type="submit" value="submit">
+    </form>
+  </body>
+</html>
