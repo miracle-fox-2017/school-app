@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HALAMAN STUDENT</title>
+
+    <style type = "text/css">
+
+      .tabel {
+        background-color: brown;
+        font-family: Calibri;
+        width : 100%;
+      }
+
+      .warna {
+        color : white;
+      }
+
+      .rapi {
+        color: white;
+        text-align:  center;
+      }
+
+      fieldset {
+        width : 70%;
+      }
+
+      a {
+        color: white;
+        font-family : Arial;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color : grey;
+      }
+
+    </style>
+
+  </head>
+  <body style="background-color : aquamarine">
+    <fieldset>
+      <legend><b> DATA STUDENT </b></legend>
+        <table border = "1" class = "tabel">
+          <thead class ="warna">
+            <th><b>Id</b></th>
+            <th><b>First Name</b></th>
+            <th><b>Last Name</b></th>
+            <th><b>E-mail</b></th>
+            <th><b>Add Subject</b></th>
+            <th><b>EDIT DATA</b></th>
+            <th><b>DELETE DATA</b></th>
+          </thead>
+
+      <tbody class = "rapi">
+        <% for(let i = 0 ; i < rowStudents.length ; i++) { %>
+          <tr>
+            <td><%= rowStudents[i].id %></td>
+            <td><%= rowStudents[i].first_name %></td>
+            <td><%= rowStudents[i].last_name %></td>
+            <td><%= rowStudents[i].email %></td>
+            <td><a href= "/students/<%= rowStudents[i].id %>/addsubject">ADD SUBJECT</a></td>
+            <td><a href = "/students/edit/<%= rowStudents[i].id %>">EDIT</a></td>
+            <td><a href = "/students/delete/<%= rowStudents[i].id %>">DELETE</a></td>
+          </tr>
+        <%}%>
+      </tbody>
+    </table>
+  </fieldset>
+  </body>
+</html>

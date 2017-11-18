@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HALAMAN EDIT STUDENTS</title>
+
+        <style type = "text/css">
+
+          .tabel {
+            background-color: brown;
+            font-family: Calibri;
+            width : 100%;
+          }
+
+          .warna {
+            color : white;
+          }
+
+          .rapi {
+            color: white;
+            text-align:  center;
+          }
+
+          fieldset {
+            width : 40%;
+          }
+
+        </style>
+
+  </head>
+  <body style = "background-color :aquamarine">
+      <fieldset>
+        <legend> <b>FORM EDIT STUDENT </b> </legend>
+          <form action="/teachers/edit/<%= teacher.id %>" method="post">
+            <table border = "0">
+              <tr>
+                <td width = "150px">First Name</td>
+                <td width = "50px">:</td>
+                <td><input type="text" name="first_name" value = "<%= teacher.first_name %>"></td>
+              </tr>
+
+              <tr>
+                <td width = "150px">Last Name</td>
+                <td width = "50px">:</td>
+                <td><input type="text" name="last_name" value = "<%= teacher.last_name %>"></td>
+              </tr>
+
+              <tr>
+                <td width = "150px">E-mail</td>
+                <td width = "50px">:</td>
+                <td><input type="text" name="email" value = "<%= teacher.email %>"></td>
+              </tr>
+
+              <tr>
+                <td width = "150px">Subject Id</td>
+                <td width = "50px">:</td>
+                <td><select name = "SubjectId">
+                  <option>-----SELECT-----</option>
+                    <% rowSubjects.forEach((subject) => {
+                      if(subject.id == teacher.SubjectId) { %>
+                        <option value = "<%= subject.id %>" selected> <%= subject.subject_name %></option>
+                          <% } else { %>
+                            <option value = "<%= subject.id %>"> <%= subject.subject_name %></option>
+                      <% }}) %>
+                </td>
+              </tr>
+
+              <tr>
+                <td width = "150px"></td>
+                <td width = "50px"></td>
+                <td><input type="submit" value = "Edit Teacher"></td>
+              </tr>
+            </table>
+          </form>
+      </fieldset>
+  </body>
+</html>

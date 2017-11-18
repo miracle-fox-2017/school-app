@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HALAMAN TEACHER</title>
+
+    <style type = "text/css">
+
+      table {
+        background-color: brown;
+        font-family: Calibri;
+        width : 100%;
+      }
+
+      tr {
+        color : white;
+      }
+
+      td {
+        color: white;
+        text-align:  center;
+      }
+
+      fieldset {
+        width : 80%;
+      }
+
+      a {
+        text-decoration: none;
+        color : white;
+      }
+
+    </style>
+  </head>
+  <body style="background-color : aquamarine">
+    <fieldset>
+      <legend><b>Data Teacher</b></legend>
+    <table border = "1">
+      <thead>
+        <th><b>Id</b></th>
+        <th><b>First Name</b></th>
+        <th><b>Last Name</b></th>
+        <th><b>E-mail</b></th>
+        <th><b>Subject_Name</b></th>
+        <th><b>EDIT DATA</b></th>
+        <th><b>DELETE DATA</b></th>
+      </thead>
+
+      <tbody>
+        <% rowTeachers.forEach((teacher) => { %>
+          <tr>
+            <td><%= teacher.id %></td>
+            <td><%= teacher.first_name %></td>
+            <td><%= teacher.last_name %></td>
+            <td><%= teacher.email %></td>
+              <% if(teacher.Subject !== null)  {%>
+                <td><%= teacher.Subject.subject_name %></td>
+                 <% } else { %>
+                   <td>Unassigned</td>
+              <%}%>
+            <td><a href = '/teachers/edit/<%= teacher.id %>'>EDIT</a></td>
+            <td><a href = '/teachers/delete/<%= teacher.id %>'>DELETE</a></td>
+          </tr>
+        <%  }) %>
+      </tbody>
+
+    </table>
+    </fieldset>
+  </body>
+</html>

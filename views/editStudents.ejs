@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HALAMAN EDIT STUDENTS</title>
+
+        <style type = "text/css">
+
+          .tabel {
+            background-color: brown;
+            font-family: Calibri;
+            width : 100%;
+          }
+
+          .warna {
+            color : white;
+          }
+
+          .rapi {
+            color: white;
+            text-align:  center;
+          }
+
+          fieldset {
+            width : 40%;
+          }
+
+        </style>
+
+  </head>
+  <body style = "background-color :aquamarine">
+    <% rowStudents.forEach(student => { %>
+
+      <fieldset>
+        <legend> <b>FORM EDIT STUDENT </b> </legend>
+          <form action="/students/edit/ <%= student.id %>" method="post">
+            <table border = "0">
+              <tr>
+                <td width = "150px">First Name</td>
+                <td width = "50px">:</td>
+                <td><input type="text" name="first_name" value = "<%= student.first_name %>"></td>
+              </tr>
+
+              <tr>
+                <td width = "150px">Last Name</td>
+                <td width = "50px">:</td>
+                <td><input type="text" name="last_name" value = "<%= student.last_name %>"></td>
+              </tr>
+
+              <tr>
+                <td width = "150px">E-mail</td>
+                <td width = "50px">:</td>
+                <td><input type="text" name="email" value = "<%= student.email %>"></td>
+              </tr>
+
+              <tr>
+                <td width = "150px"></td>
+                <td width = "50px"></td>
+                <td><input type="submit" value = "Edit Student"></td>
+              </tr>
+            </table>
+          </form>
+      </fieldset>
+<% }) %>
+  </body>
+</html>
