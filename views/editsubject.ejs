@@ -1,0 +1,16 @@
+<%-include partial/index%>
+    <form class="" action="/subject/edit/<%=rows.id%>" method="post">
+        <input type="text" name="subject_name" value="<%=rows.subject_name%>">
+        <select class="" name="select">
+          <%for(let i = 0;i < teach.length ;i++){%>
+              <%if(teach[i].id == rows.id){%>
+                <option value="<%=teach[i].getFullName()%>" selected><%=teach[i].getFullName()%></option>
+              <%}else{%>
+                <option value="<%=teach[i].getFullName()%>"><%=teach[i].getFullName()%></option>
+              <%}%>
+          <%}%>
+        </select>
+        <button type="submit">SAVE</button>
+    </form>
+  </body>
+</html>

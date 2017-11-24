@@ -1,0 +1,19 @@
+<%-include partial/index%>
+    <table>
+          <tr>
+            <form class="" action="/student/<%=rows[0].id%>/addsubject" method="post">
+              <td><input type="text" name="first_name" value="<%=rows[0].first_name%>"></td>
+              <td><input type="text" name="last_name" value="<%=rows[0].last_name%>"></td>
+              <td><input type="text" name="email" value="<%=rows[0].email%>"></td>
+              <td><select class="" name="subject">
+                <option value="SELECT">--SELECT--</option>
+              <% for(let i = 0;i < subs.length;i++) { %>
+                  <option value="<%=subs[i].subject_name%>" selected><%=subs[i].subject_name%></option>
+                    <% } %>
+                </select></td>
+            <td><button type="submit">SAVE</button></td>
+          </form>
+        </tr>
+    </table>
+  </body>
+</html>

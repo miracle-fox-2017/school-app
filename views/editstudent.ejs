@@ -1,0 +1,9 @@
+<%-include partial/index%>
+    <form class="" action="/student/edit/<%=rows.id%>" method="post">
+        <input type="text" name="first_name" value="<%=rows.first_name%>">
+        <input type="text" name="last_name" value="<%=rows.last_name%>">
+        <input type="text" name="email" value="<%=rows.email%>">
+        <button type="submit">SAVE</button>
+    </form>
+  </body>
+</html>

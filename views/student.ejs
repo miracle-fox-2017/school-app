@@ -1,0 +1,40 @@
+<%-include partial/index%>
+    <% if(err) {%>
+      masukin email yang bener oi!!!
+    <%}%>
+    <table>
+      <form class="" action="/student" method="post">
+        <tr>
+          <td><input type="text" name="first_name" placeholder="First name"></td>
+          <td><input type="text" name="last_name" placeholder="Last name"></td>
+          <td><input type="text" name="email" placeholder="Email"></td>
+          <td><button type="submit" name="button">ADD</button></td>
+        </tr>
+      </form>
+    </table>
+    <table border>
+      <tr>
+        <th>no</th>
+        <th>id</th>
+        <th>full name</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>Action</th>
+      </tr>
+      <% for(let i = 0;i < rows.length ; i++){%>
+        <tr>
+            <td><%= i+1%></td>
+            <td><%=rows[i].id%></td>
+            <td><%=rows[i].getFullName()%></td>
+            <td><%=rows[i].first_name%></td>
+            <td><%=rows[i].last_name%></td>
+            <td><%=rows[i].email%></td>
+            <td><a href="/student/<%=rows[i].id%>/addsubject">add subject</td>
+            <td><a href="/student/delete/<%=rows[i].id%>">delete</a></td>
+            <td><a href="/student/edit/<%=rows[i].id%>">edit</a></td>
+          </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
