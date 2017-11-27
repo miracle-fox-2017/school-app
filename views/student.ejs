@@ -1,0 +1,28 @@
+<%- include("partials/header",{title:'Students'}) %>
+  <body>
+    <h3> <a href="/students/add/"> Add Student </a> </h3>
+    <table border="1">
+      <tr>
+        <td><strong> ID </strong></td>
+        <td><strong> First Name </strong></td>
+        <td><strong> Last Name </strong></td>
+        <td><strong> Email </strong></td>
+        <td><strong> Full Name </strong></td>
+        <td><strong> Add Subject </strong></td>
+
+      </tr>
+      <% rowsStudent.forEach(function(list) { %>
+        <tr>
+          <td><%= list.id%></td>
+          <td><%= list.first_name%></td>
+          <td><%= list.last_name%></td>
+          <td><%= list.email%></td>
+          <td><%= list.getFullNameStudent() %></td>
+          <td> <a href="/students/<%= list.id%>/addsubject"> Add Subject </a> </td>
+          <td><a href="/students/edit/<%= list.id%>"> EDIT </a></td>
+          <td><a href="/students/delete/<%= list.id%>"> DELETE </a></td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

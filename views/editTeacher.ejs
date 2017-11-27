@@ -1,0 +1,31 @@
+<%- include("partials/header",{title:'Edit Teacher'}) %>
+<style type = "text/css">
+  .tr {
+    display : inline-block;
+  }
+</style>
+  <body>
+    <table>
+      <tr>
+        <form class="" action="/teachers/edit/<%= rowsEdit.id %>" method="post">
+          <td> First Name <br> <input type="text" name="first_name" value="<%= rowsEdit.first_name %>"> </td>
+          <td>Last Name <br> <input type="text" name="last_name" value="<%= rowsEdit.last_name %>"></td>
+          <td>Email <br> <input type="text" name="email" value="<%= rowsEdit.email %>"></td>
+          <td><input type="submit" value="Submit"></td>
+          <td>
+            <select name="SubjectId">
+              <option> ---- SELECT----</option>
+                <% rowsSubject.forEach(function(list){ %>
+                  <% if(list.id === rowsEdit.SubjectId){ %>
+                    <option value="<%= list.id%>" selected> <%= list.subject_name %> </option>
+                  <%} else {%>
+                    <option value="<%= list.id%>"> <%= list.subject_name %> </option>
+                  <% } %>
+                <%})%>
+            </select>
+          </td>
+        </form>
+    </tr>
+    </table>
+  </body>
+</html>

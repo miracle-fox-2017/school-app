@@ -1,0 +1,25 @@
+<%- include("partials/header",{title:'Subjects'}) %>
+  <body>
+    <table border="1">
+      <h3> <a href="/subjects/add/"> Add Subject </a> </h3>
+      <tr>
+        <td><strong> ID </strong></td>
+        <td><strong> Subject Name </strong></td>
+        <td><strong> Teachers Name </strong></td>
+        <td><strong> Actions </strong></td>
+      </tr>
+      <% rowsSubject.forEach(function(list) { %>
+        <tr>
+          <td><%= list.id%></td>
+          <td><%= list.subject_name%></td>
+          <td> <ol>
+            <% list.Teachers.forEach(function(listTeacher){ %>
+                <li><%= listTeacher.first_name%> <%= listTeacher.last_name%></li>
+            <% }) %>
+          </ol> </td>
+          <td> <a href="/subjects/<%= list.id%>/enrolledstudents"> Enrolled Student </a> </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

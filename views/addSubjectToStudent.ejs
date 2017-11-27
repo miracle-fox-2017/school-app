@@ -1,0 +1,42 @@
+<%- include("partials/header",{title:'Add Student Subject'}) %>
+
+<style type = "text/css">
+  table {
+    width : 30%;
+  }
+</style>
+
+  <body>
+    <h2> ADD Subject To Student </h2>
+    <table border="1">
+      <tr>
+        <td> <strong> First Name </strong> </td>
+        <td> <%= rowsStudent.first_name%> </td>
+      </tr>
+      <tr>
+        <td> <strong> Last Name </strong> </td>
+        <td> <%= rowsStudent.last_name%> </td>
+      </tr>
+      <tr>
+        <td> <strong> Email </strong> </td>
+        <td> <%= rowsStudent.email%> </td>
+      </tr>
+    </table>
+
+    <table>
+      <h4> Choose Your Subject </h4>
+        <tr>
+          <form action="/students/<%= rowsStudent.id%>/addsubject" method="post">
+            <input type="hidden" name="StudentId" value="<%= rowsStudent.id%>">
+              <select name="SubjectId">
+                <option> --- SELECT ---</option>
+                  <% rowsSubject.forEach(function(list){ %>
+                      <option value="<%= list.id%>" > <%= list.subject_name %> </option>
+                  <%})%>
+              </select>
+            <td><input type="submit" value="Submit"><br></td>
+          </form>
+        </tr>
+    </table>
+  </body>
+</html>
