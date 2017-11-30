@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ./partials/head %>
+</head>
+<body>
+  <header>
+    <% include ./partials/header %>
+  </header>
+  <div class="container">
+    <h2>ADD SUBJECT</h2>
+
+    <form class="form-inline" role="form" action="/subjects/add" method="post">
+      <div class="form-group">
+        <label for="subject_name">Subject Name</label>
+        <input type="TEXT" name="subject_name" placeholder="Enter Subject Name" required="required">
+      </div>
+      <button type="submit" class="btn btn-default">ADD</button>
+    </form>
+  </div>
+  <footer>
+    <% include ./partials/footer %>
+  </footer>
+
+</body>
+</html>

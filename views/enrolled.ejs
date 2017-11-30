@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ./partials/head %>
+</head>
+<body>
+  <header>
+    <% include ./partials/header %>
+  </header>
+  <div class="container">
+    <%if(data[0] !== undefined){%>
+      <h2><%=data[0].Subject.subject_name%></h2>
+      <%}else{%>
+        <h2>Please enroll at least ONE student first</h2>
+        <%}%>
+        <table class="table" id="enrolled">
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Score By Letter</th>
+          </tr>
+          <%data.forEach (row=> {%>
+            <tr>
+              <td><%=row.Student.fullName()%></td>
+              <% if (row.score) { %>
+                <td><%= row.score %></td>
+                <% } else { %>
+                  <td><a href="/subjects/<%= row.id %>/givescore">GIVE SCORE</a></td>
+                  <% } %>
+                  <td><%=scoreLetter(row.score)%></td>
+                </tr>
+                <%})%>
+              </table>
+            </div>
+            <footer>
+              <% include ./partials/footer %>
+            </footer>
+          </body>
+          </html>

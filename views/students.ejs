@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  function myFunction() {
+    confirm("are you sure?!");
+    swal({
+      icon: "success",
+    });
+  }
+  </script>
+  <style media="screen">
+  table tr:nth-child(1){
+    counter-reset: rowNumber;
+  }
+
+  table tr {
+    counter-increment: rowNumber;
+  }
+
+  table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+  }
+  </style>
+  <script type="text/javascript">
+  function sort(ascending, columnClassName, tableId) {
+    var tbody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+    let rows = tbody.getElementsByTagName('tr');
+    let unsorted = true;
+    while (unsorted) {
+      unsorted = false;
+      for (var r = 0; r < rows.length - 1; r++) {
+        var row = rows[r];
+        var nextRow = rows[r + 1];
+        var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
+        var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
+        value = value.replace(',', '.');
+        nextValue = nextValue.replace(',', '.');
+
+        if (!isNaN(value)) {
+          value = parseFloat(value);
+          nextValue = parseFloat(nextValue);
+        }
+
+        if (ascending ? value > nextValue : value < nextValue) {
+          tbody.insertBefore(nextRow, row);
+          unsorted = true;
+        }
+      }
+    }
+  };
+  </script>
+  <% include ./partials/head %>
+</head>
+<body>
+  <header>
+    <% include ./partials/header %>
+  </header>
+  <div class="container">
+    <h2>STUDENTS DATA</h2>
+    <div class="table-responsive">
+      <a href="students/add">ADD STUDENT</a>
+      <table class="table" id="student">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>ID</th>
+            <th>FIRST NAME
+              <a href="javascript:sort(true, 'name', 'student');">asc</a>
+              <a href="javascript:sort(false, 'name', 'student');">des</a>
+            </th>
+            <th>LAST NAME</th>
+            <th>EMAIL</th>
+            <th>ACTIONS</th>
+            <th colspan="2">OPTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%dataContacts.forEach (row=> {%>
+            <tr>
+              <td></td>
+              <td><%= row.id %></td>
+              <td class='name'><%= row.first_name %></td>
+              <td><%= row.last_name %></td>
+              <td><%= row.email %></td>
+              <td><a href="/students/<%=row.id%>/addsubject">ADD SUBJECT</a></td>
+              <td>
+                <a href="/students/edit/<%= row.id %>">EDIT</a>
+                <a href="/students/delete/<%= row.id %>" onclick="myFunction()">DELETE</a>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <footer>
+        <% include ./partials/footer %>
+      </footer>
+    </body>
+    </html>

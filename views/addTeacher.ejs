@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<% include ./partials/head %>
+</head>
+<body>
+  <header>
+    <% include ./partials/header %>
+  </header>
+  <div class="container">
+    <h2>ADD TEACHER</h2>
+
+    <form class="form-inline" role="form" action="/teachers/add" method="post">
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="TEXT" name="first_name" placeholder="Enter First Name" required="required">
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="TEXT" name="last_name" placeholder="Enter Last Name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="TEXT" name="email" placeholder="Enter Email">
+      </div>
+      <br>
+        <br>Subject:<br>
+        <select name="SubjectId">
+          <%for(let i = 0; i< Subjects.length; i++){%>
+            <option value="<%=Subjects[i].id%>"><%=Subjects[i].subject_name%></option>
+            <%}%>
+          </select>
+          <button type="submit" class="btn btn-default">ADD</button>
+        </form>
+        <%if(hasOwnProperty('error')){%>
+          <h1>Email yang anda masukkan tidak benar</h1>
+          <%}%>
+        </div>
+        <footer>
+          <% include ./partials/footer %>
+        </footer>
+      </body>
+      </html>

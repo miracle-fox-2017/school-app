@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ./partials/head %>
+</head>
+<body>
+  <header>
+    <% include ./partials/header %>
+  </header>
+  <div class="container">
+    <h3>STUDENT NAME: <%=data[0].Student.fullName()%></h3>
+    <h3>SUBJECT: <%=data[0].Subject.subject_name%></h3>
+    <h3>Score:
+      <form action="/subjects/<%= data[0].id%>/givescore" method="post">
+        <input type="text" name="score">
+        <br><br>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </h3>
+  </div>
+  <footer>
+    <% include ./partials/footer %>
+  </footer>
+</body>
+</html>
