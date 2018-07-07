@@ -1,0 +1,15 @@
+<%include ../partials/navbar.ejs%>
+
+    <div class="ui container">
+    <h1>Add New Subject</h1>
+
+    <form class="ui form" action="/subjects/add" method="post">
+      <div class="field">
+        <label>Subject</label>
+        <input type="text" name="subject_name" placeholder="Ex: Javascript">
+      </div>
+      <button class="ui button" type="submit">Submit</button>
+    </form>
+  </div>
+  </body>
+</html>

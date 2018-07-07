@@ -1,0 +1,43 @@
+<%include ../partials/navbar.ejs%>
+
+
+  <div class="ui container">
+      <h3><%= subject_name%></h3>
+
+
+      <table class="ui single line celled table">
+      <th>No</th>
+      <th>Students Name</th>
+      <th>Score</th>
+      <th>Desc</th>
+
+        <%dataSubject.forEach((item, index) => {%>
+            <%if(item.Student != null){%>
+      <tr>
+          <td><%=index + 1%></td>
+
+          <td>
+            <%if(item.Student !== null){%>
+            <%=item.Student.getFullName()%>
+            <%}%>
+
+          </td>
+          <td>
+            <%if(item.score !== null){%>
+            <%=item.score%>
+          <%}else{%>
+            <a style="none" href="/subjects/<%=item.id%>/givescores">give score</a>
+          <%}%>
+          </td>
+          <td>
+            <%- score(item.score)%>
+          </td>
+      </tr>
+        <%}%>
+        <%})%>
+
+    </table>
+
+  </div>
+  </body>
+</html>

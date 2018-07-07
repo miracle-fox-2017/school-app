@@ -1,0 +1,51 @@
+<%include ../partials/navbar.ejs%>
+
+
+  <div class="ui container">
+
+    <h1>Teachers</h1>
+  <a href="/teachers/add"><button class="ui basic button"><i class="icon user"></i>Add</button></a>
+
+    <table class="ui single line celled table">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Option</th>
+          </tr>
+      </thead>
+
+      <tbody>
+        <%dataTeachers.forEach((item, index) =>{%>
+          <tr>
+              <td><%=index + 1%></td>
+              <td><%=item.id%></td>
+              <td><%=item.first_name%></td>
+              <td><%=item.last_name%></td>
+              <td><%=item.email%></td>
+              <td>
+                <% if (item.SubjectId !== null){%>
+                  <%=item.subject.subject_name%>
+                <%}else{%>
+                  unassigned
+                <%}%>
+
+              </td>
+              <td>
+                <a href="/teachers/edit/<%=item.id%>"> <i class="edit icon"></i></a>
+                <a href="/teachers/delete/<%=item.id%>"> <i class="remove user icon"></i></a>
+              </td>
+          </tr>
+
+        <%})%>
+      </tbody>
+
+  </table>
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+  </body>
+</html>

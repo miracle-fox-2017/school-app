@@ -1,0 +1,27 @@
+<%include ../partials/navbar.ejs%>
+
+
+    <div class="ui container">
+    <h1>Add Subject</h1>
+
+
+    <h3>Student:       <%=dataStudent.getFullName()%></h3>
+
+    <form class="ui form" action="/students/<%=dataStudent.id%>/addsubject" method="post">
+
+    <div class="ui form">
+      <div class="field"></div>
+    <select class="" name="SubjectId">
+      <%dataSubjects.forEach(item =>{%>
+      <option value="<%=item.id%>"><%=item.subject_name%></option>
+      <%})%>
+    </select>
+
+    </div>
+  </br>
+    <button class="ui button" type="submit">Submit</button>
+    </div>
+  </form>
+
+  </body>
+</html>

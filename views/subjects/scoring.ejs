@@ -1,0 +1,21 @@
+<%include ../partials/navbar.ejs%>
+
+  <div class="ui container">
+    <h3><%=data.Subject.subject_name%></h3>
+
+    <form class="ui form" action="/subjects/<%=data.Subject.id%>/givescores" method="post">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" value="<%=data.Student.getFullName()%>"><br>
+      </div>
+      <div class="field">
+        <label>Score</label>
+        <input type="text" name="score" value=""><br>
+        <input type="hidden" name='StudentId' value="<%=data.StudentId%>">
+        <input type="hidden" name='SubjectId' value="<%=data.SubjectId%>">
+      </div>
+        <button class="ui button" type="submit">Submit</button>
+  </form>
+</div>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<%include ../partials/navbar.ejs%>
+
+
+<div class="ui container">
+    <h1>Edit</h1>
+
+
+    <form class="ui form" action="/students/edit/<%=dataStudent.id%>" method="post">
+      <div class="field">
+        <label>First name</label>
+        <input type="text" name="first_name" value="<%=dataStudent.first_name%>"><br>
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="<%=dataStudent.last_name%>"><br>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="text" name="email" value="<%=dataStudent.email%>"><br>
+      </div>
+
+      <button class="ui button" type="submit">Submit</button>
+  </form>
+</div>
+  </body>
+</html>
