@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+</head>
+<body>
+
+<style>
+	.main-menu ul{
+		padding: 10px;
+		list-style: none
+	}
+
+	.main-menu ul li {
+		margin-right: 10px;
+		display: inline-block;
+	}
+
+	.main-menu {
+		text-align: center;
+		background: wheat;
+	}
+
+	.main-menu ul li a{
+		font-size: 20px;
+		font-weight: bold;
+		text-transform: uppercase;
+		text-decoration: none;
+	}
+		.main-menu ul li a:hover{
+			font-weight: normal;
+		}
+
+		.main-menu ul li ul {
+			display: none;
+		}
+
+		.main-menu ul li:hover ul {
+			display: block;
+		}
+
+		.main-menu ul li ul {
+			position: absolute;
+			background: wheat;
+		}
+</style>
+
+<nav class="main-menu">
+	<ul>
+		<li><a href="/login">Login</a></li>
+		<li><a href="/register">Register</a></li>
+		<li>
+			<a href="/teachers">Teacher</a>
+			<ul>
+				<li><a href="/teachers/add">Add Teacher</a></li>
+			</ul>
+		</li>
+		<li><a href="/subjects">Subjects</a></li>
+		<li>
+			<a href="/students">Students</a>
+			<ul>
+				<li><a href="/students/add">Add Student</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav><!-- /.main-menu -->

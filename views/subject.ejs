@@ -1,0 +1,39 @@
+<%- include('partials/header', {title: 'Subject'})  %>
+
+<main class="content">
+	<h1 style="text-align: center;">Subjects</h1>
+
+	<table width="100%" border="1">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Id</th>
+				<th>Subject Name</th>
+				<th>Teacher</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% subjects.forEach( function(subject, index) { %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= subject.id %></td>
+					<td><%= subject.subject_name %></td>
+					<td>
+						<ol>
+						<% subject.Teachers.forEach((teacher, index) => {  %>
+							<li> <%= teacher.full_name() %> </li>
+						<% }); %>
+						</ol>
+					</td>
+					<td>
+						<a href="/subjects/<%= subject.id %>/enrolledstudents">Enrolled Students</a>
+					</td>
+				</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</main>
+
+<%- include('partials/footer')  %>

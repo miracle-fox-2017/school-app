@@ -1,0 +1,53 @@
+<%- include('partials/header', {title: 'Student'})  %>
+
+<main class="content">
+	<div style="text-align: center;"  class="header">
+		<h1 style="text-align: center;">Student Data</h1>
+		<a href="/students/add">Add Student</a>
+		<br>
+		<br>
+	</div>
+
+	<table width="100%" border="1">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Full Name</th>
+				<th>Email</th>
+				<th>Action</th>
+				<th>Option</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% students.forEach( function(student, index) { %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= student.id %></td>
+					<td><%= student.first_name %></td>
+					<td><%= student.last_name %></td>
+					<td><%= student.full_name() %></td>
+					<td><%= student.email %></td>
+					<td>
+						<a href="/students/<%= student.id %>/addsubject">Add Subject</a>
+					</td>
+					<td>
+						<a href="/students/edit/<%= student.id %>">Edit</a>
+						<a onclick="return confirm_click();" href="/students/delete/<%= student.id %>">Delete</a>
+					</td>
+				</tr>
+			<% }); %>
+		</tbody>
+	</table>
+
+	<script>
+		function confirm_click() {
+			return confirm("Delete this student?");
+		}
+	</script>
+</main>
+
+<%- include('partials/footer')  %>

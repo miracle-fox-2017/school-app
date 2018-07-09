@@ -1,0 +1,29 @@
+<%- include('partials/header', {title: 'Give score'})  %>
+
+<main class="content">
+	<div class="header" style="text-align: center;">
+		<h1>Give Score</h1>
+		<br><br>
+	</div>
+
+	<% if (typeof message !== 'undefined' && message !== null){ %>
+		<p style="text-align: center; color:red;"><%= message %></p>
+	<% } %>
+
+
+	<div style="text-align: center;">
+		<h4>Student Name: <%= foundStudentSubject.Student.full_name() %></h4>
+		<h4>Student Name: <%= foundStudentSubject.Subject.subject_name %></h4>
+
+		<form action="/subjects/<%= foundStudentSubject.StudentId %>/givescore" method="POST">
+			<input type="hidden" name="StudentSubjectId" id="StudentSubjectId" value="<%= foundStudentSubject.id %>">
+			<input type="hidden" name="StudentId" id="StudentId" value="<%= foundStudentSubject.StudentId %>">
+			<input type="hidden" name="SubjectId" id="SubjectId" value="<%= foundStudentSubject.SubjectId %>">
+			<input type="text" name="Score" id="Score" placeholder="Score" value="">
+
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</main><!-- /.content -->
+
+<%- include('partials/footer')  %>
